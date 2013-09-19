@@ -40,6 +40,7 @@ For more information, check out plugin page at [dFactory](http://www.dfactory.eu
 
 = Translations: =
 
+* Japanese - by stranger-jp
 * Polish - by Bartosz Arendt
 
 
@@ -62,10 +63,14 @@ No questions yet.
 
 == Changelog ==
 
+= 1.0.1 =
+* New: Japanese translation, thanks to stranger-jp
+* Fix: Label not saving in Events List widget
+
 = 1.0.0 =
 Initial release
 
 == Upgrade Notice ==
 
-= 1.0.0 =
-Initial release
+= 1.0.1 =
+New: Japanese translation, thanks to stranger-jp

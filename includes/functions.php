@@ -659,7 +659,7 @@ function em_display_events($args = array())
 		return $html;
 	}
 	else
-		return $defaults['no_events_message'];
+		return $args['no_events_message'];
 }
 
 

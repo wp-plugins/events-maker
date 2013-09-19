@@ -4,7 +4,7 @@ Donate link: http://www.dfactory.eu/
 Tags: event, event categories, events management, event management, events manager, event manager, event organizer, events calendar, events maker, google map, map, locations, organizers, widget, attendance, attendee, Booking, calendar, event registration, ticket, tickets, ticketing, bookings
 Requires at least: 3.5
 Tested up to: 3.6.1
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -73,4 +73,5 @@ Initial release
 == Upgrade Notice ==
 
 = 1.0.1 =
-New: Japanese translation, thanks to stranger-jp
+* New: Japanese translation, thanks to stranger-jp
+* Fix: Label not saving in Events List widget

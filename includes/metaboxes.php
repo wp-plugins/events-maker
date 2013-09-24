@@ -374,12 +374,30 @@ class Events_Maker_Metaboxes
 
 
 	/**
-	 * Saves event with new metaboxes
+	 * Saves event metadata
 	*/
-	public function save_event($post_ID, $post)
+	public function save_event($post_ID)
 	{
-		if((defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) || (wp_verify_nonce((isset($_POST['event_nonce_datetime']) ? $_POST['event_nonce_datetime'] : ''), 'events_maker_save_event_datetime') === FALSE) || (wp_verify_nonce((isset($_POST['event_nonce_tickets']) ? $_POST['event_nonce_tickets'] : ''), 'events_maker_save_event_tickets') === FALSE) || (wp_verify_nonce((isset($_POST['event_nonce_options']) ? $_POST['event_nonce_options'] : ''), 'events_maker_save_event_options') === FALSE) || ($post->post_type === 'event' && !current_user_can('edit_event', $post_ID)))
-			return;
+		
+		// break if doing autosave
+		if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) 
+			return $post_ID;
+		
+		// verify if event_nonce_datetime nonce is set and valid
+		if (!isset($_POST['event_nonce_datetime']) || !wp_verify_nonce($_POST['event_nonce_datetime'], 'events_maker_save_event_datetime'))
+        	return $post_ID;
+		
+		// verify if event_nonce_tickets nonce is set and valid
+		if (!isset($_POST['event_nonce_tickets']) || !wp_verify_nonce($_POST['event_nonce_tickets'], 'events_maker_save_event_tickets'))
+        	return $post_ID;
+			
+		// verify if event_nonce_options nonce is set and valid
+		if (!isset($_POST['event_nonce_options']) || !wp_verify_nonce($_POST['event_nonce_options'], 'events_maker_save_event_options'))
+        	return $post_ID;
+
+		// break if current user can't edit events
+		if (!current_user_can('edit_event', $post_ID))
+			return $post_ID;
 
 		$errors = array();
 

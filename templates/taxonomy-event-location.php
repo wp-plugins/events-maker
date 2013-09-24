@@ -8,7 +8,7 @@
 
 			<header class="archive-header">
 
-				<h1 class="archive-title"><?php printf(__( 'Events Location: %s', 'events-maker' , single_term_title('', false ))); ?></h1>
+				<h1 class="archive-title"><?php printf(__('Events Location: %s', 'events-maker'), single_term_title('', false)); ?></h1>
 
                 <?php em_display_google_map(); ?>
 

@@ -4,7 +4,7 @@ Donate link: http://www.dfactory.eu/
 Tags: event, event categories, events management, event management, events manager, event manager, event organizer, events calendar, events maker, google map, map, locations, organizers, widget, attendance, attendee, Booking, calendar, event registration, ticket, tickets, ticketing, bookings
 Requires at least: 3.5
 Tested up to: 3.6.1
-Stable tag: 1.0.0
+Stable tag: 1.0.3
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -38,8 +38,17 @@ For more information, check out plugin page at [dFactory](http://www.dfactory.eu
 * Customizable permalink structure
 * .pot file for translations included
 
+= Future plans: =
+
+* Front-end events submissions
+* Recurring events
+* Advanced Full Calendar
+* iCal & Google Calendar integration
+* Events search & filtering
+
 = Translations: =
 
+* Japanese - by stranger-jp
 * Polish - by Bartosz Arendt
 
 
@@ -62,10 +71,24 @@ No questions yet.
 
 == Changelog ==
 
+= 1.0.3 =
+* Fix: Single events not displaying if sorting by start or end date selected
+* Fix: Custom fields data not saving if tickets were not used
+* Tweak: Empty start and end dates handling if it was not provided
+* Tweak: Improved WPML support using wpml-config file
+
+= 1.0.2 =
+* Fix: Single events 404 error if Show past events option was disabled
+
+= 1.0.1 =
+* New: Japanese translation, thanks to stranger-jp
+* Fix: Label not saving in Events List widget
+
 = 1.0.0 =
 Initial release
 
 == Upgrade Notice ==
 
-= 1.0.0 =
-Initial release
+
+= 1.0.3 =
+Fixes bugs on events not displaying on front and back-end

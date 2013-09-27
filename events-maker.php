@@ -106,7 +106,7 @@ class Events_Maker
 			'event_locations_rewrite_slug' => 'location',
 			'event_organizers_rewrite_slug' => 'organizer'
 		),
-		'version' => '1.0.2'
+		'version' => '1.0.2.5'
 	);
 	private $transient_id = '';
 

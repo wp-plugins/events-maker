@@ -38,6 +38,14 @@ For more information, check out plugin page at [dFactory](http://www.dfactory.eu
 * Customizable permalink structure
 * .pot file for translations included
 
+= Future plans: =
+
+* Front-end events submissions
+* Recurring events
+* Advanced Full Calendar
+* iCal & Google Calendar integration
+* Events search & filtering
+
 = Translations: =
 
 * Japanese - by stranger-jp
@@ -63,6 +71,12 @@ No questions yet.
 
 == Changelog ==
 
+= 1.0.3 =
+* Fix: Single events not displaying if sorting by start or end date selected
+* Fix: Custom fields data not saving if tickets were not used
+* Tweak: Empty start and end dates handling if it was not provided
+* Tweak: Improved WPML support using wpml-config file
+
 = 1.0.2 =
 * Fix: Single events 404 error if Show past events option was disabled
 
@@ -75,5 +89,6 @@ Initial release
 
 == Upgrade Notice ==
 
-= 1.0.2 =
-* Fix: Single events 404 error if Show past events option was disabled
+
+= 1.0.3 =
+Fixes bugs on events not displaying on front and back-end

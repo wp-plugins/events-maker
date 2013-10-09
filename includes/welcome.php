@@ -43,6 +43,7 @@ class Events_Maker_Welcome_Page
 
 		<p class="events-maker-actions">
 			<a href="<?php echo esc_url(admin_url('edit.php?post_type=event&page=events-settings')); ?>" class="button button-primary"><?php _e('Settings', 'events-maker'); ?></a>
+			<a href="http://www.dfactory.eu/docs/events-maker-plugin/?utm_source=events-maker-welcome&utm_medium=button&utm_campaign=documentation" class="button button-primary" target="_blank"><?php _e('Documentation', 'events-maker'); ?></a>
 			<a href="http://www.dfactory.eu/support/?utm_source=events-maker-welcome&utm_medium=button&utm_campaign=support" class="button button-primary" target="_blank"><?php _e('Support', 'events-maker'); ?></a>
 			<a href="http://www.dfactory.eu/?utm_source=events-maker-welcome&utm_medium=button&utm_campaign=dfactory-plugins" class="button button-primary" target="_blank"><?php _e('dFactory Plugins', 'events-maker'); ?></a>
 		</p>

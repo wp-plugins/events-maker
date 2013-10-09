@@ -459,7 +459,7 @@ function em_get_event_taxonomy($taxonomy = '', $args = array())
 }
 
 
-function em_display_events_archives($args = array())
+function em_display_event_archives($args = array())
 {
 	global $wp_locale;
 
@@ -592,7 +592,7 @@ function em_display_events($args = array())
 	elseif($args['order_by'] === 'publish')
 		$events_args['orderby'] = 'date';
 	else
-		$events_args['order_by'] === 'title';
+		$events_args['orderby'] = 'title';
 
 	$events = get_posts($events_args);
 
@@ -641,10 +641,15 @@ function em_display_events($args = array())
 				<a class="event-title" href="'.get_permalink($event->ID).'">'.$event->post_title.'</a>
 				<br />';
 
+			if(post_password_required($event->ID))
+				$excerpt = __('There is no excerpt because this is a protected post.');
+			else
+				$excerpt = apply_filters('get_the_excerpt', $event->post_excerpt);
+
 			if($args['show_event_excerpt'] === TRUE)
 				$html .= '
 				<span class="event-excerpt">
-					'.get_the_excerpt().'
+					'.$excerpt.'
 				</span>';
 
 			$html .= '

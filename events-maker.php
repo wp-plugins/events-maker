@@ -7,6 +7,7 @@ Author: dFactory
 Author URI: http://www.dfactory.eu/
 Plugin URI: http://www.dfactory.eu/plugins/events-maker/
 License: MIT License
+License URI: http://opensource.org/licenses/MIT
 
 Events Maker
 Copyright (C) 2013, Digital Factory - info@digitalfactory.pl
@@ -202,8 +203,8 @@ class Events_Maker
 	{
 		global $wp_roles;
 
-		// transient for welcome screen
-		set_transient('_events_maker_activation_redirect', 1, 60 * 60);
+		//transient for welcome screen
+		set_transient('_events_maker_activation_redirect', 1, 3600);
 
 		//add caps to administrators
 		foreach($wp_roles->roles as $role_name => $display_name)
@@ -750,7 +751,7 @@ class Events_Maker
 			'taxonomies' => $taxonomies,
 		);
 
-		register_post_type('event', apply_filters('em_register_post_type', $args_event));
+		register_post_type('event', apply_filters('em_register_event_post_type', $args_event));
 	}
 
 
@@ -777,7 +778,7 @@ class Events_Maker
 			date_i18n(__('M j, Y @ G:i'), strtotime($post->post_date)), esc_url(get_permalink($post_ID))),
 			10 => sprintf(__('Event draft updated. <a target="_blank" href="%s">Preview event</a>', 'events-maker'), esc_url(add_query_arg('preview', 'true', get_permalink($post_ID))))
 		);
-	
+
 		return $messages;
 	}
 

@@ -16,7 +16,7 @@
 /* Events list */
 .tablenav.top .alignleft.actions select[name="m"] { display: none; }
 .wp-list-table #title { width:20%; }
-.wp-list-table #author { width: auto;}
+.wp-list-table #author { width: auto; }
 
 /* Widgets screen */
 ul.terms-checkbox-list, ul.terms-checkbox-list li {
@@ -31,14 +31,15 @@ ul.terms-checkbox-list.depth-level-2 {
 ul.terms-checkbox-list.depth-level-3 {
 	margin-left: 30px;
 }
+ul.terms-checkbox-list.depth-level-4 {
+	margin-left: 40px;
+}
 .events-maker-list { margin: 0 0 1em; padding: 0; }
-.checkbox-list { border: 1px solid #dfdfdf; background:#fff; max-height: 200px; min-height: 42px; overflow: auto; padding: 0.5em 0.9em; margin: 0.5em 0 0; }
+.checkbox-list { border: 1px solid #dfdfdf; background: #fff; max-height: 200px; min-height: 42px; overflow: auto; padding: 0.5em 0.9em; margin: 0.5em 0 0; }
 
 /* Events edit screen */
-#event-date-time-box div { padding:5px; }
-#event-date-time-box #event_recurrence_details { padding:5px 0; }
-#event-date-time-box .event_recurrence_type { padding:5px 0; }
-#event-date-time-box label { display:inline-block; width:20%; }
+#event-date-time-box div { padding: 5px; }
+#event-date-time-box label { display: inline-block; width: 20%; }
 
 /* Edit Event Location */
 #event-google-map { width: 95%; height: 340px; }

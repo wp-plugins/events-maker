@@ -5,9 +5,8 @@ jQuery(document).ready(function($) {
 		var divCalendar = $(this).closest('div.events-calendar-widget');
 		var divRel = divCalendar.attr('rel');
 		var tdSpinner = divCalendar.find('td.ajax-spinner');
-		var divSpinner = divCalendar.find('td.ajax-spinner div');
 
-		divSpinner.css('top', parseInt((tdSpinner.height() - 16) / 2)+'px').css('left', parseInt((tdSpinner.width() - 16) / 2)+'px').fadeIn(300);
+		divCalendar.find('td.ajax-spinner div').css('top', parseInt((tdSpinner.height() - 16) / 2)+'px').css('left', parseInt((tdSpinner.width() - 16) / 2)+'px').fadeIn(300);
 
 		$.ajax({
 			type: 'POST',

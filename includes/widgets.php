@@ -1,6 +1,7 @@
 <?php
+if(!defined('ABSPATH')) exit; //exit if accessed directly
 
-if (!defined('ABSPATH')) exit; // Exit if accessed directly
+new Events_Maker_Widgets();
 
 class Events_Maker_Widgets
 {
@@ -24,8 +25,6 @@ class Events_Maker_Widgets
 	*/
 	public function register_widgets()
 	{
-		include_once(EVENTS_MAKER_PATH.'includes/widgets.php');
-
 		register_widget('Events_Maker_List_Widget');
 		register_widget('Events_Maker_Archive_Widget');
 		register_widget('Events_Maker_Calendar_Widget');
@@ -81,7 +80,7 @@ class Events_Maker_Archive_Widget extends WP_Widget
 		$instance['title'] = apply_filters('widget_title', $instance['title'], $instance, $this->id_base);
 
 		$html = $args['before_widget'].$args['before_title'].(!empty($instance['title']) ? $instance['title'] : $this->em_defaults['title']).$args['after_title'];
-		$html .= em_display_events_archives($instance);
+		$html .= em_display_event_archives($instance);
 		$html .= $args['after_widget'];
 
 		echo $html;
@@ -220,11 +219,13 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 	{
 		if(++$this->em_included_widgets === 1)
 		{
-			wp_enqueue_script(
+			wp_register_script(
 				'events-maker-front-widgets-calendar',
 				EVENTS_MAKER_URL.'/js/front-widgets.js',
 				array('jquery')
 			);
+
+			wp_enqueue_script('events-maker-front-widgets-calendar');
 
 			wp_localize_script(
 				'events-maker-front-widgets-calendar',
@@ -254,9 +255,6 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 	{
 		$category = isset($instance['categories']) ? $instance['categories'] : $this->em_defaults['categories'];
 		$location = isset($instance['locations']) ? $instance['locations'] : $this->em_defaults['locations'];
-
-		if($this->em_options['general']['use_organizers'] === TRUE)
-			$organizer = isset($instance['organizers']) ? $instance['organizers'] : $this->em_defaults['organizers'];
 
 		$html = '
 		<p>
@@ -300,6 +298,8 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 
 		if($this->em_options['general']['use_organizers'] === TRUE)
 		{
+			$organizer = isset($instance['organizers']) ? $instance['organizers'] : $this->em_defaults['organizers'];
+
 			$html .= '
 		<div class="events-maker-list">
 			<label>'.__('Event Organizers', 'events-maker').':</label>
@@ -779,8 +779,8 @@ class Events_Maker_List_Widget extends WP_Widget
 		}
 
 		$html .= '
-			</select><br />
-
+			</select>
+			<br />
 			<label for="'.$this->get_field_id('order').'">'.__('Order', 'events-maker').':</label>
 			<select id="'.$this->get_field_id('order').'" name="'.$this->get_field_name('order').'">';
 
@@ -827,7 +827,7 @@ class Events_Maker_List_Widget extends WP_Widget
 		$old_instance['order_by'] = (isset($new_instance['order_by']) && in_array($new_instance['order_by'], array_keys($this->em_orders), TRUE) ? $new_instance['order_by'] : $this->em_defaults['order_by']);
 		$old_instance['order'] = (isset($new_instance['order']) && in_array($new_instance['order'], array_keys($this->em_order_types), TRUE) ? $new_instance['order'] : $this->em_defaults['order']);
 
-		//past events
+		//booleans
 		$old_instance['show_past_events'] = (isset($new_instance['show_past_events']) ? TRUE : FALSE);
 		$old_instance['show_event_thumbnail'] = (isset($new_instance['show_event_thumbnail']) ? TRUE : FALSE);
 		$old_instance['show_event_excerpt'] = (isset($new_instance['show_event_excerpt']) ? TRUE : FALSE);
@@ -964,10 +964,10 @@ class Events_Maker_Categories_Widget extends WP_Widget
 
 		$this->em_defaults = array(
 			'title' => __('Events Categories', 'events-maker'),
-			'display_as_dropdown' => TRUE,
+			'display_as_dropdown' => FALSE,
 			'show_hierarchy' => TRUE,
 			'order_by' => 'name',
-			'order' => 'desc'
+			'order' => 'asc'
 		);
 
 		$this->em_orders = array(
@@ -1022,8 +1022,8 @@ class Events_Maker_Categories_Widget extends WP_Widget
 		}
 
 		$html .= '
-			</select><br />
-			
+			</select>
+			<br />
 			<label for="'.$this->get_field_id('order').'">'.__('Order', 'events-maker').':</label>
 			<select id="'.$this->get_field_id('order').'" name="'.$this->get_field_name('order').'">';
 
@@ -1081,10 +1081,10 @@ class Events_Maker_Locations_Widget extends WP_Widget
 
 		$this->em_defaults = array(
 			'title' => __('Events Locations', 'events-maker'),
-			'display_as_dropdown' => TRUE,
+			'display_as_dropdown' => FALSE,
 			'show_hierarchy' => TRUE,
 			'order_by' => 'name',
-			'order' => 'desc'
+			'order' => 'asc'
 		);
 
 		$this->em_orders = array(
@@ -1139,8 +1139,8 @@ class Events_Maker_Locations_Widget extends WP_Widget
 		}
 
 		$html .= '
-			</select><br />
-
+			</select>
+			<br />
 			<label for="'.$this->get_field_id('order').'">'.__('Order', 'events-maker').':</label>
 			<select id="'.$this->get_field_id('order').'" name="'.$this->get_field_name('order').'">';
 
@@ -1198,10 +1198,10 @@ class Events_Maker_Organizers_Widget extends WP_Widget
 
 		$this->em_defaults = array(
 			'title' => __('Events Organizers', 'events-maker'),
-			'display_as_dropdown' => TRUE,
+			'display_as_dropdown' => FALSE,
 			'show_hierarchy' => TRUE,
 			'order_by' => 'name',
-			'order' => 'desc'
+			'order' => 'asc'
 		);
 
 		$this->em_orders = array(
@@ -1256,8 +1256,8 @@ class Events_Maker_Organizers_Widget extends WP_Widget
 		}
 
 		$html .= '
-			</select><br />
-
+			</select>
+			<br />
 			<label for="'.$this->get_field_id('order').'">'.__('Order', 'events-maker').':</label>
 			<select id="'.$this->get_field_id('order').'" name="'.$this->get_field_name('order').'">';
 
@@ -1293,8 +1293,5 @@ class Events_Maker_Organizers_Widget extends WP_Widget
 
 		return $old_instance;
 	}
-} 
-
-$events_maker_widgets = new Events_Maker_Widgets();
-
+}
 ?>

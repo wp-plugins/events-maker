@@ -1,7 +1,7 @@
 <?php
-if(!defined('ABSPATH')) exit; // Exit if accessed directly
+if(!defined('ABSPATH')) exit; //exit if accessed directly
 
-$events_maker_settings = new Events_Maker_Settings($events_maker);
+new Events_Maker_Settings($events_maker);
 
 class Events_Maker_Settings
 {
@@ -28,7 +28,6 @@ class Events_Maker_Settings
 			array('templates' => get_option('events_maker_templates'))
 		);
 
-		//for deactivation
 		if($events_maker !== '')
 		{
 			//passed vars
@@ -239,18 +238,18 @@ class Events_Maker_Settings
 				</form>
 			</div>
 			<div class="df-credits postbox-container">
-				<h3 class="metabox-title">'.__('Events Maker', 'events-maker').'</h3>
+				<h3 class="metabox-title">'.__('Events Maker', 'events-maker').' '.get_option('events_maker_version').'</h3>
 				<div class="inner">
 					<h3>'.__('Need support?', 'events-maker').'</h3>
-					<p>'.__('If you are having problems with this plugin, please talk about them in the', 'events-maker').' <a href="http://www.dfactory.eu/support/?utm_source=events-maker-settings&utm_medium=link&utm_campaign=support" target="_blank" title="'.__('Support forum', 'events-maker').'">'.__('Support forum', 'events-maker').'</a></p>
+					<p>'.__('If you are having problems with this plugin, checkout plugin', 'events-maker').'  <a href="http://www.dfactory.eu/docs/events-maker-plugin/?utm_source=events-maker-settings&utm_medium=link&utm_campaign=documentation" target="_blank" title="'.__('Documentation', 'events-maker').'">'.__('Documentation', 'events-maker').'</a> '.__('or talk about them in the', 'events-maker').' <a href="http://www.dfactory.eu/support/?utm_source=events-maker-settings&utm_medium=link&utm_campaign=support" target="_blank" title="'.__('Support forum', 'events-maker').'">'.__('Support forum', 'events-maker').'</a></p>
 					<hr />
 					<h3>'.__('Do you like this plugin?', 'events-maker').'</h3>
 					<p><a href="http://wordpress.org/support/view/plugin-reviews/events-maker" target="_blank" title="'.__('Rate it 5', 'events-maker').'">'.__('Rate it 5', 'events-maker').'</a> '.__('on WordPress.org', 'events-maker').'<br />'.
-					__('Blog about it & link to the', 'events-maker').' <a href="http://dfactory.eu/plugins/events-maker/?utm_source=events-maker-settings&utm_medium=link&utm_campaign=blog-about" target="_blank" title="'.__('plugin page', 'events-maker').'">'.__('plugin page', 'events-maker').'</a><br />'.
-					__('Check out our other', 'events-maker').' <a href="http://dfactory.eu/plugins/?utm_source=events-maker-settings&utm_medium=link&utm_campaign=other-plugins" target="_blank" title="'.__('WordPress plugins', 'events-maker').'">'.__('WordPress plugins', 'events-maker').'</a>
+					__('Blog about it & link to the', 'events-maker').' <a href="http://www.dfactory.eu/plugins/events-maker/?utm_source=events-maker-settings&utm_medium=link&utm_campaign=blog-about" target="_blank" title="'.__('plugin page', 'events-maker').'">'.__('plugin page', 'events-maker').'</a><br />'.
+					__('Check out our other', 'events-maker').' <a href="http://www.dfactory.eu/plugins/?utm_source=events-maker-settings&utm_medium=link&utm_campaign=other-plugins" target="_blank" title="'.__('WordPress plugins', 'events-maker').'">'.__('WordPress plugins', 'events-maker').'</a>
 					</p>            
 					<hr />
-					<p class="df-link">'.__('Created by', 'events-maker').' <a href="http://dfactory.eu/?utm_source=events-maker-settings&utm_medium=link&utm_campaign=created-by" target="_blank" title="dFactory - Quality plugins for WordPress"><img src="'.EVENTS_MAKER_URL.'/images/logo-dfactory.png'.'" title="dFactory - Quality plugins for WordPress" alt="dFactory - Quality plugins for WordPress" /></a></p>
+					<p class="df-link">'.__('Created by', 'events-maker').' <a href="http://www.dfactory.eu/?utm_source=events-maker-settings&utm_medium=link&utm_campaign=created-by" target="_blank" title="dFactory - Quality plugins for WordPress"><img src="'.EVENTS_MAKER_URL.'/images/logo-dfactory.png'.'" title="dFactory - Quality plugins for WordPress" alt="dFactory - Quality plugins for WordPress" /></a></p>
 				</div>
 			</div>
 			<div class="clear"></div>
@@ -783,7 +782,6 @@ class Events_Maker_Settings
 	*/
 	public function em_archive_event()
 	{
-		
 		echo '
 		<div id="em_archive_event">
 			<input type="text" name="events_maker_permalinks[event_rewrite_base]" value="'.esc_attr($this->options['permalinks']['event_rewrite_base']).'" />
@@ -1081,6 +1079,13 @@ class Events_Maker_Settings
 		{
 			$input = $this->defaults['general'];
 
+			//menu
+			$input['event_nav_menu']['show'] = FALSE;
+			$input['event_nav_menu']['menu_id'] = $this->defaults['general']['event_nav_menu']['menu_id'];
+			$input['event_nav_menu']['menu_name'] = $this->defaults['general']['event_nav_menu']['menu_name'];
+			$input['event_nav_menu']['item_id'] = $this->update_menu();
+
+			//datetime format
 			$input['datetime_format'] = array(
 				'date' => get_option('date_format'),
 				'time' => get_option('time_format')

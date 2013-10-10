@@ -1,6 +1,7 @@
 <?php
+if(!defined('ABSPATH')) exit; //exit if accessed directly
 
-if (!defined('ABSPATH')) exit; // Exit if accessed directly
+new Events_Maker_Templates();
 
 class Events_Maker_Templates
 {
@@ -89,7 +90,4 @@ class Events_Maker_Templates
 		return FALSE;
 	}
 }
-
-$events_maker_templates = new Events_Maker_Templates();
-
 ?>

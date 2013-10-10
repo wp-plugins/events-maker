@@ -1,6 +1,7 @@
 <?php
+if(!defined('ABSPATH')) exit; //exit if accessed directly
 
-if (!defined('ABSPATH')) exit; // Exit if accessed directly
+new Events_Maker_Query();
 
 class Events_Maker_Query
 {
@@ -437,7 +438,7 @@ class Events_Maker_Query
 				);
 			}
 
-			if($query->query_vars['event_show_past_events'] === FALSE)
+			if($query->query_vars['event_show_past_events'] === FALSE && $query->is_singular() !== TRUE)
 			{
 				$meta_args[] = array(
 					'key' => ($this->options['general']['expire_current'] === FALSE ? '_event_end_date' : '_event_start_date'),
@@ -452,7 +453,4 @@ class Events_Maker_Query
 		}
 	}
 }
-
-$events_maker_query = new Events_Maker_Query();
-
 ?>

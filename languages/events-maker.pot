@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Events Maker\n"
-"POT-Creation-Date: 2013-09-16 13:09+0100\n"
-"PO-Revision-Date: 2013-09-16 13:09+0100\n"
+"POT-Creation-Date: 2013-10-04 14:26+0100\n"
+"PO-Revision-Date: 2013-10-04 14:26+0100\n"
 "Last-Translator: Bartosz Arendt <info@digitalfactory.pl>\n"
 "Language-Team: dFactory <info@dfactory.pl>\n"
 "Language: English\n"
@@ -445,7 +445,7 @@ msgstr ""
 msgid "Are you sure you want to reset these settings to defaults?"
 msgstr ""
 
-#: ../events-maker.php:953 ../includes/welcome.php:46
+#: ../events-maker.php:953 ../includes/welcome.php:47
 msgid "Support"
 msgstr ""
 
@@ -492,120 +492,72 @@ msgstr ""
 msgid "Free"
 msgstr ""
 
-#: ../includes/metaboxes.php:42
+#: ../includes/metaboxes.php:36
 msgid "Ticket Name"
 msgstr ""
 
-#: ../includes/metaboxes.php:43
+#: ../includes/metaboxes.php:37
 msgid "Price"
 msgstr ""
 
-#: ../includes/metaboxes.php:48
-msgid "Invalid Until date."
-msgstr ""
-
-#: ../includes/metaboxes.php:49
-msgid "Such Until date does not exists."
-msgstr ""
-
-#: ../includes/metaboxes.php:50
-msgid "Invalid Start date."
-msgstr ""
-
-#: ../includes/metaboxes.php:51
-msgid "Such Start date does not exists."
-msgstr ""
-
-#: ../includes/metaboxes.php:52
-msgid "Invalid Start time."
-msgstr ""
-
-#: ../includes/metaboxes.php:53
-msgid "Such Start time does not exists."
-msgstr ""
-
-#: ../includes/metaboxes.php:54
-msgid "Invalid End date."
-msgstr ""
-
-#: ../includes/metaboxes.php:55
-msgid "Such End date does not exists."
-msgstr ""
-
-#: ../includes/metaboxes.php:56
-msgid "Invalid End time."
-msgstr ""
-
-#: ../includes/metaboxes.php:57
-msgid "Such End time does not exists."
-msgstr ""
-
-#: ../includes/metaboxes.php:58
-msgid "No tickets were added to a paid event."
-msgstr ""
-
-#: ../includes/metaboxes.php:59
-msgid "End date is earlier than the start date."
-msgstr ""
-
-#: ../includes/metaboxes.php:66
+#: ../includes/metaboxes.php:45
 msgid "Event Display Options"
 msgstr ""
 
-#: ../includes/metaboxes.php:73
+#: ../includes/metaboxes.php:52
 msgid "Event Date and Time"
 msgstr ""
 
-#: ../includes/metaboxes.php:80
+#: ../includes/metaboxes.php:59
 msgid "Event Tickets"
 msgstr ""
 
-#: ../includes/metaboxes.php:139 ../includes/metaboxes.php:143
-#: ../includes/metaboxes.php:294 ../includes/metaboxes.php:311
+#: ../includes/metaboxes.php:118 ../includes/metaboxes.php:122
+#: ../includes/metaboxes.php:273 ../includes/metaboxes.php:290
 msgid "Delete"
 msgstr ""
 
-#: ../includes/metaboxes.php:141 ../includes/metaboxes.php:241
+#: ../includes/metaboxes.php:120 ../includes/metaboxes.php:220
 msgid "Start date/time"
 msgstr ""
 
-#: ../includes/metaboxes.php:142 ../includes/metaboxes.php:244
+#: ../includes/metaboxes.php:121 ../includes/metaboxes.php:223
 msgid "End date/time"
 msgstr ""
 
-#: ../includes/metaboxes.php:144
+#: ../includes/metaboxes.php:123
 msgid "Are you sure you want to delete this ticket?"
 msgstr ""
 
-#: ../includes/metaboxes.php:247
+#: ../includes/metaboxes.php:226
 msgid "All-day event?"
 msgstr ""
 
-#: ../includes/metaboxes.php:270
+#: ../includes/metaboxes.php:249
 msgid "Is this a free event?"
 msgstr ""
 
-#: ../includes/metaboxes.php:275
+#: ../includes/metaboxes.php:254
 msgid "Add new ticket"
 msgstr ""
 
-#: ../includes/metaboxes.php:320 ../templates/single-event.php:55
+#: ../includes/metaboxes.php:299 ../templates/single-event.php:55
 msgid "Buy tickets URL"
 msgstr ""
 
-#: ../includes/metaboxes.php:343
+#: ../includes/metaboxes.php:322
 msgid "Display Google Map"
 msgstr ""
 
-#: ../includes/metaboxes.php:350
+#: ../includes/metaboxes.php:329
 msgid "Display Tickets Info"
 msgstr ""
 
-#: ../includes/metaboxes.php:358
+#: ../includes/metaboxes.php:337
 msgid "Display Organizer Details"
 msgstr ""
 
-#: ../includes/metaboxes.php:364
+#: ../includes/metaboxes.php:343
 msgid "Display Location Details"
 msgstr ""
 
@@ -799,8 +751,15 @@ msgid "Need support?"
 msgstr ""
 
 #: ../includes/settings.php:245
-msgid ""
-"If you are having problems with this plugin, please talk about them in the"
+msgid "If you are having problems with this plugin, checkout plugin"
+msgstr ""
+
+#: ../includes/settings.php:245 ../includes/welcome.php:46
+msgid "Documentation"
+msgstr ""
+
+#: ../includes/settings.php:245
+msgid "or talk about them in the"
 msgstr ""
 
 #: ../includes/settings.php:245
@@ -1151,112 +1110,112 @@ msgid ""
 "the WordPress way."
 msgstr ""
 
-#: ../includes/welcome.php:47
+#: ../includes/welcome.php:48
 msgid "dFactory Plugins"
 msgstr ""
 
-#: ../includes/welcome.php:52
+#: ../includes/welcome.php:53
 msgid "About Events Maker"
 msgstr ""
 
-#: ../includes/welcome.php:68
+#: ../includes/welcome.php:69
 msgid "Main Features"
 msgstr ""
 
-#: ../includes/welcome.php:74
+#: ../includes/welcome.php:75
 msgid "Easy Event Management"
 msgstr ""
 
-#: ../includes/welcome.php:75
+#: ../includes/welcome.php:76
 msgid ""
 "Set up date and time, title, desciption and other details of your events in "
 "a WordPress native interface."
 msgstr ""
 
-#: ../includes/welcome.php:80
+#: ../includes/welcome.php:81
 msgid "Locations and Organizers"
 msgstr ""
 
-#: ../includes/welcome.php:81
+#: ../includes/welcome.php:82
 msgid ""
 "Organize your events in reusable Categories, Tags, Locations and Organizers."
 msgstr ""
 
-#: ../includes/welcome.php:86
+#: ../includes/welcome.php:87
 msgid "Multiple Event Tickets"
 msgstr ""
 
-#: ../includes/welcome.php:87
+#: ../includes/welcome.php:88
 msgid ""
 "Create free or paid events and add as many different types of tickets as you "
 "need."
 msgstr ""
 
-#: ../includes/welcome.php:96
+#: ../includes/welcome.php:97
 msgid "6 Widgets incl. Ajax Calendar"
 msgstr ""
 
-#: ../includes/welcome.php:97
+#: ../includes/welcome.php:98
 msgid ""
 "Complete set of widgets allow you to display event details anywhere in a "
 "theme."
 msgstr ""
 
-#: ../includes/welcome.php:102
+#: ../includes/welcome.php:103
 msgid "Highly Customizable Settings"
 msgstr ""
 
-#: ../includes/welcome.php:103
+#: ../includes/welcome.php:104
 msgid ""
 "Easily control different areas of the plugin including Permalinks, "
 "Capabilities and many other."
 msgstr ""
 
-#: ../includes/welcome.php:108
+#: ../includes/welcome.php:109
 msgid "WPML Compatibility"
 msgstr ""
 
-#: ../includes/welcome.php:109
+#: ../includes/welcome.php:110
 msgid ""
 "Are you running a multilingual events site? Events Maker is fully compatible "
 "with WPML (and probably other multilingual plugins too)."
 msgstr ""
 
-#: ../includes/welcome.php:118
+#: ../includes/welcome.php:119
 msgid "Under the Hood"
 msgstr ""
 
-#: ../includes/welcome.php:122
+#: ../includes/welcome.php:123
 msgid "Custom Post Types & Custom Taxonomies"
 msgstr ""
 
-#: ../includes/welcome.php:123
+#: ../includes/welcome.php:124
 msgid ""
 "Events Maker is built using WordPress custom post types, custom taxonomies "
 "and custom post fields. "
 msgstr ""
 
-#: ../includes/welcome.php:126
+#: ../includes/welcome.php:127
 msgid "Filters and Actions"
 msgstr ""
 
-#: ../includes/welcome.php:127
+#: ../includes/welcome.php:128
 msgid ""
 "We have included various hooks and filters so you can plug-into these hooks "
 "to extend the functionalities."
 msgstr ""
 
-#: ../includes/welcome.php:131
+#: ../includes/welcome.php:132
 msgid "Custom Functions"
 msgstr ""
 
-#: ../includes/welcome.php:132
+#: ../includes/welcome.php:133
 msgid ""
 "There are 26 custom functions available. You can use it to make Events Maker "
 "suite your individual needs."
 msgstr ""
 
-#: ../includes/welcome.php:140
+#: ../includes/welcome.php:141
 msgid "Go to Events Maker Settings"
 msgstr ""
 

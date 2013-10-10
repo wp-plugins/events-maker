@@ -1,7 +1,7 @@
 <?php
-if(!defined('ABSPATH')) exit; // Exit if accessed directly
+if(!defined('ABSPATH')) exit; //exit if accessed directly
 
-$events_maker_settings = new Events_Maker_Settings($events_maker);
+new Events_Maker_Settings($events_maker);
 
 class Events_Maker_Settings
 {
@@ -28,7 +28,6 @@ class Events_Maker_Settings
 			array('templates' => get_option('events_maker_templates'))
 		);
 
-		//for deactivation
 		if($events_maker !== '')
 		{
 			//passed vars
@@ -239,7 +238,7 @@ class Events_Maker_Settings
 				</form>
 			</div>
 			<div class="df-credits postbox-container">
-				<h3 class="metabox-title">'.__('Events Maker', 'events-maker').'</h3>
+				<h3 class="metabox-title">'.__('Events Maker', 'events-maker').' '.get_option('events_maker_version').'</h3>
 				<div class="inner">
 					<h3>'.__('Need support?', 'events-maker').'</h3>
 					<p>'.__('If you are having problems with this plugin, checkout plugin', 'events-maker').'  <a href="http://www.dfactory.eu/docs/events-maker-plugin/?utm_source=events-maker-settings&utm_medium=link&utm_campaign=documentation" target="_blank" title="'.__('Documentation', 'events-maker').'">'.__('Documentation', 'events-maker').'</a> '.__('or talk about them in the', 'events-maker').' <a href="http://www.dfactory.eu/support/?utm_source=events-maker-settings&utm_medium=link&utm_campaign=support" target="_blank" title="'.__('Support forum', 'events-maker').'">'.__('Support forum', 'events-maker').'</a></p>

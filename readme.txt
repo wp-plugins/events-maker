@@ -24,7 +24,7 @@ For more information, check out plugin page at [dFactory](http://www.dfactory.eu
 * Multiple Tickets and Pricing
 * Event Categories and Tags
 * Event Ogranizers
-* Organizers contact details
+* Organizers contact details and image
 * Event Locations
 * Google maps
 * Customizeable template files
@@ -71,6 +71,12 @@ No questions yet.
 
 == Changelog ==
 
+= 1.0.4 =
+* New: Organizer image field for event organizers
+* Tweak: Improved excerpt display in widgets
+* Tweak: Improved general and permalniks settings reset
+* Tweak: Documentation links added to settings page and welcome screen
+
 = 1.0.3 =
 * Fix: Single events not displaying if sorting by start or end date selected
 * Fix: Custom fields data not saving if tickets were not used
@@ -89,6 +95,7 @@ Initial release
 
 == Upgrade Notice ==
 
-
-= 1.0.3 =
-Fixes bugs on events not displaying on front and back-end
+= 1.0.4 =
+* New: Organizer image field for event organizers
+* Tweak: Improved excerpt display in widgets
+* Tweak: Improved general and permalniks settings reset

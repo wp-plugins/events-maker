@@ -1,6 +1,7 @@
 <?php
+if(!defined('ABSPATH')) exit; //exit if accessed directly
 
-if (!defined('ABSPATH')) exit; // Exit if accessed directly
+new Events_Maker_Welcome_Page();
 
 class Events_Maker_Welcome_Page 
 {
@@ -169,7 +170,4 @@ class Events_Maker_Welcome_Page
 	}
 	
 }
-
-$events_maker_welcome_page = new Events_Maker_Welcome_Page();
-
 ?>

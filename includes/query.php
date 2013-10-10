@@ -1,6 +1,7 @@
 <?php
+if(!defined('ABSPATH')) exit; //exit if accessed directly
 
-if (!defined('ABSPATH')) exit; // Exit if accessed directly
+new Events_Maker_Query();
 
 class Events_Maker_Query
 {
@@ -452,7 +453,4 @@ class Events_Maker_Query
 		}
 	}
 }
-
-$events_maker_query = new Events_Maker_Query();
-
 ?>

@@ -1,6 +1,7 @@
 <?php
+if(!defined('ABSPATH')) exit; //exit if accessed directly
 
-if (!defined('ABSPATH')) exit; // Exit if accessed directly
+new Events_Maker_Widgets();
 
 class Events_Maker_Widgets
 {
@@ -1293,6 +1294,4 @@ class Events_Maker_Organizers_Widget extends WP_Widget
 		return $old_instance;
 	}
 }
-
-$events_maker_widgets = new Events_Maker_Widgets();
 ?>

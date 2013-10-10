@@ -1,7 +1,7 @@
 <?php
-if(!defined('ABSPATH')) exit; // Exit if accessed directly
+if(!defined('ABSPATH')) exit; //exit if accessed directly
 
-$events_maker_metaboxes = new Events_Maker_Metaboxes();
+new Events_Maker_Metaboxes();
 
 class Events_Maker_Metaboxes
 {

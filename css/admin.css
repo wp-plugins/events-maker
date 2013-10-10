@@ -44,3 +44,23 @@ ul.terms-checkbox-list.depth-level-4 {
 /* Edit Event Location */
 #event-google-map { width: 95%; height: 340px; }
 #event-google-map.event-minimap { height: 200px; }
+
+/* Edit Event Organizer */
+#em-organizer-image-buttons input { float: left; margin: 2px 5px 0 0; width: auto; }
+#em-organizer-image-preview { clear: both; padding-top: 10px; width: 95%; }
+#em-organizer-image-preview img { max-width: 100%; }
+#em-organizer-image-preview.edit img { max-width: 220px; }
+#em-organizer-image-buttons .em-spinner {
+	display: none;
+	float: left;
+	position: relative;
+	top: 5px;
+	background: url('../../../../wp-admin/images/wpspin_light.gif') no-repeat;
+	background-size: 16px 16px;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+	margin: 0;
+	padding: 0;
+	width: 16px;
+	height: 16px;
+}

@@ -825,8 +825,7 @@ class Events_Maker
 						'title' => __('Select organizer image', 'events-maker'),
 						'button' => array('text' => __('Add image', 'events-maker')),
 						'frame' => 'select',
-						'multiple' => FALSE,
-						'noSelectedImg' => __('Preview is not available because image has not been selected yet.', 'events-maker')
+						'multiple' => FALSE
 					)
 				);
 

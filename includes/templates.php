@@ -12,7 +12,8 @@ class Events_Maker_Templates
 	{
 		//settings
 		$this->options = array_merge(
-			array('general' => get_option('events_maker_general'))
+			array('general' => get_option('events_maker_general')),
+			array('templates' => get_option('events_maker_templates'))
 		);
 
 		//filters
@@ -25,6 +26,9 @@ class Events_Maker_Templates
 	*/
 	public function set_template($template)
 	{
+		if($this->options['templates']['default_templates'] === FALSE)
+			return $template;
+
 		if(is_post_type_archive('event') && !$this->is_template($template, 'archive'))
 			$template = EVENTS_MAKER_PATH.'templates/archive-event.php';
 
@@ -63,10 +67,10 @@ class Events_Maker_Templates
 		switch($context)
 		{
 			case 'event';	
-				return $template === 'single-event.php';
+				return ($template === 'single-event.php');
 
 			case 'archive':
-				return $template === 'archive-event.php';
+				return ($template === 'archive-event.php');
 
 			case 'event-category':
 				return (1 === preg_match('/^taxonomy-event-category((-(\S*))?).php/', $template));

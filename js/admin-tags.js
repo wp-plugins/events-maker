@@ -26,15 +26,14 @@ jQuery(document).ready(function($) {
 			$('#em-organizer-image-buttons .em-spinner').fadeIn(300);
 			$('#em_turn_off_image_button').attr('disabled', false);
 			$('#em_upload_image_id').val(attachment.attributes.id);
-			$('#em-organizer-image-preview img').attr('src', attachment.attributes.sizes.thumbnail.url);
-			$('#em-organizer-image-preview img').show();
+			$('#em-organizer-image-preview img').attr('src', attachment.attributes.sizes.thumbnail.url).fadeIn(300);
 
 			img.onload = function() {
 				$('#em-organizer-image-buttons .em-spinner').fadeOut(300);
 			}
 		},
 		init: function() {
-			$('#wpbody').on('click', 'input#em_upload_image_button', function(e) {
+			$(document).on('click', 'input#em_upload_image_button', function(e) {
 				e.preventDefault();
 				eventsMakerFileUpload.frame().open();
 			});

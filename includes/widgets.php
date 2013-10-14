@@ -172,8 +172,8 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 			)
 		);
 
-		add_action('wp_ajax_nopriv_get-widget-calendar-month', array(&$this, 'get_widget_calendar_month'));
-		add_action('wp_ajax_get-widget-calendar-month', array(&$this, 'get_widget_calendar_month'));
+		add_action('wp_ajax_nopriv_get-events-widget-calendar-month', array(&$this, 'get_widget_calendar_month'));
+		add_action('wp_ajax_get-events-widget-calendar-month', array(&$this, 'get_widget_calendar_month'));
 
 		$this->em_options = array_merge(
 			array('general' => get_option('events_maker_general'))
@@ -200,7 +200,7 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 	*/
 	public function get_widget_calendar_month()
 	{
-		if(!empty($_POST['action']) && !empty($_POST['date']) && !empty($_POST['widget_id']) && !empty($_POST['nonce']) && $_POST['action'] === 'get-widget-calendar-month' && check_ajax_referer('events-maker-widget-calendar', 'nonce', FALSE))
+		if(!empty($_POST['action']) && !empty($_POST['date']) && !empty($_POST['widget_id']) && !empty($_POST['nonce']) && $_POST['action'] === 'get-events-widget-calendar-month' && check_ajax_referer('events-maker-widget-calendar', 'nonce', FALSE))
 		{
 			$widget_options = $this->get_settings();
 			$widget_id = (int)$_POST['widget_id'];
@@ -418,16 +418,16 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 		$first_day = (($first = date('w', strtotime(date($date[0].'-'.$date[1].'-01')))) === '0' ? 7 : $first);
 
 		$html = '
-		<div id="event-calendar-'.$widget_id.'" class="events-calendar-widget" rel="'.$widget_id.'" '.($ajax === TRUE ? 'style="display: none;"' : '').'>
+		<div id="events-calendar-'.$widget_id.'" class="events-calendar-widget widget_calendar" rel="'.$widget_id.'" '.($ajax === TRUE ? 'style="display: none;"' : '').'>
 			<caption>'.$wp_locale->get_month($date[1]).' '.$date[0].'</caption>
-			<table>
+			<table class="nav-days">
 				<thead>
 					<tr>';
 
 		for($i = 1; $i <= 7; $i++)
 		{
 			$html .= '
-						<th>'.$wp_locale->get_weekday_abbrev($wp_locale->get_weekday($i !== 7 ? $i : 0)).'</th>';
+						<th scope="col">'.$wp_locale->get_weekday_initial($wp_locale->get_weekday($i !== 7 ? $i : 0)).'</th>';
 		}
 
 		$html .= '
@@ -440,8 +440,7 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 
 		for($i = 1; $i <= $weeks; $i++)
 		{
-			$html .= '
-					<tr>';
+			$html .= '<tr>';
 
 			for($j = 1; $j <= 7; $j++)
 			{
@@ -449,13 +448,15 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 				$real_day = (bool)($k++ >= $first_day && $day <= $date[3]);
 
 				if($real_day === TRUE && in_array($day, $events))
-					$td_class[] = 'event-active';
+					$td_class[] = 'active';
+
+				if($real_day === FALSE)
+					$td_class[] = 'pad';
 
 				if($options['highlight_weekends'] === TRUE && $j >= 6 && $j <= 7)
-					$td_class[] = 'event-weekend';
+					$td_class[] = 'weekend';
 
-				$html .= '
-						<td'.(!empty($td_class) ? ' class="'.implode(' ', $td_class).'"' : '').'>';
+				$html .= '<td'.(!empty($td_class) ? ' class="'.implode(' ', $td_class).'"' : '').'>';
 
 				if($real_day === TRUE)
 				{
@@ -465,27 +466,25 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 				else
 					$html .= '&nbsp';
 
-				$html .= '
-						</td>';
+				$html .= '</td>';
 			}
 
-			$html .= '
-					</tr>';
+			$html .= '</tr>';
 		}
 
 		$html .= '
 				</tbody>
-				<tfoot>
-					<tr>
-						<td class="prev-month" colspan="3">
-							<a rel="'.($prev_month === 11 ? ($date[0] - 1) : $date[0]).'-'.$prev_month_pad.'" href="#">&laquo; '.$wp_locale->get_month($prev_month_pad).'</a>
-						</td>
-						<td class="ajax-spinner"><div></div></td>
-						<td class="next-month" colspan="3">
-							<a rel="'.($next_month === 0 ? ($date[0] + 1) : $date[0]).'-'.$next_month_pad.'" href="#">'.$wp_locale->get_month($next_month_pad).' &raquo;</a>
-						</td>
-					</tr>
-				</tfoot>
+			</table>
+			<table class="nav-months">
+				<tr>
+					<td class="prev-month" colspan="2">
+						<a rel="'.($prev_month === 11 ? ($date[0] - 1) : $date[0]).'-'.$prev_month_pad.'" href="#">&laquo; '.$wp_locale->get_month($prev_month_pad).'</a>
+					</td>
+					<td class="ajax-spinner" colspan="1"><div></div></td>
+					<td class="next-month" colspan="2">
+						<a rel="'.($next_month === 0 ? ($date[0] + 1) : $date[0]).'-'.$next_month_pad.'" href="#">'.$wp_locale->get_month($next_month_pad).' &raquo;</a>
+					</td>
+				</tr>
 			</table>
 		</div>';
 
@@ -501,14 +500,44 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 		$days = $allevents = $exclude_ids = array();
 		$args = array(
 			'post_type' => 'event',
-			'numberposts' => -1,
+			'posts_per_page' => -1,
 			'suppress_filters' => FALSE,
 			'date_range' => 'between',
-			'event_show_past_events' => $options['show_past_events'],
-			'event_categories' => ($options['categories'] === 'all' ? 'all' : array('id', $options['categories_arr'])),
-			'event_locations' => ($options['locations'] === 'all' ? 'all' : array('id', $options['locations_arr'])),
-			'event_organizers' => ($options['organizers'] === 'all' ? 'all' : array('id', $options['organizers_arr']))
+			'event_show_past_events' => $options['show_past_events']
 		);
+
+		if($options['categories'] === 'selected')
+		{
+			$args['tax_query'][] = array(
+				'taxonomy' => 'event-category',
+				'field' => 'id',
+				'terms' => $options['categories_arr'],
+				'include_children' => FALSE,
+				'operator' => 'IN'
+			);
+		}
+
+		if($options['locations'] === 'selected')
+		{
+			$args['tax_query'][] = array(
+				'taxonomy' => 'event-location',
+				'field' => 'id',
+				'terms' => $options['locations_arr'],
+				'include_children' => FALSE,
+				'operator' => 'IN'
+			);
+		}
+
+		if($options['organizers'] === 'selected')
+		{
+			$args['tax_query'][] = array(
+				'taxonomy' => 'event-organizer',
+				'field' => 'id',
+				'terms' => $options['organizers_arr'],
+				'include_children' => FALSE,
+				'operator' => 'IN'
+			);
+		}
 
 		$allevents['start'] = get_posts(
 			array_merge(
@@ -609,7 +638,7 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 			{
 				$html .= '
 				<li>
-					<input id="'.$this->get_field_id('chkbxlst_'.$term->term_id).'" type="checkbox" name="'.$this->get_field_name($name).'[]" value="'.esc_attr($term->term_id).'" '.checked(TRUE, in_array($term->term_id, $array), FALSE).' /> <label for="'.$this->get_field_id('chkbxlst_'.$term->term_id).'">'.$term->name.'</label>
+					<input id="'.$this->get_field_id('chkbxlst_'.$term->term_taxonomy_id).'" type="checkbox" name="'.$this->get_field_name($name).'[]" value="'.esc_attr($term->term_id).'" '.checked(TRUE, in_array($term->term_id, $array), FALSE).' /> <label for="'.$this->get_field_id('chkbxlst_'.$term->term_taxonomy_id).'">'.$term->name.'</label>
 					'.$this->display_taxonomy_checkbox_list($taxonomy_name, $name, $instance, $depth, $term->term_id).'
 				</li>';
 			}
@@ -688,8 +717,14 @@ class Events_Maker_List_Widget extends WP_Widget
 	{
 		$instance['title'] = apply_filters('widget_title', $instance['title'], $instance, $this->id_base);
 
+		//backward compatibility
+		$comp = $instance;
+		$comp['categories'] = ($instance['categories'] === 'selected' ? $instance['categories_arr'] : array());
+		$comp['locations'] = ($instance['locations'] === 'selected' ? $instance['locations_arr'] : array());
+		$comp['organizers'] = ($instance['organizers'] === 'selected' ? $instance['organizers_arr'] : array());
+
 		$html = $args['before_widget'].$args['before_title'].(!empty($instance['title']) ? $instance['title'] : $this->em_defaults['title']).$args['after_title'];
-		$html .= em_display_events($instance);
+		$html .= em_display_events($comp);
 		$html .= $args['after_widget'];
 
 		echo $html;
@@ -931,7 +966,7 @@ class Events_Maker_List_Widget extends WP_Widget
 			{
 				$html .= '
 				<li>
-					<input id="'.$this->get_field_id('chkbxlst_'.$term->term_id).'" type="checkbox" name="'.$this->get_field_name($name).'[]" value="'.esc_attr($term->term_id).'" '.checked(TRUE, in_array($term->term_id, $array), FALSE).' /> <label for="'.$this->get_field_id('chkbxlst_'.$term->term_id).'">'.$term->name.'</label>
+					<input id="'.$this->get_field_id('chkbxlst_'.$term->term_taxonomy_id).'" type="checkbox" name="'.$this->get_field_name($name).'[]" value="'.esc_attr($term->term_id).'" '.checked(TRUE, in_array($term->term_id, $array), FALSE).' /> <label for="'.$this->get_field_id('chkbxlst_'.$term->term_taxonomy_id).'">'.$term->name.'</label>
 					'.$this->display_taxonomy_checkbox_list($taxonomy_name, $name, $instance, $depth, $term->term_id).'
 				</li>';
 			}

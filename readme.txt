@@ -4,7 +4,7 @@ Donate link: http://www.dfactory.eu/
 Tags: event, event categories, events management, event management, events manager, event manager, event organizer, events calendar, events maker, google map, map, locations, organizers, widget, attendance, attendee, Booking, calendar, event registration, ticket, tickets, ticketing, bookings
 Requires at least: 3.5
 Tested up to: 3.6.1
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -21,6 +21,7 @@ For more information, check out plugin page at [dFactory](http://www.dfactory.eu
 * Easy Events management
 * Built using WordPress custom post types, custom taxonomies and custom post fields
 * Ajax Events Calendar
+* Display options for single events
 * Multiple Tickets and Pricing
 * Event Categories and Tags
 * Event Ogranizers
@@ -71,6 +72,13 @@ No questions yet.
 
 == Changelog ==
 
+= 1.0.5 =
+* Fix: Use default option not working
+* Tweak: numberposts changed to posts_per_page in get_events() function
+* Tweak: Improved widgets display
+* Tweak: Ajax Calendar default CSS added
+* Tweak: Events query cleanup (removed categories_arr and other taxonomy parameters)
+
 = 1.0.4 =
 * New: Organizer image field for event organizers
 * Tweak: Improved excerpt display in widgets
@@ -95,7 +103,5 @@ Initial release
 
 == Upgrade Notice ==
 
-= 1.0.4 =
-* New: Organizer image field for event organizers
-* Tweak: Improved excerpt display in widgets
-* Tweak: Improved general and permalniks settings reset
+= 1.0.5 =
+Fix: Use default option not working, and small enhancements

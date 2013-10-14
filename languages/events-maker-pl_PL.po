@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Events Maker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-16 13:09+0100\n"
-"PO-Revision-Date: 2013-09-16 13:14+0100\n"
+"POT-Creation-Date: 2013-10-04 14:26+0100\n"
+"PO-Revision-Date: 2013-10-04 14:27+0100\n"
 "Last-Translator: Bartosz Arendt <info@digitalfactory.pl>\n"
 "Language-Team: dFactory <info@dfactory.pl>\n"
 "Language: pl_PL\n"
@@ -531,7 +531,7 @@ msgstr ""
 "Jesteś pewny, że chcesz zresetować te ustawienia do ustawień domyślnych?"
 
 # @ events-maker
-#: ../events-maker.php:953 ../includes/welcome.php:46
+#: ../events-maker.php:953 ../includes/welcome.php:47
 msgid "Support"
 msgstr "Pomoc"
 
@@ -587,146 +587,88 @@ msgid "Free"
 msgstr "Bezpłatne"
 
 # @ events-maker
-#: ../includes/metaboxes.php:42
+#: ../includes/metaboxes.php:36
 msgid "Ticket Name"
 msgstr "Nazwa biletu"
 
 # @ events-maker
-#: ../includes/metaboxes.php:43
+#: ../includes/metaboxes.php:37
 msgid "Price"
 msgstr "Cena"
 
 # @ events-maker
-#: ../includes/metaboxes.php:48
-msgid "Invalid Until date."
-msgstr "Nieprawidłowa data."
-
-# @ events-maker
-#: ../includes/metaboxes.php:49
-msgid "Such Until date does not exists."
-msgstr "Taka data nie istnieje."
-
-# @ events-maker
-#: ../includes/metaboxes.php:50
-msgid "Invalid Start date."
-msgstr "Nieprawidłowa data rozpoczęcia."
-
-# @ events-maker
-#: ../includes/metaboxes.php:51
-msgid "Such Start date does not exists."
-msgstr "Taka data rozpoczęcia nie istnieje."
-
-# @ events-maker
-#: ../includes/metaboxes.php:52
-msgid "Invalid Start time."
-msgstr "Nieprawidłowy czas rozpoczęcia."
-
-# @ events-maker
-#: ../includes/metaboxes.php:53
-msgid "Such Start time does not exists."
-msgstr "Taki czas rozpoczęcia nie istnieje."
-
-# @ events-maker
-#: ../includes/metaboxes.php:54
-msgid "Invalid End date."
-msgstr "Nieprawidłowa data zakończenia."
-
-# @ events-maker
-#: ../includes/metaboxes.php:55
-msgid "Such End date does not exists."
-msgstr "Taka data zakończenia nie istnieje."
-
-# @ events-maker
-#: ../includes/metaboxes.php:56
-msgid "Invalid End time."
-msgstr "Nieprawidłowy czas zakończenia."
-
-# @ events-maker
-#: ../includes/metaboxes.php:57
-msgid "Such End time does not exists."
-msgstr "Taki czas zakończenia nie istnieje."
-
-#: ../includes/metaboxes.php:58
-msgid "No tickets were added to a paid event."
-msgstr "Do wydarzenia z płatnymi wydarzeniami nie dodano biletów."
-
-#: ../includes/metaboxes.php:59
-msgid "End date is earlier than the start date."
-msgstr "Data zakończenia jest późniejsza niż rozpoczęcia."
-
-# @ events-maker
-#: ../includes/metaboxes.php:66
+#: ../includes/metaboxes.php:45
 msgid "Event Display Options"
 msgstr "Opcje wyświetlania wydarzenia"
 
 # @ events-maker
-#: ../includes/metaboxes.php:73
+#: ../includes/metaboxes.php:52
 msgid "Event Date and Time"
 msgstr "Data i godzina wydarzenia"
 
 # @ events-maker
-#: ../includes/metaboxes.php:80
+#: ../includes/metaboxes.php:59
 msgid "Event Tickets"
 msgstr "Biletowanie wydarzenia"
 
 # @ events-maker
-#: ../includes/metaboxes.php:139 ../includes/metaboxes.php:143
-#: ../includes/metaboxes.php:294 ../includes/metaboxes.php:311
+#: ../includes/metaboxes.php:118 ../includes/metaboxes.php:122
+#: ../includes/metaboxes.php:273 ../includes/metaboxes.php:290
 msgid "Delete"
 msgstr "Usuń"
 
 # @ events-maker
-#: ../includes/metaboxes.php:141 ../includes/metaboxes.php:241
+#: ../includes/metaboxes.php:120 ../includes/metaboxes.php:220
 msgid "Start date/time"
 msgstr "Data/godzina rozpoczęcia"
 
 # @ events-maker
-#: ../includes/metaboxes.php:142 ../includes/metaboxes.php:244
+#: ../includes/metaboxes.php:121 ../includes/metaboxes.php:223
 msgid "End date/time"
 msgstr "Data/godzina zakończenia"
 
 # @ events-maker
-#: ../includes/metaboxes.php:144
+#: ../includes/metaboxes.php:123
 msgid "Are you sure you want to delete this ticket?"
 msgstr "Jesteś pewny, że chcesz usunąć ten bilet?"
 
 # @ events-maker
-#: ../includes/metaboxes.php:247
+#: ../includes/metaboxes.php:226
 msgid "All-day event?"
 msgstr "Wydarzenie całodniowe?"
 
 # @ events-maker
-#: ../includes/metaboxes.php:270
+#: ../includes/metaboxes.php:249
 msgid "Is this a free event?"
 msgstr "Czy to wydarzenie jest bezpłatne?"
 
 # @ events-maker
-#: ../includes/metaboxes.php:275
+#: ../includes/metaboxes.php:254
 msgid "Add new ticket"
 msgstr "Dodaj nowy bilet"
 
 # @ events-maker
-#: ../includes/metaboxes.php:320 ../templates/single-event.php:55
+#: ../includes/metaboxes.php:299 ../templates/single-event.php:55
 msgid "Buy tickets URL"
 msgstr "Kup bilety na stronie"
 
 # @ events-maker
-#: ../includes/metaboxes.php:343
+#: ../includes/metaboxes.php:322
 msgid "Display Google Map"
 msgstr "Wyświetlanie mapy Google?"
 
 # @ events-maker
-#: ../includes/metaboxes.php:350
+#: ../includes/metaboxes.php:329
 msgid "Display Tickets Info"
 msgstr "Wyświetlanie informacji o biletach?"
 
 # @ events-maker
-#: ../includes/metaboxes.php:358
+#: ../includes/metaboxes.php:337
 msgid "Display Organizer Details"
 msgstr "Wyświetlanie szczegółów organizatora"
 
 # @ events-maker
-#: ../includes/metaboxes.php:364
+#: ../includes/metaboxes.php:343
 msgid "Display Location Details"
 msgstr "Wyświetlanie szczegółów lokalizacji"
 
@@ -965,9 +907,18 @@ msgstr "Potrzebujesz pomocy?"
 
 # @ events-maker
 #: ../includes/settings.php:245
-msgid ""
-"If you are having problems with this plugin, please talk about them in the"
-msgstr "Jeśli masz jakiekolwiek problemy z tą wtyczką, napisz o nich na"
+msgid "If you are having problems with this plugin, checkout plugin"
+msgstr "Jeśli masz jakiekolwiek problemy z tą wtyczką, sprawdź jej"
+
+# @ events-maker
+#: ../includes/settings.php:245 ../includes/welcome.php:46
+msgid "Documentation"
+msgstr "Dokumentacja"
+
+# @ events-maker
+#: ../includes/settings.php:245
+msgid "or talk about them in the"
+msgstr "lub napisz o nich na"
 
 # @ events-maker
 #: ../includes/settings.php:245
@@ -1396,24 +1347,24 @@ msgstr ""
 "zarządzania wydarzeniami stworzona z myślą o maksymalnej zgodności z "
 "WordPressem."
 
-#: ../includes/welcome.php:47
+#: ../includes/welcome.php:48
 msgid "dFactory Plugins"
 msgstr "Wtyczki dFactory"
 
 # @ events-maker
-#: ../includes/welcome.php:52
+#: ../includes/welcome.php:53
 msgid "About Events Maker"
 msgstr "Informacje o Events Maker"
 
-#: ../includes/welcome.php:68
+#: ../includes/welcome.php:69
 msgid "Main Features"
 msgstr "Główne cechy Events Maker"
 
-#: ../includes/welcome.php:74
+#: ../includes/welcome.php:75
 msgid "Easy Event Management"
 msgstr "Łatwe zarządzanie wydarzeniami"
 
-#: ../includes/welcome.php:75
+#: ../includes/welcome.php:76
 msgid ""
 "Set up date and time, title, desciption and other details of your events in "
 "a WordPress native interface."
@@ -1422,11 +1373,11 @@ msgstr ""
 "korzystając ze standardowego interfejsu WordPress'a."
 
 # @ events-maker
-#: ../includes/welcome.php:80
+#: ../includes/welcome.php:81
 msgid "Locations and Organizers"
 msgstr "Lokalizacje i Organizatorzy"
 
-#: ../includes/welcome.php:81
+#: ../includes/welcome.php:82
 msgid ""
 "Organize your events in reusable Categories, Tags, Locations and Organizers."
 msgstr ""
@@ -1434,11 +1385,11 @@ msgstr ""
 "lokalizacji i organizatorów."
 
 # @ events-maker
-#: ../includes/welcome.php:86
+#: ../includes/welcome.php:87
 msgid "Multiple Event Tickets"
 msgstr "Biletowanie wydarzeń"
 
-#: ../includes/welcome.php:87
+#: ../includes/welcome.php:88
 msgid ""
 "Create free or paid events and add as many different types of tickets as you "
 "need."
@@ -1446,11 +1397,11 @@ msgstr ""
 "Masz możliwość tworzenia bezpłatnych i płatnych wydarzeń, dodając tyle "
 "rodzajów biletów ile potrzebujesz."
 
-#: ../includes/welcome.php:96
+#: ../includes/welcome.php:97
 msgid "6 Widgets incl. Ajax Calendar"
 msgstr "6 widgetów, w tym Kalendarz Ajax"
 
-#: ../includes/welcome.php:97
+#: ../includes/welcome.php:98
 msgid ""
 "Complete set of widgets allow you to display event details anywhere in a "
 "theme."
@@ -1458,11 +1409,11 @@ msgstr ""
 "Kompletny zestaw widgetów pozwala Ci na wyświetlanie szczegółów wydarzeń w "
 "dowolnym miejscu strony."
 
-#: ../includes/welcome.php:102
+#: ../includes/welcome.php:103
 msgid "Highly Customizable Settings"
 msgstr "Rozbudowane ustawienia"
 
-#: ../includes/welcome.php:103
+#: ../includes/welcome.php:104
 msgid ""
 "Easily control different areas of the plugin including Permalinks, "
 "Capabilities and many other."
@@ -1470,11 +1421,11 @@ msgstr ""
 "Możesz w łatwy sposób kontrolować sposób działania wtyczki, ustalając "
 "strukturę odnośników, uprawnienia i wiele innych opcji."
 
-#: ../includes/welcome.php:108
+#: ../includes/welcome.php:109
 msgid "WPML Compatibility"
 msgstr "Kompatybilność z WPML"
 
-#: ../includes/welcome.php:109
+#: ../includes/welcome.php:110
 msgid ""
 "Are you running a multilingual events site? Events Maker is fully compatible "
 "with WPML (and probably other multilingual plugins too)."
@@ -1483,15 +1434,15 @@ msgstr ""
 "kompatybilny z WPML (oraz prawdobodobnie innymi wtyczkami do obsługi "
 "wielojęzyczności)."
 
-#: ../includes/welcome.php:118
+#: ../includes/welcome.php:119
 msgid "Under the Hood"
 msgstr "Pod Maską"
 
-#: ../includes/welcome.php:122
+#: ../includes/welcome.php:123
 msgid "Custom Post Types & Custom Taxonomies"
 msgstr "Własne typy wpisów i taksonomie"
 
-#: ../includes/welcome.php:123
+#: ../includes/welcome.php:124
 msgid ""
 "Events Maker is built using WordPress custom post types, custom taxonomies "
 "and custom post fields. "
@@ -1499,11 +1450,11 @@ msgstr ""
 "Events Maker zbudowany jest z maksymalnym wykorzystaniem własnych typów "
 "wpisów, taksonomii i własnych pól."
 
-#: ../includes/welcome.php:126
+#: ../includes/welcome.php:127
 msgid "Filters and Actions"
 msgstr "Filtry i akcje"
 
-#: ../includes/welcome.php:127
+#: ../includes/welcome.php:128
 msgid ""
 "We have included various hooks and filters so you can plug-into these hooks "
 "to extend the functionalities."
@@ -1511,11 +1462,11 @@ msgstr ""
 "W kodzie umieściliśmy znaczną liczbę \"haczyków\", które umożliwiają Ci "
 "modyfikowanie i rozszerzanie funkcjonalności Events Maker."
 
-#: ../includes/welcome.php:131
+#: ../includes/welcome.php:132
 msgid "Custom Functions"
 msgstr "Własne funkcje"
 
-#: ../includes/welcome.php:132
+#: ../includes/welcome.php:133
 msgid ""
 "There are 26 custom functions available. You can use it to make Events Maker "
 "suite your individual needs."
@@ -1524,7 +1475,7 @@ msgstr ""
 "Events Maker do swoich indywidualnych potrzeb."
 
 # @ events-maker
-#: ../includes/welcome.php:140
+#: ../includes/welcome.php:141
 msgid "Go to Events Maker Settings"
 msgstr "Przejdź do ustawień Events Maker"
 
@@ -1876,6 +1827,3 @@ msgstr "Email"
 #, php-format
 msgid "Events Tag: %s"
 msgstr "Tag wydarzeń: %s"
-
-#~ msgid "Choose your currency code."
-#~ msgstr "Wybierz swoją walutę."

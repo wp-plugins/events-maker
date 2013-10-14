@@ -1,27 +1,21 @@
 <?php
-if(!defined('ABSPATH')) exit; // Exit if accessed directly
+if(!defined('ABSPATH')) exit; //exit if accessed directly
 
-$events_maker_metaboxes = new Events_Maker_Metaboxes($events_maker);
+new Events_Maker_Metaboxes();
 
 class Events_Maker_Metaboxes
 {
-	private $errors = array();
 	private $metaboxes = array();
 	private $options = array();
 	private $tickets_fields = array();
-	private $transient_id = '';
-	private $events_maker;
 
 
-	public function __construct($events_maker)
+	public function __construct()
 	{
 		//settings
 		$this->options = array_merge(
 			array('general' => get_option('events_maker_general'))
 		);
-
-		//passed vars
-		$this->transient_id = $events_maker->get_session_id();
 
 		//actions
 		add_action('admin_enqueue_scripts', array(&$this, 'admin_scripts_styles'));
@@ -42,21 +36,6 @@ class Events_Maker_Metaboxes
 				'name' => __('Ticket Name', 'events-maker'),
 				'price' => __('Price', 'events-maker')
 			)
-		);
-
-		$this->errors = array(
-			'last_day_wrong_date_input' => __('Invalid Until date.', 'events-maker'),
-			'last_day_wrong_date' => __('Such Until date does not exists.', 'events-maker'),
-			'start_wrong_date_input' => __('Invalid Start date.', 'events-maker'),
-			'start_wrong_date' => __('Such Start date does not exists.', 'events-maker'),
-			'start_wrong_time_input' => __('Invalid Start time.', 'events-maker'),
-			'start_wrong_time' => __('Such Start time does not exists.', 'events-maker'),
-			'end_wrong_date_input' => __('Invalid End date.', 'events-maker'),
-			'end_wrong_date' => __('Such End date does not exists.', 'events-maker'),
-			'end_wrong_time_input' => __('Invalid End time.', 'events-maker'),
-			'end_wrong_time' => __('Such End time does not exists.', 'events-maker'),
-			'empty_tickets' => __('No tickets were added to a paid event.', 'events-maker'),
-			'wrong_after_date' => __('End date is earlier than the start date.', 'events-maker')
 		);
 
 		$this->metaboxes = apply_filters(
@@ -376,12 +355,35 @@ class Events_Maker_Metaboxes
 	/**
 	 * Saves event with new metaboxes
 	*/
-	public function save_event($post_ID, $post)
+	public function save_event($post_ID)
 	{
-		if((defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) || (wp_verify_nonce((isset($_POST['event_nonce_datetime']) ? $_POST['event_nonce_datetime'] : ''), 'events_maker_save_event_datetime') === FALSE) || (wp_verify_nonce((isset($_POST['event_nonce_tickets']) ? $_POST['event_nonce_tickets'] : ''), 'events_maker_save_event_tickets') === FALSE) || (wp_verify_nonce((isset($_POST['event_nonce_options']) ? $_POST['event_nonce_options'] : ''), 'events_maker_save_event_options') === FALSE) || ($post->post_type === 'event' && !current_user_can('edit_event', $post_ID)))
-			return;
+		// break if doing autosave
+		if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) 
+			return $post_ID;
 
-		$errors = array();
+		// verify if event_nonce_datetime nonce is set and valid
+		if(!isset($_POST['event_nonce_datetime']) || !wp_verify_nonce($_POST['event_nonce_datetime'], 'events_maker_save_event_datetime'))
+        	return $post_ID;
+
+		// get tickets use option
+		$general_options = get_option('events_maker_general');
+		$use_tickets = $general_options['use_event_tickets'];
+
+		// if tickets are not used, don't validate it
+		if($use_tickets === TRUE)
+		{
+			// verify if event_nonce_tickets nonce is set and valid
+			if(!isset($_POST['event_nonce_tickets']) || !wp_verify_nonce($_POST['event_nonce_tickets'], 'events_maker_save_event_tickets'))
+				return $post_ID;
+		}
+
+		// verify if event_nonce_options nonce is set and valid
+		if(!isset($_POST['event_nonce_options']) || !wp_verify_nonce($_POST['event_nonce_options'], 'events_maker_save_event_options'))
+        	return $post_ID;
+
+		// break if current user can't edit events
+		if(!current_user_can('edit_event', $post_ID))
+			return $post_ID;
 
 		//event date and time section
 		$em_helper = new Events_Maker_Helper();
@@ -389,6 +391,7 @@ class Events_Maker_Metaboxes
 		$start_date_ok = FALSE;
 
 		update_post_meta($post_ID, '_event_all_day', $event_all_day);
+		$current_datetime = current_time('mysql', FALSE);
 
 		if($event_all_day === 1)
 		{
@@ -398,10 +401,7 @@ class Events_Maker_Metaboxes
 				update_post_meta($post_ID, '_event_start_date', $_POST['event_start_date']);
 			}
 			else
-			{
-				update_post_meta($post_ID, '_event_start_date', '');
-				$errors[] = $this->errors['start_'.$error];
-			}
+				update_post_meta($post_ID, '_event_start_date', $current_datetime);
 
 			if(($error = $em_helper->is_valid_date($_POST['event_end_date'])) === TRUE)
 			{
@@ -410,19 +410,13 @@ class Events_Maker_Metaboxes
 					if($em_helper->is_after_date($_POST['event_start_date'], $_POST['event_end_date']) === TRUE)
 						update_post_meta($post_ID, '_event_end_date', $_POST['event_end_date']);
 					else
-					{
-						update_post_meta($post_ID, '_event_end_date', '');
-						$errors[] = $this->errors['wrong_after_date'];
-					}
+						update_post_meta($post_ID, '_event_end_date', get_post_meta($post_ID, '_event_start_date', TRUE));
 				}
 				else
 					update_post_meta($post_ID, '_event_end_date', $_POST['event_end_date']);
 			}
 			else
-			{
-				update_post_meta($post_ID, '_event_end_date', '');
-				$errors[] = $this->errors['end_'.$error];
-			}
+				update_post_meta($post_ID, '_event_end_date', get_post_meta($post_ID, '_event_start_date', TRUE));
 		}
 		elseif($event_all_day === 0)
 		{
@@ -435,15 +429,7 @@ class Events_Maker_Metaboxes
 				update_post_meta($post_ID, '_event_start_date', date('Y-m-d H:i:s', strtotime($_POST['event_start_date'].' '.$_POST['event_start_time'])));
 			}
 			else
-			{
-				update_post_meta($post_ID, '_event_start_date', '');
-
-				if($error1 !== TRUE)
-					$errors[] = $this->errors['start_'.$error1];
-
-				if($error2 !== TRUE)
-					$errors[] = $this->errors['start_'.$error2];
-			}
+				update_post_meta($post_ID, '_event_start_date', $current_datetime);
 
 			$error1 = $em_helper->is_valid_date($_POST['event_end_date']);
 			$error2 = $em_helper->is_valid_time($_POST['event_end_time']);
@@ -455,72 +441,76 @@ class Events_Maker_Metaboxes
 					if($em_helper->is_after_date($_POST['event_start_date'].' '.$_POST['event_start_time'], $_POST['event_end_date'].' '.$_POST['event_end_time']) === TRUE)
 						update_post_meta($post_ID, '_event_end_date', date('Y-m-d H:i:s', strtotime($_POST['event_end_date'].' '.$_POST['event_end_time'])));
 					else
-					{
-						update_post_meta($post_ID, '_event_end_date', '');
-						$errors[] = $this->errors['wrong_after_date'];
-					}
+						update_post_meta($post_ID, '_event_end_date', get_post_meta($post_ID, '_event_start_date', TRUE));
 				}
 				else
 					update_post_meta($post_ID, '_event_end_date', date('Y-m-d H:i:s', strtotime($_POST['event_end_date'].' '.$_POST['event_end_time'])));
 			}
 			else
-			{
-				update_post_meta($post_ID, '_event_end_date', '');
-
-				if($error1 !== TRUE)
-					$errors[] = $this->errors['end_'.$error1];
-
-				if($error2 !== TRUE)
-					$errors[] = $this->errors['end_'.$error2];
-			}
+				update_post_meta($post_ID, '_event_end_date', get_post_meta($post_ID, '_event_start_date', TRUE));
 		}
 
 		//event tickets section
-		update_post_meta($post_ID, '_event_free', (isset($_POST['event_free']) ? 1 : 0));
 
-		$tickets = $ids = array();
-
-		if(isset($_POST['event_free']) === FALSE)
+		// if tickets are not used, don't save it
+		if($use_tickets === TRUE)
 		{
-			$last_id = (int)get_post_meta($post_ID, '_event_tickets_last_id', TRUE);
+			update_post_meta($post_ID, '_event_free', (isset($_POST['event_free']) ? 1 : 0));
 
-			if(isset($_POST['event_tickets']) && is_array($_POST['event_tickets']) && !empty($_POST['event_tickets']))
+			$tickets = $ids = array();
+
+			if(isset($_POST['event_free']) === FALSE)
 			{
-				foreach($_POST['event_tickets'] as $id => $ticket)
+				$last_id = (int)get_post_meta($post_ID, '_event_tickets_last_id', TRUE);
+				$ticket_url = (isset($_POST['event_tickets_url']) ? $_POST['event_tickets_url'] : '');
+
+				if(isset($_POST['event_tickets']) && is_array($_POST['event_tickets']) && !empty($_POST['event_tickets']))
 				{
-					$tickets_fields = array();
-					$empty = 0;
-
-					foreach($this->tickets_fields as $key => $trans)
+					foreach($_POST['event_tickets'] as $id => $ticket)
 					{
-						$tickets_fields[$key] = sanitize_text_field(isset($ticket[$key]) ? $ticket[$key] : '');
-						$empty += (($tickets_fields[$key] !== '') ? 1 : 0);
+						$tickets_fields = array();
+						$empty = 0;
+
+						foreach($this->tickets_fields as $key => $trans)
+						{
+							$tickets_fields[$key] = sanitize_text_field(isset($ticket[$key]) ? $ticket[$key] : '');
+							$empty += (($tickets_fields[$key] !== '') ? 1 : 0);
+						}
+
+						if($empty > 0)
+						{
+							$ids[] = $id;
+							$tickets[$id] = $tickets_fields;
+						}
 					}
 
-					if($empty > 0)
+					if(empty($tickets))
 					{
-						$ids[] = $id;
-						$tickets[$id] = $tickets_fields;
+						$ticket_url = '';
+
+						update_post_meta($post_ID, '_event_free', 1);
 					}
+
+					if(!empty($ids) && $last_id < ($max = max($ids)))
+						update_post_meta($post_ID, '_event_tickets_last_id', $max);
+
+					update_post_meta($post_ID, '_event_tickets', $tickets);
+				}
+				else
+				{
+					$ticket_url = '';
+
+					update_post_meta($post_ID, '_event_tickets', array());
+					update_post_meta($post_ID, '_event_free', 1);
 				}
 
-				if(empty($tickets))
-					$errors[] = $this->errors['empty_tickets'];
-
-				if(!empty($ids) && $last_id < ($max = max($ids)))
-					update_post_meta($post_ID, '_event_tickets_last_id', $max);
-
-				update_post_meta($post_ID, '_event_tickets', $tickets);
+				update_post_meta($post_ID, '_event_tickets_url', esc_url($ticket_url));
 			}
 			else
-				$errors[] = $this->errors['empty_tickets'];
-
-			update_post_meta($post_ID, '_event_tickets_url', esc_url($_POST['event_tickets_url']));
-		}
-		else
-		{
-			update_post_meta($post_ID, '_event_tickets', $tickets);
-			update_post_meta($post_ID, '_event_tickets_url', '');
+			{
+				update_post_meta($post_ID, '_event_tickets', $tickets);
+				update_post_meta($post_ID, '_event_tickets_url', '');
+			}
 		}
 
 		//event options section
@@ -539,19 +529,6 @@ class Events_Maker_Metaboxes
 		}
 		else
 			update_post_meta($post_ID, '_event_display_options', array());
-
-		//errors
-		if(!empty($errors))
-		{
-			$html = '';
-
-			foreach($errors as $error)
-			{
-				$html .= $error.'<br />';
-			}
-
-			set_transient($this->transient_id, maybe_serialize(array('status' => 'error', 'text' => $html)), 60);
-		}
 	}
 }
 ?>

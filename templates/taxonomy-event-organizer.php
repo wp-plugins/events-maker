@@ -24,8 +24,14 @@
 	                <?php if ($organizer_details['email']) : ?>
 	                	<p class="organizer-email"><strong><?php echo __('Email', 'events-maker'); ?>:</strong> <?php echo $organizer_details['email']; ?></p>
 	                <?php endif; ?>
-	                <?php if ($organizer_details['phone']) : ?>
+	                <?php if ($organizer_details['website']) : ?>
 	                	<p class="organizer-website"><strong><?php echo __('Website', 'events-maker'); ?>:</strong> <a href="<?php echo $organizer_details['website']; ?>" target="_blank" rel="nofollow"><?php echo $organizer_details['website']; ?></a></p>
+	                <?php endif; ?>
+	                <?php if ($organizer_details['image']) : ?>
+	                	<p class="organizer-image"><strong><?php echo __('Image', 'events-maker'); ?>:</strong><br />
+	                		<?php $image_thb = wp_get_attachment_image_src($organizer_details['image'], 'thumbnail'); ?>
+	                		<img src="<?php echo $image_thb[0]; ?>" class="attachment-thumbnail" title="<?php echo single_term_title('', false); ?>" alt="<?php echo single_term_title('', false); ?>" />
+	                	</p>
 	                <?php endif; ?>
 	                
                 </div>

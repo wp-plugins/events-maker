@@ -1,7 +1,8 @@
 /* Events Calendar Widget */
-.events-calendar-widget table { line-height: 1.8em; margin: 0; width: 100%; table-layout: fixed; }
-.events-calendar-widget th, .events-calendar-widget td, .events-calendar-widget caption { text-align: left; }
-.events-calendar-widget tbody, .events-calendar-widget thead { font-size:0.9em; }
+.events-calendar-widget table.nav-days { margin-bottom:0; }
+.events-calendar-widget table.nav-months { table-layout: fixed; line-height: 24px; }
+.events-calendar-widget table.nav-months tbody td { background: none; }
+.events-calendar-widget .nav-months a:hover, .events-calendar-widget .nav-months a:active, .events-calendar-widget .nav-months a:focus { outline: 0; border: 0; background: none; }
 .events-calendar-widget table .prev-month { text-align:left; }
 .events-calendar-widget table .next-month { text-align:right; }
 .events-calendar-widget td.ajax-spinner div {
@@ -16,7 +17,6 @@
 	width: 16px;
 	height: 16px;
 }
-
 
 /* Events Google Map */
 #event-google-map { width: 100%; height: 300px; margin: 20px 0; }

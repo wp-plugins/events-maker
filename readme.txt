@@ -4,7 +4,7 @@ Donate link: http://www.dfactory.eu/
 Tags: event, event categories, events management, event management, events manager, event manager, event organizer, events calendar, events maker, google map, map, locations, organizers, widget, attendance, attendee, Booking, calendar, event registration, ticket, tickets, ticketing, bookings
 Requires at least: 3.5
 Tested up to: 3.7
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -34,6 +34,7 @@ For more information, check out plugin page at [dFactory](http://www.dfactory.eu
 * 26 custom functions
 * Advanced hooks for developers
 * Custom permissions for Events
+* Multisite support
 * Compatible with WPML
 * Compatible with SEO plugins
 * Customizable permalink structure
@@ -73,6 +74,7 @@ No questions yet.
 == Changelog ==
 
 = 1.0.6 =
+* New: Multisite support
 * New: Dutch translation, thanks to Heleen van den Bos
 
 = 1.0.5 =
@@ -107,4 +109,5 @@ Initial release
 == Upgrade Notice ==
 
 = 1.0.6 =
+* New: Multisite support
 * New: Dutch translation, thanks to Heleen van den Bos

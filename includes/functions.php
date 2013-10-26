@@ -1,6 +1,5 @@
 <?php
-// Exit if accessed directly
-if(!defined('ABSPATH')) exit;
+if(!defined('ABSPATH')) exit; //exit if accessed directly
 
 define('EVENTS_MAKER_DATE_NOW', current_time('timestamp', FALSE));
 

@@ -1,6 +1,6 @@
 /* Events Calendar Widget */
 .events-calendar-widget table.nav-days { margin-bottom:0; }
-.events-calendar-widget table.nav-months { table-layout: fixed; }
+.events-calendar-widget table.nav-months { table-layout: fixed; line-height: 24px; }
 .events-calendar-widget table.nav-months tbody td { background: none; }
 .events-calendar-widget .nav-months a:hover, .events-calendar-widget .nav-months a:active, .events-calendar-widget .nav-months a:focus { outline: 0; border: 0; background: none; }
 .events-calendar-widget table .prev-month { text-align:left; }

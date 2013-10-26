@@ -646,6 +646,8 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 			$html .= '
 			</ul>';
 		}
+		elseif($parent === 0)
+			$html = __('No results were found.', 'events-maker');
 
 		return $html;
 	}
@@ -974,6 +976,8 @@ class Events_Maker_List_Widget extends WP_Widget
 			$html .= '
 			</ul>';
 		}
+		elseif($parent === 0)
+			$html = __('No results were found.', 'events-maker');
 
 		return $html;
 	}

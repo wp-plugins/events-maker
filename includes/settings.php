@@ -957,8 +957,6 @@ class Events_Maker_Settings
 		}
 		elseif(isset($_POST['reset_em_capabilities']))
 		{
-			global $wp_roles;
-
 			foreach($wp_roles->roles as $role_name => $display_name)
 			{
 				$role = $wp_roles->get_role($role_name);

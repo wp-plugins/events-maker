@@ -114,8 +114,8 @@ class Events_Maker
 
 	public function __construct()
 	{
-		register_activation_hook(__FILE__, array(&$this, 'activation'));
-		register_deactivation_hook(__FILE__, array(&$this, 'deactivation'));
+		register_activation_hook(__FILE__, array(&$this, 'multisite_activation'));
+		register_deactivation_hook(__FILE__, array(&$this, 'multisite_deactivation'));
 
 		//settings
 		$this->options = array_merge(
@@ -146,6 +146,154 @@ class Events_Maker
 		add_filter('map_meta_cap', array(&$this, 'event_map_meta_cap'), 10, 4);
 		add_filter('post_updated_messages', array(&$this, 'register_post_types_messages'));
 		add_filter('plugin_row_meta', array(&$this, 'plugin_extend_links'), 10, 2);
+	}
+
+
+	/**
+	 * Multisite activation
+	*/
+	public function multisite_activation($networkwide)
+	{
+		if(is_multisite() && $networkwide)
+		{
+			global $wpdb;
+
+			$activated_blogs = array();
+			$current_blog_id = $wpdb->blogid;
+			$blogs_ids = $wpdb->get_col($wpdb->prepare('SELECT blog_id FROM '.$wpdb->blogs, ''));
+
+			foreach($blogs_ids as $blog_id)
+			{
+				switch_to_blog($blog_id);
+				$this->activate_single();
+				$activated_blogs[] = (int)$blog_id;
+			}
+
+			switch_to_blog($current_blog_id);
+			update_site_option('events_maker_activated_blogs', $activated_blogs, array());
+		}
+		else
+			$this->activate_single();
+	}
+
+
+	/**
+	 * Activation
+	*/
+	public function activate_single()
+	{
+		global $wp_roles;
+
+		//transient for welcome screen
+		set_transient('_events_maker_activation_redirect', 1, 3600);
+
+		//add caps to administrators
+		foreach($wp_roles->roles as $role_name => $display_name)
+		{
+			$role = $wp_roles->get_role($role_name);
+
+			if($role->has_cap('manage_options'))
+			{
+				foreach($this->defaults['capabilities'] as $capability)
+				{
+					if(($this->defaults['general']['use_tags'] === FALSE && $capability === 'manage_event_tags') || ($this->defaults['general']['use_organizers'] === FALSE && $capability === 'manage_event_organizers'))
+						continue;
+
+					$role->add_cap($capability);
+				}
+			}
+		}
+
+		$this->defaults['general']['datetime_format'] = array(
+			'date' => get_option('date_format'),
+			'time' => get_option('time_format')
+		);
+
+		//add default options
+		add_option('events_maker_general', $this->defaults['general'], '', 'no');
+		add_option('events_maker_templates', $this->defaults['templates'], '', 'no');
+		add_option('events_maker_capabilities', '', '', 'no');
+		add_option('events_maker_permalinks', $this->defaults['permalinks'], '', 'no');
+		add_option('events_maker_version', $this->defaults['version'], '', 'no');
+
+		//permalinks
+		flush_rewrite_rules();
+	}
+
+
+	/**
+	 * Multisite deactivation
+	*/
+	public function multisite_deactivation($networkwide)
+	{
+		if(is_multisite() && $networkwide)
+		{
+			global $wpdb;
+
+			$current_blog_id = $wpdb->blogid;
+			$blogs_ids = $wpdb->get_col($wpdb->prepare('SELECT blog_id FROM '.$wpdb->blogs, ''));
+
+			if(($activated_blogs = get_site_option('events_maker_activated_blogs', FALSE, FALSE)) === FALSE)
+				$activated_blogs = array();
+
+			foreach($blogs_ids as $blog_id)
+			{
+				switch_to_blog($blog_id);
+				$this->deactivate_single(TRUE);
+
+				if(in_array((int)$blog_id, $activated_blogs, TRUE))
+					unset($activated_blogs[array_search($blog_id, $activated_blogs)]);
+			}
+
+			switch_to_blog($current_blog_id);
+			update_site_option('events_maker_activated_blogs', $activated_blogs);
+		}
+		else
+			$this->deactivate_single();
+	}
+
+
+	/**
+	 * Deactivation
+	*/
+	public function deactivate_single()
+	{
+		global $wp_roles;
+
+		//remove capabilities
+		foreach($wp_roles->roles as $role_name => $display_name)
+		{
+			$role = $wp_roles->get_role($role_name);
+
+			foreach($this->defaults['capabilities'] as $capability)
+			{
+				$role->remove_cap($capability);
+			}
+		}
+
+		if($multi === TRUE)
+		{
+			$options = get_option('events_maker_general');
+			$check = $options['deactivation_delete'];
+		}
+		else
+			$check = $this->options['general']['deactivation_delete'];
+
+		//delete default options
+		if($check === TRUE)
+		{
+			$settings = new Events_Maker_Settings();
+			$settings->update_menu();
+
+			delete_option('events_maker_general');
+			delete_option('events_maker_templates');
+			delete_option('events_maker_capabilities');
+			delete_option('events_maker_permalinks');
+			delete_option('events_maker_version');
+		}
+
+		//permalinks
+		flush_rewrite_rules();
 	}
 
 
@@ -196,86 +344,6 @@ class Events_Maker
 				6 => '1 234.56'
 			)
 		);
-	}
-
-
-	/**
-	 * Execution of plugin activation function
-	*/
-	public function activation()
-	{
-		global $wp_roles;
-
-		//transient for welcome screen
-		set_transient('_events_maker_activation_redirect', 1, 3600);
-
-		//add caps to administrators
-		foreach($wp_roles->roles as $role_name => $display_name)
-		{
-			$role = $wp_roles->get_role($role_name);
-
-			if($role->has_cap('manage_options'))
-			{
-				foreach($this->defaults['capabilities'] as $capability)
-				{
-					if(($this->defaults['general']['use_tags'] === FALSE && $capability === 'manage_event_tags') || ($this->defaults['general']['use_organizers'] === FALSE && $capability === 'manage_event_organizers'))
-						continue;
-
-					$role->add_cap($capability);
-				}
-			}
-		}
-
-		$this->defaults['general']['datetime_format'] = array(
-			'date' => get_option('date_format'),
-			'time' => get_option('time_format')
-		);
-
-		//add default options
-		add_option('events_maker_general', $this->defaults['general'], '', 'no');
-		add_option('events_maker_templates', $this->defaults['templates'], '', 'no');
-		add_option('events_maker_capabilities', '', '', 'no');
-		add_option('events_maker_permalinks', $this->defaults['permalinks'], '', 'no');
-		add_option('events_maker_version', $this->defaults['version'], '', 'no');
-
-		//permalinks
-		flush_rewrite_rules();
-	}
-
-
-	/**
-	 * Execution of plugin deactivation function
-	*/
-	public function deactivation()
-	{
-		global $wp_roles;
-
-		//remove capabilities
-		foreach($wp_roles->roles as $role_name => $display_name)
-		{
-			$role = $wp_roles->get_role($role_name);
-
-			foreach($this->defaults['capabilities'] as $capability)
-			{
-				$role->remove_cap($capability);
-			}
-		}
-
-		//delete default options
-		if($this->options['general']['deactivation_delete'] === TRUE)
-		{
-			$settings = new Events_Maker_Settings();
-			$settings->update_menu();
-
-			delete_option('events_maker_general');
-			delete_option('events_maker_templates');
-			delete_option('events_maker_capabilities');
-			delete_option('events_maker_permalinks');
-			delete_option('events_maker_version');
-		}
-
-		//permalinks
-		flush_rewrite_rules();
 	}
 
 

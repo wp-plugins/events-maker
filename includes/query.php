@@ -1,6 +1,7 @@
 <?php
+if(!defined('ABSPATH')) exit; //exit if accessed directly
 
-if (!defined('ABSPATH')) exit; // Exit if accessed directly
+new Events_Maker_Query();
 
 class Events_Maker_Query
 {
@@ -134,9 +135,6 @@ class Events_Maker_Query
 		$query_vars[] = 'event_date_range';
 		$query_vars[] = 'event_date_type';
 		$query_vars[] = 'event_ticket_type';
-		$query_vars[] = 'event_categories';
-		$query_vars[] = 'event_locations';
-		$query_vars[] = 'event_organizers';
 		$query_vars[] = 'event_ondate';
 		$query_vars[] = 'event_show_past_events';
 
@@ -181,9 +179,6 @@ class Events_Maker_Query
 				'event_date_range' => 'between',
 				'event_date_type' => 'all',
 				'event_ticket_type' => 'all',
-				'event_categories' => 'all',
-				'event_locations' => 'all',
-				'event_organizers' => 'all',
 				'event_ondate' => '',
 				'event_show_past_events' => (is_admin() ? TRUE : $this->options['general']['show_past_events'])
 			);
@@ -236,15 +231,6 @@ class Events_Maker_Query
 
 			if(!isset($query->query_vars['event_end_before']) || ($format_eb = $em_helper->is_valid_datetime($query->query_vars['event_end_before'])) === FALSE)
 				$query->query_vars['event_end_before'] = $defaults['event_end_before'];
-
-			if(!isset($query->query_vars['event_categories']) || (is_string($query->query_vars['event_categories']) && $query->query_vars['event_categories'] !== 'all') || (is_array($query->query_vars['event_categories']) && !in_array($query->query_vars['event_categories'][0], array('id', 'slug'), TRUE)))
-				$query->query_vars['event_categories'] = $defaults['event_categories'];
-
-			if(!isset($query->query_vars['event_locations']) || (is_string($query->query_vars['event_locations']) && $query->query_vars['event_locations'] !== 'all') || (is_array($query->query_vars['event_locations']) && !in_array($query->query_vars['event_locations'][0], array('id', 'slug'), TRUE)))
-				$query->query_vars['event_locations'] = $defaults['event_locations'];
-
-			if(!isset($query->query_vars['event_organizers']) || (is_string($query->query_vars['event_organizers']) && $query->query_vars['event_organizers'] !== 'all') || (is_array($query->query_vars['event_organizers']) && !in_array($query->query_vars['event_organizers'][0], array('id', 'slug'), TRUE)))
-				$query->query_vars['event_organizers'] = $defaults['event_organizers'];
 
 			if(!isset($query->query_vars['orderby']))
 			{
@@ -333,81 +319,6 @@ class Events_Maker_Query
 				);
 			}
 
-			if(is_array($query->query_vars['event_categories']) && is_array($query->query_vars['event_categories'][1]) && !empty($query->query_vars['event_categories'][1]))
-			{
-				if($query->query_vars['event_categories'][0] === 'id')
-				{
-					$cats = array();
-
-					foreach($query->query_vars['event_categories'][1] as $id)
-					{
-						$cats[] = (int)$id;
-					}
-
-					$cats = array_unique($cats, SORT_NUMERIC);
-				}
-				else
-					$cats = array_unique($query->query_vars['event_categories'][1]);
-
-				$tax_args[] = array(
-					'taxonomy' => 'event-category',
-					'field' => $query->query_vars['event_categories'][0],
-					'terms' => $cats,
-					'include_children' => FALSE,
-					'operator' => 'IN'
-				);
-			}
-
-			if(is_array($query->query_vars['event_locations']) && is_array($query->query_vars['event_locations'][1]) && !empty($query->query_vars['event_locations'][1]))
-			{
-				if($query->query_vars['event_locations'][0] === 'id')
-				{
-					$locs = array();
-
-					foreach($query->query_vars['event_locations'][1] as $id)
-					{
-						$locs[] = (int)$id;
-					}
-
-					$locs = array_unique($locs, SORT_NUMERIC);
-				}
-				else
-					$locs = array_unique($query->query_vars['event_locations'][1]);
-
-				$tax_args[] = array(
-					'taxonomy' => 'event-location',
-					'field' => $query->query_vars['event_locations'][0],
-					'terms' => $locs,
-					'include_children' => FALSE,
-					'operator' => 'IN'
-				);
-			}
-
-			if(is_array($query->query_vars['event_organizers']) && is_array($query->query_vars['event_organizers'][1]) && !empty($query->query_vars['event_organizers'][1]))
-			{
-				if($query->query_vars['event_organizers'][0] === 'id')
-				{
-					$orgs = array();
-
-					foreach($query->query_vars['event_organizers'][1] as $id)
-					{
-						$orgs[] = (int)$id;
-					}
-
-					$orgs = array_unique($orgs, SORT_NUMERIC);
-				}
-				else
-					$orgs = array_unique($query->query_vars['event_organizers'][1]);
-
-				$tax_args[] = array(
-					'taxonomy' => 'event-organizer',
-					'field' => $query->query_vars['event_organizers'][0],
-					'terms' => $orgs,
-					'include_children' => FALSE,
-					'operator' => 'IN'
-				);
-			}
-
 			if($query->query_vars['event_date_type'] === 'all_day')
 			{
 				$meta_args[] = array(
@@ -437,7 +348,7 @@ class Events_Maker_Query
 				);
 			}
 
-			if($query->query_vars['event_show_past_events'] === FALSE)
+			if($query->query_vars['event_show_past_events'] === FALSE && $query->is_singular() !== TRUE)
 			{
 				$meta_args[] = array(
 					'key' => ($this->options['general']['expire_current'] === FALSE ? '_event_end_date' : '_event_start_date'),
@@ -452,7 +363,4 @@ class Events_Maker_Query
 		}
 	}
 }
-
-$events_maker_query = new Events_Maker_Query();
-
 ?>

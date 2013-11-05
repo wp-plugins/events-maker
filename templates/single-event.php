@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
 	<div id="primary" class="site-content">
-		
+
 		<div id="content" role="main">
 
 			<?php while ( have_posts() ) : the_post(); ?>
@@ -9,15 +9,15 @@
 				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 	                <header class="entry-header">
-	                	
+
 	                    <h1 class="entry-title"><?php the_title(); ?></h1>
 
 		        		<?php // Display Display Options
 		        		$event_display_options = get_post_meta($post->ID, '_event_display_options', TRUE); ?>
-		                
+
 		                <?php // Display Google Map
 		                echo $event_display_options['google_map'] === 1 ? em_display_google_map() : ''; ?>
-		                
+
 		                <div class="entry-meta">
 		                
 			                <?php // Display Event Start ?>
@@ -26,14 +26,14 @@
 			                	<?php $event_start = em_is_all_day($post->ID) === TRUE ? em_get_the_start($post->ID, 'date') : em_get_the_start($post->ID); ?>
 			                	<div class="event-start-date"><strong><?php _e('Start', 'events-maker'); ?>: </strong><abbr class="dtstart" title="<?php echo get_post_meta((int)$post->ID, '_event_start_date', TRUE); ?>"><?php echo $event_start; ?></abbr></div>
 			                <?php endif; ?>
-			                
+
 			                <?php // Display Event End ?>
 			                <?php $event_end = em_get_the_end($post->ID) ? em_get_the_end($post->ID) : ''; ?>
 			                <?php if ($event_end) : ?>
 			                	<?php $event_end = em_is_all_day($post->ID) === TRUE ? em_get_the_end($post->ID, 'date') : em_get_the_end($post->ID); ?>
 			                	<div class="event-end-date"><strong><?php _e('End', 'events-maker'); ?>: </strong><abbr class="dtend" title="<?php echo get_post_meta((int)$post->ID, '_event_end_date', TRUE); ?>"><?php echo $event_end; ?></abbr></div>
 			               	<?php endif; ?>
-			               	
+
 			               	<?php // Display Tickets details
 			                if ($event_display_options['price_tickets_info'] === 1) : ?>
 				               	<?php // Tickets URL 
@@ -57,7 +57,7 @@
 			               			</div>
 			               		<?php endif; ?>
 			               	<?php endif; ?>
-			               	
+
 			               	<?php // Display Event Categories ?>
 			                <?php $taxonomy = 'event-category'; ?>
 			                <?php $terms = em_get_categories_for($post->ID); ?>
@@ -70,7 +70,7 @@
 			                    <?php endforeach; ?>
 			                </div>
 			                <?php endif; ?>
-			                
+
 			                <?php // Display Event Locations ?>
 			                <?php $taxonomy = 'event-location'; ?>
 			                <?php $terms = em_get_locations_for($post->ID); ?>
@@ -94,7 +94,7 @@
 			                    <?php endforeach; ?>
 			                </div>
 			                <?php endif; ?>
-			                
+
 			                <?php // Display Event Organizers ?>
 			                <?php $taxonomy = 'event-organizer'; ?>
 			                <?php $terms = em_get_organizers_for($post->ID); ?>
@@ -117,21 +117,21 @@
 			                    <?php endforeach; ?>
 			                </div>
 			                <?php endif; ?>
-		                
+
 		                </div>
-	                
+
 	                </header>
-	
+
 	                <div class="entry-content">
 	                    <?php the_content(); ?>
 	                </div>
-	    
+
 	                <footer class="entry-meta">
 	                    <?php edit_post_link(__('Edit', 'events-maker'), '<span class="edit-link">', '</span>'); ?>
 	                </footer>
-    
+
                 </article>
-                
+
                 <div class="comments-template">
                     <?php comments_template(); ?>
                 </div>	
@@ -139,7 +139,7 @@
 			<?php endwhile; // end of the loop. ?>
 
 		</div>
-		
+
 	</div>
 
 <?php get_sidebar(); ?>

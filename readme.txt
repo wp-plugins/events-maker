@@ -3,8 +3,8 @@ Contributors: dfactory
 Donate link: http://www.dfactory.eu/
 Tags: event, event categories, events management, event management, events manager, event manager, event organizer, events calendar, events maker, google map, map, locations, organizers, widget, attendance, attendee, Booking, calendar, event registration, ticket, tickets, ticketing, bookings
 Requires at least: 3.5
-Tested up to: 3.7
-Stable tag: 1.0.6
+Tested up to: 3.7.1
+Stable tag: 1.0.7
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 

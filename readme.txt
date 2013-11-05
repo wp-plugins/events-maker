@@ -35,7 +35,7 @@ For more information, check out plugin page at [dFactory](http://www.dfactory.eu
 * Advanced hooks for developers
 * Custom permissions for Events
 * Multisite support
-* Compatible with WPML
+* Compatible with WPML & Polylang
 * Compatible with SEO plugins
 * Customizable permalink structure
 * .pot file for translations included
@@ -73,6 +73,11 @@ No questions yet.
 
 == Changelog ==
 
+= 1.0.7 =
+* Fix: Ajax Events calendar not working properly with Polylang
+* Fix: Google Map display on loacations template
+* Tweak: Added thumbnail selection in Events List Widget
+
 = 1.0.6 =
 * New: Multisite support
 * New: Dutch translation, thanks to Heleen van den Bos
@@ -108,6 +113,7 @@ Initial release
 
 == Upgrade Notice ==
 
-= 1.0.6 =
-* New: Multisite support
-* New: Dutch translation, thanks to Heleen van den Bos
+= 1.0.7 =
+* Fix: Ajax Events calendar not working properly with Polylang
+* Fix: Google Map display on loacations template
+* Tweak: Added thumbnail selection in Events List Widget

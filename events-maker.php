@@ -476,6 +476,7 @@ class Events_Maker
 			'height' => '200px',
 			'zoom' => 15,
 			'maptype' => 'ROADMAP',
+			'locations' => '',
 			'maptypecontrol' => 'on',
 			'zoomcontrol' => 'on',
 			'streetviewcontrol' => 'on',
@@ -506,7 +507,26 @@ class Events_Maker
 		$args['keyboardshortcuts'] = $this->get_proper_arg($args['keyboardshortcuts'], $defaults['keyboardshortcuts'], $booleans);
 		$args['scrollzoom'] = $this->get_proper_arg($args['scrollzoom'], $defaults['scrollzoom'], $booleans);
 
-		if(is_tax('event-location') || (get_post_type() === 'event' && is_single()))
+		//location ids
+		$locations = ($args['locations'] !== '' ? explode(',', $args['locations']) : '');
+
+		if(is_array($locations) && !empty($locations))
+		{
+			$locations_tmp = array();
+
+			foreach($locations as $location)
+			{
+				$locations_tmp[] = (int)$location;
+			}
+
+			foreach(array_unique($locations_tmp) as $location_id)
+			{
+				$location = em_get_location($location_id);
+				$location->location_meta['name'] = $location->name;
+				$markers[] = $location->location_meta;
+			}
+		}
+		elseif(is_tax('event-location') || (get_post_type() === 'event' && is_single()))
 		{
 			$term = get_queried_object();
 
@@ -1006,6 +1026,7 @@ class Events_Maker
 			'events-maker-front',
 			EVENTS_MAKER_URL.'/css/front.css'
 		);
+
 		wp_enqueue_style('events-maker-front');
 	}
 

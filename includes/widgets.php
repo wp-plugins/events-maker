@@ -231,7 +231,7 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 				'events-maker-front-widgets-calendar',
 				'emArgs',
 				array(
-					'ajaxurl' => admin_url('admin-ajax.php').(defined('ICL_LANGUAGE_CODE') ? '?lang='.ICL_LANGUAGE_CODE : ''),
+					'ajaxurl' => admin_url('admin-ajax.php'),
 					'nonce' => wp_create_nonce('events-maker-widget-calendar')
 				)
 			);
@@ -416,9 +416,14 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 		$next_month = ($month + 1) % 12;
 		$next_month_pad = str_pad($next_month + 1, 2, '0', STR_PAD_LEFT);
 		$first_day = (($first = date('w', strtotime(date($date[0].'-'.$date[1].'-01')))) === '0' ? 7 : $first);
+		$rel = $widget_id;
+
+		//Polylang and WPML compatibility
+		if(defined('ICL_LANGUAGE_CODE'))
+			$rel .= '|'.ICL_LANGUAGE_CODE;
 
 		$html = '
-		<div id="events-calendar-'.$widget_id.'" class="events-calendar-widget widget_calendar" rel="'.$widget_id.'" '.($ajax === TRUE ? 'style="display: none;"' : '').'>
+		<div id="events-calendar-'.$widget_id.'" class="events-calendar-widget widget_calendar" rel="'.$rel.'" '.($ajax === TRUE ? 'style="display: none;"' : '').'>
 			<caption>'.$wp_locale->get_month($date[1]).' '.$date[0].'</caption>
 			<table class="nav-days">
 				<thead>
@@ -478,11 +483,11 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 			<table class="nav-months">
 				<tr>
 					<td class="prev-month" colspan="2">
-						<a rel="'.($prev_month === 11 ? ($date[0] - 1) : $date[0]).'-'.$prev_month_pad.'" href="#">&laquo; '.$wp_locale->get_month($prev_month_pad).'</a>
+						<a rel="'.($prev_month === 11 ? ($date[0] - 1) : $date[0]).'-'.$prev_month_pad.'" href="#">&laquo; '.apply_filters('em_calendar_month_name', $wp_locale->get_month($prev_month_pad)).'</a>
 					</td>
 					<td class="ajax-spinner" colspan="1"><div></div></td>
 					<td class="next-month" colspan="2">
-						<a rel="'.($next_month === 0 ? ($date[0] + 1) : $date[0]).'-'.$next_month_pad.'" href="#">'.$wp_locale->get_month($next_month_pad).' &raquo;</a>
+						<a rel="'.($next_month === 0 ? ($date[0] + 1) : $date[0]).'-'.$next_month_pad.'" href="#">'.apply_filters('em_calendar_month_name', $wp_locale->get_month($next_month_pad)).' &raquo;</a>
 					</td>
 				</tr>
 			</table>
@@ -498,6 +503,7 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 	private function get_events_days($date, $options)
 	{
 		$days = $allevents = $exclude_ids = array();
+
 		$args = array(
 			'post_type' => 'event',
 			'posts_per_page' => -1,
@@ -538,6 +544,10 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 				'operator' => 'IN'
 			);
 		}
+
+		//Polylang and WPML compatibility
+		if(defined('ICL_LANGUAGE_CODE'))
+			$args['lang'] = ICL_LANGUAGE_CODE;
 
 		$allevents['start'] = get_posts(
 			array_merge(
@@ -661,6 +671,7 @@ class Events_Maker_List_Widget extends WP_Widget
 	private $em_taxonomies = array();
 	private $em_orders = array();
 	private $em_order_types = array();
+	private $em_image_sizes = array();
 
 
 	public function __construct()
@@ -680,6 +691,7 @@ class Events_Maker_List_Widget extends WP_Widget
 		$this->em_defaults = array(
 			'title' => __('Events', 'events-maker'),
 			'number_of_events' => 5,
+			'thumbnail_size' => 'thumbnail',
 			'categories' => 'all',
 			'locations' => 'all',
 			'organizers' => 'all',
@@ -709,6 +721,9 @@ class Events_Maker_List_Widget extends WP_Widget
 			'asc' => __('Ascending', 'events-maker'),
 			'desc' => __('Descending', 'events-maker')
 		);
+
+		$this->em_image_sizes = array_merge(array('full'), get_intermediate_image_sizes());
+		sort($this->em_image_sizes, SORT_STRING);
 	}
 
 
@@ -827,15 +842,32 @@ class Events_Maker_List_Widget extends WP_Widget
 				<option value="'.esc_attr($id).'" '.selected($id, (isset($instance['order']) ? $instance['order'] : $this->em_defaults['order']), FALSE).'>'.$order.'</option>';
 		}
 
+		$show_event_thumbnail = (isset($instance['show_event_thumbnail']) ? $instance['show_event_thumbnail'] : $this->em_defaults['show_event_thumbnail']);
+
 		$html .= '
 			</select>
 		</p>
 		<p>
 			<input id="'.$this->get_field_id('show_past_events').'" type="checkbox" name="'.$this->get_field_name('show_past_events').'" value="" '.checked(TRUE, (isset($instance['show_past_events']) ? $instance['show_past_events'] : $this->em_defaults['show_past_events']), FALSE).' /> <label for="'.$this->get_field_id('show_past_events').'">'.__('Display past events', 'events-maker').'</label>
 			<br />
-			<input id="'.$this->get_field_id('show_event_thumbnail').'" type="checkbox" name="'.$this->get_field_name('show_event_thumbnail').'" value="" '.checked(TRUE, (isset($instance['show_event_thumbnail']) ? $instance['show_event_thumbnail'] : $this->em_defaults['show_event_thumbnail']), FALSE).' /> <label for="'.$this->get_field_id('show_event_thumbnail').'">'.__('Display event thumbnail', 'events-maker').'</label>
-			<br />
 			<input id="'.$this->get_field_id('show_event_excerpt').'" type="checkbox" name="'.$this->get_field_name('show_event_excerpt').'" value="" '.checked(TRUE, (isset($instance['show_event_excerpt']) ? $instance['show_event_excerpt'] : $this->em_defaults['show_event_excerpt']), FALSE).' /> <label for="'.$this->get_field_id('show_event_excerpt').'">'.__('Display event excerpt', 'events-maker').'</label>
+			<br />
+			<input id="'.$this->get_field_id('show_event_thumbnail').'" class="em-show-event-thumbnail" type="checkbox" name="'.$this->get_field_name('show_event_thumbnail').'" value="" '.checked(TRUE, $show_event_thumbnail, FALSE).' /> <label for="'.$this->get_field_id('show_event_thumbnail').'">'.__('Display event thumbnail', 'events-maker').'</label>
+		</p>
+		<p class="em-event-thumbnail-size"'.($show_event_thumbnail === TRUE ? '' : ' style="display: none;"').'>
+			<label for="'.$this->get_field_id('thumbnail_size').'">'.__('Thumbnail size', 'events-maker').':</label>
+			<select id="'.$this->get_field_id('thumbnail_size').'" name="'.$this->get_field_name('thumbnail_size').'">';
+
+		$size_type = (isset($instance['thumbnail_size']) ? $instance['thumbnail_size'] : $this->em_defaults['thumbnail_size']);
+
+		foreach($this->em_image_sizes as $size)
+		{
+			$html .= '
+				<option value="'.esc_attr($size).'" '.selected($size, $size_type, FALSE).'>'.$size.'</option>';
+		}
+
+		$html .= '
+			</select>
 		</p>
 		<p>
 			<label for="'.$this->get_field_id('no_events_message').'">'.__('No events message', 'events-maker').':</label>
@@ -863,6 +895,9 @@ class Events_Maker_List_Widget extends WP_Widget
 		//order
 		$old_instance['order_by'] = (isset($new_instance['order_by']) && in_array($new_instance['order_by'], array_keys($this->em_orders), TRUE) ? $new_instance['order_by'] : $this->em_defaults['order_by']);
 		$old_instance['order'] = (isset($new_instance['order']) && in_array($new_instance['order'], array_keys($this->em_order_types), TRUE) ? $new_instance['order'] : $this->em_defaults['order']);
+
+		//thumbnail size
+		$old_instance['thumbnail_size'] = (isset($new_instance['thumbnail_size']) && in_array($new_instance['thumbnail_size'], $this->em_image_sizes, TRUE) ? $new_instance['thumbnail_size'] : $this->em_defaults['thumbnail_size']);
 
 		//booleans
 		$old_instance['show_past_events'] = (isset($new_instance['show_past_events']) ? TRUE : FALSE);

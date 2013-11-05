@@ -1,4 +1,5 @@
 /* Events Calendar Widget */
+.events-calendar-widget table { width: 100%; line-height: 1.84615; }
 .events-calendar-widget table.nav-days { margin-bottom:0; }
 .events-calendar-widget table.nav-months { table-layout: fixed; line-height: 24px; }
 .events-calendar-widget table.nav-months tbody td { background: none; }

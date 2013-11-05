@@ -1,8 +1,6 @@
 <?php
 if(!defined('ABSPATH')) exit; //exit if accessed directly
 
-define('EVENTS_MAKER_DATE_NOW', current_time('timestamp', FALSE));
-
 
 function em_get_events($args = array())
 {
@@ -310,8 +308,11 @@ function em_get_the_end($post_id = 0, $type = 'datetime')
 }
 
 
-function em_format_date($date = EVENTS_MAKER_DATE_NOW, $type = 'datetime', $format = FALSE)
+function em_format_date($date = NULL, $type = 'datetime', $format = FALSE)
 {
+	if($date === NULL)
+		$date = current_time('timestamp', FALSE);
+
 	$options = get_option('events_maker_general');
 	$date_format = $options['datetime_format']['date'];
 	$time_format = $options['datetime_format']['time'];
@@ -553,6 +554,7 @@ function em_display_events($args = array())
 	$options = get_option('events_maker_general');
 	$defaults = array(
 		'number_of_events' => 5,
+		'thumbnail_size' => 'thumbnail',
 		'categories' => array(),
 		'locations' => array(),
 		'organizers' => array(),
@@ -561,7 +563,6 @@ function em_display_events($args = array())
 		'show_past_events' => $options['show_past_events'],
 		'show_event_thumbnail' => TRUE,
 		'show_event_excerpt' => FALSE,
-		'event_thumbnail_size' => 'thumbnail',
 		'no_events_message' => __('No Events', 'events-maker'),
 		'date_format' => $options['datetime_format']['date'],
 		'time_format' => $options['datetime_format']['time']
@@ -659,7 +660,7 @@ function em_display_events($args = array())
 			{
 				$html .= '
 				<span class="event-thumbnail">
-					'.get_the_post_thumbnail($events->post->ID, $args['event_thumbnail_size']).'
+					'.get_the_post_thumbnail($events->post->ID, $args['thumbnail_size']).'
 				</span>';
 			}
 
@@ -687,13 +688,14 @@ function em_display_events($args = array())
 }
 
 
-function em_display_google_map($args = array())
+function em_display_google_map($args = array(), $locations = 0)
 {
 	$defaults = array(
 		'width' => '100%',
 		'height' => '200px',
 		'zoom' => 15,
-		'maptype' => 'roadmap'
+		'maptype' => 'roadmap',
+		'locations' => ''
 	);
 
 	$defaults_bool = array(
@@ -715,7 +717,7 @@ function em_display_google_map($args = array())
 
 	foreach($args as $arg => $value)
 	{
-		if(in_array($arg, array_keys($default_bool), TRUE))
+		if(in_array($arg, array_keys($defaults_bool), TRUE))
 		{
 			$tmp[$arg] = ($value === TRUE ? 'on' : 'off');
 		}
@@ -723,6 +725,21 @@ function em_display_google_map($args = array())
 
 	extract(array_merge($defaults, $tmp), EXTR_PREFIX_ALL, 'em');
 
-	do_shortcode('[em-google-map width="'.$em_width.'" height="'.$em_height.'" zoom="'.$em_zoom.'" maptype="'.$em_maptype.'" maptypecontrol="'.$em_maptypecontrol.'" zoomcontrol="'.$em_zoomcontrol.'" streetviewcontrol="'.$em_streetviewcontrol.'" overviewmapcontrol="'.$em_overviewmapcontrol.'" pancontrol="'.$em_pancontrol.'" rotatecontrol="'.$em_rotatecontrol.'" scalecontrol="'.$em_scalecontrol.'" draggable="'.$em_draggable.'" keyboardshortcuts="'.$em_keyboardshortcuts.'" scrollzoom="'.$em_scrollzoom.'"]');
+	if(is_array($locations) && !empty($locations))
+	{
+		$locations_tmp = array();
+
+		foreach($locations as $location)
+		{
+			$locations_tmp[] = (int)$location;
+		}
+
+		$locations_tmp = array_unique($locations_tmp);
+		$em_locations = implode(',', $locations_tmp);
+	}
+	elseif(is_numeric($locations))
+		$em_locations = ((int)$locations !== 0 ? (int)$locations : '');
+
+	do_shortcode('[em-google-map locations="'.$em_locations.'" width="'.$em_width.'" height="'.$em_height.'" zoom="'.$em_zoom.'" maptype="'.$em_maptype.'" maptypecontrol="'.$em_maptypecontrol.'" zoomcontrol="'.$em_zoomcontrol.'" streetviewcontrol="'.$em_streetviewcontrol.'" overviewmapcontrol="'.$em_overviewmapcontrol.'" pancontrol="'.$em_pancontrol.'" rotatecontrol="'.$em_rotatecontrol.'" scalecontrol="'.$em_scalecontrol.'" draggable="'.$em_draggable.'" keyboardshortcuts="'.$em_keyboardshortcuts.'" scrollzoom="'.$em_scrollzoom.'"]');
 }
 ?>

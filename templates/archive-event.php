@@ -26,7 +26,7 @@
 			<?php // Start the Loop ?>
 			<?php while (have_posts()) : the_post(); ?>
 
-                <article id="post-<?php the_ID(); ?>" <?php post_class('vevent'); ?>>
+                <article id="post-<?php the_ID(); ?>" <?php post_class('hcalendar'); ?>>
 
                     <header class="entry-header">
 
@@ -55,7 +55,7 @@
 		                    	<?php foreach ($terms as $term) : ?>
 		                        	<?php $term_link = get_term_link($term->slug, $taxonomy); ?>
 		                            <?php if(is_wp_error($term_link)) continue; ?>
-		                        	<a href="<?php echo $term_link; ?>"><?php echo $term->name; ?></a>
+		                        	<a href="<?php echo $term_link; ?>" class="category"><?php echo $term->name; ?></a>
 		                        <?php endforeach; ?>
 		                    </div>
 	                    <?php endif; ?>
@@ -68,7 +68,7 @@
 		                    	<?php foreach ($terms as $term) : ?>
 		                        	<?php $term_link = get_term_link($term->slug, $taxonomy); ?>
 		                            <?php if(is_wp_error($term_link)) continue; ?>
-		                        	<a href="<?php echo $term_link; ?>"><?php echo $term->name; ?></a>
+		                        	<a href="<?php echo $term_link; ?>" class="location"><?php echo $term->name; ?></a>
 		                        <?php endforeach; ?>
 		                    </div>
 	                    <?php endif; ?>
@@ -81,18 +81,22 @@
 	                    	<?php foreach ($terms as $term) : ?>
 	                        	<?php $term_link = get_term_link($term->slug, $taxonomy); ?>
 	                            <?php if(is_wp_error($term_link)) continue; ?>
-	                        	<a href="<?php echo $term_link; ?>"><?php echo $term->name; ?></a>
+	                        	<a href="<?php echo $term_link; ?>" class="organizer"><?php echo $term->name; ?></a>
 	                        <?php endforeach; ?>
 	                    </div>
 	                    <?php endif; ?>
 
                     </header>
-
-                    <div class="entry-summary">
+                    
+                    <div class="entry-summary description">
                     	<?php // If it has one, display the thumbnail
-						if( has_post_thumbnail() )
-							the_post_thumbnail('thumbnail', array('style'=>'float:left; margin-right:20px;')); ?>
-                        <?php the_excerpt(); ?>
+						if(has_post_thumbnail()) {
+							$default_attr = array(
+	                            'class' => 'attachment-thumbnail photo',
+	                        );
+							the_post_thumbnail('thumbnail', $default_attr);
+						} ?>
+                        <?php the_excerpt(); // Event excerpt ?>
                     </div>
 
                     <footer class="entry-meta">

@@ -4,7 +4,7 @@ Donate link: http://www.dfactory.eu/
 Tags: event, event categories, events management, event management, events manager, event manager, event organizer, events calendar, events maker, google map, map, locations, organizers, widget, attendance, attendee, Booking, calendar, event registration, ticket, tickets, ticketing, bookings
 Requires at least: 3.5
 Tested up to: 3.7.1
-Stable tag: 1.0.7
+Stable tag: 1.0.8
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -73,6 +73,11 @@ No questions yet.
 
 == Changelog ==
 
+= 1.0.8 =
+* Fix: Show past events option not working on taxonomy pages
+* Fix: wp_footer missing in location pages
+* Tweak: Added current day class to Ajax News Calendar 
+
 = 1.0.7 =
 * Fix: Ajax Events calendar not working properly with Polylang
 * Fix: Google Map display on loacations template
@@ -113,7 +118,7 @@ Initial release
 
 == Upgrade Notice ==
 
-= 1.0.7 =
-* Fix: Ajax Events calendar not working properly with Polylang
-* Fix: Google Map display on loacations template
-* Tweak: Added thumbnail selection in Events List Widget
+= 1.0.8 =
+* Fix: Show past events not working on taxonomy pages
+* Fix: wp_footer missing in location pages
+* Tweak: Added current day class to Ajax News Calendar 

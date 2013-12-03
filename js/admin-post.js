@@ -17,6 +17,7 @@ jQuery(document).ready(function($) {
 	$('#event_start_time, #event_end_time').timepicker({
 		timeFormat: 'HH:mm',
 		stepMinute: 5,
+		timeOnly: true
 	});
 
 	$(document).on('click', '#event_add_ticket', function(event) {
@@ -54,9 +55,9 @@ jQuery(document).ready(function($) {
 
 	$(document).on('change', 'input#event_all_day', function(event) {
 		if($('#event_all_day:checked').val() === 'on') {
-			$('#event_start_time, #event_end_time, .dates-start-time, .dates-end-time').fadeOut(300);
+			$('#event_start_time, #event_end_time').fadeOut(300);
 		} else {
-			$('#event_start_time, #event_end_time, .dates-start-time, .dates-end-time').fadeIn(300);
+			$('#event_start_time, #event_end_time').fadeIn(300);
 		}
 	});
 });

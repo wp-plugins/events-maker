@@ -6,9 +6,9 @@
 
 		<?php if (have_posts()) : ?>
 
-			<header class="archive-header">
+			<header class="archive-header vcard">
 
-				<h1 class="archive-title"><?php printf(__('Events Organizer: %s', 'events-maker'), single_term_title('', false)); ?></h1>
+				<h1 class="archive-title org"><?php printf(__('Events Organizer: %s', 'events-maker'), single_term_title('', false)); ?></h1>
 
 				<div class="archive-meta">
 
@@ -16,21 +16,21 @@
 	                <?php $organizer = em_get_organizer(); ?>
 	                <?php $organizer_details = $organizer->organizer_meta; ?>
 	                <?php if (!empty($organizer_details['contact_name'])) : ?>
-	                	<p class="organizer-contact-name"><strong><?php echo __('Contact name', 'events-maker'); ?>:</strong> <?php echo $organizer_details['contact_name']; ?></p>
+	                	<p class="organizer-contact-name"><strong><?php echo __('Contact name', 'events-maker'); ?>:</strong> <span class="fn"><?php echo $organizer_details['contact_name']; ?></span></p>
 	                <?php endif; ?>
 	                <?php if (!empty($organizer_details['phone'])) : ?>
-	                	<p class="organizer-phone"><strong><?php echo __('Phone', 'events-maker'); ?>:</strong> <?php echo $organizer_details['phone']; ?></p>
+	                	<p class="organizer-phone"><strong><?php echo __('Phone', 'events-maker'); ?>:</strong> <span class="tel"><?php echo $organizer_details['phone']; ?></span></p>
 	                <?php endif; ?>
 	                <?php if (!empty($organizer_details['email'])) : ?>
-	                	<p class="organizer-email"><strong><?php echo __('Email', 'events-maker'); ?>:</strong> <?php echo $organizer_details['email']; ?></p>
+	                	<p class="organizer-email"><strong><?php echo __('Email', 'events-maker'); ?>:</strong> <span class="email"><?php echo $organizer_details['email']; ?></span></p>
 	                <?php endif; ?>
 	                <?php if (!empty($organizer_details['website'])) : ?>
-	                	<p class="organizer-website"><strong><?php echo __('Website', 'events-maker'); ?>:</strong> <a href="<?php echo $organizer_details['website']; ?>" target="_blank" rel="nofollow"><?php echo $organizer_details['website']; ?></a></p>
+	                	<p class="organizer-website"><strong><?php echo __('Website', 'events-maker'); ?>:</strong> <span class="fn"><a href="<?php echo $organizer_details['website']; ?>" target="_blank" rel="nofollow"><?php echo $organizer_details['website']; ?></a></span></p>
 	                <?php endif; ?>
 	                <?php if (!empty($organizer_details['image'])) : ?>
 	                	<p class="organizer-image"><strong><?php echo __('Image', 'events-maker'); ?>:</strong><br />
 	                		<?php $image_thb = wp_get_attachment_image_src($organizer_details['image'], 'thumbnail'); ?>
-	                		<img src="<?php echo $image_thb[0]; ?>" class="attachment-thumbnail" title="<?php echo single_term_title('', false); ?>" alt="<?php echo single_term_title('', false); ?>" />
+	                		<img src="<?php echo $image_thb[0]; ?>" class="attachment-thumbnail photo" title="<?php echo single_term_title('', false); ?>" alt="<?php echo single_term_title('', false); ?>" />
 	                	</p>
 	                <?php endif; ?>
 
@@ -47,7 +47,7 @@
 			<?php // Start the Loop ?>
 			<?php while (have_posts()) : the_post(); ?>
 
-                <article id="post-<?php the_ID(); ?>" <?php post_class('vevent'); ?>>
+                <article id="post-<?php the_ID(); ?>" <?php post_class('hcalendar'); ?>>
 
                     <header class="entry-header">
 
@@ -76,7 +76,7 @@
 		                    	<?php foreach ($terms as $term) : ?>
 		                        	<?php $term_link = get_term_link($term->slug, $taxonomy); ?>
 		                            <?php if(is_wp_error($term_link)) continue; ?>
-		                        	<a href="<?php echo $term_link; ?>"><?php echo $term->name; ?></a>
+		                        	<a href="<?php echo $term_link; ?>" class="category"><?php echo $term->name; ?></a>
 		                        <?php endforeach; ?>
 		                    </div>
 	                    <?php endif; ?>
@@ -89,7 +89,7 @@
 		                    	<?php foreach ($terms as $term) : ?>
 		                        	<?php $term_link = get_term_link($term->slug, $taxonomy); ?>
 		                            <?php if(is_wp_error($term_link)) continue; ?>
-		                        	<a href="<?php echo $term_link; ?>"><?php echo $term->name; ?></a>
+		                        	<a href="<?php echo $term_link; ?>" class="location"><?php echo $term->name; ?></a>
 		                        <?php endforeach; ?>
 		                    </div>
 	                    <?php endif; ?>
@@ -102,18 +102,22 @@
 	                    	<?php foreach ($terms as $term) : ?>
 	                        	<?php $term_link = get_term_link($term->slug, $taxonomy); ?>
 	                            <?php if(is_wp_error($term_link)) continue; ?>
-	                        	<a href="<?php echo $term_link; ?>"><?php echo $term->name; ?></a>
+	                        	<a href="<?php echo $term_link; ?>" class="organizer"><?php echo $term->name; ?></a>
 	                        <?php endforeach; ?>
 	                    </div>
 	                    <?php endif; ?>
 
                     </header>
-
-                    <div class="entry-summary">
+                    
+                    <div class="entry-summary description">
                     	<?php // If it has one, display the thumbnail
-						if( has_post_thumbnail() )
-							the_post_thumbnail('thumbnail', array('style'=>'float:left; margin-right:20px;')); ?>
-                        <?php the_excerpt(); ?>
+						if(has_post_thumbnail()) {
+							$default_attr = array(
+	                            'class' => 'attachment-thumbnail photo',
+	                        );
+							the_post_thumbnail('thumbnail', $default_attr);
+						} ?>
+                        <?php the_excerpt(); // Event excerpt ?>
                     </div>
 
                     <footer class="entry-meta">

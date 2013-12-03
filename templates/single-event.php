@@ -6,13 +6,13 @@
 
 			<?php while ( have_posts() ) : the_post(); ?>
 
-				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+				<article id="post-<?php the_ID(); ?>" <?php post_class('hcalendar'); ?>>
 
 	                <header class="entry-header">
 
-	                    <h1 class="entry-title"><?php the_title(); ?></h1>
+	                    <h1 class="entry-title summary"><?php the_title(); ?></h1>
 
-		        		<?php // Display Display Options
+		        		<?php // Get event Display Options
 		        		$event_display_options = get_post_meta($post->ID, '_event_display_options', TRUE); ?>
 
 		                <?php // Display Google Map
@@ -66,7 +66,7 @@
 			                	<?php foreach ($terms as $term) : ?>
 			                    	<?php $term_link = get_term_link($term->slug, $taxonomy); ?>
 			                        <?php if(is_wp_error($term_link)) continue; ?>
-			                    	<a href="<?php echo $term_link; ?>"><?php echo $term->name; ?></a>
+			                    	<a href="<?php echo $term_link; ?>" class="category"><?php echo $term->name; ?></a>
 			                    <?php endforeach; ?>
 			                </div>
 			                <?php endif; ?>
@@ -79,7 +79,7 @@
 			                	<?php foreach ($terms as $term) : ?>
 			                    	<?php $term_link = get_term_link($term->slug, $taxonomy); ?>
 			                        <?php if(is_wp_error($term_link)) continue; ?>
-									<a href="<?php echo $term_link; ?>"><?php echo $term->name; ?></a>
+									<a href="<?php echo $term_link; ?>" class="location"><?php echo $term->name; ?></a>
 									<?php // Location details
 									if ($event_display_options['display_location_details'] === 1) : ?>
 										<?php $location_details = $term->location_meta; ?>
@@ -99,19 +99,19 @@
 			                <?php $taxonomy = 'event-organizer'; ?>
 			                <?php $terms = em_get_organizers_for($post->ID); ?>
 			                <?php if ($terms) : ?>
-			                <div class="<?php echo $taxonomy; ?>"><strong><?php _e('Organizer', 'events-maker'); ?>: </strong>
+			                <div class="<?php echo $taxonomy; ?> vcard"><strong><?php _e('Organizer', 'events-maker'); ?>: </strong>
 			                	<?php foreach ($terms as $term) : ?>
 			                    	<?php $term_link = get_term_link($term->slug, $taxonomy); ?>
 			                        <?php if(is_wp_error($term_link)) continue; ?>
-			                    	<a href="<?php echo $term_link; ?>"><?php echo $term->name; ?></a>
+			                    	<a href="<?php echo $term_link; ?>" class="org"><?php echo $term->name; ?></a>
 			                    	<?php // Organizer details
 			                    	if ($event_display_options['display_organizer_details'] === 1) : ?>
 			                    		<?php $organizer_details = $term->organizer_meta; ?>
 			                    		<?php if ($organizer_details) : ?>
-				                    		<?php echo !empty($organizer_details['contact_name']) ? $organizer_details['contact_name'] : ''; ?>
-				                    		<?php echo !empty($organizer_details['phone']) ? $organizer_details['phone'] : ''; ?>
-				                    		<?php echo !empty($organizer_details['email']) ? $organizer_details['email'] : ''; ?>
-				                    		<?php echo !empty($organizer_details['website']) ? $organizer_details['website'] : ''; ?>
+				                    		<?php echo !empty($organizer_details['contact_name']) ? '<span class="fn">'.$organizer_details['contact_name'].'</span>' : ''; ?>
+				                    		<?php echo !empty($organizer_details['phone']) ? '<span class="tel">'.$organizer_details['phone'].'</span>' : ''; ?>
+				                    		<?php echo !empty($organizer_details['email']) ? '<span class="email">'.$organizer_details['email'].'</span>' : ''; ?>
+				                    		<?php echo !empty($organizer_details['website']) ? '<span class="url">'.$organizer_details['website'].'</span>' : ''; ?>
 			                    		<?php endif; ?>
 			                    	<?php endif; ?>
 			                    <?php endforeach; ?>
@@ -122,7 +122,7 @@
 
 	                </header>
 
-	                <div class="entry-content">
+	                <div class="entry-content description">
 	                    <?php the_content(); ?>
 	                </div>
 

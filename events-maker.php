@@ -2,12 +2,14 @@
 /*
 Plugin Name: Events Maker
 Description: Events Maker is an easy to use but flexible events management plugin made the WordPress way.
-Version: 1.0.7
+Version: 1.0.8
 Author: dFactory
 Author URI: http://www.dfactory.eu/
 Plugin URI: http://www.dfactory.eu/plugins/events-maker/
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
+Text Domain: events-maker
+Domain Path: /languages
 
 Events Maker
 Copyright (C) 2013, Digital Factory - info@digitalfactory.pl
@@ -107,7 +109,7 @@ class Events_Maker
 			'event_locations_rewrite_slug' => 'location',
 			'event_organizers_rewrite_slug' => 'organizer'
 		),
-		'version' => '1.0.7'
+		'version' => '1.0.8'
 	);
 	private $transient_id = '';
 

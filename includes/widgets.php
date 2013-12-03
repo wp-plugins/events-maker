@@ -424,7 +424,7 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 
 		$html = '
 		<div id="events-calendar-'.$widget_id.'" class="events-calendar-widget widget_calendar" rel="'.$rel.'" '.($ajax === TRUE ? 'style="display: none;"' : '').'>
-			<caption>'.$wp_locale->get_month($date[1]).' '.$date[0].'</caption>
+			<span class="active-month">'.$wp_locale->get_month($date[1]).' '.$date[0].'</span>
 			<table class="nav-days">
 				<thead>
 					<tr>';
@@ -441,6 +441,7 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 				<tbody>';
 
 		$weeks = ceil(($date[3] - $weekdays[$first_day]) / 7) + 1;
+		$now = date_parse(current_time('mysql'));
 		$day = $k = 1;
 
 		for($i = 1; $i <= $weeks; $i++)
@@ -454,6 +455,9 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 
 				if($real_day === TRUE && in_array($day, $events))
 					$td_class[] = 'active';
+
+				if($day === $now['day'])
+					$td_class[] = 'today';
 
 				if($real_day === FALSE)
 					$td_class[] = 'pad';

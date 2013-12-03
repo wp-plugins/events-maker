@@ -164,6 +164,24 @@ class Events_Maker_Query
 			{
 				$query->query_vars['order'] = $this->options['general']['order'];
 			}
+			
+			if(!isset($query->query_vars['event_show_past_events']))
+			{
+				$query->query_vars['event_show_past_events'] = (is_admin() ? TRUE : $this->options['general']['show_past_events']);
+			}
+
+			if($query->query_vars['event_show_past_events'] === FALSE && $query->is_singular() !== TRUE)
+			{
+				$meta_args = $query->get('meta_query');
+				$meta_args[] = array(
+					'key' => ($this->options['general']['expire_current'] === FALSE ? '_event_end_date' : '_event_start_date'),
+					'value' => current_time('mysql'),
+					'compare' => '>=',
+					'type' => 'DATETIME'
+				);
+				$query->set('meta_query', $meta_args);
+			}
+			
 		}
 
 		if($query->get('post_type') === 'event')

@@ -2,11 +2,14 @@
 /*
 Plugin Name: Events Maker
 Description: Events Maker is an easy to use but flexible events management plugin made the WordPress way.
-Version: 1.0.0
+Version: 1.0.8
 Author: dFactory
 Author URI: http://www.dfactory.eu/
 Plugin URI: http://www.dfactory.eu/plugins/events-maker/
 License: MIT License
+License URI: http://opensource.org/licenses/MIT
+Text Domain: events-maker
+Domain Path: /languages
 
 Events Maker
 Copyright (C) 2013, Digital Factory - info@digitalfactory.pl
@@ -106,15 +109,15 @@ class Events_Maker
 			'event_locations_rewrite_slug' => 'location',
 			'event_organizers_rewrite_slug' => 'organizer'
 		),
-		'version' => '1.0.0'
+		'version' => '1.0.8'
 	);
 	private $transient_id = '';
 
 
 	public function __construct()
 	{
-		register_activation_hook(__FILE__, array(&$this, 'activation'));
-		register_deactivation_hook(__FILE__, array(&$this, 'deactivation'));
+		register_activation_hook(__FILE__, array(&$this, 'multisite_activation'));
+		register_deactivation_hook(__FILE__, array(&$this, 'multisite_deactivation'));
 
 		//settings
 		$this->options = array_merge(
@@ -122,6 +125,9 @@ class Events_Maker
 			array('permalinks' => get_option('events_maker_permalinks')),
 			array('templates' => get_option('events_maker_templates'))
 		);
+
+		//update plugin version
+		update_option('events_maker_version', $this->defaults['version'], '', 'no');
 
 		//session id
 		$this->transient_id = (isset($_COOKIE['em_transient_id']) ? $_COOKIE['em_transient_id'] : 'emtr_'.sha1($this->generate_hash()));
@@ -142,6 +148,154 @@ class Events_Maker
 		add_filter('map_meta_cap', array(&$this, 'event_map_meta_cap'), 10, 4);
 		add_filter('post_updated_messages', array(&$this, 'register_post_types_messages'));
 		add_filter('plugin_row_meta', array(&$this, 'plugin_extend_links'), 10, 2);
+	}
+
+
+	/**
+	 * Multisite activation
+	*/
+	public function multisite_activation($networkwide)
+	{
+		if(is_multisite() && $networkwide)
+		{
+			global $wpdb;
+
+			$activated_blogs = array();
+			$current_blog_id = $wpdb->blogid;
+			$blogs_ids = $wpdb->get_col($wpdb->prepare('SELECT blog_id FROM '.$wpdb->blogs, ''));
+
+			foreach($blogs_ids as $blog_id)
+			{
+				switch_to_blog($blog_id);
+				$this->activate_single();
+				$activated_blogs[] = (int)$blog_id;
+			}
+
+			switch_to_blog($current_blog_id);
+			update_site_option('events_maker_activated_blogs', $activated_blogs, array());
+		}
+		else
+			$this->activate_single();
+	}
+
+
+	/**
+	 * Activation
+	*/
+	public function activate_single()
+	{
+		global $wp_roles;
+
+		//transient for welcome screen
+		set_transient('_events_maker_activation_redirect', 1, 3600);
+
+		//add caps to administrators
+		foreach($wp_roles->roles as $role_name => $display_name)
+		{
+			$role = $wp_roles->get_role($role_name);
+
+			if($role->has_cap('manage_options'))
+			{
+				foreach($this->defaults['capabilities'] as $capability)
+				{
+					if(($this->defaults['general']['use_tags'] === FALSE && $capability === 'manage_event_tags') || ($this->defaults['general']['use_organizers'] === FALSE && $capability === 'manage_event_organizers'))
+						continue;
+
+					$role->add_cap($capability);
+				}
+			}
+		}
+
+		$this->defaults['general']['datetime_format'] = array(
+			'date' => get_option('date_format'),
+			'time' => get_option('time_format')
+		);
+
+		//add default options
+		add_option('events_maker_general', $this->defaults['general'], '', 'no');
+		add_option('events_maker_templates', $this->defaults['templates'], '', 'no');
+		add_option('events_maker_capabilities', '', '', 'no');
+		add_option('events_maker_permalinks', $this->defaults['permalinks'], '', 'no');
+		add_option('events_maker_version', $this->defaults['version'], '', 'no');
+
+		//permalinks
+		flush_rewrite_rules();
+	}
+
+
+	/**
+	 * Multisite deactivation
+	*/
+	public function multisite_deactivation($networkwide)
+	{
+		if(is_multisite() && $networkwide)
+		{
+			global $wpdb;
+
+			$current_blog_id = $wpdb->blogid;
+			$blogs_ids = $wpdb->get_col($wpdb->prepare('SELECT blog_id FROM '.$wpdb->blogs, ''));
+
+			if(($activated_blogs = get_site_option('events_maker_activated_blogs', FALSE, FALSE)) === FALSE)
+				$activated_blogs = array();
+
+			foreach($blogs_ids as $blog_id)
+			{
+				switch_to_blog($blog_id);
+				$this->deactivate_single(TRUE);
+
+				if(in_array((int)$blog_id, $activated_blogs, TRUE))
+					unset($activated_blogs[array_search($blog_id, $activated_blogs)]);
+			}
+
+			switch_to_blog($current_blog_id);
+			update_site_option('events_maker_activated_blogs', $activated_blogs);
+		}
+		else
+			$this->deactivate_single();
+	}
+
+
+	/**
+	 * Deactivation
+	*/
+	public function deactivate_single()
+	{
+		global $wp_roles;
+
+		//remove capabilities
+		foreach($wp_roles->roles as $role_name => $display_name)
+		{
+			$role = $wp_roles->get_role($role_name);
+
+			foreach($this->defaults['capabilities'] as $capability)
+			{
+				$role->remove_cap($capability);
+			}
+		}
+
+		if($multi === TRUE)
+		{
+			$options = get_option('events_maker_general');
+			$check = $options['deactivation_delete'];
+		}
+		else
+			$check = $this->options['general']['deactivation_delete'];
+
+		//delete default options
+		if($check === TRUE)
+		{
+			$settings = new Events_Maker_Settings();
+			$settings->update_menu();
+
+			delete_option('events_maker_general');
+			delete_option('events_maker_templates');
+			delete_option('events_maker_capabilities');
+			delete_option('events_maker_permalinks');
+			delete_option('events_maker_version');
+		}
+
+		//permalinks
+		flush_rewrite_rules();
 	}
 
 
@@ -192,86 +346,6 @@ class Events_Maker
 				6 => '1 234.56'
 			)
 		);
-	}
-
-
-	/**
-	 * Execution of plugin activation function
-	*/
-	public function activation()
-	{
-		global $wp_roles;
-
-		// transient for welcome screen
-		set_transient('_events_maker_activation_redirect', 1, 60 * 60);
-
-		//add caps to administrators
-		foreach($wp_roles->roles as $role_name => $display_name)
-		{
-			$role = $wp_roles->get_role($role_name);
-
-			if($role->has_cap('manage_options'))
-			{
-				foreach($this->defaults['capabilities'] as $capability)
-				{
-					if(($this->defaults['general']['use_tags'] === FALSE && $capability === 'manage_event_tags') || ($this->defaults['general']['use_organizers'] === FALSE && $capability === 'manage_event_organizers'))
-						continue;
-
-					$role->add_cap($capability);
-				}
-			}
-		}
-
-		$this->defaults['general']['datetime_format'] = array(
-			'date' => get_option('date_format'),
-			'time' => get_option('time_format')
-		);
-
-		//add default options
-		add_option('events_maker_general', $this->defaults['general'], '', 'no');
-		add_option('events_maker_templates', $this->defaults['templates'], '', 'no');
-		add_option('events_maker_capabilities', '', '', 'no');
-		add_option('events_maker_permalinks', $this->defaults['permalinks'], '', 'no');
-		add_option('events_maker_version', $this->defaults['version'], '', 'no');
-
-		//permalinks
-		flush_rewrite_rules();
-	}
-
-
-	/**
-	 * Execution of plugin deactivation function
-	*/
-	public function deactivation()
-	{
-		global $wp_roles;
-
-		//remove capabilities
-		foreach($wp_roles->roles as $role_name => $display_name)
-		{
-			$role = $wp_roles->get_role($role_name);
-
-			foreach($this->defaults['capabilities'] as $capability)
-			{
-				$role->remove_cap($capability);
-			}
-		}
-
-		//delete default options
-		if($this->options['general']['deactivation_delete'] === TRUE)
-		{
-			$settings = new Events_Maker_Settings();
-			$settings->update_menu();
-
-			delete_option('events_maker_general');
-			delete_option('events_maker_templates');
-			delete_option('events_maker_capabilities');
-			delete_option('events_maker_permalinks');
-			delete_option('events_maker_version');
-		}
-
-		//permalinks
-		flush_rewrite_rules();
 	}
 
 
@@ -404,6 +478,7 @@ class Events_Maker
 			'height' => '200px',
 			'zoom' => 15,
 			'maptype' => 'ROADMAP',
+			'locations' => '',
 			'maptypecontrol' => 'on',
 			'zoomcontrol' => 'on',
 			'streetviewcontrol' => 'on',
@@ -434,7 +509,26 @@ class Events_Maker
 		$args['keyboardshortcuts'] = $this->get_proper_arg($args['keyboardshortcuts'], $defaults['keyboardshortcuts'], $booleans);
 		$args['scrollzoom'] = $this->get_proper_arg($args['scrollzoom'], $defaults['scrollzoom'], $booleans);
 
-		if(is_tax('event-location') || (get_post_type() === 'event' && is_single()))
+		//location ids
+		$locations = ($args['locations'] !== '' ? explode(',', $args['locations']) : '');
+
+		if(is_array($locations) && !empty($locations))
+		{
+			$locations_tmp = array();
+
+			foreach($locations as $location)
+			{
+				$locations_tmp[] = (int)$location;
+			}
+
+			foreach(array_unique($locations_tmp) as $location_id)
+			{
+				$location = em_get_location($location_id);
+				$location->location_meta['name'] = $location->name;
+				$markers[] = $location->location_meta;
+			}
+		}
+		elseif(is_tax('event-location') || (get_post_type() === 'event' && is_single()))
 		{
 			$term = get_queried_object();
 
@@ -750,7 +844,7 @@ class Events_Maker
 			'taxonomies' => $taxonomies,
 		);
 
-		register_post_type('event', apply_filters('em_register_post_type', $args_event));
+		register_post_type('event', apply_filters('em_register_event_post_type', $args_event));
 	}
 
 
@@ -777,7 +871,7 @@ class Events_Maker
 			date_i18n(__('M j, Y @ G:i'), strtotime($post->post_date)), esc_url(get_permalink($post_ID))),
 			10 => sprintf(__('Event draft updated. <a target="_blank" href="%s">Preview event</a>', 'events-maker'), esc_url(add_query_arg('preview', 'true', get_permalink($post_ID))))
 		);
-	
+
 		return $messages;
 	}
 
@@ -789,35 +883,74 @@ class Events_Maker
 	{
 		$screen = get_current_screen();
 
-		//event location taxonomy
-		if($page === 'edit-tags.php' && $screen->id === 'edit-event-location' && $screen->taxonomy === 'event-location' && $screen->post_type === 'event')
+		wp_register_style(
+			'events-maker-admin',
+			EVENTS_MAKER_URL.'/css/admin.css'
+		);
+
+		wp_register_style(
+			'events-maker-wplike',
+			EVENTS_MAKER_URL.'/css/wp-like-ui-theme.css'
+		);
+
+		if($page === 'edit-tags.php')
 		{
-			$timezone = explode('/', get_option('timezone_string'));
+			//event organizer taxonomy
+			if($screen->id === 'edit-event-organizer' && $screen->taxonomy === 'event-organizer' && $screen->post_type === 'event')
+			{
+				wp_enqueue_media();
 
-			wp_register_script(
-				'events-maker-google-maps',
-				'https://maps.googleapis.com/maps/api/js?sensor=false&language='.substr(get_locale(), 0, 2)
-			);
-			wp_enqueue_script('events-maker-google-maps');
+				wp_register_script(
+					'events-maker-edit-organizer',
+					plugins_url('/js/admin-tags.js', __FILE__),
+					array('jquery')
+				);
 
-			wp_register_script(
-				'events-maker-admin-locations',
-				EVENTS_MAKER_URL.'/js/admin-locations.js',
-				array('jquery', 'events-maker-google-maps')
-			);
-			wp_enqueue_script('events-maker-admin-locations');
+				wp_enqueue_script('events-maker-edit-organizer');
 
-			wp_localize_script(
-				'events-maker-admin-locations',
-				'emArgs',
-				array('country' => $timezone[1])
-			);
+				wp_localize_script(
+					'events-maker-edit-organizer',
+					'emArgs',
+					array(
+						'title' => __('Select organizer image', 'events-maker'),
+						'button' => array('text' => __('Add image', 'events-maker')),
+						'frame' => 'select',
+						'multiple' => FALSE
+					)
+				);
 
-			wp_register_style(
-				'events-maker-admin',
-				EVENTS_MAKER_URL.'/css/admin.css'
-			);
-			wp_enqueue_style('events-maker-admin');
+				wp_enqueue_style('events-maker-admin');
+			}
+			//event location taxonomy
+			elseif($screen->id === 'edit-event-location' && $screen->taxonomy === 'event-location' && $screen->post_type === 'event')
+			{
+				$timezone = explode('/', get_option('timezone_string'));
+
+				wp_register_script(
+					'events-maker-google-maps',
+					'https://maps.googleapis.com/maps/api/js?sensor=false&language='.substr(get_locale(), 0, 2)
+				);
+
+				wp_enqueue_script('events-maker-google-maps');
+
+				wp_register_script(
+					'events-maker-admin-locations',
+					EVENTS_MAKER_URL.'/js/admin-locations.js',
+					array('jquery', 'events-maker-google-maps')
+				);
+
+				wp_enqueue_script('events-maker-admin-locations');
+
+				wp_localize_script(
+					'events-maker-admin-locations',
+					'emArgs',
+					array(
+						'country' => $timezone[1]
+					)
+				);
+
+				wp_enqueue_style('events-maker-admin');
+			}
 		}
 		//widgets
 		elseif($page === 'widgets.php')
@@ -827,12 +960,8 @@ class Events_Maker
 				EVENTS_MAKER_URL.'/js/admin-widgets.js',
 				array('jquery')
 			);
-			wp_enqueue_script('events-maker-admin-widgets');
 
-			wp_register_style(
-				'events-maker-admin',
-				EVENTS_MAKER_URL.'/css/admin.css'
-			);
+			wp_enqueue_script('events-maker-admin-widgets');
 			wp_enqueue_style('events-maker-admin');
 		}
 		//event options page
@@ -843,6 +972,7 @@ class Events_Maker
 				EVENTS_MAKER_URL.'/js/admin-settings.js',
 				array('jquery', 'jquery-ui-core', 'jquery-ui-button')
 			);
+
 			wp_enqueue_script('events-maker-admin-settings');
 
 			wp_localize_script(
@@ -853,16 +983,7 @@ class Events_Maker
 				)
 			);
 
-			wp_register_style(
-				'events-maker-admin',
-				EVENTS_MAKER_URL.'/css/admin.css'
-			);
 			wp_enqueue_style('events-maker-admin');
-
-			wp_register_style(
-				'events-maker-wplike',
-				EVENTS_MAKER_URL.'/css/wp-like-ui-theme.css'
-			);
 			wp_enqueue_style('events-maker-wplike');
 		}
 		//list of events
@@ -875,6 +996,7 @@ class Events_Maker
 				EVENTS_MAKER_URL.'/js/admin-edit.js',
 				array('jquery', 'jquery-ui-core', 'jquery-ui-datepicker')
 			);
+
 			wp_enqueue_script('events-maker-admin-edit');
 
 			wp_localize_script(
@@ -891,16 +1013,7 @@ class Events_Maker
 				)
 			);
 
-			wp_register_style(
-				'events-maker-admin',
-				EVENTS_MAKER_URL.'/css/admin.css'
-			);
 			wp_enqueue_style('events-maker-admin');
-
-			wp_register_style(
-				'events-maker-wplike',
-				EVENTS_MAKER_URL.'/css/wp-like-ui-theme.css'
-			);
 			wp_enqueue_style('events-maker-wplike');
 		}
 	}
@@ -915,6 +1028,7 @@ class Events_Maker
 			'events-maker-front',
 			EVENTS_MAKER_URL.'/css/front.css'
 		);
+
 		wp_enqueue_style('events-maker-front');
 	}
 

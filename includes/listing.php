@@ -1,6 +1,7 @@
 <?php
+if(!defined('ABSPATH')) exit; //exit if accessed directly
 
-if (!defined('ABSPATH')) exit; // Exit if accessed directly
+new Events_Maker_Listing();
 
 class Events_Maker_Listing
 {
@@ -155,7 +156,4 @@ class Events_Maker_Listing
 		}
 	}
 }
-
-$events_maker_listing = new Events_Maker_Listing();
-
 ?>

@@ -40,7 +40,7 @@ function em_get_currency_symbol($price = '')
 {
 	$options = get_option('events_maker_general');
 
-	$symbol = ($options['currencies']['symbol'] === '' ? mb_strtoupper($options['currencies']['code']) : $options['currencies']['symbol']);
+	$symbol = ($options['currencies']['symbol'] === '' ? strtoupper($options['currencies']['code']) : $options['currencies']['symbol']);
 
 	if(is_numeric($price))
 	{

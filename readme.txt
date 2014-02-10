@@ -3,8 +3,8 @@ Contributors: dfactory
 Donate link: http://www.dfactory.eu/
 Tags: event, event categories, events management, event management, events manager, event manager, event organizer, events calendar, events maker, google map, map, locations, organizers, widget, attendance, attendee, Booking, calendar, event registration, ticket, tickets, ticketing, bookings
 Requires at least: 3.5
-Tested up to: 3.7.1
-Stable tag: 1.0.8
+Tested up to: 3.8.1
+Stable tag: 1.0.9
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -49,9 +49,12 @@ For more information, check out plugin page at [dFactory](http://www.dfactory.eu
 * Events search & filtering
 
 = Translations: =
+
+* Brazilian Portuguese - by Adson Nunes
 * Dutch - by [Heleen van den Bos](http://www.bostekst.nl/)
 * Japanese - by stranger-jp
 * Polish - by Bartosz Arendt
+* Spanish - by [Borisa Djuraskovic](http://www.webhostinghub.com/)
 
 
 == Installation ==
@@ -72,6 +75,10 @@ No questions yet.
 4. screenshot-4.png
 
 == Changelog ==
+
+= 1.0.9 =
+* New: Spanish translation, thanks to [Borisa Djuraskovic](http://www.webhostinghub.com)
+* New: Brazilian Portuguese translation, thanks to Adson Nunes
 
 = 1.0.8 =
 * Fix: Show past events option not working on taxonomy pages
@@ -118,7 +125,6 @@ Initial release
 
 == Upgrade Notice ==
 
-= 1.0.8 =
-* Fix: Show past events not working on taxonomy pages
-* Fix: wp_footer missing in location pages
-* Tweak: Added current day class to Ajax News Calendar 
+= 1.0.9 =
+* New: Spanish translation, thanks to [Borisa Djuraskovic](http://www.webhostinghub.com)
+* New: Brazilian Portuguese translation, thanks to Adson Nunes

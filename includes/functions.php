@@ -1,8 +1,5 @@
 <?php
-// Exit if accessed directly
-if(!defined('ABSPATH')) exit;
-
-define('EVENTS_MAKER_DATE_NOW', current_time('timestamp', FALSE));
+if(!defined('ABSPATH')) exit; //exit if accessed directly
 
 
 function em_get_events($args = array())
@@ -10,7 +7,7 @@ function em_get_events($args = array())
 	$defaults = array(
 		'post_type' => 'event',
 		'suppress_filters' => FALSE,
-		'numberposts' => -1
+		'posts_per_page' => -1
 	);
 
 	return get_posts(array_merge($args, $defaults));
@@ -43,7 +40,7 @@ function em_get_currency_symbol($price = '')
 {
 	$options = get_option('events_maker_general');
 
-	$symbol = ($options['currencies']['symbol'] === '' ? mb_strtoupper($options['currencies']['code']) : $options['currencies']['symbol']);
+	$symbol = ($options['currencies']['symbol'] === '' ? strtoupper($options['currencies']['code']) : $options['currencies']['symbol']);
 
 	if(is_numeric($price))
 	{
@@ -311,8 +308,11 @@ function em_get_the_end($post_id = 0, $type = 'datetime')
 }
 
 
-function em_format_date($date = EVENTS_MAKER_DATE_NOW, $type = 'datetime', $format = FALSE)
+function em_format_date($date = NULL, $type = 'datetime', $format = FALSE)
 {
+	if($date === NULL)
+		$date = current_time('timestamp', FALSE);
+
 	$options = get_option('events_maker_general');
 	$date_format = $options['datetime_format']['date'];
 	$time_format = $options['datetime_format']['time'];
@@ -459,7 +459,7 @@ function em_get_event_taxonomy($taxonomy = '', $args = array())
 }
 
 
-function em_display_events_archives($args = array())
+function em_display_event_archives($args = array())
 {
 	global $wp_locale;
 
@@ -479,7 +479,7 @@ function em_display_events_archives($args = array())
 		array(
 			'post_type' => 'event',
 			'suppress_filters' => FALSE,
-			'numberposts' => -1
+			'posts_per_page' => -1
 		)
 	);
 
@@ -554,18 +554,15 @@ function em_display_events($args = array())
 	$options = get_option('events_maker_general');
 	$defaults = array(
 		'number_of_events' => 5,
-		'categories' => 'all',
-		'categories_arr' => array(),
-		'locations' => 'all',
-		'locations_arr' => array(),
-		'organizers' => 'all',
-		'organizers_arr' => array(),
+		'thumbnail_size' => 'thumbnail',
+		'categories' => array(),
+		'locations' => array(),
+		'organizers' => array(),
 		'order_by' => 'start',
 		'order' => 'asc',
 		'show_past_events' => $options['show_past_events'],
 		'show_event_thumbnail' => TRUE,
 		'show_event_excerpt' => FALSE,
-		'event_thumbnail_size' => 'thumbnail',
 		'no_events_message' => __('No Events', 'events-maker'),
 		'date_format' => $options['datetime_format']['date'],
 		'time_format' => $options['datetime_format']['time']
@@ -576,13 +573,43 @@ function em_display_events($args = array())
 	$events_args = array(
 		'post_type' => 'event',
 		'suppress_filters' => FALSE,
-		'numberposts' => ($args['number_of_events'] === 0 ? -1 : $args['number_of_events']),
-		'event_categories' => ($args['categories'] === 'selected' ? array('id', $args['categories_arr']) : 'all'),
-		'event_locations' => ($args['locations'] === 'selected' ? array('id', $args['locations_arr']) : 'all'),
-		'event_organizers' => ($args['organizers'] === 'selected' ? array('id', $args['organizers_arr']) : 'all'),
+		'posts_per_page' => ($args['number_of_events'] === 0 ? -1 : $args['number_of_events']),
 		'order' => $args['order'],
 		'event_show_past_events' => (bool)$args['show_past_events']
 	);
+
+	if(!empty($args['categories']))
+	{
+		$events_args['tax_query'][] = array(
+			'taxonomy' => 'event-category',
+			'field' => 'id',
+			'terms' => $args['categories'],
+			'include_children' => FALSE,
+			'operator' => 'IN'
+		);
+	}
+
+	if(!empty($args['locations']))
+	{
+		$events_args['tax_query'][] = array(
+			'taxonomy' => 'event-location',
+			'field' => 'id',
+			'terms' => $args['locations'],
+			'include_children' => FALSE,
+			'operator' => 'IN'
+		);
+	}
+
+	if(!empty($args['organizers']))
+	{
+		$events_args['tax_query'][] = array(
+			'taxonomy' => 'event-organizer',
+			'field' => 'id',
+			'terms' => $args['organizers'],
+			'include_children' => FALSE,
+			'operator' => 'IN'
+		);
+	}
 
 	if($args['order_by'] === 'start' || $args['order_by'] === 'end')
 	{
@@ -592,21 +619,21 @@ function em_display_events($args = array())
 	elseif($args['order_by'] === 'publish')
 		$events_args['orderby'] = 'date';
 	else
-		$events_args['order_by'] === 'title';
+		$events_args['orderby'] = 'title';
 
-	$events = get_posts($events_args);
+	$events = new WP_Query($events_args);
 
-	if(!empty($events))
+	if($events->have_posts())
 	{
 		$html = '
 		<ul>';
 
-		foreach($events as $event)
+		while($events->have_posts())
 		{
-			setup_postdata($event);
-			$all_day_event = get_post_meta($event->ID, '_event_all_day', TRUE);
-			$start_date = get_post_meta($event->ID, '_event_start_date', TRUE);
-			$end_date = get_post_meta($event->ID, '_event_end_date', TRUE);
+			$events->the_post();
+			$all_day_event = get_post_meta($events->post->ID, '_event_all_day', TRUE);
+			$start_date = get_post_meta($events->post->ID, '_event_start_date', TRUE);
+			$end_date = get_post_meta($events->post->ID, '_event_end_date', TRUE);
 			$format = array('date' => $args['date_format'], 'time' => $args['time_format']);
 			$format_c = array('date' => 'Y-m-d', 'time' => '');
 			$same_dates = (bool)(em_format_date($start_date, 'date', $format_c) === em_format_date($end_date, 'date', $format_c));
@@ -629,16 +656,16 @@ function em_display_events($args = array())
 			$html .= '
 				<br />';
 
-			if($args['show_event_thumbnail'] === TRUE && has_post_thumbnail($event->ID))
+			if($args['show_event_thumbnail'] === TRUE && has_post_thumbnail($events->post->ID))
 			{
 				$html .= '
 				<span class="event-thumbnail">
-					'.get_the_post_thumbnail($event->ID, $args['event_thumbnail_size']).'
+					'.get_the_post_thumbnail($events->post->ID, $args['thumbnail_size']).'
 				</span>';
 			}
 
 			$html .= '
-				<a class="event-title" href="'.get_permalink($event->ID).'">'.$event->post_title.'</a>
+				<a class="event-title" href="'.get_permalink($events->post->ID).'">'.$events->post->post_title.'</a>
 				<br />';
 
 			if($args['show_event_excerpt'] === TRUE)
@@ -651,25 +678,24 @@ function em_display_events($args = array())
 			</li>';
 		}
 
-		wp_reset_postdata();
-
 		$html .= '
 		</ul>';
 
 		return $html;
 	}
 	else
-		return $defaults['no_events_message'];
+		return $args['no_events_message'];
 }
 
 
-function em_display_google_map($args = array())
+function em_display_google_map($args = array(), $locations = 0)
 {
 	$defaults = array(
 		'width' => '100%',
 		'height' => '200px',
 		'zoom' => 15,
-		'maptype' => 'roadmap'
+		'maptype' => 'roadmap',
+		'locations' => ''
 	);
 
 	$defaults_bool = array(
@@ -691,7 +717,7 @@ function em_display_google_map($args = array())
 
 	foreach($args as $arg => $value)
 	{
-		if(in_array($arg, array_keys($default_bool), TRUE))
+		if(in_array($arg, array_keys($defaults_bool), TRUE))
 		{
 			$tmp[$arg] = ($value === TRUE ? 'on' : 'off');
 		}
@@ -699,6 +725,21 @@ function em_display_google_map($args = array())
 
 	extract(array_merge($defaults, $tmp), EXTR_PREFIX_ALL, 'em');
 
-	do_shortcode('[em-google-map width="'.$em_width.'" height="'.$em_height.'" zoom="'.$em_zoom.'" maptype="'.$em_maptype.'" maptypecontrol="'.$em_maptypecontrol.'" zoomcontrol="'.$em_zoomcontrol.'" streetviewcontrol="'.$em_streetviewcontrol.'" overviewmapcontrol="'.$em_overviewmapcontrol.'" pancontrol="'.$em_pancontrol.'" rotatecontrol="'.$em_rotatecontrol.'" scalecontrol="'.$em_scalecontrol.'" draggable="'.$em_draggable.'" keyboardshortcuts="'.$em_keyboardshortcuts.'" scrollzoom="'.$em_scrollzoom.'"]');
+	if(is_array($locations) && !empty($locations))
+	{
+		$locations_tmp = array();
+
+		foreach($locations as $location)
+		{
+			$locations_tmp[] = (int)$location;
+		}
+
+		$locations_tmp = array_unique($locations_tmp);
+		$em_locations = implode(',', $locations_tmp);
+	}
+	elseif(is_numeric($locations))
+		$em_locations = ((int)$locations !== 0 ? (int)$locations : '');
+
+	do_shortcode('[em-google-map locations="'.$em_locations.'" width="'.$em_width.'" height="'.$em_height.'" zoom="'.$em_zoom.'" maptype="'.$em_maptype.'" maptypecontrol="'.$em_maptypecontrol.'" zoomcontrol="'.$em_zoomcontrol.'" streetviewcontrol="'.$em_streetviewcontrol.'" overviewmapcontrol="'.$em_overviewmapcontrol.'" pancontrol="'.$em_pancontrol.'" rotatecontrol="'.$em_rotatecontrol.'" scalecontrol="'.$em_scalecontrol.'" draggable="'.$em_draggable.'" keyboardshortcuts="'.$em_keyboardshortcuts.'" scrollzoom="'.$em_scrollzoom.'"]');
 }
 ?>

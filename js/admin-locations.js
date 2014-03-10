@@ -37,7 +37,6 @@ jQuery(document).ready(function($) {
 			emGoogleGeocoder.geocode({
 				'address': emArgs.country
 			}, function(results, status) {
-				console.log(status);
 				if(status == google.maps.GeocoderStatus.OK) {
 					emGoogleMarker.setPosition(results[0].geometry.location);
 					$('#event-location-latitude').val(results[0].geometry.location.lat().toFixed(7));

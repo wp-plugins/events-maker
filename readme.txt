@@ -4,7 +4,7 @@ Donate link: http://www.dfactory.eu/
 Tags: event, event categories, events management, event management, events manager, event manager, event organizer, events calendar, events maker, google map, map, locations, organizers, widget, attendance, attendee, Booking, calendar, event registration, ticket, tickets, ticketing, bookings
 Requires at least: 3.5
 Tested up to: 3.8.1
-Stable tag: 1.0.9
+Stable tag: 1.0.10
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -76,6 +76,10 @@ No questions yet.
 
 == Changelog ==
 
+= 1.0.10 =
+* New: Added 3 Ajax Calendar widget CSS styles
+* Tweak: UI improvements for WP 3.8
+
 = 1.0.9 =
 * New: Spanish translation, thanks to [Borisa Djuraskovic](http://www.webhostinghub.com)
 * New: Brazilian Portuguese translation, thanks to Adson Nunes
@@ -125,6 +129,6 @@ Initial release
 
 == Upgrade Notice ==
 
-= 1.0.9 =
-* New: Spanish translation, thanks to [Borisa Djuraskovic](http://www.webhostinghub.com)
-* New: Brazilian Portuguese translation, thanks to Adson Nunes
+= 1.0.10 =
+* New: Added 3 Ajax Calendar widget CSS styles
+* Tweak: UI improvements for WP 3.8

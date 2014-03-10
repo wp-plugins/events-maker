@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
 
-	$(document).on('click', '.prev-month a, .next-month a', function() {
+	$(document).on('click', '.events-calendar-widget .prev-month a, .events-calendar-widget .next-month a', function() {
 		var ajaxArgs = [],
 			newMonth = $(this).attr('rel'),
 			divCalendar = $(this).closest('div.events-calendar-widget'),

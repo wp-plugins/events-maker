@@ -295,7 +295,6 @@ class Events_Maker_Query
 				$eb_date = '';
 
 			$meta_args = $query->get('meta_query');
-			$tax_args = $query->get('tax_query');
 
 			if(!empty($query->query_vars['event_start_after']))
 			{
@@ -377,7 +376,6 @@ class Events_Maker_Query
 			}
 
 			$query->set('meta_query', $meta_args);
-			$query->set('tax_query', $tax_args);
 		}
 	}
 }

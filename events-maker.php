@@ -2,7 +2,7 @@
 /*
 Plugin Name: Events Maker
 Description: Events Maker is an easy to use but flexible events management plugin made the WordPress way.
-Version: 1.0.9
+Version: 1.0.10
 Author: dFactory
 Author URI: http://www.dfactory.eu/
 Plugin URI: http://www.dfactory.eu/plugins/events-maker/
@@ -109,7 +109,7 @@ class Events_Maker
 			'event_locations_rewrite_slug' => 'location',
 			'event_organizers_rewrite_slug' => 'organizer'
 		),
-		'version' => '1.0.9'
+		'version' => '1.0.10'
 	);
 	private $transient_id = '';
 
@@ -334,8 +334,8 @@ class Events_Maker
 				'rial' => __('Iranian Rial (&#65020;)', 'events-maker')
 			),
 			'positions' => array(
-				'before' => __('before price', 'events-maker'),
-				'after' => __('after price', 'events-maker')
+				'before' => __('before the price', 'events-maker'),
+				'after' => __('after the price', 'events-maker')
 			),
 			'formats' => array(
 				1 => '1,234.56',
@@ -802,6 +802,15 @@ class Events_Maker
 
 		if($this->options['general']['use_organizers'] === TRUE)
 			$taxonomies[] = 'event-organizer';
+			
+		// Menu icon
+		global $wp_version;
+		
+		$menu_icon = EVENTS_MAKER_URL.'/images/icon-events-16.png';
+		if ($wp_version >= 3.8)
+		{
+			$menu_icon = 'dashicons-calendar';
+		}
 
 		$args_event = array(
 			'labels' => $labels_event,
@@ -814,7 +823,7 @@ class Events_Maker
 			'show_in_admin_bar' => TRUE,
 			'show_in_nav_menus' => TRUE,
 			'menu_position' => 5,
-			'menu_icon' => EVENTS_MAKER_URL.'/images/icon-events-16.png',
+			'menu_icon' => $menu_icon,
 			'capability_type' => 'event',
 			'capabilities' => array(
 				'publish_posts' => 'publish_events',
@@ -1032,23 +1041,26 @@ class Events_Maker
 		wp_enqueue_style('events-maker-front');
 	}
 
-
 	/**
 	 * Edit screen icon
 	*/
 	public function edit_screen_icon()
 	{
-		global $post;
-
-		if(get_post_type($post) === 'event' || (isset($_GET['post_type']) && $_GET['post_type'] === 'event'))
+		// Screen icon
+		global $wp_version;
+		if ($wp_version < 3.8)
 		{
-			echo '
-			<style>
-				#icon-edit { background: transparent url(\''.EVENTS_MAKER_URL.'/images/icon-events-32.png\') no-repeat; }
-			</style>';
+			global $post;
+
+			if(get_post_type($post) === 'event' || (isset($_GET['post_type']) && $_GET['post_type'] === 'event'))
+			{
+				echo '
+				<style>
+					#icon-edit { background: transparent url(\''.EVENTS_MAKER_URL.'/images/icon-events-32.png\') no-repeat; }
+				</style>';
+			}
 		}
 	}
-
 
 	/**
 	 * Adds links to Support Forum

@@ -1,5 +1,5 @@
 <?php
-if(!defined('ABSPATH')) exit; //exit if accessed directly
+if(!defined('ABSPATH')) exit;
 
 new Events_Maker_Welcome_Page();
 

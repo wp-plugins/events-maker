@@ -1,20 +1,17 @@
 <?php
-if(!defined('ABSPATH')) exit; //exit if accessed directly
+if(!defined('ABSPATH')) exit;
 
-new Events_Maker_Templates();
+new Events_Maker_Templates($events_maker);
 
 class Events_Maker_Templates
 {
 	private $options = array();
 
 
-	public function __construct()
+	public function __construct($events_maker)
 	{
 		//settings
-		$this->options = array_merge(
-			array('general' => get_option('events_maker_general')),
-			array('templates' => get_option('events_maker_templates'))
-		);
+		$this->options = $events_maker->get_options();
 
 		//filters
 		add_filter('template_include', array(&$this, 'set_template'));

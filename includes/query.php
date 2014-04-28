@@ -1,20 +1,43 @@
 <?php
-if(!defined('ABSPATH')) exit; //exit if accessed directly
+/*
+SELECT pm1.meta_value, wp_posts.*
 
-new Events_Maker_Query();
+FROM wp_posts 
+
+INNER JOIN wp_postmeta AS pm1 ON (wp_posts.ID = pm1.post_id)
+INNER JOIN wp_postmeta AS pm2 ON (wp_posts.ID = pm1.post_id)
+
+WHERE wp_posts.post_type = 'event' AND (wp_posts.post_status = 'publish')
+AND(
+(
+((pm1.meta_key = '_es' OR pm1.meta_key = '_event_start_date') AND CAST(pm1.meta_value AS DATETIME) >= '2014-04-06 00:00:00' AND CAST(pm1.meta_value AS DATETIME) <= '2014-04-19 23:59:00')
+AND ((pm2.meta_key = '_ee' OR pm2.meta_key = '_event_end_date') AND CAST(pm2.meta_value AS DATETIME) >= '2014-04-06 00:00:00' AND CAST(pm2.meta_value AS DATETIME) <= '2014-04-19 23:59:00')
+))
+
+GROUP BY pm1.meta_id
+
+ORDER BY wp_posts.post_date DESC
+
+show_recurrence
+zapisac czy wydarzenie jest rekurencyjne w bazie - na tej podstawie uzywac _es/_ee lub _event_start_date/_event_end_date
+*/
+//todo	dodac sprawdzanie show_past_events do poszczegolnych funkcji query i w functions
+//todo	powtarzalne custom wp query nie dziala parametr show occurrences
+//todo	w przypadku podania event_start_after i event_end_before zwraca nieprawdilowe wyniki (za duzo meta)
+
+if(!defined('ABSPATH')) exit;
+
+new Events_Maker_Query($events_maker);
 
 class Events_Maker_Query
 {
 	private $options = array();
 
 
-	public function __construct()
+	public function __construct($events_maker)
 	{
 		//settings
-		$this->options = array_merge(
-			array('general' => get_option('events_maker_general')),
-			array('permalinks' => get_option('events_maker_permalinks'))
-		);
+		$this->options = $events_maker->get_options();
 
 		//actions
 		add_action('init', array(&$this, 'register_rewrite'));
@@ -23,6 +46,11 @@ class Events_Maker_Query
 		//filters
 		add_filter('query_vars', array(&$this, 'register_query_vars'));
 		add_filter('parse_query', array(&$this, 'filter_events'));
+		add_filter('posts_fields', array(&$this, 'posts_fields'), 10, 2);
+		add_filter('posts_groupby', array(&$this, 'posts_groupby'), 10, 2);
+		add_filter('posts_join', array(&$this, 'posts_join'), 10, 2);
+		add_filter('posts_where', array(&$this, 'posts_where'), 10, 2);
+		add_filter('posts_orderby', array(&$this, 'posts_orderby'), 10, 2);
 	}
 
 
@@ -65,59 +93,62 @@ class Events_Maker_Query
 		{
 			global $pagenow;
 
-			$screen = get_current_screen();
+			$post_types = apply_filters('em_event_post_type', array('event'));
 
-			if($pagenow === 'edit.php' && $screen->post_type == 'event' && $screen->id === 'edit-event')
+			foreach($post_types as $post_type)
 			{
-				$em_helper = new Events_Maker_Helper();
-				$meta_args = $query->get('meta_query');
-				$start = !empty($_GET['event_start_date']) ? sanitize_text_field($_GET['event_start_date']) : '';
-				$end = !empty($_GET['event_end_date']) ? sanitize_text_field($_GET['event_end_date']) : '';
-				$sb = $em_helper->is_valid_date($start);
-				$eb = $em_helper->is_valid_date($end);
+				if($pagenow === 'edit.php' && isset($query->query_vars['post_type']) && $query->query_vars['post_type'] === $post_type)
+				{
+					$em_helper = new Events_Maker_Helper();
+					$meta_args = $query->get('meta_query');
+					$start = !empty($_GET['event_start_date']) ? sanitize_text_field($_GET['event_start_date']) : '';
+					$end = !empty($_GET['event_end_date']) ? sanitize_text_field($_GET['event_end_date']) : '';
+					$sb = $em_helper->is_valid_date($start);
+					$eb = $em_helper->is_valid_date($end);
 
-				if($sb === TRUE && $eb === TRUE)
-				{
-					$meta_args = array(
-						array(
-							'key' => '_event_start_date',
-							'value' => $start,
-							'compare' => '>=',
-							'type' => 'DATE'
-						),
-						array(
-							'key' => '_event_end_date',
-							'value' => $end,
-							'compare' => '<=',
-							'type' => 'DATE'
-						)
-					);
-				}
-				elseif($sb === TRUE && $eb !== TRUE)
-				{
-					$meta_args = array(
-						array(
-							'key' => '_event_start_date',
-							'value' => $start,
-							'compare' => '>=',
-							'type' => 'DATE'
-						)
-					);
-				}
-				elseif($sb !== TRUE && $eb === TRUE)
-				{
-					$meta_args = array(
-						array(
-							'key' => '_event_end_date',
-							'value' => $end,
-							'compare' => '<=',
-							'type' => 'DATE'
-						)
-					);
-				}
+					if($sb === TRUE && $eb === TRUE)
+					{
+						$meta_args = array(
+							array(
+								'key' => '_event_start_date',
+								'value' => $start,
+								'compare' => '>=',
+								'type' => 'DATE'
+							),
+							array(
+								'key' => '_event_end_date',
+								'value' => $end,
+								'compare' => '<=',
+								'type' => 'DATE'
+							)
+						);
+					}
+					elseif($sb === TRUE && $eb !== TRUE)
+					{
+						$meta_args = array(
+							array(
+								'key' => '_event_start_date',
+								'value' => $start,
+								'compare' => '>=',
+								'type' => 'DATE'
+							)
+						);
+					}
+					elseif($sb !== TRUE && $eb === TRUE)
+					{
+						$meta_args = array(
+							array(
+								'key' => '_event_end_date',
+								'value' => $end,
+								'compare' => '<=',
+								'type' => 'DATE'
+							)
+						);
+					}
 
-				if(!empty($meta_args))
-					$query->set('meta_query', $meta_args);
+					if(!empty($meta_args))
+						$query->set('meta_query', $meta_args);
+				}
 			}
 		}
 	}
@@ -137,8 +168,113 @@ class Events_Maker_Query
 		$query_vars[] = 'event_ticket_type';
 		$query_vars[] = 'event_ondate';
 		$query_vars[] = 'event_show_past_events';
+		$query_vars[] = 'event_show_occurrences';
 
 		return $query_vars;
+	}
+
+
+	/**
+	 * 
+	*/
+	public function posts_orderby($orderby, $query)
+	{
+		if(!empty($query->event_details))
+			$orderby = 'events_meta.meta_value '.$query->query_vars['order'].', '.$orderby;
+
+		return $orderby;
+	}
+
+
+	/**
+	 * 
+	*/
+	public function posts_where($where, $query)
+	{
+		if(!empty($query->event_details))
+			$where .= " AND (events_meta.meta_key = '_event_occurrence_date' AND ".implode(' AND ', $query->event_details).")";
+
+		return $where;
+	}
+
+
+	/**
+	 * 
+	*/
+	public function posts_join($join, $query)
+	{
+		global $wpdb;
+
+		// show occurrences?
+		if(
+			is_admin()
+			||
+			(!isset($query->query_vars['event_show_occurrences']) || (isset($query->query_vars['event_show_occurrences']) && !$query->query_vars['event_show_occurrences']))
+		)
+			return $join;
+
+		/*
+		// is join really empty?
+		if(trim($join) === '')
+			$join = 'INNER JOIN '.$wpdb->postmeta.' ON ('.$wpdb->prefix.'posts.ID = '.$wpdb->postmeta.'.post_id)';
+		// just in case
+		elseif(strpos($join, 'JOIN '.$wpdb->postmeta.' ON') === false)
+			$join = 'INNER JOIN '.$wpdb->postmeta.' ON ('.$wpdb->prefix.'posts.ID = '.$wpdb->postmeta.'.post_id) '.$join;
+		*/
+
+		if(!empty($query->event_details))
+			$join .= ' INNER JOIN '.$wpdb->postmeta.' AS events_meta ON ('.$wpdb->prefix.'posts.ID = events_meta.post_id)';
+
+		return $join;
+	}
+
+
+	/**
+	 * 
+	*/
+	public function posts_groupby($groupby, $query)
+	{
+		global $wpdb;
+
+		// show occurrences?
+		if(
+			is_admin()
+			||
+			(!isset($query->query_vars['event_show_occurrences']) || (isset($query->query_vars['event_show_occurrences']) && !$query->query_vars['event_show_occurrences']))
+			||
+			$query->is_single === true
+		)
+			return $groupby;
+
+		if(!empty($query->event_details))
+			$groupby = 'events_meta.meta_id'.(trim($groupby) !== '' ? ', '.$groupby : '');
+		else
+			$groupby = $wpdb->postmeta.'.meta_id'.(trim($groupby) !== '' ? ', '.$groupby : '');
+
+		return $groupby;
+	}
+
+
+	function posts_fields($select, $query)
+	{
+		global $wpdb;
+
+		//todo	dodac tutaj sprawdzenie: $fields = $query->get('fields'); $fields !== 'ids' && $fields !== 'id=>parent'
+
+		// show occurrences?
+		if(
+			is_admin()
+			||
+			(!isset($query->query_vars['event_show_occurrences']) || (isset($query->query_vars['event_show_occurrences']) && !$query->query_vars['event_show_occurrences']))
+		)
+			return $select;
+
+		if(!empty($query->event_details))
+			$select .= ", SUBSTRING_INDEX(events_meta.meta_value, '|', 1) AS event_occurrence_start_date, SUBSTRING_INDEX(events_meta.meta_value, '|', -1) AS event_occurrence_end_date";
+		elseif(!is_single())
+			$select .= ", SUBSTRING_INDEX(".$wpdb->postmeta.".meta_value, '|', 1) AS event_occurrence_start_date, SUBSTRING_INDEX(".$wpdb->postmeta.".meta_value, '|', -1) AS event_occurrence_end_date";
+
+		return $select;
 	}
 
 
@@ -149,42 +285,97 @@ class Events_Maker_Query
 	{
 		if((is_tax('event-location') && isset($query->query_vars['event-location'], $query->query['event-location'])) || (is_tax('event-organizer') && isset($query->query_vars['event-organizer'], $query->query['event-organizer'])) || (is_tax('event-category') && isset($query->query_vars['event-category'], $query->query['event-category'])))
 		{
-			if(!isset($query->query_vars['orderby']))
+			if(!isset($query->query_vars['event_show_occurrences']))
+				$query->query_vars['event_show_occurrences'] = (is_admin() ? false : $this->options['general']['show_occurrences']);
+
+			if($query->query_vars['event_show_occurrences'])
+				$keys = array('start' => '_event_occurrence_date', 'end' => '_event_occurrence_date');
+			else
+				$keys = array('start' => '_event_start_date', 'end' => '_event_end_date');
+
+			$event_order_by = true;
+
+			if(isset($query->query_vars['orderby']))
 			{
-				if(in_array($this->options['general']['order_by'], array('start', 'end'), TRUE))
+				if($query->query_vars['orderby'] === 'event_start_date')
 				{
-					$query->query_vars['meta_key'] = '_event_'.$this->options['general']['order_by'].'_date';
+					$query->query_vars['meta_key'] = $keys['start'];
+					$query->query_vars['orderby'] = 'meta_value';
+				}
+				elseif($query->query_vars['orderby'] === 'event_end_date')
+				{
+					$query->query_vars['meta_key'] = $keys['end'];
 					$query->query_vars['orderby'] = 'meta_value';
 				}
 				else
+					$event_order_by = false;
+			}
+			else
+			{
+				if(in_array($this->options['general']['order_by'], array('start', 'end'), true))
+				{
+					$query->query_vars['meta_key'] = $keys[$this->options['general']['order_by']];
+					$query->query_vars['orderby'] = 'meta_value';
+				}
+				elseif($this->options['general']['order_by'] === 'publish')
+				{
 					$query->query_vars['orderby'] = 'date';
+					$event_order_by = false;
+				}
+				else
+					$event_order_by = false;
 			}
 
 			if(!isset($query->query_vars['order']))
-			{
 				$query->query_vars['order'] = $this->options['general']['order'];
-			}
-			
-			if(!isset($query->query_vars['event_show_past_events']))
+
+			if(!isset($query->query_vars['event_show_past_events']) || !is_bool($query->query_vars['event_show_past_events']))
+				$query->query_vars['event_show_past_events'] = (is_admin() ? true : $this->options['general']['show_past_events']);
+
+			// some ninja fixes
+			if($query->query_vars['event_show_occurrences'] && $query->query_vars['event_show_past_events'] && !$event_order_by)
+				$query->query_vars['meta_key'] = $keys['end'];
+			elseif($query->query_vars['event_show_occurrences'] && !$query->query_vars['event_show_past_events'] && $event_order_by)
+				$query->query_vars['meta_key'] = '';
+
+			$meta_args = $query->get('meta_query');
+
+			if($query->query_vars['event_show_occurrences'])
 			{
-				$query->query_vars['event_show_past_events'] = (is_admin() ? TRUE : $this->options['general']['show_past_events']);
+				global $wpdb;
+
+				$sql = array();
+
+				if(!$query->query_vars['event_show_past_events'] && !$query->is_singular)
+					$sql[] = "CAST(SUBSTRING_INDEX(events_meta.meta_value, '|', -1) AS DATETIME) >= '".current_time('mysql')."'";
+
+				$query->event_details = $sql;
+			}
+			else
+			{
+				if(!$query->query_vars['event_show_past_events'] && !$query->is_singular)
+				{
+					$meta_args[] = array(
+						'key' => (!$this->options['general']['expire_current'] ? $keys['end'] : $keys['start']),
+						'value' => current_time('mysql'),
+						'compare' => '>=',
+						'type' => 'DATETIME'
+					);
+				}
 			}
 
-			if($query->query_vars['event_show_past_events'] === FALSE && $query->is_singular() !== TRUE)
-			{
-				$meta_args = $query->get('meta_query');
-				$meta_args[] = array(
-					'key' => ($this->options['general']['expire_current'] === FALSE ? '_event_end_date' : '_event_start_date'),
-					'value' => current_time('mysql'),
-					'compare' => '>=',
-					'type' => 'DATETIME'
-				);
-				$query->set('meta_query', $meta_args);
-			}
-			
+			$query->set('meta_query', $meta_args);
 		}
 
-		if($query->get('post_type') === 'event')
+		$post_types = $query->get('post_type');
+
+		// does query contain post type as a string or post types array
+		if(is_array($post_types))
+			$run_query = (bool)array_intersect($post_types, apply_filters('em_event_post_type', array('event')));
+		else
+			$run_query = in_array($post_types, apply_filters('em_event_post_type', array('event')));
+
+		if($run_query)
 		{
 			$em_helper = new Events_Maker_Helper();
 			$format_sa = $format_sb = $format_ea = $format_eb = '';
@@ -198,7 +389,8 @@ class Events_Maker_Query
 				'event_date_type' => 'all',
 				'event_ticket_type' => 'all',
 				'event_ondate' => '',
-				'event_show_past_events' => (is_admin() ? TRUE : $this->options['general']['show_past_events'])
+				'event_show_past_events' => (is_admin() ? true : $this->options['general']['show_past_events']),
+				'event_show_occurrences' => (is_admin() ? true : $this->options['general']['show_occurrences'])
 			);
 
 			if(!empty($query->query_vars['event_ondate']))
@@ -226,45 +418,79 @@ class Events_Maker_Query
 			}
 			else $query->query_vars['event_ondate'] = $defaults['event_ondate'];
 
-			if(!isset($query->query_vars['event_date_range']) || !in_array($query->query_vars['event_date_range'], array('between', 'outside'), TRUE))
+			if(!isset($query->query_vars['event_date_range']) || !in_array($query->query_vars['event_date_range'], array('between', 'outside'), true))
 				$query->query_vars['event_date_range'] = $defaults['event_date_range'];
 
-			if(!isset($query->query_vars['event_date_type']) || !in_array($query->query_vars['event_date_type'], array('all', 'all_day', 'not_all_day'), TRUE))
+			if(!isset($query->query_vars['event_date_type']) || !in_array($query->query_vars['event_date_type'], array('all', 'all_day', 'not_all_day'), true))
 				$query->query_vars['event_date_type'] = $defaults['event_date_type'];
 
-			if(!isset($query->query_vars['event_ticket_type']) || !in_array($query->query_vars['event_ticket_type'], array('all', 'free', 'paid'), TRUE))
+			if(!isset($query->query_vars['event_ticket_type']) || !in_array($query->query_vars['event_ticket_type'], array('all', 'free', 'paid'), true))
 				$query->query_vars['event_ticket_type'] = $defaults['event_ticket_type'];
 
 			if(!isset($query->query_vars['event_show_past_events']) || !is_bool($query->query_vars['event_show_past_events']))
 				$query->query_vars['event_show_past_events'] = $defaults['event_show_past_events'];
 
-			if(!isset($query->query_vars['event_start_after']) || ($format_sa = $em_helper->is_valid_datetime($query->query_vars['event_start_after'])) === FALSE)
+			if(!isset($query->query_vars['event_start_after']) || !($format_sa = $em_helper->is_valid_datetime($query->query_vars['event_start_after'])))
 				$query->query_vars['event_start_after'] = $defaults['event_start_after'];
 
-			if(!isset($query->query_vars['event_start_before']) || ($format_sb = $em_helper->is_valid_datetime($query->query_vars['event_start_before'])) === FALSE)
+			if(!isset($query->query_vars['event_start_before']) || !($format_sb = $em_helper->is_valid_datetime($query->query_vars['event_start_before'])))
 				$query->query_vars['event_start_before'] = $defaults['event_start_before'];
 
-			if(!isset($query->query_vars['event_end_after']) || ($format_ea = $em_helper->is_valid_datetime($query->query_vars['event_end_after'])) === FALSE)
+			if(!isset($query->query_vars['event_end_after']) || !($format_ea = $em_helper->is_valid_datetime($query->query_vars['event_end_after'])))
 				$query->query_vars['event_end_after'] = $defaults['event_end_after'];
 
-			if(!isset($query->query_vars['event_end_before']) || ($format_eb = $em_helper->is_valid_datetime($query->query_vars['event_end_before'])) === FALSE)
+			if(!isset($query->query_vars['event_end_before']) || !($format_eb = $em_helper->is_valid_datetime($query->query_vars['event_end_before'])))
 				$query->query_vars['event_end_before'] = $defaults['event_end_before'];
 
-			if(!isset($query->query_vars['orderby']))
+			if(!isset($query->query_vars['event_show_occurrences']))
+				$query->query_vars['event_show_occurrences'] = (is_admin() ? false : $defaults['event_show_occurrences']);
+
+			if($query->query_vars['event_show_occurrences'])
+				$keys = array('start' => '_event_occurrence_date', 'end' => '_event_occurrence_date');
+			else
+				$keys = array('start' => '_event_start_date', 'end' => '_event_end_date');
+
+			$event_order_by = true;
+
+			if(isset($query->query_vars['orderby']))
 			{
-				if(in_array($this->options['general']['order_by'], array('start', 'end'), TRUE))
+				if($query->query_vars['orderby'] === 'event_start_date')
 				{
-					$query->query_vars['meta_key'] = '_event_'.$this->options['general']['order_by'].'_date';
+					$query->query_vars['meta_key'] = $keys['start'];
+					$query->query_vars['orderby'] = 'meta_value';
+				}
+				elseif($query->query_vars['orderby'] === 'event_end_date')
+				{
+					$query->query_vars['meta_key'] = $keys['end'];
 					$query->query_vars['orderby'] = 'meta_value';
 				}
 				else
+					$event_order_by = false;
+			}
+			else
+			{
+				if(in_array($this->options['general']['order_by'], array('start', 'end'), true))
+				{
+					$query->query_vars['meta_key'] = $keys[$this->options['general']['order_by']];
+					$query->query_vars['orderby'] = 'meta_value';
+				}
+				elseif($this->options['general']['order_by'] === 'publish')
+				{
 					$query->query_vars['orderby'] = 'date';
+					$event_order_by = false;
+				}
+				else
+					$event_order_by = false;
 			}
 
 			if(!isset($query->query_vars['order']))
-			{
 				$query->query_vars['order'] = $this->options['general']['order'];
-			}
+			
+			// some ninja fixes
+			if($query->query_vars['event_show_occurrences'] && $query->query_vars['event_show_past_events'] && !$event_order_by)
+				$query->query_vars['meta_key'] = $keys['end'];
+			elseif($query->query_vars['event_show_occurrences'] && !$query->query_vars['event_show_past_events'] && $event_order_by)
+				$query->query_vars['meta_key'] = '';
 
 			if($format_sa === 'Y-m-d')
 				$sa_date = ($query->query_vars['event_date_range'] === 'between' ? ' 00:00:00' : ' 23:59:00');
@@ -296,44 +522,80 @@ class Events_Maker_Query
 
 			$meta_args = $query->get('meta_query');
 
-			if(!empty($query->query_vars['event_start_after']))
+			if($query->query_vars['event_show_occurrences'])
 			{
-				$meta_args[] = array(
-					'key' => '_event_start_date',
-					'value' => date('Y-m-d H:i:s', strtotime($query->query_vars['event_start_after'].$sa_date)),
-					'compare' => ($query->query_vars['event_date_range'] === 'between' ? '>=' : '<='),
-					'type' => 'DATETIME'
-				);
-			}
+				global $wpdb;
 
-			if(!empty($query->query_vars['event_start_before']))
-			{
-				$meta_args[] = array(
-					'key' => '_event_start_date',
-					'value' => date('Y-m-d H:i:s', strtotime($query->query_vars['event_start_before'].$sb_date)),
-					'compare' => ($query->query_vars['event_date_range'] === 'between' ? '<=' : '>='),
-					'type' => 'DATETIME'
-				);
-			}
+				$sql = array();
 
-			if(!empty($query->query_vars['event_end_after']))
-			{
-				$meta_args[] = array(
-					'key' => '_event_end_date',
-					'value' => date('Y-m-d H:i:s', strtotime($query->query_vars['event_end_after'].$ea_date)),
-					'compare' => ($query->query_vars['event_date_range'] === 'between' ? '>=' : '<='),
-					'type' => 'DATETIME'
-				);
-			}
+				if(!empty($query->query_vars['event_start_after']))
+					$sql[] =  "CAST(SUBSTRING_INDEX(events_meta.meta_value, '|', 1) AS DATETIME) ".($query->query_vars['event_date_range'] === 'between' ? '>=' : '<=')." '".date('Y-m-d H:i:s', strtotime($query->query_vars['event_start_after'].$sa_date))."'";
 
-			if(!empty($query->query_vars['event_end_before']))
+				if(!empty($query->query_vars['event_start_before']))
+					$sql[] = "CAST(SUBSTRING_INDEX(events_meta.meta_value, '|', 1) AS DATETIME) ".($query->query_vars['event_date_range'] === 'between' ? '<=' : '>=')." '".date('Y-m-d H:i:s', strtotime($query->query_vars['event_start_before'].$sb_date))."'";
+
+				if(!empty($query->query_vars['event_end_after']))
+					$sql[] = "CAST(SUBSTRING_INDEX(events_meta.meta_value, '|', -1) AS DATETIME) ".($query->query_vars['event_date_range'] === 'between' ? '>=' : '<=')." '".date('Y-m-d H:i:s', strtotime($query->query_vars['event_end_after'].$ea_date))."'";
+
+				if(!empty($query->query_vars['event_end_before']))
+					$sql[] = "CAST(SUBSTRING_INDEX(events_meta.meta_value, '|', -1) AS DATETIME) ".($query->query_vars['event_date_range'] === 'between' ? '<=' : '>=')." '".date('Y-m-d H:i:s', strtotime($query->query_vars['event_end_before'].$eb_date))."'";
+
+				if(!$query->query_vars['event_show_past_events'] && !$query->is_singular)
+					$sql[] = "CAST(SUBSTRING_INDEX(events_meta.meta_value, '|', -1) AS DATETIME) >= '".current_time('mysql')."'";
+
+				$query->event_details = $sql;
+			}
+			else
 			{
-				$meta_args[] = array(
-					'key' => '_event_end_date',
-					'value' => date('Y-m-d H:i:s', strtotime($query->query_vars['event_end_before'].$eb_date)),
-					'compare' => ($query->query_vars['event_date_range'] === 'between' ? '<=' : '>='),
-					'type' => 'DATETIME'
-				);
+				if(!empty($query->query_vars['event_start_after']))
+				{
+					$meta_args[] = array(
+						'key' => $keys['start'],
+						'value' => date('Y-m-d H:i:s', strtotime($query->query_vars['event_start_after'].$sa_date)),
+						'compare' => ($query->query_vars['event_date_range'] === 'between' ? '>=' : '<='),
+						'type' => 'DATETIME'
+					);
+				}
+
+				if(!empty($query->query_vars['event_start_before']))
+				{
+					$meta_args[] = array(
+						'key' => $keys['start'],
+						'value' => date('Y-m-d H:i:s', strtotime($query->query_vars['event_start_before'].$sb_date)),
+						'compare' => ($query->query_vars['event_date_range'] === 'between' ? '<=' : '>='),
+						'type' => 'DATETIME'
+					);
+				}
+
+				if(!empty($query->query_vars['event_end_after']))
+				{
+					$meta_args[] = array(
+						'key' => $keys['end'],
+						'value' => date('Y-m-d H:i:s', strtotime($query->query_vars['event_end_after'].$ea_date)),
+						'compare' => ($query->query_vars['event_date_range'] === 'between' ? '>=' : '<='),
+						'type' => 'DATETIME'
+					);
+				}
+
+				if(!empty($query->query_vars['event_end_before']))
+				{
+					$meta_args[] = array(
+						'key' => $keys['end'],
+						'value' => date('Y-m-d H:i:s', strtotime($query->query_vars['event_end_before'].$eb_date)),
+						'compare' => ($query->query_vars['event_date_range'] === 'between' ? '<=' : '>='),
+						'type' => 'DATETIME'
+					);
+				}
+
+				if(!$query->query_vars['event_show_past_events'] && !$query->is_singular)
+				{
+					$meta_args[] = array(
+						'key' => (!$this->options['general']['expire_current'] ? $keys['end'] : $keys['start']),
+						'value' => current_time('mysql'),
+						'compare' => '>=',
+						'type' => 'DATETIME'
+					);
+				}
 			}
 
 			if($query->query_vars['event_date_type'] === 'all_day')
@@ -362,16 +624,6 @@ class Events_Maker_Query
 					'value' => ($query->query_vars['event_ticket_type'] === 'free' ? 1 : 0),
 					'compare' => '=',
 					'type' => 'NUMERIC'
-				);
-			}
-
-			if($query->query_vars['event_show_past_events'] === FALSE && $query->is_singular() !== TRUE)
-			{
-				$meta_args[] = array(
-					'key' => ($this->options['general']['expire_current'] === FALSE ? '_event_end_date' : '_event_start_date'),
-					'value' => current_time('mysql'),
-					'compare' => '>=',
-					'type' => 'DATETIME'
 				);
 			}
 

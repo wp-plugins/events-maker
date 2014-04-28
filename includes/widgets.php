@@ -1,19 +1,17 @@
 <?php
-if(!defined('ABSPATH')) exit; //exit if accessed directly
+if(!defined('ABSPATH')) exit;
 
-new Events_Maker_Widgets();
+new Events_Maker_Widgets($events_maker);
 
 class Events_Maker_Widgets
 {
 	private $options = array();
 
 
-	public function __construct()
+	public function __construct($events_maker)
 	{
 		//settings
-		$this->options = array_merge(
-			array('general' => get_option('events_maker_general'))
-		);
+		$this->options = $events_maker->get_options();
 
 		//actions
 		add_action('widgets_init', array(&$this, 'register_widgets'));

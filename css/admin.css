@@ -1,5 +1,4 @@
 /* Events settings */
-
 .df-credits { float: right; width: 280px; background: #fff; margin: 20px -300px 20px 20px; position: relative; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05); }
 .df-credits .inner { padding-left: 10px; padding-right: 10px; }
 .df-credits h3 { font-size: 14px; line-height: 1.4; margin: 0;  padding: 8px 12px; border-bottom: 1px solid #eee; }
@@ -11,14 +10,16 @@
 .events-maker-settings fieldset span.description { margin-bottom: 8px; margin-top: 4px; display: block; }
 .events-maker-settings .ui-button { margin-bottom: 5px; }
 .events-maker-settings .description { font-size: 13px; margin-bottom: 8px; }
+.events-maker-settings span.description code strong { font-weight: bold; }
 
-#em_available_functions .ui-button { margin-bottom: 5px; }
-#em_available_functions p.description { margin-top: -1px; }
+/* All Mobile Sizes (devices and browser) */
+@media only screen and (max-width: 959px) {
+	.df-credits { width: 100%; float: none; margin: 20px 0; }
+	.events-maker-settings { margin-right: 0; }
+}
 
 /* Events list */
 .tablenav.top .alignleft.actions select[name="m"] { display: none; }
-.wp-list-table #title { width:20%; }
-.wp-list-table #author { width: auto; }
 
 /* Widgets screen */
 ul.terms-checkbox-list, ul.terms-checkbox-list li {
@@ -40,8 +41,15 @@ ul.terms-checkbox-list.depth-level-4 {
 .checkbox-list { border: 1px solid #dfdfdf; background: #fff; max-height: 200px; min-height: 16px; overflow: auto; padding: 0.5em 0.9em; margin: 0.5em 0 0; }
 
 /* Events edit screen */
-#event-date-time-box div { padding: 5px; }
+#poststuff #event-date-time-box .inside { margin-top: 10px; }
 #event-date-time-box label { display: inline-block; width: 20%; }
+#event-date-time-box .event-date-time { padding: 5px 0; }
+#event-date-time-box .dashicons { font-size: 14px; line-height: 15px; vertical-align: middle; }
+#event-date-time-box .date-time-row, #event-date-time-box .event-custom { font-size: 13px; line-height: 1.5; margin: 1em 0; }
+#event-date-time-box fieldset label { display: inline-block; margin: 0.25em 0.5em 0.25em 0; width: auto; }
+
+#event-cost-tickets-box .event_ticket_delete { margin-left: 5px; }
+#event-cost-tickets-box .dashicons { font-size: 14px; line-height: 15px; vertical-align: middle; }
 
 /* Edit Event Location */
 #event-google-map { width: 95%; height: 340px; }

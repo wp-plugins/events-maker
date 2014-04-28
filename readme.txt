@@ -3,8 +3,8 @@ Contributors: dfactory
 Donate link: http://www.dfactory.eu/
 Tags: event, event categories, events management, event management, events manager, event manager, event organizer, events calendar, events maker, google map, map, locations, organizers, widget, attendance, attendee, Booking, calendar, event registration, ticket, tickets, ticketing, bookings
 Requires at least: 3.5
-Tested up to: 3.8.1
-Stable tag: 1.0.10
+Tested up to: 3.9.0
+Stable tag: 1.1.0
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -23,6 +23,9 @@ For more information, check out plugin page at [dFactory](http://www.dfactory.eu
 * Ajax Events Calendar
 * Display options for single events
 * Multiple Tickets and Pricing
+* Advanced recurring events, including daily, monthly, yearly and custom occurrences
+* Interactive Full Calendar display
+* Compatibility with Twenty Thirteen and Twenty Fourteen themes 
 * Event Categories and Tags
 * Event Ogranizers
 * Organizers contact details and image
@@ -31,7 +34,7 @@ For more information, check out plugin page at [dFactory](http://www.dfactory.eu
 * Customizeable template files
 * Google Rich Snippets ready
 * 6 Events widgets
-* 26 custom functions
+* Multiple custom functions
 * Advanced hooks for developers
 * Custom permissions for Events
 * Multisite support
@@ -43,8 +46,7 @@ For more information, check out plugin page at [dFactory](http://www.dfactory.eu
 = Future plans: =
 
 * Front-end events submissions
-* Recurring events
-* Advanced Full Calendar
+* Event registration & booking system
 * iCal & Google Calendar integration
 * Events search & filtering
 
@@ -75,6 +77,13 @@ No questions yet.
 4. screenshot-4.png
 
 == Changelog ==
+
+= 1.1.0 =
+* New: Advanced recurring events, including daily, monthly, yearly and custom occurrences
+* New: Interactive Full Events Calendar display on specified page
+* New: Template files compatibility with Twenty Thirteen and Twenty Fourteen themes 
+* Tweak: Settings page adjusted to WP native user interface
+* Tweak: Multiple bugfixes and improvements
 
 = 1.0.10 =
 * New: Added 3 Ajax Calendar widget CSS styles
@@ -129,6 +138,5 @@ Initial release
 
 == Upgrade Notice ==
 
-= 1.0.10 =
-* New: Added 3 Ajax Calendar widget CSS styles
-* Tweak: UI improvements for WP 3.8
+= 1.1.0 =
+Major update. Recurring events, full calendar, compatibility with Twenty Thirteen and Twenty Fourteen themes and much more

@@ -1,7 +1,7 @@
 <?php
-if(!defined('ABSPATH')) exit; //exit if accessed directly
+if(!defined('ABSPATH')) exit;
 
-new Events_Maker_Taxonomies();
+new Events_Maker_Taxonomies($events_maker);
 
 class Events_Maker_Taxonomies
 {
@@ -10,12 +10,10 @@ class Events_Maker_Taxonomies
 	private $organizers = array('contact_name', 'phone', 'email', 'website', 'image');
 
 
-	public function __construct()
+	public function __construct($events_maker)
 	{
 		//settings
-		$this->options = array_merge(
-			array('general' => get_option('events_maker_general'))
-		);
+		$this->options = $events_maker->get_options();
 
 		//actions
 		add_action('event-location_add_form_fields', array(&$this, 'event_location_add_meta_fields'));

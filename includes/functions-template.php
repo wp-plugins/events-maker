@@ -165,7 +165,7 @@ if (!function_exists('em_display_event_categories'))
 			return false;
 		
 		$categories = get_the_term_list($post_id, 'event-category', __('<strong>Category: </strong>', 'events-maker'), ', ', '');
-		if ($categories) 
+		if ($categories && !is_wp_error($categories)) 
 		{ ?>
 			<div class="entry-meta">
 				
@@ -189,7 +189,7 @@ if (!function_exists('em_display_event_tags'))
 			return false;
 		
 		$tags = get_the_term_list($post_id, 'event-tag', __('<strong>Tags: </strong>', 'events-maker'), '', '');
-		if ($tags) 
+		if ($tags && !is_wp_error($tags)) 
 		{ ?>
 			<footer class="entry-meta">
 				

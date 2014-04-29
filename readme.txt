@@ -4,7 +4,7 @@ Donate link: http://www.dfactory.eu/
 Tags: event, event categories, events management, event management, events manager, event manager, event organizer, events calendar, events maker, google map, map, locations, organizers, widget, attendance, attendee, Booking, calendar, event registration, ticket, tickets, ticketing, bookings
 Requires at least: 3.5
 Tested up to: 3.9.0
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -53,6 +53,7 @@ For more information, check out plugin page at [dFactory](http://www.dfactory.eu
 = Translations: =
 
 * Brazilian Portuguese - by Adson Nunes
+* Catalan - by Jordi Altimira
 * Dutch - by [Heleen van den Bos](http://www.bostekst.nl/)
 * Japanese - by stranger-jp
 * Polish - by Bartosz Arendt
@@ -77,6 +78,10 @@ No questions yet.
 4. screenshot-4.png
 
 == Changelog ==
+
+= 1.1.1 =
+* New: Catalan translation, thanks to Jordi Altimira
+* Fix: Catchable fatal error while tags/categories display
 
 = 1.1.0 =
 * New: Advanced recurring events, including daily, monthly, yearly and custom occurrences
@@ -138,5 +143,5 @@ Initial release
 
 == Upgrade Notice ==
 
-= 1.1.0 =
-Major update. Recurring events, full calendar, compatibility with Twenty Thirteen and Twenty Fourteen themes and much more
+= 1.1.1 =
+* New: Catalan translation, thanks to Jordi Altimira

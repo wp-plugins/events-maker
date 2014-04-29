@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Events Maker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-25 09:29+0100\n"
-"PO-Revision-Date: 2014-04-28 12:04+0100\n"
+"POT-Creation-Date: 2014-04-28 18:36+0100\n"
+"PO-Revision-Date: 2014-04-28 18:37+0100\n"
 "Last-Translator: Bartosz Arendt <info@dfactory.eu>\n"
 "Language-Team: dFactory <info@dfactory.pl>\n"
 "Language: pl_PL\n"
@@ -583,54 +583,54 @@ msgid "View Calendar"
 msgstr "Zobacz kalendarz"
 
 # @ events-maker
-#: ../includes/functions-template.php:32 ../includes/widgets.php:730
+#: ../includes/functions-template.php:31 ../includes/widgets.php:730
 msgid "No Events"
 msgstr "Brak wydarzeń"
 
-#: ../includes/functions-template.php:177
-msgid "&laquo; Previous"
-msgstr "&laquo; Poprzednie"
-
-#: ../includes/functions-template.php:178
-msgid "Next &raquo;"
-msgstr "Następne &raquo;"
-
 # @ events-maker
-#: ../includes/functions-template.php:201 ../templates/content-event.php:28
+#: ../includes/functions-template.php:167 ../templates/content-event.php:28
 msgid "<strong>Category: </strong>"
 msgstr "<strong>Kategoria: </strong>"
 
 # @ events-maker
-#: ../includes/functions-template.php:225 ../templates/content-event.php:85
+#: ../includes/functions-template.php:191 ../templates/content-event.php:79
 msgid "<strong>Tags: </strong>"
 msgstr "<strong>Tagi: </strong>"
 
 # @ events-maker
-#: ../includes/functions-template.php:256
+#: ../includes/functions-template.php:221
 msgid "Location"
 msgstr "Lokalizacja"
 
 # @ events-maker
-#: ../includes/functions-template.php:300
+#: ../includes/functions-template.php:264
 msgid "Organizer"
 msgstr "Organizator"
 
 # @ events-maker
-#: ../includes/functions-template.php:342
-#: ../includes/functions-template.php:352 ../includes/listing.php:135
+#: ../includes/functions-template.php:306
+#: ../includes/functions-template.php:316 ../includes/listing.php:135
 #: ../includes/settings.php:277
 msgid "Tickets"
 msgstr "Bilety"
 
 # @ events-maker
-#: ../includes/functions-template.php:354 ../includes/listing.php:179
+#: ../includes/functions-template.php:318 ../includes/listing.php:179
 msgid "Free"
 msgstr "Bezpłatne"
 
 # @ events-maker
-#: ../includes/functions-template.php:363 ../includes/metaboxes.php:518
+#: ../includes/functions-template.php:328 ../includes/metaboxes.php:518
 msgid "Buy tickets URL"
 msgstr "Kup bilety na stronie"
+
+#: ../includes/functions-template.php:508
+msgid "&laquo; Previous"
+msgstr "&laquo; Poprzednie"
+
+#: ../includes/functions-template.php:509
+msgid "Next &raquo;"
+msgstr "Następne &raquo;"
 
 # @ events-maker
 #: ../includes/listing.php:58
@@ -1098,7 +1098,7 @@ msgstr "na WordPress.org"
 # @ events-maker
 #: ../includes/settings.php:233
 msgid "Blog about it & link to the"
-msgstr "Napisz o niej i dodaj link"
+msgstr "Napisz o niej i dodaj link do"
 
 # @ events-maker
 #: ../includes/settings.php:233
@@ -1382,8 +1382,7 @@ msgid ""
 "Select how to handle already started events (works for front-end default "
 "query)."
 msgstr ""
-"Wybierz sposób sortowania listy wydarzeń (dotyczy zarówno panelu "
-"administracyjnego jak i strony)  (dotyczy tylko frontu strony)."
+"Wybierz sposób sortowania listy wydarzeń (dotyczy tylko frontu strony)."
 
 #: ../includes/settings.php:656
 msgid "Show occurrences"
@@ -1542,7 +1541,7 @@ msgstr ""
 # @ events-maker
 #: ../includes/shortcodes.php:179
 msgid "Create Calendar Page"
-msgstr "Ustwórz stronę kalendarza"
+msgstr "Utwórz stronę kalendarza"
 
 #: ../includes/shortcodes.php:179
 msgid "No thanks"
@@ -2057,32 +2056,32 @@ msgid "Apologies, but no events were found."
 msgstr "Przykro nam, ale nie znaleziono wydarzeń."
 
 # @ events-maker
-#: ../templates/content-event.php:51 ../templates/content-single-event.php:43
+#: ../templates/content-event.php:45 ../templates/content-single-event.php:43
 msgid "Leave a comment"
 msgstr "Skomentuj"
 
 # @ events-maker
-#: ../templates/content-event.php:51 ../templates/content-single-event.php:43
+#: ../templates/content-event.php:45 ../templates/content-single-event.php:43
 msgid "1 Comment"
 msgstr "1 komentarz"
 
 # @ events-maker
-#: ../templates/content-event.php:51 ../templates/content-single-event.php:43
+#: ../templates/content-event.php:45 ../templates/content-single-event.php:43
 msgid "% Comments"
 msgstr "% komentarzy"
 
 # @ events-maker
-#: ../templates/content-event.php:55 ../templates/content-single-event.php:47
+#: ../templates/content-event.php:49 ../templates/content-single-event.php:47
 msgid "Edit"
 msgstr "Edytuj"
 
 # @ events-maker
-#: ../templates/content-event.php:59
+#: ../templates/content-event.php:53
 msgid "<strong>Location: </strong>"
 msgstr "<strong>Lokalizacja: </strong>"
 
 # @ events-maker
-#: ../templates/content-event.php:67
+#: ../templates/content-event.php:61
 msgid "<strong>Organizer: </strong>"
 msgstr "<strong>Organizator: </strong>"
 

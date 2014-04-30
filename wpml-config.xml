@@ -1,0 +1,22 @@
+<wpml-config>
+    <custom-fields>
+    	<custom-field action="copy">_event_free</custom-field>
+        <custom-field action="copy">_event_all_day</custom-field>
+        <custom-field action="copy">_event_recurrence</custom-field>
+        <custom-field action="copy">_event_start_date</custom-field>
+        <custom-field action="copy">_event_end_date</custom-field>
+        <custom-field action="copy">_event_occurrence_date</custom-field>
+        <custom-field action="copy">_event_occurrence_last_date</custom-field>
+        <custom-field action="translate">_event_tickets</custom-field>
+        <custom-field action="copy">_event_tickets_url</custom-field>
+    </custom-fields>
+    <custom-types>
+        <custom-type translate="1">event</custom-type>
+    </custom-types>
+    <taxonomies>
+        <taxonomy translate="1">event-category</taxonomy>
+        <taxonomy translate="1">event-tag</taxonomy>
+        <taxonomy translate="1">event-location</taxonomy>
+        <taxonomy translate="1">event-organizer</taxonomy>
+    </taxonomies>      
+</wpml-config>

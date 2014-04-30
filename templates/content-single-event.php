@@ -26,7 +26,8 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
 	    	
 	    	<?php // Display event categories
 	    	em_display_event_categories(); ?>
-	
+			
+			<?php // Display the title ?>
 	        <h1 class="entry-title summary"><?php the_title(); ?></h1>
 	        
 	        <div class="entry-meta">

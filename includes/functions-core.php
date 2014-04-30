@@ -24,8 +24,9 @@ function em_get_events($args = array())
 		'suppress_filters' => false,
 		'posts_per_page' => -1
 	);
-
-	return get_posts(array_merge($defaults, $args));
+	$args = wp_parse_args($args, $defaults);
+	
+	return apply_filters('em_get_events', get_posts($args));
 }
 
 /**
@@ -69,7 +70,7 @@ function em_get_occurrences($post_id = 0, $period = 'all', $orderby = 'asc', $li
 	);
 	
 	$args = array();
-	$args = apply_filters('em_get_occurrences_args', array_merge($defaults, $args));
+	$args = apply_filters('em_get_occurrences_args', wp_parse_args($args, $defaults));
 	
 	$all_occurrences = get_post_meta($post_id, '_event_occurrence_date', false);
 
@@ -802,30 +803,12 @@ function em_get_event_date_link($year = 0, $month = 0, $day = 0)
 }
 
 
-function em_display_event_categories($args = array())
+function em_display_event_taxonomy($taxonomy = '', $args = array())
 {
-	if(!taxonomy_exists('event-category'))
+	if(!taxonomy_exists($taxonomy))
 		return false;
 
-	return em_get_event_taxonomy('event-category', $args);
-}
-
-
-function em_display_event_locations($args = array())
-{
-	if(!taxonomy_exists('event-location'))
-		return false;
-
-	return em_get_event_taxonomy('event-location', $args);
-}
-
-
-function em_display_event_organizers($args = array())
-{
-	if(!taxonomy_exists('event-organizer'))
-		return false;
-
-	return em_get_event_taxonomy('event-organizer', $args);
+	return apply_filters('em_display_event_taxonomy', em_get_event_taxonomy($taxonomy, $args));
 }
 
 
@@ -838,7 +821,7 @@ function em_get_event_taxonomy($taxonomy = '', $args = array())
 		'order' => 'desc'
 	);
 
-	$args = array_merge($defaults, $args);
+	$args = apply_filters('em_get_event_taxonomy_args', wp_parse_args($args, $defaults));
 
 	if($args['display_as_dropdown'] === false)
 	{
@@ -883,9 +866,9 @@ function em_display_event_archives($args = array())
 		'order' => 'desc',
 		'limit' => 0
 	);
-
+	$args = wp_parse_args($args, $defaults);
+	
 	$archives = $counts = array();
-	$args = array_merge($defaults, $args);
 	$cut = ($args['type'] === 'yearly' ? 4 : 7);
 
 	$events = get_posts(

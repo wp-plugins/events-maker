@@ -1091,7 +1091,7 @@ class Events_Maker_Categories_Widget extends WP_Widget
 		$instance['title'] = apply_filters('widget_title', $instance['title'], $instance, $this->id_base);
 
 		$html = $args['before_widget'].$args['before_title'].(!empty($instance['title']) ? $instance['title'] : $this->em_defaults['title']).$args['after_title'];
-		$html .= em_display_event_categories($instance);
+		$html .= em_display_event_taxonomy('event-category', $instance);
 		$html .= $args['after_widget'];
 
 		echo $html;
@@ -1208,7 +1208,7 @@ class Events_Maker_Locations_Widget extends WP_Widget
 		$instance['title'] = apply_filters('widget_title', $instance['title'], $instance, $this->id_base);
 
 		$html = $args['before_widget'].$args['before_title'].(!empty($instance['title']) ? $instance['title'] : $this->em_defaults['title']).$args['after_title'];
-		$html .= em_display_event_locations($instance);
+		$html .= em_display_event_taxonomy('event-locations', $instance);
 		$html .= $args['after_widget'];
 
 		echo $html;
@@ -1325,7 +1325,7 @@ class Events_Maker_Organizers_Widget extends WP_Widget
 		$instance['title'] = apply_filters('widget_title', $instance['title'], $instance, $this->id_base);
 
 		$html = $args['before_widget'].$args['before_title'].(!empty($instance['title']) ? $instance['title'] : $this->em_defaults['title']).$args['after_title'];
-		$html .= em_display_event_organizers($instance);
+		$html .= em_display_event_taxonomy('event-organizer', $instance);
 		$html .= $args['after_widget'];
 
 		echo $html;

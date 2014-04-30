@@ -211,35 +211,64 @@ if (!function_exists('em_display_event_locations'))
 		
 		if(empty($post_id))
 			return false;
+		
+		$locations = em_get_locations_for($post_id);
+		
+		if(empty($locations) || is_wp_error($locations))
+			return false;
 		?>
-		<?php $taxonomy = 'event-location'; ?>
-        <?php $terms = em_get_locations_for($post_id); ?>
-        <?php if ($terms) : ?>
-        	
-        <div class="entry-meta">
-        	
-        	<span class="term-list event-location cat-links"><strong><?php _e('Location', 'events-maker'); ?>: </strong>
-        	<?php foreach ($terms as $term) : ?>
-            	<?php $term_link = get_term_link($term->slug, $taxonomy); ?>
-                <?php if(is_wp_error($term_link)) continue; ?>
-				<a href="<?php echo $term_link; ?>" class="location"><?php echo $term->name; ?></a>
-				<?php // Location details
-				if ($event_display_options['display_location_details'] === 1) : ?>
-					<?php $location_details = $term->location_meta; ?>
-					<?php if ($location_details) : ?>
-						<?php echo !empty($location_details['address']) ? $location_details['address'] : ''; ?>
-						<?php echo !empty($location_details['zip']) ? $location_details['zip'] : ''; ?>
-						<?php echo !empty($location_details['city']) ? $location_details['city'] : ''; ?>
-						<?php echo !empty($location_details['state']) ? $location_details['state'] : ''; ?>
-						<?php echo !empty($location_details['country']) ? $location_details['country'] : ''; ?>
-					<?php endif; ?>
-				<?php endif; ?>
-            <?php endforeach; ?>
-            </span>
-            
-        </div>
-        
-        <?php endif; // if event locations ?>
+		
+		<?php $output = get_the_term_list($post_id, 'event-location', __('<strong>Location: </strong>', 'events-maker'), ', ', ''); ?>
+		
+		<div class="entry-meta">
+			
+			<span class="term-list event-location cat-links">
+
+			<?php if (is_single()) : ?>
+				
+				<?php $event_display_options = get_post_meta($post_id, '_event_display_options', TRUE); // event display options ?>
+				
+				<?php if (!empty($event_display_options) && $event_display_options['display_location_details'] === 1) : ?>
+					
+					<?php $output = __('<strong>Location: </strong>', 'events-maker');
+		        	
+			        	foreach ($locations as $term) :
+							
+							$output .= '<span class="single-location term-' . $term->term_id . '">';
+			        		
+			            	$term_link = get_term_link($term->slug, 'event-location');
+			                
+			                if (is_wp_error($term_link))
+			                	continue;
+							
+							$output .= '<a href="' . $term_link . '" class="location">' . $term->name . '</a>';
+							
+							// Location details
+							$location_details = $term->location_meta;
+							if ($location_details) :
+								$output .= ' ';
+								$output .= !empty($location_details['address']) ? $location_details['address'] . ' ' : '';
+								$output .= !empty($location_details['zip']) ? $location_details['zip'] . ' ' : '';
+								$output .= !empty($location_details['city']) ? $location_details['city'] . ' ' : '';
+								$output .= !empty($location_details['state']) ? $location_details['state'] . ' ' : '';
+								$output .= !empty($location_details['country']) ? $location_details['country'] . ' ' : '';
+								$output .= ' ';
+							endif;
+							
+							$output .= '</span>';
+							
+			            endforeach; ?>
+					
+				<?php endif; // display location details ?>
+
+			<?php endif; // single ?>
+			
+			<?php echo $output; ?>
+		
+			</span>
+			
+		<div>
+
     <?php
 	}
 }
@@ -254,34 +283,63 @@ if (!function_exists('em_display_event_organizers'))
 		
 		if(empty($post_id))
 			return false;
+		
+		$organizers = em_get_organizers_for($post_id);
+		
+		if(empty($organizers) || is_wp_error($organizers))
+			return false;
 		?>
-        <?php $taxonomy = 'event-organizer'; ?>
-        <?php $terms = em_get_organizers_for($post_id); ?>
-        <?php if ($terms) : ?>
-        	
-        <div class="entry-meta">
-        	
-        	<span class="term-list event-organizer cat-links"><strong><?php _e('Organizer', 'events-maker'); ?>: </strong>
-        	<?php foreach ($terms as $term) : ?>
-            	<?php $term_link = get_term_link($term->slug, $taxonomy); ?>
-                <?php if(is_wp_error($term_link)) continue; ?>
-            	<a href="<?php echo $term_link; ?>" class="org"><?php echo $term->name; ?></a>
-            	<?php // Organizer details
-            	if ($event_display_options['display_organizer_details'] === 1) : ?>
-            		<?php $organizer_details = $term->organizer_meta; ?>
-            		<?php if ($organizer_details) : ?>
-                		<?php echo !empty($organizer_details['contact_name']) ? '<span class="fn">'.$organizer_details['contact_name'].'</span>' : ''; ?>
-                		<?php echo !empty($organizer_details['phone']) ? '<span class="tel">'.$organizer_details['phone'].'</span>' : ''; ?>
-                		<?php echo !empty($organizer_details['email']) ? '<span class="email">'.$organizer_details['email'].'</span>' : ''; ?>
-                		<?php echo !empty($organizer_details['website']) ? '<span class="url">'.$organizer_details['website'].'</span>' : ''; ?>
-            		<?php endif; ?>
-            	<?php endif; ?>
-            <?php endforeach; ?>
-            </span>
-            
-        </div>
-        
-        <?php endif; // if event organizers ?>
+		
+		<?php $output = get_the_term_list($post_id, 'event-organizer', __('<strong>Organizer: </strong>', 'events-maker'), ', ', ''); ?>
+		
+		<div class="entry-meta">
+			
+			<span class="term-list event-organizer cat-links">
+
+			<?php if (is_single()) : ?>
+				
+				<?php $event_display_options = get_post_meta($post_id, '_event_display_options', TRUE); // event display options ?>
+				
+				<?php if (!empty($event_display_options) && $event_display_options['display_organizer_details'] === 1) : ?>
+					
+					<?php $output = __('<strong>Organizer: </strong>', 'events-maker');
+		        	
+			        	foreach ($organizers as $term) :
+							
+							$output .= '<span class="single-organizer term-' . $term->term_id . '">';
+			        		
+			            	$term_link = get_term_link($term->slug, 'event-organizer');
+			                
+			                if (is_wp_error($term_link))
+			                	continue;
+							
+							$output .= '<a href="' . $term_link . '" class="organizer">' . $term->name . '</a>';
+							
+							// Location details
+							$organizer_details = $term->organizer_meta;
+							if ($organizer_details) :
+								$output .= ' ';
+								$output .= !empty($organizer_details['contact_name']) ? $organizer_details['contact_name'] . ' ' : '';
+								$output .= !empty($organizer_details['phone']) ? $organizer_details['phone'] . ' ' : '';
+								$output .= !empty($organizer_details['email']) ? $organizer_details['email'] . ' ' : '';
+								$output .= !empty($organizer_details['website']) ? $organizer_details['website'] . ' ' : '';
+								$output .= ' ';
+							endif;
+							
+							$output .= '</span>';
+							
+			            endforeach; ?>
+					
+				<?php endif; // display location details ?>
+
+			<?php endif; // single ?>
+			
+			<?php echo $output; ?>
+		
+			</span>
+			
+		<div>
+
     <?php
 	}
 }
@@ -316,7 +374,6 @@ if (!function_exists('em_display_event_tickets'))
            			<span class="tickets-label"><?php echo __('Tickets', 'events-maker'); ?>: </span>
            			<?php echo '<span class="event-ticket">'; ?>
 						<?php echo '<span class="ticket-name">' . __('Free', 'events-maker') . ': </span>'; ?>
-						<?php echo '<span class="ticket-price">' . em_get_currency_symbol($ticket['price']) . '</span>'; ?>
 					<?php echo '</span>'; ?>
        			</div>
        		<?php endif; ?>
@@ -471,7 +528,7 @@ if (!function_exists('em_display_event_occurrences'))
 					$date_output = em_format_date($date['start'], 'datetime', $format) . ' ' . $separator . ' ' . em_format_date($date['end'], 'datetime', $format);  
 				}
 				
-				printf('<span class="entry-date date"><a href="%1$s" rel="bookmark"><abbr class="dtstart" title="%2$s"></abbr><abbr class="dtend" title="%3$s"></abbr>%4$s</a></span> <span class="byline"><span class="author vcard"><a class="url fn n" href="%5$s" rel="author">%6$s</a></span></span>',
+				printf('<span class="entry-date date"><a href="%1$s" rel="bookmark"><abbr class="dtstart" title="%2$s"></abbr><abbr class="dtend" title="%3$s"></abbr>%4$s</a></span>',
 					esc_url(get_permalink()),
 					esc_attr($date['start']),
 					esc_attr($date['end']),

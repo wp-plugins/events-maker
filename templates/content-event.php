@@ -25,12 +25,7 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
 	    <header class="entry-header">
 
 	    	<?php // Display event categories
-	    	$categories = get_the_term_list($post->ID, 'event-category', __('<strong>Category: </strong>', 'events-maker'), ', ', '');
-	    	if ($categories) : ?>
-				<div class="entry-meta">
-					<span class="term-list event-category cat-links"><?php echo $categories; ?></span>
-				</div>
-			<?php endif; ?>
+	    	em_display_event_categories(); ?>
 
 	        <?php // Display the title ?>
 	        <h1 class="entry-title summary"><a href="<?php the_permalink(); ?>" class="url" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h1>
@@ -47,23 +42,14 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
 	
 				<?php // Edit link
 				edit_post_link(__('Edit', 'events-maker'), '<span class="edit-link">', '</span>'); ?>
+				
 			</div>
 			
 			<?php // Display event locations
-			$locations = get_the_term_list($post->ID, 'event-location', __('<strong>Location: </strong>', 'events-maker'), ', ', '');
-	        if ($locations) : ?>
-	        	<div class="entry-meta">
-	            	<span class="term-list event-location cat-links"><?php echo $locations; ?></span>
-	            </div>
-	        <?php endif; ?>
+			em_display_event_locations(); ?>
 	
 	        <?php // Display event organizers
-	        $organizers = get_the_term_list($post->ID, 'event-organizer', __('<strong>Organizer: </strong>', 'events-maker'), ', ', '');
-	        if ($organizers) : ?>
-	        	<div class="entry-meta">
-	            	<span class="term-list event-organizer cat-links"><?php echo $organizers; ?></span>
-	            </div>
-	        <?php endif; ?>
+	        em_display_event_organizers(); ?>
 
 	    </header>
 	    
@@ -72,15 +58,8 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
 	        <?php the_excerpt(); // Event excerpt ?>
 	        
 	    </div>
-	
-	    <footer class="entry-meta">
-			
-			<?php // Display event tags
-			$tags = get_the_term_list($post->ID, 'event-tag', __('<strong>Tags: </strong>', 'events-maker'), ' ', '');
-	        if ($tags) : ?>
-	            <span class="term-list event-tags tag-links"><?php echo $tags; ?></span>   
-	        <?php endif; ?>
-	
-	    </footer>
+
+		<?php // Display event tags
+		em_display_event_tags(); ?>
 	
 	</article>

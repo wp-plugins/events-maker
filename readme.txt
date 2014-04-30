@@ -4,7 +4,7 @@ Donate link: http://www.dfactory.eu/
 Tags: event, event categories, events management, event management, events manager, event manager, event organizer, events calendar, events maker, google map, map, locations, organizers, widget, attendance, attendee, Booking, calendar, event registration, ticket, tickets, ticketing, bookings
 Requires at least: 3.5
 Tested up to: 3.9.0
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -79,6 +79,10 @@ No questions yet.
 
 == Changelog ==
 
+= 1.1.2 =
+* Fix: Event categories, organizers and locations not displayed in theme
+* Fix: Display options notice in single event
+
 = 1.1.1 =
 * New: Catalan translation, thanks to Jordi Altimira
 * Fix: Catchable fatal error while tags/categories display
@@ -143,5 +147,6 @@ Initial release
 
 == Upgrade Notice ==
 
-= 1.1.1 =
-* New: Catalan translation, thanks to Jordi Altimira
+= 1.1.2 =
+* Fix: Event categories, organizers and locations not displayed in theme
+* Fix: Display options notice in single event

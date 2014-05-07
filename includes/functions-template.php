@@ -373,7 +373,7 @@ if (!function_exists('em_display_event_tickets'))
            		<div class="event-tickets tickets">
            			<span class="tickets-label"><?php echo __('Tickets', 'events-maker'); ?>: </span>
            			<?php echo '<span class="event-ticket">'; ?>
-						<?php echo '<span class="ticket-name">' . __('Free', 'events-maker') . ': </span>'; ?>
+						<?php echo '<span class="ticket-name">' . __('Free', 'events-maker') . '</span>'; ?>
 					<?php echo '</span>'; ?>
        			</div>
        		<?php endif; ?>

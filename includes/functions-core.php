@@ -1081,7 +1081,7 @@ function em_get_template_part($slug, $name = '')
 
 	// look in yourtheme/slug-name.php and yourtheme/events-maker/slug-name.php
 	if($name)
-		$template = locate_template(array("{$slug}-{$name}.php", 'events-maker/templates/'."{$slug}-{$name}.php"));
+		$template = locate_template(array("{$slug}-{$name}.php", 'events-maker/'."{$slug}-{$name}.php"));
 
 	// get default slug-name.php
 	if(!$template && $name && file_exists(EVENTS_MAKER_PATH."/templates/{$slug}-{$name}.php"))
@@ -1089,7 +1089,7 @@ function em_get_template_part($slug, $name = '')
 
 	// if template file doesn't exist, look in yourtheme/slug.php and yourtheme/events-maker/slug.php
 	if(!$template)
-		$template = locate_template( array( "{$slug}.php", 'events-maker/templates/'."{$slug}.php"));
+		$template = locate_template( array( "{$slug}.php", 'events-maker/'."{$slug}.php"));
 
 	$template = apply_filters('em_get_template_part', $template, $slug, $name);
 

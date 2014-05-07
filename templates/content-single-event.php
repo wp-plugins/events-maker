@@ -50,10 +50,11 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
 			</div>
 
 			<?php // Get event display options
-			$event_display_options = get_post_meta($post->ID, '_event_display_options', TRUE); ?>
+			$event_display_options = get_post_meta($post->ID, '_event_display_options', TRUE); 
+			$event_locations = em_get_locations_for($post->ID); ?>
 
 			<?php // Display Google Map
-	        if ($event_display_options['google_map'] === 1) : // if option enabled
+	        if ($event_display_options['google_map'] === 1 && (isset($event_locations) && !empty($event_locations))) : // if option enabled and any location is set for the event
 	        	em_display_google_map(); 
 	        endif; ?>
 

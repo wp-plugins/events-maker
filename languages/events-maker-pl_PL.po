@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Events Maker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-28 18:36+0100\n"
-"PO-Revision-Date: 2014-04-28 18:37+0100\n"
+"POT-Creation-Date: 2014-05-05 09:43+0100\n"
+"PO-Revision-Date: 2014-05-05 09:44+0100\n"
 "Last-Translator: Bartosz Arendt <info@dfactory.eu>\n"
 "Language-Team: dFactory <info@dfactory.pl>\n"
 "Language: pl_PL\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.6.4\n"
+"X-Generator: Poedit 1.6.5\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
 "_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_n\n"
@@ -567,18 +567,18 @@ msgid "Add image"
 msgstr "Dodaj obrazek"
 
 # @ events-maker
-#: ../events-maker.php:926
+#: ../events-maker.php:929
 msgid "Are you sure you want to reset these settings to defaults?"
 msgstr ""
 "Jesteś pewny, że chcesz zresetować te ustawienia do ustawień domyślnych?"
 
 # @ events-maker
-#: ../events-maker.php:1024 ../includes/welcome.php:48
+#: ../events-maker.php:1027 ../includes/welcome.php:48
 msgid "Support"
 msgstr "Pomoc"
 
 # @ events-maker
-#: ../events-maker.php:1050
+#: ../events-maker.php:1053
 msgid "View Calendar"
 msgstr "Zobacz kalendarz"
 
@@ -588,47 +588,49 @@ msgid "No Events"
 msgstr "Brak wydarzeń"
 
 # @ events-maker
-#: ../includes/functions-template.php:167 ../templates/content-event.php:28
+#: ../includes/functions-template.php:167
 msgid "<strong>Category: </strong>"
 msgstr "<strong>Kategoria: </strong>"
 
 # @ events-maker
-#: ../includes/functions-template.php:191 ../templates/content-event.php:79
+#: ../includes/functions-template.php:191
 msgid "<strong>Tags: </strong>"
 msgstr "<strong>Tagi: </strong>"
 
 # @ events-maker
 #: ../includes/functions-template.php:221
-msgid "Location"
-msgstr "Lokalizacja"
+#: ../includes/functions-template.php:233
+msgid "<strong>Location: </strong>"
+msgstr "<strong>Lokalizacja: </strong>"
 
 # @ events-maker
-#: ../includes/functions-template.php:264
-msgid "Organizer"
-msgstr "Organizator"
+#: ../includes/functions-template.php:293
+#: ../includes/functions-template.php:305
+msgid "<strong>Organizer: </strong>"
+msgstr "<strong>Organizator: </strong>"
 
 # @ events-maker
-#: ../includes/functions-template.php:306
-#: ../includes/functions-template.php:316 ../includes/listing.php:135
+#: ../includes/functions-template.php:364
+#: ../includes/functions-template.php:374 ../includes/listing.php:135
 #: ../includes/settings.php:277
 msgid "Tickets"
 msgstr "Bilety"
 
 # @ events-maker
-#: ../includes/functions-template.php:318 ../includes/listing.php:179
+#: ../includes/functions-template.php:376 ../includes/listing.php:179
 msgid "Free"
 msgstr "Bezpłatne"
 
 # @ events-maker
-#: ../includes/functions-template.php:328 ../includes/metaboxes.php:518
+#: ../includes/functions-template.php:385 ../includes/metaboxes.php:518
 msgid "Buy tickets URL"
 msgstr "Kup bilety na stronie"
 
-#: ../includes/functions-template.php:508
+#: ../includes/functions-template.php:565
 msgid "&laquo; Previous"
 msgstr "&laquo; Poprzednie"
 
-#: ../includes/functions-template.php:509
+#: ../includes/functions-template.php:566
 msgid "Next &raquo;"
 msgstr "Następne &raquo;"
 
@@ -1364,7 +1366,7 @@ msgstr ""
 msgid "Show past events"
 msgstr "Wyświetlanie zakończonych wydarzeń"
 
-#: ../includes/settings.php:626 ../includes/settings.php:658
+#: ../includes/settings.php:626
 msgid ""
 "Select whether to include past events in events list (works for front-end "
 "default query)."
@@ -1387,6 +1389,14 @@ msgstr ""
 #: ../includes/settings.php:656
 msgid "Show occurrences"
 msgstr "Wyświetlanie powtarzalnych wydarzeń"
+
+#: ../includes/settings.php:658
+msgid ""
+"Select whether to include event occurrences in events list (works for front-"
+"end default query)."
+msgstr ""
+"Wybierz czy w liście wydarzeń chcesz uwzględniać powtarzające się wydarzenia "
+"(dotyczy tylko frontu strony)."
 
 # @ events-maker
 #: ../includes/settings.php:674
@@ -2056,34 +2066,24 @@ msgid "Apologies, but no events were found."
 msgstr "Przykro nam, ale nie znaleziono wydarzeń."
 
 # @ events-maker
-#: ../templates/content-event.php:45 ../templates/content-single-event.php:43
+#: ../templates/content-event.php:40 ../templates/content-single-event.php:44
 msgid "Leave a comment"
 msgstr "Skomentuj"
 
 # @ events-maker
-#: ../templates/content-event.php:45 ../templates/content-single-event.php:43
+#: ../templates/content-event.php:40 ../templates/content-single-event.php:44
 msgid "1 Comment"
 msgstr "1 komentarz"
 
 # @ events-maker
-#: ../templates/content-event.php:45 ../templates/content-single-event.php:43
+#: ../templates/content-event.php:40 ../templates/content-single-event.php:44
 msgid "% Comments"
 msgstr "% komentarzy"
 
 # @ events-maker
-#: ../templates/content-event.php:49 ../templates/content-single-event.php:47
+#: ../templates/content-event.php:44 ../templates/content-single-event.php:48
 msgid "Edit"
 msgstr "Edytuj"
-
-# @ events-maker
-#: ../templates/content-event.php:53
-msgid "<strong>Location: </strong>"
-msgstr "<strong>Lokalizacja: </strong>"
-
-# @ events-maker
-#: ../templates/content-event.php:61
-msgid "<strong>Organizer: </strong>"
-msgstr "<strong>Organizator: </strong>"
 
 # @ events-maker
 #: ../templates/taxonomy-event-category.php:24
@@ -2113,6 +2113,14 @@ msgstr "Email"
 #, php-format
 msgid "Events Tag: %s"
 msgstr "Tag wydarzeń: %s"
+
+# @ events-maker
+#~ msgid "Location"
+#~ msgstr "Lokalizacja"
+
+# @ events-maker
+#~ msgid "Organizer"
+#~ msgstr "Organizator"
 
 #~ msgid "Pages on all sites were created successfully."
 #~ msgstr "Strony zostały utworzone na wszystkich stronach sieci."

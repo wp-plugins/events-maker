@@ -655,7 +655,7 @@ class Events_Maker_Settings
 			<fieldset>
 				<input id="em-show-occurrences" type="checkbox" name="events_maker_general[show_occurrences]" '.checked($this->options['general']['show_occurrences'], true, false).' /><label for="em-show-occurrences">'.__('Show occurrences', 'events-maker').'</label>
 				<br />
-				<span class="description">'.__('Select whether to include past events in events list (works for front-end default query).', 'events-maker').'</span>
+				<span class="description">'.__('Select whether to include event occurrences in events list (works for front-end default query).', 'events-maker').'</span>
 			</fieldset>
 		</div>';
 	}

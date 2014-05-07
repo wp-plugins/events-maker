@@ -1,6 +1,5 @@
 <?php
-
-if (!defined('ABSPATH')) exit; // Exit if accessed directly
+if(!defined('ABSPATH')) exit;
 
 class Events_Maker_Helper
 {
@@ -18,13 +17,13 @@ class Events_Maker_Helper
 
 		if(count($date) === 3)
 		{
-			if(checkdate($date[1], $date[2], $date[0]) === TRUE)
-				return TRUE;
+			if(checkdate($date[1], $date[2], $date[0]) === true)
+				return true;
 			else
-				return 'wrong_date';
+				return false;
 		}
 		else
-			return 'wrong_date_input';
+			return false;
 	}
 
 
@@ -49,13 +48,13 @@ class Events_Maker_Helper
 				$minutes[] = (string)(($i < 10 ? '0' : '').$i);
 			}
 
-			if(in_array($time[0], $hours, TRUE) && in_array($time[1], $minutes, TRUE))
-				return TRUE;
+			if(in_array($time[0], $hours, true) && in_array($time[1], $minutes, true))
+				return true;
 			else
-				return 'wrong_time';
+				+ false;
 		}
 		else
-			return 'wrong_time_input';
+			return false;
 	}
 
 
@@ -78,21 +77,24 @@ class Events_Maker_Helper
 			elseif($not === 3)
 				$format = 'Y-m-d H:i:s';
 			else
-				return FALSE;
+				return false;
 		}
 		else
-			return FALSE;
+			return false;
 
-		return (date($format, strtotime($date)) === $date ? $format : FALSE);
+		return (date($format, strtotime($date)) === $date ? $format : false);
 	}
 
 
 	/**
 	 * 
 	*/
-	public function is_after_date($date_before, $date_after)
+	public function is_after_date($date_before, $date_after, $strict = true)
 	{
-		return ((strtotime($date_before) > strtotime($date_after)) ? FALSE : TRUE);
+		if($strict)
+			return ((strtotime($date_before) > strtotime($date_after)) ? true : false);
+		else
+			return ((strtotime($date_before) >= strtotime($date_after)) ? true : false);
 	}
 }
 ?>

@@ -23,4 +23,12 @@ jQuery(document).ready(function($) {
 			$(this).parent().find('.checkbox-list-orgs').fadeOut(300);
 		}
 	});
+
+	$(document).on('change', '.em-show-event-thumbnail', function() {
+		if($(this).is(':checked')) {
+			$(this).parent().parent().find('.em-event-thumbnail-size').fadeIn(300);
+		} else {
+			$(this).parent().parent().find('.em-event-thumbnail-size').fadeOut(300);
+		}
+	});
 });

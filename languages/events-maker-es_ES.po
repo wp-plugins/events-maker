@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Events Maker\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-26 13:56+0100\n"
-"PO-Revision-Date: 2013-12-05 14:31+0100\n"
-"Last-Translator: jelena kovacevic <jecajeca260@gmail.com>\n"
+"PO-Revision-Date: 2014-05-12 10:01+0100\n"
+"Last-Translator: Miren Askasibar <paisaia@euskalnet.net>\n"
 "Language-Team: dFactory <info@dfactory.pl>\n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.6.5\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
 "_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
@@ -157,12 +157,12 @@ msgstr "Todas las categorías de eventos"
 # @ events-maker
 #: ../events-maker.php:596
 msgid "Parent Event Category"
-msgstr "Categoría de Evento de Padres"
+msgstr "Categoría de Evento Matriz"
 
 # @ events-maker
 #: ../events-maker.php:597
 msgid "Parent Event Category:"
-msgstr "Categoría De Evento de Padres:"
+msgstr "Categoría De Evento Matriz:"
 
 # @ events-maker
 #: ../events-maker.php:598
@@ -220,37 +220,37 @@ msgstr "Todas las Ubicaciones de Eventos"
 # @ events-maker
 #: ../events-maker.php:611
 msgid "Parent Event Location"
-msgstr "Ubicación de Evento Padre"
+msgstr "Ubicación de Evento Matriz"
 
 # @ events-maker
 #: ../events-maker.php:612
 msgid "Parent Event Location:"
-msgstr "Ubicación de Evento Padre:"
+msgstr "Ubicación de Evento Matriz:"
 
 # @ events-maker
 #: ../events-maker.php:613
 msgid "Edit Event Location"
-msgstr "Editar Ubicación Evento"
+msgstr "Editar Ubicación de Evento"
 
 # @ events-maker
 #: ../events-maker.php:614
 msgid "View Event Location"
-msgstr "Ver Ubicación Evento"
+msgstr "Ver Ubicación de Evento"
 
 # @ events-maker
 #: ../events-maker.php:615
 msgid "Update Event Location"
-msgstr "Actualizar Ubicación Evento"
+msgstr "Actualizar Ubicación de Evento"
 
 # @ events-maker
 #: ../events-maker.php:616
 msgid "Add New Event Location"
-msgstr "Agregar Ubicación Nuevo Evento"
+msgstr "Agregar Nueva Ubicación de Evento"
 
 # @ events-maker
 #: ../events-maker.php:617
 msgid "New Event Location Name"
-msgstr "Nuevo Nombre Ubicación del Evento"
+msgstr "Nuevo Nombre de Ubicación de Evento"
 
 # @ events-maker
 #: ../events-maker.php:618 ../includes/settings.php:315
@@ -277,7 +277,7 @@ msgstr "Buscar Etiquetas de Evento"
 # @ events-maker
 #: ../events-maker.php:671
 msgid "Popular Event Tags"
-msgstr "Etiquetas Populares de Eventos"
+msgstr "Etiquetas de Eventos Populares"
 
 # @ events-maker
 #: ../events-maker.php:672
@@ -349,12 +349,12 @@ msgstr "Todos los Organizadores de Eventos"
 # @ events-maker
 #: ../events-maker.php:718
 msgid "Parent Event Organizer"
-msgstr "Organizador de Eventos Padre"
+msgstr "Organizador de Eventos Matriz"
 
 # @ events-maker
 #: ../events-maker.php:719
 msgid "Parent Event Organizer:"
-msgstr "Organizador de Eventos Padre:"
+msgstr "Organizador de Eventos Matriz:"
 
 # @ events-maker
 #: ../events-maker.php:720
@@ -437,7 +437,7 @@ msgstr "Ver Evento"
 # @ events-maker
 #: ../events-maker.php:769
 msgid "Event Archive"
-msgstr "Archivos de Eventos"
+msgstr "Archivo de Eventos"
 
 # @ events-maker
 #: ../events-maker.php:770
@@ -452,7 +452,7 @@ msgstr "No se encontraron eventos"
 # @ events-maker
 #: ../events-maker.php:772
 msgid "No events found in trash"
-msgstr "No se han encontrado eventos en la basura"
+msgstr "No se han encontrado eventos en la papelera"
 
 # @ events-maker
 #: ../events-maker.php:838
@@ -463,7 +463,7 @@ msgstr "Evento actualizado. <a href=\"%s\"> Ver evento </ a>"
 # @ events-maker
 #: ../events-maker.php:839
 msgid "Custom field updated."
-msgstr "Actualizar Campo Personalizado."
+msgstr "Campo Personalizado Actualizado."
 
 # @ events-maker
 #: ../events-maker.php:840
@@ -479,7 +479,7 @@ msgstr "Evento actualizado."
 #: ../events-maker.php:843
 #, php-format
 msgid "Event restored to revision from %s"
-msgstr "Evento restaurado a la revisión de% s"
+msgstr "Evento restaurado a la revisión de %s"
 
 # @ events-maker
 #: ../events-maker.php:844
@@ -520,8 +520,8 @@ msgstr "M j, Y @ G: i"
 #, php-format
 msgid "Event draft updated. <a target=\"_blank\" href=\"%s\">Preview event</a>"
 msgstr ""
-"Borrador de eventos actualizado. <a target=\"_blank\" href=\"%s\"> Vista "
-"Previa del  evento </ a>"
+"Borrador de evento actualizado. <a target=\"_blank\" href=\"%s\"> Vista "
+"Previa del evento </ a>"
 
 # @ events-maker
 #: ../events-maker.php:893
@@ -558,7 +558,7 @@ msgstr "Fecha de Inicio"
 # @ events-maker
 #: ../includes/listing.php:44
 msgid "End Date"
-msgstr "Fecha de Final"
+msgstr "Fecha de Finalización"
 
 # @ events-maker
 #: ../includes/listing.php:114 ../templates/archive-event.php:40
@@ -584,12 +584,12 @@ msgstr "Fin"
 #: ../includes/listing.php:118 ../templates/single-event.php:42
 #: ../templates/single-event.php:48
 msgid "Tickets"
-msgstr "Boletos"
+msgstr "Entradas"
 
 # @ events-maker
 #: ../includes/listing.php:141
 msgid "Paid"
-msgstr "Pagados"
+msgstr "De pago"
 
 # @ events-maker
 #: ../includes/listing.php:154 ../templates/single-event.php:49
@@ -599,7 +599,7 @@ msgstr "Gratis"
 # @ events-maker
 #: ../includes/metaboxes.php:36
 msgid "Ticket Name"
-msgstr "Nombre del Boleto"
+msgstr "Nombre de la Entrada"
 
 # @ events-maker
 #: ../includes/metaboxes.php:37
@@ -619,7 +619,7 @@ msgstr "Fecha y Hora del Evento"
 # @ events-maker
 #: ../includes/metaboxes.php:59
 msgid "Event Tickets"
-msgstr "Boletos del Evento"
+msgstr "Entradas de Evento"
 
 # @ events-maker
 #: ../includes/metaboxes.php:118 ../includes/metaboxes.php:122
@@ -640,7 +640,7 @@ msgstr "Fecha / hora de finalización"
 # @ events-maker
 #: ../includes/metaboxes.php:123
 msgid "Are you sure you want to delete this ticket?"
-msgstr "¿Está seguro que desea eliminar este boleto?"
+msgstr "¿Está seguro que desea eliminar esta entrada?"
 
 # @ events-maker
 #: ../includes/metaboxes.php:226
@@ -655,12 +655,12 @@ msgstr "¿Es este un evento gratuito?"
 # @ events-maker
 #: ../includes/metaboxes.php:254
 msgid "Add new ticket"
-msgstr "Añadir un nuevo boleto"
+msgstr "Añadir un nueva entrada"
 
 # @ events-maker
 #: ../includes/metaboxes.php:299 ../templates/single-event.php:55
 msgid "Buy tickets URL"
-msgstr "URL para comprar boletos"
+msgstr "URL para comprar entradas"
 
 # @ events-maker
 #: ../includes/metaboxes.php:322
@@ -670,7 +670,7 @@ msgstr "Mostrar Mapa Google"
 # @ events-maker
 #: ../includes/metaboxes.php:329
 msgid "Display Tickets Info"
-msgstr "Mostrar Información de Boletos"
+msgstr "Mostrar Información de Entradas"
 
 # @ events-maker
 #: ../includes/metaboxes.php:337
@@ -705,7 +705,7 @@ msgstr "Fecha de Inicio de Eventos"
 # @ events-maker
 #: ../includes/settings.php:86
 msgid "Events end date"
-msgstr "Fecha terminación de Eventos"
+msgstr "Fecha de finalización de Eventos"
 
 # @ events-maker
 #: ../includes/settings.php:90 ../includes/widgets.php:72
@@ -739,7 +739,7 @@ msgstr "Autor"
 # @ events-maker
 #: ../includes/settings.php:98
 msgid "thumbnail"
-msgstr "miniaturas"
+msgstr "miniatura"
 
 # @ events-maker
 #: ../includes/settings.php:99
@@ -877,7 +877,7 @@ msgstr "Leer Eventos Privados"
 # @ events-maker
 #: ../includes/settings.php:155
 msgid "Manage Event Categories"
-msgstr "Gestionar Categorías  Eventos"
+msgstr "Gestionar Categorías de Eventos"
 
 # @ events-maker
 #: ../includes/settings.php:159
@@ -953,7 +953,7 @@ msgstr "en WordPress.org"
 # @ events-maker
 #: ../includes/settings.php:248
 msgid "Blog about it & link to the"
-msgstr "Escriba en blog de ​​ello y enlace a la"
+msgstr "Bloguee sobre ello y enlace a la"
 
 # @ events-maker
 #: ../includes/settings.php:248
@@ -963,7 +963,7 @@ msgstr "página del plugin"
 # @ events-maker
 #: ../includes/settings.php:249
 msgid "Check out our other"
-msgstr "Echa un vistazo a nuestros otros"
+msgstr "Eche un vistazo a nuestros otros"
 
 # @ events-maker
 #: ../includes/settings.php:249
@@ -998,7 +998,7 @@ msgstr "Usar Organizadores de Evento"
 # @ events-maker
 #: ../includes/settings.php:271
 msgid "Use Event Tickets"
-msgstr "Usar Boletos Evento"
+msgstr "Usar Entradas de Evento"
 
 #: ../includes/settings.php:272
 msgid "Currency"
@@ -1039,7 +1039,7 @@ msgstr "Mostrar enlace en el menú"
 # @ events-maker
 #: ../includes/settings.php:280
 msgid "Expire current event"
-msgstr "Expira el evento actual"
+msgstr "Expirar el evento actual"
 
 # @ events-maker
 #: ../includes/settings.php:281
@@ -1053,7 +1053,7 @@ msgstr "Primer día de la semana"
 # @ events-maker
 #: ../includes/settings.php:283
 msgid "Delete plugin settings on deactivation"
-msgstr "Eliminar configuración del plugin en desactivación"
+msgstr "Eliminar la configuración del plugin al desactivarlo"
 
 # @ events-maker
 #: ../includes/settings.php:287
@@ -1116,14 +1116,14 @@ msgstr "Etiquetas"
 msgid "Select which features would you like to enable for your events."
 msgstr ""
 "Seleccione qué características le gustaría que se habilitaran para sus "
-"eventos)."
+"eventos."
 
 #: ../includes/settings.php:359
 msgid ""
 "Select how to order your events list (works for both: admin and front-end "
 "default query)"
 msgstr ""
-"Seleccione cómo ordenar su lista de eventos (funciona tanto para: consulta "
+"Seleccione cómo ordenar su lista de eventos (funciona para ambos: consulta "
 "predeterminada admin y front-end)"
 
 #: ../includes/settings.php:380
@@ -1132,7 +1132,7 @@ msgstr "Seleccione orden de lista de eventos"
 
 #: ../includes/settings.php:401
 msgid "Select whether to include past events in events list."
-msgstr "Seleccione si desea incluir eventos pasados ​​en la lista de eventos."
+msgstr "Seleccione si desea incluir eventos pasados en la lista de eventos."
 
 #: ../includes/settings.php:424
 msgid ""
@@ -1156,11 +1156,11 @@ msgstr "Título"
 
 #: ../includes/settings.php:448
 msgid "Note: there is no menu to which you could add events archive link."
-msgstr "Nota: no hay menú al que podría añadir enlace al Archivo de eventos."
+msgstr "Nota: no hay menú al que añadir enlace al Archivo de eventos."
 
 #: ../includes/settings.php:471
 msgid "Select how to handle already started events."
-msgstr "Seleccione la forma de controlar eventos ya iniciados"
+msgstr "Seleccione la forma de gestionar eventos ya iniciados"
 
 # @ events-maker
 #: ../includes/settings.php:483
@@ -1195,12 +1195,12 @@ msgid ""
 "Enable if you want to use Event Tickets (including free events, paid events "
 "and multiple ticket types)."
 msgstr ""
-"Activar si desea utilizar Boletos de eventos (incluyendo eventos gratuitos, "
-"eventos pagados y tipos de boletos múltiples)."
+"Activar si desea utilizar Entradas de eventos (incluyendo eventos gratuitos, "
+"eventos de pago y tipos de entradas múltiples)."
 
 #: ../includes/settings.php:570
 msgid "Choose the currency that will be used for ticket prices."
-msgstr "Elija la moneda que se utilizará para el precio de los boletos."
+msgstr "Elija la moneda que se utilizará para el precio de las entradas."
 
 #: ../includes/settings.php:591
 msgid "Choose the location of the currency sign."
@@ -1211,7 +1211,7 @@ msgid ""
 "This will appear next to all the currency figures on the website. Ex. $, "
 "USD, €..."
 msgstr ""
-"Esto aparecerá junto a todas las figuras de cambio en el sitio web. Ej. $, "
+"Esto aparecerá junto a todos los símbolos de moneda en el sitio web. Ej. $, "
 "USD, € ..."
 
 #: ../includes/settings.php:626
@@ -1227,8 +1227,8 @@ msgstr "Activar si desea utilizar Etiquetas de Evento."
 #: ../includes/settings.php:668
 msgid "Enable if you want all plugin data to be deleted on deactivation."
 msgstr ""
-"Activar si desea que todos los datos de los plugins se eliminen en la "
-"desactivación."
+"Habilitar si desea que todos los datos del plugin se eliminen al "
+"desactivarlo."
 
 # @ events-maker
 #: ../includes/settings.php:690
@@ -1241,43 +1241,43 @@ msgid ""
 "folder to use."
 msgstr ""
 "Para cada una de las páginas de eventos, se utiliza la plantilla "
-"correspondiente. Para utilizar su propia plantilla simplemente darle el "
-"mismo nombre y guardar en su carpeta de temas. Por defecto, si Creador de "
-"Eventos no puede encontrar una plantilla en su directorio de temas, hará uso "
-"de su propia plantilla predeterminada. Para evitar esto, desactive esta "
-"opción. WordPress decidirá entonces qué plantilla de la carpeta de temas "
+"correspondiente. Para utilizar su propia plantilla simplemente dele el mismo "
+"nombre y guárdelo en la carpeta de su tema. Por defecto, si Creador de "
+"Eventos no puede encontrar una plantilla en el directorio de su tema, hará "
+"uso de su propia plantilla predeterminada. Para evitar esto, desactive esta "
+"opción. WordPress decidirá entonces qué plantilla de la carpeta de su tema "
 "usar."
 
 #: ../includes/settings.php:790
 msgid "General Events root slug to prefix all your events pages with."
 msgstr ""
-"Eventos Generales raíz bala para poner como prefijo a todas sus páginas "
-"eventos."
+"Slug de raíz de Eventos Generales para poner como prefijo a todas sus "
+"páginas eventos."
 
 # @ events-maker
 #: ../includes/settings.php:806
 msgid "Single event page slug."
-msgstr "Bala de la página de evento individual."
+msgstr "Slug de página de evento individual."
 
 # @ events-maker
 #: ../includes/settings.php:823
 msgid "Event Locations page slug."
-msgstr "Bala de la página de Ubicaciones de eventos."
+msgstr "Slug de página de Ubicaciones de eventos."
 
 # @ events-maker
 #: ../includes/settings.php:839
 msgid "Event Categories page slug."
-msgstr "Bala de la Página de Categorías de eventos."
+msgstr "Slug de Página de Categorías de eventos."
 
 # @ events-maker
 #: ../includes/settings.php:855
 msgid "Event Tags page slug."
-msgstr "Bala de la página de Etiquetas de Eventos."
+msgstr "Slug de página de Etiquetas de Eventos."
 
 # @ events-maker
 #: ../includes/settings.php:871
 msgid "Event Organizers page slug."
-msgstr "Bala de la página de Organizadores de Eventos."
+msgstr "Slug de página de Organizadores de Eventos."
 
 # @ events-maker
 #: ../includes/settings.php:890
@@ -1376,7 +1376,7 @@ msgstr ""
 
 #: ../includes/welcome.php:49
 msgid "dFactory Plugins"
-msgstr "Plugins de Fábrica"
+msgstr "Plugins dFactory"
 
 # @ events-maker
 #: ../includes/welcome.php:54
@@ -1408,13 +1408,13 @@ msgstr "Ubicaciones y Organizadores"
 msgid ""
 "Organize your events in reusable Categories, Tags, Locations and Organizers."
 msgstr ""
-"Organice sus eventos en Categorías reutilizables, Etiquetas, Ubicaciones y "
-"Organizadores."
+"Organice sus eventos en Categorías, Etiquetas, Ubicaciones y Organizadores "
+"reutilizables."
 
 # @ events-maker
 #: ../includes/welcome.php:88
 msgid "Multiple Event Tickets"
-msgstr "Boletos Múltiples eventos"
+msgstr "Entradas para eventos múltiples"
 
 #: ../includes/welcome.php:89
 msgid ""
@@ -1422,7 +1422,7 @@ msgid ""
 "need."
 msgstr ""
 "Crear eventos gratuitos o de pago y añadir tantos tipos diferentes de "
-"boletos como sea necesario."
+"entradas como sea necesario."
 
 #: ../includes/welcome.php:98
 msgid "6 Widgets incl. Ajax Calendar"
@@ -1433,8 +1433,8 @@ msgid ""
 "Complete set of widgets allow you to display event details anywhere in a "
 "theme."
 msgstr ""
-"Completo conjunto de widgets le permite mostrar los detalles del evento en "
-"cualquier parte de un tema."
+"Completo conjunto de widgets que le permite mostrar los detalles del evento "
+"en cualquier parte de un tema."
 
 #: ../includes/welcome.php:104
 msgid "Highly Customizable Settings"
@@ -1541,7 +1541,7 @@ msgstr "Mostrar cantidad de eventos"
 # @ events-maker
 #: ../includes/widgets.php:102
 msgid "Display Type"
-msgstr "Tipo de pantalla"
+msgstr "Mostrar tipo"
 
 # @ events-maker
 #: ../includes/widgets.php:115 ../includes/widgets.php:821
@@ -1553,7 +1553,7 @@ msgstr "Orden"
 # @ events-maker
 #: ../includes/widgets.php:127
 msgid "Limit"
-msgstr "Limite"
+msgstr "Límite"
 
 # @ events-maker
 #: ../includes/widgets.php:169 ../includes/widgets.php:183
@@ -1853,7 +1853,7 @@ msgstr "Organizador Eventos:% s"
 # @ events-maker
 #: ../templates/taxonomy-event-organizer.php:25
 msgid "Email"
-msgstr "Email"
+msgstr "Correo electrónico"
 
 # @ events-maker
 #: ../templates/taxonomy-event-tag.php:11

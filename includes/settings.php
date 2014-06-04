@@ -237,7 +237,6 @@ class Events_Maker_Settings
 						<p class="df-link inner">'.__('Created by', 'events-maker').' <a href="http://www.dfactory.eu/?utm_source=events-maker-settings&utm_medium=link&utm_campaign=created-by" target="_blank" title="dFactory - Quality plugins for WordPress"><img src="'.EVENTS_MAKER_URL.'/images/logo-dfactory.png'.'" title="dFactory - Quality plugins for WordPress" alt="dFactory - Quality plugins for WordPress" /></a></p>
 					</div>
 				</div>
-			
 				<form action="options.php" method="post">';
 
 		wp_nonce_field('update-options');

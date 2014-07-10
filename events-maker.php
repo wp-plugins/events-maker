@@ -2,7 +2,7 @@
 /*
 Plugin Name: Events Maker
 Description: Events Maker is an easy to use but flexible events management plugin made the WordPress way.
-Version: 1.1.4
+Version: 1.1.5
 Author: dFactory
 Author URI: http://www.dfactory.eu/
 Plugin URI: http://www.dfactory.eu/plugins/events-maker/
@@ -121,7 +121,7 @@ class Events_Maker
 			'event_locations_rewrite_slug' => 'location',
 			'event_organizers_rewrite_slug' => 'organizer'
 		),
-		'version' => '1.1.4'
+		'version' => '1.1.5'
 	);
 	private $transient_id = '';
 
@@ -779,7 +779,7 @@ class Events_Maker
 			'rewrite' => array(
 				'slug' => $this->options['permalinks']['event_rewrite_base'].'/'.$this->options['permalinks']['event_rewrite_slug'],
 				'with_front' => FALSE,
-				'feed'=> TRUE,
+				'feeds'=> TRUE,
 				'pages'=> TRUE
 			),
 			'has_archive' => $this->options['permalinks']['event_rewrite_base'],
@@ -846,7 +846,7 @@ class Events_Maker
 
 				wp_register_script(
 					'events-maker-edit-organizer',
-					plugins_url('/js/admin-tags.js', __FILE__),
+					EVENTS_MAKER_URL.'/js/admin-tags.js',
 					array('jquery')
 				);
 

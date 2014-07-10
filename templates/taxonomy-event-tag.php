@@ -55,7 +55,17 @@ get_header(); ?>
 
 		<?php else : ?>
 
-            <?php em_get_template_part('content', 'event-none'); ?>
+            <article id="post-0" class="post no-results not-found">
+	
+			    <header class="entry-header">
+			        <h1 class="entry-title"><?php _e('No Events Found', 'events-maker'); ?></h1>
+			    </header>
+			
+			    <div class="entry-content">
+			        <p><?php _e('Apologies, but no events were found.', 'events-maker'); ?></p>
+			    </div>
+			
+			</article>
 
         <?php endif; ?>
 

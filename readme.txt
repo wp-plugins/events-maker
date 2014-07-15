@@ -4,7 +4,7 @@ Donate link: http://www.dfactory.eu/
 Tags: event, event categories, events management, event management, events manager, event manager, event organizer, events calendar, events maker, google map, map, locations, organizers, widget, attendance, attendee, Booking, calendar, event registration, ticket, tickets, ticketing, bookings
 Requires at least: 3.5
 Tested up to: 3.9.1
-Stable tag: 1.1.5
+Stable tag: 1.1.6
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -55,6 +55,7 @@ For more information, check out plugin page at [dFactory](http://www.dfactory.eu
 * Brazilian Portuguese - by Adson Nunes
 * Catalan - by Jordi Altimira
 * Dutch - by [Heleen van den Bos](http://www.bostekst.nl/)
+* French - by Marc Abel
 * Japanese - by stranger-jp
 * Norwegian - by Anders Kleppe
 * Polish - by Bartosz Arendt
@@ -80,6 +81,9 @@ No questions yet.
 4. screenshot-4.png
 
 == Changelog ==
+
+= 1.1.6 =
+* New: French translation, thanks to Marc Abel
 
 = 1.1.5 =
 * New: Norwegian translation, thanks to Anders Kleppe
@@ -160,5 +164,5 @@ Initial release
 
 == Upgrade Notice ==
 
-= 1.1.5 =
-* New: Norwegian translation, thanks to Anders Kleppe
+= 1.1.6 =
+* New: French translation, thanks to Marc Abel

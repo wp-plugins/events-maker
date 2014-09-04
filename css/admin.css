@@ -1,22 +1,27 @@
 /* Events settings */
-#em_available_functions .ui-button { margin-bottom: 5px; }
-#em_available_functions p.description { margin-top: -1px; }
-.events-maker-settings { width:68%; margin-right:20px; }
-.events-maker-settings h3 { font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", sans-serif; font-weight: bold; line-height:20px; }
-.events-maker-settings hr, .df-credits hr { border: solid #ddd; border-width: 1px 0 0; clear: both; height: 0; -moz-box-shadow: 0px 1px 0px #fff; -webkit-box-shadow: 0px 1px 0px #fff; box-shadow: 0px 1px 0px #fff; margin:15px 0; }
-.events-maker-settings hr, .df-credits hr { border: solid #ddd; border-width: 1px 0 0; clear: both; height: 0; -moz-box-shadow: 0px 1px 0px #fff; -webkit-box-shadow: 0px 1px 0px #fff; box-shadow: 0px 1px 0px #fff; margin:15px 0; }
-.events-maker-settings .widefat th { font-size: 12px; line-height: 1.3em; padding: 7px 7px 8px; text-align: left; }
-.df-credits { width:28%; max-width:350px; margin-top:25px; border:1px solid #ddd; background:#fcfcfc; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; }
-.df-credits h3 { margin-top:5px; }
-.df-credits h3.metabox-title { background: #f9f9f9 url(images/bg_fallback.png) 0 -50px repeat-x; background: -moz-linear-gradient(top, #2e9fd2 0%, #21759B 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#2e9fd2), color-stop(100%,#21759B)); background: -webkit-linear-gradient(top, #2e9fd2 0%,#21759B 100%); background: -o-linear-gradient(top, #2e9fd2 0%,#21759B 100%); background: -ms-linear-gradient(top, #2e9fd2 0%,#21759B 100%); background: linear-gradient(top, #2e9fd2 0%,#21759B 100%); -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) inset; -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) inset;	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) inset;	border: 1px solid; border-color: #21759b; border-bottom-color: #1e6a8d; -webkit-box-shadow: inset 0 1px 0 rgba(120,200,230,0.5); box-shadow: inset 0 1px 0 rgba(120,200,230,0.5); color: #fff; text-decoration: none; text-shadow: 0 1px 0 rgba(0,0,0,0.5); margin:0; line-height:32px; font-weight:normal; padding:0 10px; }
-.df-credits .inner { padding:15px 10px; }
-.df-credits .df-link { font-family: Georgia, "Times New Roman", "Bitstream Charter", Times, serif; font-style:italic; margin:0; }
+.df-credits { float: right; width: 280px; background: #fff; margin: 20px -300px 20px 20px; position: relative; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05); }
+.df-credits .inner { padding-left: 10px; padding-right: 10px; }
+.df-credits h3 { font-size: 14px; line-height: 1.4; margin: 0;  padding: 8px 12px; border-bottom: 1px solid #eee; }
+.df-credits .df-link { font-family: Georgia, "Times New Roman", "Bitstream Charter", Times, serif; font-style:italic; padding-bottom: 10px; margin: 0; }
 .df-credits .df-link a { vertical-align: middle; padding: 5px 0 0 4px; }
+.events-maker-settings .df-credits form { min-width: 260px; margin-bottom: 1em; }
+.events-maker-settings .df-credits form input { margin: 0; padding: 0; }
+.events-maker-settings { margin-right: 300px; }
+.events-maker-settings hr, .df-credits hr { border: solid #eee; border-width: 1px 0 0; clear: both; height: 0; }
+.events-maker-settings form { float: left; min-width: 463px; width: auto; }
+.events-maker-settings fieldset span.description { margin-bottom: 8px; margin-top: 4px; display: block; }
+.events-maker-settings .ui-button { margin-bottom: 5px; }
+.events-maker-settings .description { font-size: 13px; margin-bottom: 8px; }
+.events-maker-settings span.description code strong { font-weight: bold; }
+
+/* All Mobile Sizes (devices and browser) */
+@media only screen and (max-width: 959px) {
+	.df-credits { width: 100%; float: none; margin: 20px 0; }
+	.events-maker-settings { margin-right: 0; }
+}
 
 /* Events list */
 .tablenav.top .alignleft.actions select[name="m"] { display: none; }
-.wp-list-table #title { width:20%; }
-.wp-list-table #author { width: auto;}
 
 /* Widgets screen */
 ul.terms-checkbox-list, ul.terms-checkbox-list li {
@@ -31,15 +36,43 @@ ul.terms-checkbox-list.depth-level-2 {
 ul.terms-checkbox-list.depth-level-3 {
 	margin-left: 30px;
 }
+ul.terms-checkbox-list.depth-level-4 {
+	margin-left: 40px;
+}
 .events-maker-list { margin: 0 0 1em; padding: 0; }
-.checkbox-list { border: 1px solid #dfdfdf; background:#fff; max-height: 200px; min-height: 42px; overflow: auto; padding: 0.5em 0.9em; margin: 0.5em 0 0; }
+.checkbox-list { border: 1px solid #dfdfdf; background: #fff; max-height: 200px; min-height: 16px; overflow: auto; padding: 0.5em 0.9em; margin: 0.5em 0 0; }
 
 /* Events edit screen */
-#event-date-time-box div { padding:5px; }
-#event-date-time-box #event_recurrence_details { padding:5px 0; }
-#event-date-time-box .event_recurrence_type { padding:5px 0; }
-#event-date-time-box label { display:inline-block; width:20%; }
+#poststuff #event-date-time-box .inside { margin-top: 10px; }
+#event-date-time-box label { display: inline-block; width: 20%; }
+#event-date-time-box .event-date-time { padding: 5px 0; }
+#event-date-time-box .dashicons { font-size: 14px; line-height: 15px; vertical-align: middle; }
+#event-date-time-box .date-time-row, #event-date-time-box .event-custom { font-size: 13px; line-height: 1.5; margin: 1em 0; }
+#event-date-time-box fieldset label { display: inline-block; margin: 0.25em 0.5em 0.25em 0; width: auto; }
+
+#event-cost-tickets-box .event_ticket_delete { margin-left: 5px; }
+#event-cost-tickets-box .dashicons { font-size: 14px; line-height: 15px; vertical-align: middle; }
 
 /* Edit Event Location */
 #event-google-map { width: 95%; height: 340px; }
 #event-google-map.event-minimap { height: 200px; }
+
+/* Edit Event Organizer */
+#em-tax-image-buttons input { float: left; margin: 2px 5px 0 0; width: auto; }
+#em-tax-image-preview { clear: both; padding-top: 10px; width: 95%; }
+#em-tax-image-preview img { max-width: 100%; }
+#em-tax-image-preview.edit img { max-width: 220px; }
+#em-tax-image-buttons .em-spinner {
+	display: none;
+	float: left;
+	position: relative;
+	top: 5px;
+	background: url('../../../../wp-admin/images/wpspin_light.gif') no-repeat;
+	background-size: 16px 16px;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+	margin: 0;
+	padding: 0;
+	width: 16px;
+	height: 16px;
+}

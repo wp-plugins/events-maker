@@ -1,30 +1,4 @@
 <?php
-/*
-SELECT pm1.meta_value, wp_posts.*
-
-FROM wp_posts 
-
-INNER JOIN wp_postmeta AS pm1 ON (wp_posts.ID = pm1.post_id)
-INNER JOIN wp_postmeta AS pm2 ON (wp_posts.ID = pm1.post_id)
-
-WHERE wp_posts.post_type = 'event' AND (wp_posts.post_status = 'publish')
-AND(
-(
-((pm1.meta_key = '_es' OR pm1.meta_key = '_event_start_date') AND CAST(pm1.meta_value AS DATETIME) >= '2014-04-06 00:00:00' AND CAST(pm1.meta_value AS DATETIME) <= '2014-04-19 23:59:00')
-AND ((pm2.meta_key = '_ee' OR pm2.meta_key = '_event_end_date') AND CAST(pm2.meta_value AS DATETIME) >= '2014-04-06 00:00:00' AND CAST(pm2.meta_value AS DATETIME) <= '2014-04-19 23:59:00')
-))
-
-GROUP BY pm1.meta_id
-
-ORDER BY wp_posts.post_date DESC
-
-show_recurrence
-zapisac czy wydarzenie jest rekurencyjne w bazie - na tej podstawie uzywac _es/_ee lub _event_start_date/_event_end_date
-*/
-//todo	dodac sprawdzanie show_past_events do poszczegolnych funkcji query i w functions
-//todo	powtarzalne custom wp query nie dziala parametr show occurrences
-//todo	w przypadku podania event_start_after i event_end_before zwraca nieprawdilowe wyniki (za duzo meta)
-
 if(!defined('ABSPATH')) exit;
 
 new Events_Maker_Query($events_maker);
@@ -51,6 +25,7 @@ class Events_Maker_Query
 		add_filter('posts_join', array(&$this, 'posts_join'), 10, 2);
 		add_filter('posts_where', array(&$this, 'posts_where'), 10, 2);
 		add_filter('posts_orderby', array(&$this, 'posts_orderby'), 10, 2);
+		add_filter('request', array(&$this, 'feed_request'));
 	}
 
 
@@ -629,6 +604,18 @@ class Events_Maker_Query
 
 			$query->set('meta_query', $meta_args);
 		}
+	}
+
+
+	/**
+	 * 
+	*/
+	public function feed_request($feeds)
+	{
+		if(isset($feeds['feed']) && !isset($feeds['post_type']) && $this->options['general']['events_in_rss'] === true)
+			$feeds['post_type'] = array('post', 'event');
+
+		return $feeds;
 	}
 }
 ?>

@@ -399,18 +399,21 @@ class Events_Maker_Shortcodes
 			wp_enqueue_script('events-maker-front-calendar-lang');
 		}
 
+		// filter hook for calendar events args, allow any query modifications
+		$args = apply_filters('em_get_full_calendar_events_args', $args);
+
 		wp_localize_script(
 			'events-maker-front-calendar',
 			'emCalendarArgs',
 			array(
 				'firstWeekDay' => ($this->options['general']['first_weekday'] === 7 ? 0 : 1),
-				'events' => $this->get_calendar_events($args)
+				'events' => $this->get_full_calendar_events($args)
 			)
 		);
 
 		wp_register_style(
 			'events-maker-front-calendar',
-			EVENTS_MAKER_URL.'/assets/fullcalendar/fullcalendar.css'
+			EVENTS_MAKER_URL.'/assets/fullcalendar/fullcalendar.min.css'
 		);
 
 		wp_register_style(
@@ -431,7 +434,7 @@ class Events_Maker_Shortcodes
 	/**
 	 * 
 	*/
-	private function get_calendar_events($args)
+	private function get_full_calendar_events($args)
 	{
 		$events = em_get_events($args);
 		$calendar = array();
@@ -441,25 +444,49 @@ class Events_Maker_Shortcodes
 
 		foreach($events as $event)
 		{
-			$id = $event->ID;
+			$classes = array();
+			$event_categories = wp_get_post_terms($event->ID, 'event-category');
+			$event_tags = wp_get_post_terms($event->ID, 'event-tag');
 
-			if(em_is_recurring($id))
+			if(!empty($event_categories) && !is_wp_error($event_categories))
+			{
+				$term_meta = get_option('event_category_'.$event_categories[0]->term_id);
+
+				foreach($event_categories as $category)
+				{
+					$classes[] = "fc-event-cat-".$category->slug;
+					$classes[] = "fc-event-cat-".$category->term_id;
+				}
+			}
+
+			if(!empty($event_tags) && !is_wp_error($event_tags))
+			{
+				foreach($event_tags as $tag)
+				{
+					$classes[] = "fc-event-tag-".$tag->slug;
+					$classes[] = "fc-event-tag-".$tag->term_id;
+				}
+			}
+
+			if(em_is_recurring($event->ID))
 			{
 				$start = $event->event_occurrence_start_date;
 				$end = $event->event_occurrence_end_date;
 			}
 			else
 			{
-				$start = get_post_meta($id, '_event_start_date', true);
-				$end = get_post_meta($id, '_event_end_date', true);
+				$start = get_post_meta($event->ID, '_event_start_date', true);
+				$end = get_post_meta($event->ID, '_event_end_date', true);
 			}
 
 			$calendar[] = array(
 				'title' => $event->post_title,
 				'start' => $start,
 				'end' => $end,
-				'allDay' => em_is_all_day($id),
-				'url' => get_permalink($id)
+				'className' => implode(' ', $classes),
+				'allDay' => em_is_all_day($event->ID),
+				'url' => get_permalink($event->ID),
+				'backgroundColor' => (isset($term_meta['color']) ? $term_meta['color'] : '')
 			);
 		}
 

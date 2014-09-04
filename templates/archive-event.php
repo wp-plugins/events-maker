@@ -2,7 +2,7 @@
 /**
  * The template for displaying event archives.
  *
- * Override this template by copying it to yourtheme/archive-event.php or yourtheme/events-maker/archive-event.php
+ * Override this template by copying it to yourtheme/archive-event.php
  *
  * @author 	Digital Factory
  * @package Events Maker/Templates
@@ -11,72 +11,96 @@
  
 if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
-get_header(); ?>
+get_header('events'); ?>
 
-	<section id="primary" class="content-area">
+	<?php
+	/**
+	 * em_before_main_content hook
+	 *
+	 * @hooked em_output_content_wrapper - 10 (outputs opening divs for the content)
+	 * @hooked em_breadcrumbs - 20
+	 */
+	do_action('em_before_main_content');
+	?>
+	
+		<header class="archive-header">
+			
+			<?php if (apply_filters('em_show_page_title', true)) : ?>
 
-		<div id="content" class="site-content" role="main">
+				<h1 class="archive-title"><?php em_page_title(); ?></h1>
 
-		<?php if (have_posts()) : ?>
+			<?php endif; ?>
+			
+			<?php 
+			/**
+			 * em_archive_description hook
+			 *
+			 * @hooked em_display_loop_event_google_map - 10
+			 * @hooked em_display_location_info - 20
+			 * @hooked em_display_organizer_info - 20
+			 * @hooked em_taxonomy_archive_description - 30
+			 */
+			do_action('em_archive_description');
+			?>
 
-			<header class="archive-header">
+		</header>
 
-				<h1 class="archive-title">
-					<?php
-					if (em_is_event_archive('day')) :
-						printf(__('Event Daily Archives: %s', 'events-maker'), '<span>' . get_the_date() . '</span>');
-					elseif ( em_is_event_archive('month')) :
-						printf(__('Event Monthly Archives: %s', 'events-maker'), '<span>' . get_the_date(_x('F Y', 'monthly archives date format', 'events-maker')) . '</span>');
-					elseif ( em_is_event_archive('year')) :
-						printf(__('Event Yearly Archives: %s', 'events-maker'), '<span>' . get_the_date(_x('Y', 'yearly archives date format', 'events-maker')) . '</span>');
-					else :
-						_e( 'Events', 'events-maker' );
-					endif; ?>
-				</h1>
-				
-			</header>
+		<?php // start the loop
+		if (have_posts()) : ?>
+			
+			<?php
+			/**
+			 * em_before_events_loop hook
+			 */
+			do_action('em_before_events_loop');
+			?>
 
-			<?php // Start the Loop
+			<?php
 			while (have_posts()) : the_post(); ?>
 				
 				<?php em_get_template_part('content', 'event'); ?>
 
 			<?php endwhile; ?>
-
-			<?php // Pagination
-            if ($wp_query->max_num_pages > 1) : ?>
-
-                <nav id="nav-below" class="navigation paging-navigation" role="navigation">
-                	
-                	<div class="pagination loop-pagination">
-
-                    	<?php em_paginate_links(); ?>
-                    	
-                   	</div>
-
-                </nav>
-
-            <?php endif; ?>
+			
+			<?php
+			/**
+			 * em_after_events_loop hook
+			 * 
+			 * @hooked em_paginate_links - 10
+			 */
+			do_action('em_after_events_loop');
+			?>
 
 		<?php else : ?>
 
             <article id="post-0" class="post no-results not-found">
-	
-			    <header class="entry-header">
-			        <h1 class="entry-title"><?php _e('No Events Found', 'events-maker'); ?></h1>
-			    </header>
 			
 			    <div class="entry-content">
+			    	
 			        <p><?php _e('Apologies, but no events were found.', 'events-maker'); ?></p>
+			        
 			    </div>
 			
 			</article>
 
         <?php endif; ?>
 
-		</div>
+	<?php
+	/**
+	 * em_after_main_content hook
+	 *
+	 * @hooked em_output_content_wrapper_end - 10 (outputs closing divs for the content)
+	 */
+	do_action('em_after_main_content');
+	?>
 
-	</section>
-
-<?php get_sidebar(); ?>
-<?php get_footer(); ?>
+	<?php
+	/**
+	 * em_get_sidebar hook
+	 *
+	 * @hooked em_get_sidebar - 10
+	 */
+	do_action('em_get_sidebar');
+	?>
+	
+<?php get_footer('events'); ?>

@@ -11,12 +11,15 @@
  
 if(!defined('ABSPATH')) exit;
 
-// Display events list
+/**
+ * Display events list
+ */
 if (!function_exists('em_display_events'))
 {
 	function em_display_events($args = array())
 	{
 		$options = get_option('events_maker_general');
+		
 		$defaults = array(
 			'number_of_events' => 5,
 			'thumbnail_size' => 'thumbnail',
@@ -26,6 +29,7 @@ if (!function_exists('em_display_events'))
 			'order_by' => 'start',
 			'order' => 'asc',
 			'show_past_events' => $options['show_past_events'],
+			'show_occurrences' => $options['show_occurrences'],
 			'show_event_thumbnail' => true,
 			'show_event_excerpt' => false,
 			'no_events_message' => __('No Events', 'events-maker'),
@@ -34,13 +38,14 @@ if (!function_exists('em_display_events'))
 		);
 	
 		$args = apply_filters('em_display_events_args', array_merge($defaults, $args));
-	
+
 		$events_args = array(
 			'post_type' => 'event',
 			'suppress_filters' => false,
 			'posts_per_page' => ($args['number_of_events'] === 0 ? -1 : $args['number_of_events']),
 			'order' => $args['order'],
-			'event_show_past_events' => (bool)$args['show_past_events']
+			'event_show_past_events' => (bool)$args['show_past_events'],
+			'event_show_occurrences' => (bool)$args['show_occurrences']
 		);
 	
 		if(!empty($args['categories']))
@@ -85,67 +90,29 @@ if (!function_exists('em_display_events'))
 			$events_args['orderby'] = 'date';
 		else
 			$events_args['orderby'] = 'title';
-	
-		$events = new WP_Query($events_args);
-	
-		if($events->have_posts())
+			
+		$events = get_posts($events_args);
+		
+		if ($events)
 		{
-			$html = '
-			<ul>';
-	
-			while($events->have_posts())
+			ob_start();
+			
+			echo apply_filters('em_display_events_wrapper_start', '<ul class="events-list">');
+			
+			foreach ($events as $post)
 			{
-				$events->the_post();
-				$all_day_event = get_post_meta($events->post->ID, '_event_all_day', true);
-				$start_date = get_post_meta($events->post->ID, '_event_start_date', true);
-				$end_date = get_post_meta($events->post->ID, '_event_end_date', true);
-				$format = array('date' => $args['date_format'], 'time' => $args['time_format']);
-				$format_c = array('date' => 'Y-m-d', 'time' => '');
-				$same_dates = (bool)(em_format_date($start_date, 'date', $format_c) === em_format_date($end_date, 'date', $format_c));
-				$end_date_html = ' -
-					<span class="event-end-date post-date">
-						<abbr class="dtend" title="%s">%s</abbr>
-					</span>';
-	
-				$html .= '
-				<li>
-					<span class="event-start-date post-date">
-						<abbr class="dtstart" title="'.$start_date.'">'.em_format_date($start_date, ($all_day_event === '0' ? 'datetime' : 'date'), $format).'</abbr>
-					</span>';
-	
-				if($all_day_event === '1' && $same_dates === false)
-					$html .= sprintf($end_date_html, $end_date, em_format_date($end_date, 'date', $format));
-				elseif($all_day_event === '0')
-					$html .= sprintf($end_date_html, $end_date, em_format_date($end_date, ($same_dates === true ? 'time' : 'datetime'), $format));
-	
-				$html .= '
-					<br />';
-	
-				if($args['show_event_thumbnail'] === true && has_post_thumbnail($events->post->ID))
-				{
-					$html .= '
-					<span class="event-thumbnail">
-						'.get_the_post_thumbnail($events->post->ID, $args['thumbnail_size']).'
-					</span>';
-				}
-	
-				$html .= '
-					<a class="event-title" href="'.get_permalink($events->post->ID).'">'.$events->post->post_title.'</a>
-					<br />';
-	
-				if($args['show_event_excerpt'] === true)
-					$html .= '
-					<span class="event-excerpt">
-						'.get_the_excerpt().'
-					</span>';
-	
-				$html .= '
-				</li>';
+				setup_postdata($post);
+				
+				em_get_template('content-widget-event.php', array($post, $args));
 			}
-	
-			$html .= '
-			</ul>';
-	
+			
+			wp_reset_postdata();
+			
+			echo apply_filters('em_display_events_wrapper_end', '</ul>');
+			
+			$html = ob_get_contents();
+			ob_end_clean();
+			
 			return apply_filters('em_display_events', $html);
 		}
 		else
@@ -154,7 +121,9 @@ if (!function_exists('em_display_events'))
 }
 
 
-// Display event categories
+/**
+ * Display event categories
+ */
 if (!function_exists('em_display_event_categories'))
 {
 	function em_display_event_categories($post_id = 0)
@@ -178,7 +147,9 @@ if (!function_exists('em_display_event_categories'))
 }
 
 
-// Display event tags
+/**
+ * Display event tags
+ */
 if (!function_exists('em_display_event_tags'))
 {
 	function em_display_event_tags($post_id = 0)
@@ -202,7 +173,9 @@ if (!function_exists('em_display_event_tags'))
 }
 
 
-// Display event locations
+/**
+ * Display event locations
+ */
 if (!function_exists('em_display_event_locations'))
 {
 	function em_display_event_locations($post_id = 0)
@@ -267,14 +240,16 @@ if (!function_exists('em_display_event_locations'))
 		
 			</span>
 			
-		<div>
+		</div>
 
     <?php
 	}
 }
 
 
-// Display event organizers
+/**
+ * Display event organizers
+ */
 if (!function_exists('em_display_event_organizers'))
 {
 	function em_display_event_organizers($post_id = 0)
@@ -345,7 +320,9 @@ if (!function_exists('em_display_event_organizers'))
 }
 
 
-// Display event tickets
+/**
+ * Display event tickets
+ */
 if (!function_exists('em_display_event_tickets'))
 {
 	function em_display_event_tickets($post_id = 0)
@@ -354,54 +331,36 @@ if (!function_exists('em_display_event_tickets'))
 		
 		if(empty($post_id))
 			return false;
-		?>
-		<div class="entry-meta">
-			
-           	<?php // Tickets list 
-           	$tickets = em_get_tickets($post_id);?>
-           	<?php if ($tickets) : ?>
-           		<div class="event-tickets tickets">
-           			<span class="tickets-label"><?php echo __('Tickets', 'events-maker'); ?>: </span>
-               		<?php foreach ($tickets as $ticket) : ?>
-               			<?php echo '<span class="event-ticket">'; ?>
-							<?php echo '<span class="ticket-name">' . esc_html($ticket['name']) . ': </span>'; ?>
-							<?php echo '<span class="ticket-price">' . esc_html(em_get_currency_symbol($ticket['price'])) . '</span>'; ?>
-						<?php echo '</span>'; ?>
-               		<?php endforeach; ?>
-           		</div>
-           	<?php else : ?>
-           		<div class="event-tickets tickets">
-           			<span class="tickets-label"><?php echo __('Tickets', 'events-maker'); ?>: </span>
-           			<?php echo '<span class="event-ticket">'; ?>
-						<?php echo '<span class="ticket-name">' . __('Free', 'events-maker') . '</span>'; ?>
-					<?php echo '</span>'; ?>
-       			</div>
-       		<?php endif; ?>
-       		
-       		<?php // Tickets URL
-       		$tickets_url = get_post_meta($post_id, '_event_tickets_url', true); ?>
-       		<?php if ($tickets_url) : ?>
-       			<div class="event-tickets-url tickets">
-       				<span class="tickets-url-label"><?php _e('Buy tickets URL', 'events-maker'); ?>: </span>
-       				<a href="<?php echo esc_url($tickets_url); ?>" class="tickets-url-link" rel="nofollow" target="_blank"><?php echo esc_url($tickets_url); ?></a>
-       			</div>
-       		<?php endif; ?>
-       		
-   		</div>
-	<?php
+		
+		em_get_template('single-event/tickets.php');
+
 	}
 }
 
-// Display event date
+
+/**
+ * Display event date
+ */
 if (!function_exists('em_display_event_date'))
 {
-	function em_display_event_date($format = '')
+	function em_display_event_date($format = '', $args = array())
 	{
 		global $post;
 		
 		$date 			= em_get_the_date($post->ID, array('format' => array('date' => 'Y-m-d', 'time' => 'G:i')));
 		$all_day_event 	= em_is_all_day($post->ID);
-		$separator		= ' - ';
+		$html			= '';
+		
+		// default args
+		$defaults = array(
+			'separator' => ' - ',
+			'format' => 'link',
+			'before' => '',
+			'after' => '',
+			'show_author_link' => false,
+			'echo' => true
+		);
+		$args = apply_filters('em_display_event_date_args', wp_parse_args($args, $defaults));
 		
 		// date format options
 		$options = get_option('events_maker_general');
@@ -430,7 +389,7 @@ if (!function_exists('em_display_event_date'))
 			// more than one day
 			else
 			{
-				$date_output = implode(' '.$separator.' ', $date); 
+				$date_output = implode(' '.$args['separator'].' ', $date); 
 			}
 		}
 		// is not all day, one day, different hours
@@ -439,40 +398,81 @@ if (!function_exists('em_display_event_date'))
 			// one day only
 			if(em_format_date($date['start'], 'date') === em_format_date($date['end'], 'date'))
 			{
-				$date_output = em_format_date($date['start'], 'datetime', $format);
+				$date_output = em_format_date($date['start'], 'datetime', $format)  . ' ' . $args['separator'] . ' ' . em_format_date($date['end'], 'time', $format); 
 			}
 			// more than one day
 			else
 			{
-				$date_output = em_format_date($date['start'], 'datetime', $format) . ' ' . $separator . ' ' . em_format_date($date['end'], 'datetime', $format); 
+				$date_output = em_format_date($date['start'], 'datetime', $format) . ' ' . $args['separator'] . ' ' . em_format_date($date['end'], 'datetime', $format); 
 			}
 		}
 		// any other case
 		else 
 		{		
-			$date_output = em_format_date($date['start'], 'datetime', $format) . ' ' . $separator . ' ' . em_format_date($date['end'], 'datetime', $format);  
+			$date_output = em_format_date($date['start'], 'datetime', $format) . ' ' . $args['separator'] . ' ' . em_format_date($date['end'], 'datetime', $format);  
 		}
 		
-		printf('<span class="entry-date date"><a href="%1$s" rel="bookmark"><abbr class="dtstart" title="%2$s"></abbr><abbr class="dtend" title="%3$s"></abbr>%4$s</a></span> <span class="byline"><span class="author vcard"><a class="url fn n" href="%5$s" rel="author">%6$s</a></span></span>',
-			esc_url(get_permalink()),
-			esc_attr($date['start']),
-			esc_attr($date['end']),
-			esc_html($date_output),
-			esc_url(get_author_posts_url(get_the_author_meta('ID'))),
-			get_the_author()
-		);
+		// generate output
+		$html .= $args['before'];
+		
+		// output format
+		if ($args['format'] == 'link')
+			$html .= sprintf('<span class="entry-date date"><a href="%1$s" rel="bookmark"><abbr class="dtstart" title="%2$s"></abbr><abbr class="dtend" title="%3$s"></abbr>%4$s</a></span>',
+				esc_url(get_permalink()),
+				esc_attr($date['start']),
+				esc_attr($date['end']),
+				esc_html($date_output)
+			);
+		else
+			$html .= sprintf('<span class="entry-date date"><abbr class="dtstart" title="%1$s"></abbr><abbr class="dtend" title="%2$s"></abbr>%3$s</span>',
+				esc_attr($date['start']),
+				esc_attr($date['end']),
+				esc_html($date_output)
+			);
+		
+		// author link
+		if ($args['show_author_link'] === true)
+		{
+			$html .= sprintf('<span class="byline"><span class="author vcard"><a class="url fn n" href="%1$s" rel="author">%2$s</a></span></span>',
+				esc_url(get_author_posts_url(get_the_author_meta('ID'))),
+				get_the_author()
+			);
+		}
+		
+		$html .= $args['after'];
+		
+		$html = apply_filters('em_display_event_date', $html);
+		
+		if ($args['echo'] === true)
+			echo $html;
+		else
+			return $html;
+		
 	}
 }
 
 
-// Display event occurrences date
+/**
+ * Display event occurrences date
+ */
 if (!function_exists('em_display_event_occurrences'))
 {
-	function em_display_event_occurrences($format = '')
+	function em_display_event_occurrences($format = '', $args = array())
 	{
 		$occurrences 	= em_get_occurrences();
 		$all_day_event 	= em_is_all_day();
-		$separator		= ' - ';
+		$html			= '';
+		
+		// default args
+		$defaults = array(
+			'separator' => ' - ',
+			'format' => 'link',
+			'before' => '',
+			'after' => '',
+			'show_author_link' => false,
+			'echo' => true
+		);
+		$args = apply_filters('em_display_event_occurrences_args', wp_parse_args($args, $defaults));
 		
 		// date format options
 		$options = get_option('events_maker_general');
@@ -485,6 +485,9 @@ if (!function_exists('em_display_event_occurrences'))
 			$date_format = (!empty($format['date']) ? $format['date'] : $date_format);
 			$time_format = (!empty($format['time']) ? $format['time'] : $time_format);
 		}
+		
+		// generate output
+		$html .= $args['before'];
 		
 		if (!empty($occurrences))
 		{
@@ -505,7 +508,7 @@ if (!function_exists('em_display_event_occurrences'))
 					// more than one day
 					else
 					{
-						$date_output = implode(' '.$separator.' ', $date); 
+						$date_output = implode(' '. $args['separator'] .' ', $date); 
 					}
 				}
 				// is not all day, one day, different hours
@@ -514,64 +517,331 @@ if (!function_exists('em_display_event_occurrences'))
 					// one day only
 					if(em_format_date($date['start'], 'date') === em_format_date($date['end'], 'date'))
 					{
-						$date_output = em_format_date($date['start'], 'datetime', $format);
+						$date_output = em_format_date($date['start'], 'datetime', $format)  . ' ' . $args['separator'] . ' ' . em_format_date($date['end'], 'time', $format); 
 					}
 					// more than one day
 					else
 					{
-						$date_output = em_format_date($date['start'], 'datetime', $format) . ' ' . $separator . ' ' . em_format_date($date['end'], 'datetime', $format); 
+						$date_output = em_format_date($date['start'], 'datetime', $format) . ' ' . $args['separator'] . ' ' . em_format_date($date['end'], 'datetime', $format); 
 					}
 				}
 				// any other case
 				else 
 				{		
-					$date_output = em_format_date($date['start'], 'datetime', $format) . ' ' . $separator . ' ' . em_format_date($date['end'], 'datetime', $format);  
+					$date_output = em_format_date($date['start'], 'datetime', $format) . ' ' . $args['separator'] . ' ' . em_format_date($date['end'], 'datetime', $format);  
 				}
 				
-				printf('<span class="entry-date date"><a href="%1$s" rel="bookmark"><abbr class="dtstart" title="%2$s"></abbr><abbr class="dtend" title="%3$s"></abbr>%4$s</a></span>',
-					esc_url(get_permalink()),
-					esc_attr($date['start']),
-					esc_attr($date['end']),
-					esc_html($date_output)
-				);
+				// output format
+				if ($args['format'] == 'link')
+					$html .= sprintf('<span class="entry-date date"><a href="%1$s" rel="bookmark"><abbr class="dtstart" title="%2$s"></abbr><abbr class="dtend" title="%3$s"></abbr>%4$s</a></span>',
+						esc_url(get_permalink()),
+						esc_attr($date['start']),
+						esc_attr($date['end']),
+						esc_html($date_output)
+					);
+				else
+					$html .= sprintf('<span class="entry-date date"><abbr class="dtstart" title="%1$s"></abbr><abbr class="dtend" title="%2$s"></abbr>%3$s</span>',
+						esc_attr($date['start']),
+						esc_attr($date['end']),
+						esc_html($date_output)
+					);
 			}
-			printf('<span class="byline"><span class="author vcard"><a class="url fn n" href="%1$s" rel="author">%2$s</a></span></span>',
+		}
+
+		// author link
+		if ($args['show_author_link'] === true)
+		{
+			$html .= sprintf('<span class="byline"><span class="author vcard"><a class="url fn n" href="%1$s" rel="author">%2$s</a></span></span>',
 				esc_url(get_author_posts_url(get_the_author_meta('ID'))),
 				get_the_author()
 			);
+		}
+		
+		$html .= $args['after'];
+		
+		$html = apply_filters('em_display_event_occurrences', $html);
+		
+		if ($args['echo'] === true)
+			echo $html;
+		else
+			return $html;
+	}
+}
+
+
+/**
+ * Display page title
+ */
+if (!function_exists('em_page_title'))
+{
+	function em_page_title($echo = true)
+	{
+		if (em_is_event_archive('day'))
+			$page_title = sprintf(__('Event Daily Archives: %s', 'events-maker'), '<span>' . get_the_date() . '</span>');
+		elseif (em_is_event_archive('month'))
+			$page_title = sprintf(__('Event Monthly Archives: %s', 'events-maker'), '<span>' . get_the_date(_x('F Y', 'monthly archives date format', 'events-maker')) . '</span>');
+		elseif (em_is_event_archive('year'))
+			$page_title = sprintf(__('Event Yearly Archives: %s', 'events-maker'), '<span>' . get_the_date(_x('Y', 'yearly archives date format', 'events-maker')) . '</span>');
+		elseif (is_tax('event-category'))
+			$page_title = sprintf(__('Events Category: %s', 'events-maker'), single_term_title('', false));
+		elseif (is_tax('event-location'))
+			$page_title = sprintf(__('Events Location: %s', 'events-maker'), single_term_title('', false));
+		elseif (is_tax('event-organizer'))
+			$page_title = sprintf(__('Events Organizer: %s', 'events-maker'), single_term_title('', false));
+		elseif (is_tax('event-tag'))
+			$page_title = sprintf(__('Events Tag: %s', 'events-maker'), single_term_title('', false));
+		else
+			$page_title = __('Events', 'events-maker');
+		
+		$page_title = apply_filters('em_page_title', $page_title);
+		
+		if ($echo)
+			echo $page_title;
+		else
+			return $page_title;
+	}
+}
+
+
+/**
+ * Show an archive description on taxonomy archives
+ */
+if (!function_exists('em_taxonomy_archive_description'))
+{
+	function em_taxonomy_archive_description()
+	{
+		if (is_tax(array('event-category', 'event-location', 'event-organizer', 'event-tag')) && get_query_var('paged') == 0)
+		{
+			$term_description = term_description();
+			
+			if (!empty($term_description))
+			{
+				?>
+				<div class="archive-description term-description">
+					
+					<?php echo apply_filters('em_taxonomy_archive_description', $term_description); ?>
+					
+				</div>
+				<?php
+			}
 		}
 	}
 }
 
 
-// Display pagination links
-if (!function_exists('em_paginate_links'))
+/**
+ * Display google map in archive
+ */
+if (!function_exists('em_display_loop_event_google_map'))
 {
-	function em_paginate_links($args = array())
+	function em_display_loop_event_google_map()
 	{
-		global $wp_query;
-	
-		$big = 999999999; // need an unlikely integer
-	
-		$defaults = array(
-			'base' 			=> str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
-			'format' 		=> '?paged=%#%',
-			'total'			=> $wp_query->max_num_pages,
-			'current'		=> max(1, get_query_var('paged')),
-			'show_all'		=> false,
-			'end_size'		=> 1,
-			'mid_size'		=> 2,
-			'prev_next'		=> true,
-			'prev_text'		=> __('&laquo; Previous', 'events-maker'),
-			'next_text'		=> __('Next &raquo;', 'events-maker'),
-			'type'			=> 'plain',
-			'add_args'		=> False,
-			'add_fragment'	=> ''
-		);
-	
-		$args = apply_filters('em_paginate_links_args', array_merge($defaults, $args));
-	
-		echo paginate_links($args);
+		if (is_tax('event-location'))
+			em_get_template('loop-event/google-map.php');
 	}
 }
-?>
+
+
+/**
+ * Display location details
+ */
+if (!function_exists('em_display_location_details'))
+{
+	function em_display_location_details()
+	{
+		if (is_tax('event-location'))
+			em_get_template('loop-event/location-details.php');
+	}
+}
+
+
+/**
+ * Display organizer details
+ */
+if (!function_exists('em_display_organizer_details'))
+{
+	function em_display_organizer_details()
+	{
+		if (is_tax('event-organizer'))
+			em_get_template('loop-event/organizer-details.php');
+	}
+}
+
+
+/**
+ * Display content wrapper start
+ */
+if (!function_exists('em_output_content_wrapper_start'))
+{
+	function em_output_content_wrapper_start()
+	{
+		em_get_template('global/wrapper-start.php');
+	}
+}
+
+
+/**
+ * Display content wrapper end
+ */
+if (!function_exists('em_output_content_wrapper_end'))
+{
+	function em_output_content_wrapper_end()
+	{
+		em_get_template('global/wrapper-end.php');
+	}
+}
+
+
+/**
+ * Display breadcrumbs
+ */
+if (!function_exists('em_breadcrumb'))
+{
+	function em_breadcrumb()
+	{
+		em_get_template('global/breadcrumb.php');
+	}
+}
+
+
+/**
+ * Display pagination links
+ */
+if (!function_exists('em_paginate_links'))
+{
+	function em_paginate_links()
+	{
+		em_get_template('loop-event/pagination.php');
+	}
+}
+
+
+/**
+ * Display breadcrumbs
+ */
+if (!function_exists('em_sorting'))
+{
+	function em_sorting()
+	{
+		// em_get_template('loop-event/sorting.php');
+	}
+}
+
+
+/**
+ * Display sidebar
+ */
+if (!function_exists('em_get_sidebar'))
+{
+	function em_get_sidebar()
+	{
+		em_get_template('global/sidebar.php');
+	}
+}
+
+
+/**
+ * Display event thumbnail in loop
+ */
+if (!function_exists('em_display_loop_event_thumbnail'))
+{
+	function em_display_loop_event_thumbnail()
+	{
+		em_get_template('loop-event/thumbnail.php');
+	}
+}
+
+
+/**
+ * Display event meta in loop
+ */
+if (!function_exists('em_display_loop_event_meta'))
+{
+	function em_display_loop_event_meta()
+	{
+		em_get_template('loop-event/meta.php');
+	}
+}
+
+
+/**
+ * Display event excerpt in loop
+ */
+if (!function_exists('em_display_event_excerpt'))
+{
+	function em_display_event_excerpt()
+	{
+		em_get_template('loop-event/excerpt.php');
+	}
+}
+
+
+/**
+ * Display single event thumbnail
+ */
+if (!function_exists('em_display_single_event_thumbnail'))
+{
+	function em_display_single_event_thumbnail()
+	{
+		em_get_template('single-event/thumbnail.php');
+	}
+}
+
+
+/**
+ * Display event meta in loop
+ */
+if (!function_exists('em_display_single_event_meta'))
+{
+	function em_display_single_event_meta()
+	{
+		em_get_template('single-event/meta.php');
+	}
+}
+
+
+/**
+ * Display single event date
+ */
+if (!function_exists('em_display_single_event_date'))
+{
+	function em_display_single_event_date()
+	{
+		// is recurring?
+		if (em_is_recurring())
+		{
+			// display occurrences date
+			em_display_event_occurrences();
+		}
+		else
+		{
+			// display event date
+			em_display_event_date();
+		}
+	}
+}
+
+	
+/**
+ * Display google map in event
+ */
+if (!function_exists('em_display_single_event_google_map'))
+{
+	function em_display_single_event_google_map()
+	{
+		em_get_template('single-event/google-map.php');
+	}
+}
+
+
+/**
+ * Display widget event date
+ */
+if (!function_exists('em_display_widget_event_date'))
+{
+	function em_display_widget_event_date()
+	{ 
+		// display event date
+		em_display_event_date('', $args = array('format' => ''));
+	}
+}

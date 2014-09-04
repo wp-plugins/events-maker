@@ -2,7 +2,7 @@
 /**
  * The template for displaying event content in the single-event.php template
  *
- * Override this template by copying it to yourtheme/content-single-event.php or yourtheme/events-maker/content-single-event.php
+ * Override this template by copying it to yourtheme/content-single-event.php
  *
  * @author 	Digital Factory
  * @package Events Maker/Templates
@@ -10,72 +10,68 @@
  */
  
 if (!defined('ABSPATH')) exit; // Exit if accessed directly
- 
+
+// Extra event classes
+$classes = apply_filters('em_loop_event_classes', array('hcalendar'));
+
 ?>
 
-	<article id="post-<?php the_ID(); ?>" <?php post_class('hcalendar'); ?>>
+	<article id="post-<?php the_ID(); ?>" <?php post_class($classes); ?>>
 		
-		<?php // Event thumbnail
-		if (!post_password_required() && has_post_thumbnail() ) { ?>
-			<div class="post-thumbnail entry-thumbnail">
-				<?php the_post_thumbnail(); ?>
-			</div>
-		<?php } ?>
+		<?php
+		/**
+		 * em_before_single_event hook
+		 * 
+		 * @hooked em_display_single_event_thumbnail - 10
+		 */
+		do_action('em_before_single_event');
+		?>
 	
 	    <header class="entry-header">
 	    	
-	    	<?php // Display event categories
-	    	em_display_event_categories(); ?>
+	    	<?php
+			/**
+			 * em_before_single_event_title hook
+			 * 
+			 * @hooked em_display_event_categories - 10
+			 */
+			do_action ('em_before_single_event_title');
+			?>
 			
-			<?php // Display the title ?>
-	        <h1 class="entry-title summary"><?php the_title(); ?></h1>
+	        <h1 class="entry-title summary">
+	        	
+	        	<?php the_title(); ?>
+	        	
+	        </h1>
 	        
-	        <div class="entry-meta">
-				
-				<?php // Event date
-				if (em_is_recurring()) : // is recurring?
-					em_display_event_occurrences(); // display occurrences date
-				else :
-					em_display_event_date(); // display event date
-				endif; ?>
-
-				<?php // Comments link
-				if (!post_password_required() && (comments_open() || get_comments_number())) : ?>
-					<span class="comments-link"><?php comments_popup_link(__('Leave a comment', 'events-maker' ), __('1 Comment', 'events-maker'), __('% Comments', 'events-maker')); ?></span>
-				<?php endif; ?>
-
-				<?php // Edit link
-				edit_post_link(__('Edit', 'events-maker'), '<span class="edit-link">', '</span>'); ?>
-				
-			</div>
-
-			<?php // Get event display options
-			$event_display_options = get_post_meta($post->ID, '_event_display_options', TRUE); 
-			$event_locations = em_get_locations_for($post->ID); ?>
-
-			<?php // Display Google Map
-	        if ($event_display_options['google_map'] === 1 && (isset($event_locations) && !empty($event_locations))) : // if option enabled and any location is set for the event
-	        	em_display_google_map(); 
-	        endif; ?>
-
-           	<?php // Display tickets details
-            if ($event_display_options['price_tickets_info'] === 1) : // if option enabled  
-            	em_display_event_tickets();
-           	endif; ?>
-           	
-           	<?php // Display event locations
-	    	em_display_event_locations(); ?>
-	    	
-	    	<?php // Display event organizers
-	    	em_display_event_organizers(); ?>
+	        <?php
+			/**
+			 * em_after_single_event_title hook
+			 * 
+			 * @hooked em_display_single_event_meta - 10
+			 * @hooked em_display_event_locations - 20
+			 * @hooked em_display_event_organizers - 30
+			 * @hooked em_display_google_map - 40
+			 * @hooked em_display_event_tickets - 50
+			 */
+			do_action ('em_after_single_event_title');
+			?>
 
 	    </header>
 	
 	    <div class="entry-content description">
+	    	
 	        <?php the_content(); ?>
+	        
 	    </div>
-		
-		<?php // Display event tags
-	    em_display_event_tags(); ?>
+	    
+	    <?php
+		/**
+		 * em_after_single_event hook
+		 * 
+		 * @hooked em_display_event_tags - 10
+		 */
+		do_action('em_after_single_event');
+		?>
 
 	</article>

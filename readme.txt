@@ -3,8 +3,8 @@ Contributors: dfactory
 Donate link: http://www.dfactory.eu/
 Tags: event, event categories, events management, event management, events manager, event manager, event organizer, events calendar, events maker, google map, map, locations, organizers, widget, attendance, attendee, Booking, calendar, event registration, ticket, tickets, ticketing, bookings
 Requires at least: 3.5
-Tested up to: 3.9.1
-Stable tag: 1.1.6
+Tested up to: 4.0
+Stable tag: 1.2.0
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -30,7 +30,9 @@ For more information, check out plugin page at [dFactory](http://www.dfactory.eu
 * Event Ogranizers
 * Organizers contact details and image
 * Event Locations
+* Breadcrumb navigation
 * Google maps
+* RSS feed support
 * Customizeable template files
 * Google Rich Snippets ready
 * 6 Events widgets
@@ -59,6 +61,7 @@ For more information, check out plugin page at [dFactory](http://www.dfactory.eu
 * Japanese - by stranger-jp
 * Norwegian - by Anders Kleppe
 * Polish - by Bartosz Arendt
+* Russian - by Valerii Levachkov
 * Serbian - by Andrija Kokanovic
 * Spanish - by [Borisa Djuraskovic](http://www.webhostinghub.com/), Miren Askasibar
 
@@ -81,6 +84,21 @@ No questions yet.
 4. screenshot-4.png
 
 == Changelog ==
+
+= 1.2.0 =
+* New: Template files rewritten, for much greater flexibility and extensibility
+* New: Events breadcrumb navigation
+* New: Default event display options setting
+* New: RSS feed support
+* New: Location image field
+* New: Event category color
+* New: Russian translation, thanks to Valerii Levachkov
+* Tweak: Recurring events available in Events List widget
+* Tweak: Additional Full Calendar styling classes, thanks to Kuba S.
+* Tweak: Leave widget title empty if was not entered
+* Tweak: Full Calendar updated to 2.1
+* Tweak: Confirmed WP 4.0 compatibility
+* New: Option to donate this plugin :)
 
 = 1.1.6 =
 * New: French translation, thanks to Marc Abel
@@ -164,5 +182,5 @@ Initial release
 
 == Upgrade Notice ==
 
-= 1.1.6 =
-* New: French translation, thanks to Marc Abel
+= 1.2.0 =
+* New: Large update, multiple new features, tweaks and bugfixes

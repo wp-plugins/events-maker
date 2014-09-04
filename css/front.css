@@ -1,4 +1,5 @@
 /* Events Calendar Widget */
+
 .events-calendar-widget table { width: 100%; line-height: 1.84615; }
 .events-calendar-widget table.nav-days { margin-bottom:0; }
 .events-calendar-widget table.nav-months { table-layout: fixed; line-height: 24px; }
@@ -22,7 +23,38 @@
 	height: 16px;
 }
 
+/* Fix for Twenty Fourteen */
+
+.twentyfourteen .tf-fix {
+	margin: 0 auto;
+    max-width: 474px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.full-width .twentyfourteen .tf-fix {
+    margin-right: auto;
+}
+.full-width .twentyfourteen .tf-fix .archive-header,
+.full-width .twentyfourteen .tf-fix .entry-header,
+.full-width .twentyfourteen .tf-fix .entry-meta,
+.full-width .twentyfourteen .tf-fix .entry-summary,
+.full-width .twentyfourteen .tf-fix .entry-content {
+    padding-left: 0;
+    padding-right: 0;
+}
+.full-width .twentyfourteen .tf-fix .hcalendar {
+    max-width: 100%;
+}
+.twentyfourteen .tf-fix .hcalendar {
+    margin: 0 auto 48px;
+}
+.archive-thumbnail img {
+	max-width: 100%;
+}
+
+
 /* Events Google Map */
+
 #event-google-map { width: 100%; height: 300px; margin: 20px 0; }
 #event-google-map .location-tooltip {
 	display: none;
@@ -46,6 +78,7 @@
 .single-event .entry-header, .archive-header { font-size: 1.2em; }
 
 /* Full Calendar */
+
 #events-full-calendar .fc-event {
     background-color: #467ADD;
     border: none;
@@ -54,10 +87,17 @@
     font-size: 12px;
     -moz-border-radius: 4px; -webkit-border-radius: 4px; -khtml-border-radius: 4px; border-radius: 4px;
     padding: 4px 6px;
-    none repeat scroll 0 0 #365eab
 }
 #events-full-calendar .fc-event:hover {
-	background-color: #3b3b3b;
+	-khtml-opacity:.80; 
+	-moz-opacity:.80; 
+	-ms-filter:”alpha(opacity=80)”;
+	filter:alpha(opacity=80);
+	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0.8);
+	opacity:.80; 
+}
+#events-full-calendar .fc-widget-header table {
+	margin: 0;
 }
 
 /* Flat Calendar Widget */

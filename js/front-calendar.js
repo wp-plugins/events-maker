@@ -15,5 +15,5 @@ jQuery(document).ready(function($) {
 		firstDay: emCalendarArgs.firstWeekDay,
 		events: emCalendarArgs.events,
 		editable: false
-    })
+    });
 });

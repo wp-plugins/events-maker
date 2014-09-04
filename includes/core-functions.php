@@ -29,6 +29,7 @@ function em_get_events($args = array())
 	return apply_filters('em_get_events', get_posts($args));
 }
 
+
 /**
  * Get single event
  * @param 	int 	$post_id 	(default: 0 or current post ID)
@@ -43,6 +44,7 @@ function em_get_event($post_id = 0)
 
 	return apply_filters('em_get_event', (($post = get_post((int)$post_id, 'OBJECT', 'raw')) !== NULL ? $post : NULL), $post_id);
 }
+
 
 /**
  * Get single event occurrences
@@ -117,6 +119,7 @@ function em_get_occurrences($post_id = 0, $period = 'all', $orderby = 'asc', $li
 	return apply_filters('em_get_occurrences', $occurrences, $post_id);
 }
 
+
 /**
  * Get event first occurrence
  * @param 	int 	$post_id	(default: 0 or current post ID)
@@ -135,6 +138,7 @@ function em_get_first_occurrence($post_id = 0)
 	
 	return apply_filters('em_get_first_occurrence', array('start' => get_post_meta($post_id, '_event_start_date', true), 'end' => get_post_meta($post_id, '_event_end_date', true)), $post_id);
 }
+
 
 /**
  * Get event last occurrence
@@ -156,6 +160,7 @@ function em_get_last_occurrence($post_id = 0)
 
 	return apply_filters('em_get_next_occurrence', array('start' => $dates[0], 'end' => $dates[1]), $post_id);
 }
+
 
 /**
  * Get event next occurrence
@@ -180,6 +185,7 @@ function em_get_next_occurrence($post_id = 0)
 	
 	return apply_filters('em_get_next_occurrence', $occurence[0], $post_id);
 }
+
 
 /**
  * Get event active occurrence
@@ -213,6 +219,7 @@ function em_get_active_occurrence($post_id = 0)
 	return false;
 }
 
+
 /**
  * Get event occurrence date when in loop
  * @param 	int 	$post_id	(default: 0 or current post ID)
@@ -239,6 +246,7 @@ function em_get_current_occurrence($post_id = 0)
 		'end' => $post->event_occurrence_end_date
 	), $post_id);
 }
+
 
 /**
  * Get the event date
@@ -324,6 +332,7 @@ function em_get_the_date($post_id = 0, $args = array())
 	return apply_filters('em_get_the_date', $date, $post_id, $args);
 }
 
+
 /**
  * Get event start date
  * @param 	int 	$post_id	(default: 0 or current post ID)
@@ -342,6 +351,7 @@ function em_get_the_start($post_id = 0, $type = 'datetime')
 	return apply_filters('em_get_the_start', (!empty($date) ? em_format_date($date, $type) : false), $post_id);
 }
 
+
 /**
  * Get event end date
  * @param 	int 	$post_id	(default: 0 or current post ID)
@@ -359,6 +369,7 @@ function em_get_the_end($post_id = 0, $type = 'datetime')
 
 	return apply_filters('em_get_the_end', (!empty($date) ? em_format_date($date, $type) : false), $post_id);
 }
+
 
 /**
  * Format given date
@@ -397,6 +408,7 @@ function em_format_date($date = NULL, $type = 'datetime', $format = false)
 		return date_i18n($date_format.' '.$time_format, strtotime($date));
 }
 
+
 /**
  * Check if given event is an all day event
  * @param 	int 	$post_id	(default: 0 or current post ID)
@@ -411,6 +423,7 @@ function em_is_all_day($post_id = 0)
 
 	return apply_filters('em_is_all_day', (get_post_meta((int)$post_id, '_event_all_day', true) === '1' ? true : false), $post_id);
 }
+
 
 /**
  * Check if given event is a reccurring event
@@ -433,6 +446,7 @@ function em_is_recurring($post_id = 0)
 	);
 }
 
+
 /**
  * Check if given event is a free event
  * @param 	int 	$post_id	(default: 0 or current post ID)
@@ -447,6 +461,7 @@ function em_is_free($post_id = 0)
 
 	return apply_filters('em_is_free', (get_post_meta((int)$post_id, '_event_free', true) === '1' ? true : false), $post_id);
 }
+
 
 /**
  * Get the ticket data for a given event
@@ -472,6 +487,7 @@ function em_get_tickets($post_id = 0)
 	else
 		return false;
 }
+
 
 /**
  * Get the currency symbol and append it to the price
@@ -519,6 +535,7 @@ function em_get_currency_symbol($price = '')
 		return apply_filters('em_get_currency_symbol', $symbol, $price);
 }
 
+
 /**
  * Get all event locations
  * @param 	array 	$args		(default: array('fields' => 'all'))
@@ -543,6 +560,7 @@ function em_get_locations($args = array('fields' => 'all'))
 	else
 		return false;
 }
+
 
 /**
  * Get single event location data
@@ -576,6 +594,7 @@ function em_get_location($term_id = NULL)
 		return false;
 }
 
+
 /**
  * Get all event locations for a given event
  * @param 	int 	$post_id	(default: 0)
@@ -606,6 +625,7 @@ function em_get_locations_for($post_id = 0)
 		return false;
 }
 
+
 /**
  * Get all event organizers
  * @param 	array 	$args		(default: array('fields' => 'all'))
@@ -630,6 +650,7 @@ function em_get_organizers($args = array('fields' => 'all'))
 	else
 		return false;
 }
+
 
 /**
  * Get single event organizer data
@@ -663,6 +684,7 @@ function em_get_organizer($term_id = NULL)
 		return false;
 }
 
+
 /**
  * Get all event organizers for a given event
  * @param 	int 	$post_id	(default: 0)
@@ -693,6 +715,7 @@ function em_get_organizers_for($post_id = 0)
 		return false;
 }
 
+
 /**
  * Get all event categories
  * @param 	array 	$args		(default: array())
@@ -705,6 +728,7 @@ function em_get_categories($args = array())
 	else
 		return false;
 }
+
 
 /**
  * Get single event category data
@@ -729,6 +753,7 @@ function em_get_category($term_id = NULL)
 	return (($category = get_term((int)$term_id, 'event-category', 'OBJECT', 'raw')) !== NULL ? $category : NULL);
 }
 
+
 /**
  * Get all event categories for a given event
  * @param 	int 	$post_id	(default: 0)
@@ -746,6 +771,11 @@ function em_get_categories_for($post_id = 0)
 }
 
 
+/**
+ * Check if displayed page is an event archive page
+ * @param 	datetype
+ * @return 	bool
+ */
 function em_is_event_archive($datetype = '')
 {
 	global $wp_query;
@@ -768,6 +798,9 @@ function em_is_event_archive($datetype = '')
 }
 
 
+/**
+ * Get a date archive link
+ */
 function em_get_event_date_link($year = 0, $month = 0, $day = 0)
 {
 	global $wp_rewrite;
@@ -803,6 +836,9 @@ function em_get_event_date_link($year = 0, $month = 0, $day = 0)
 }
 
 
+/**
+ * Display event taxonomy
+ */
 function em_display_event_taxonomy($taxonomy = '', $args = array())
 {
 	if(!taxonomy_exists($taxonomy))
@@ -812,6 +848,9 @@ function em_display_event_taxonomy($taxonomy = '', $args = array())
 }
 
 
+/**
+ * Get event taxonomy
+ */
 function em_get_event_taxonomy($taxonomy = '', $args = array())
 {
 	$defaults = array(
@@ -855,6 +894,9 @@ function em_get_event_taxonomy($taxonomy = '', $args = array())
 }
 
 
+/**
+ * Display event archive 
+ */
 function em_display_event_archives($args = array())
 {
 	global $wp_locale;
@@ -945,6 +987,9 @@ function em_display_event_archives($args = array())
 }
 
 
+/**
+ * Display google map
+ */
 function em_display_google_map($args = array(), $locations = 0)
 {
 	$defaults = array(
@@ -1001,6 +1046,9 @@ function em_display_google_map($args = array(), $locations = 0)
 }
 
 
+/**
+ * Display events full calendar
+ */
 function em_display_calendar($args = array())
 {
 	// get settings
@@ -1074,14 +1122,16 @@ function em_display_calendar($args = array())
 }
 
 
-// Get template part (for templates like the content-event.php)
+/**
+ * Get template part (for templates like the content-event.php)
+ */
 function em_get_template_part($slug, $name = '') 
 {
 	$template = '';
 
 	// look in yourtheme/slug-name.php and yourtheme/events-maker/slug-name.php
 	if($name)
-		$template = locate_template(array("{$slug}-{$name}.php", 'events-maker/'."{$slug}-{$name}.php"));
+		$template = locate_template(array("{$slug}-{$name}.php"));
 
 	// get default slug-name.php
 	if(!$template && $name && file_exists(EVENTS_MAKER_PATH."/templates/{$slug}-{$name}.php"))
@@ -1089,10 +1139,57 @@ function em_get_template_part($slug, $name = '')
 
 	// if template file doesn't exist, look in yourtheme/slug.php and yourtheme/events-maker/slug.php
 	if(!$template)
-		$template = locate_template( array( "{$slug}.php", 'events-maker/'."{$slug}.php"));
+		$template = locate_template( array( "{$slug}.php"));
 
 	$template = apply_filters('em_get_template_part', $template, $slug, $name);
 
 	if($template)
 		load_template($template, false);
+}
+
+
+/**
+ * Get other templates (e.g. archives) passing attributes and including the file.
+ */
+function em_get_template($template_name, $args = array(), $template_path = '', $default_path = '')
+{
+	if ($args && is_array($args))
+		extract($args);
+
+	$located = em_locate_template($template_name, $template_path, $default_path);
+
+	if (!file_exists($located))
+		return;
+
+	do_action('em_template_part_before', $template_name, $template_path, $located, $args);
+
+	include($located);
+
+	do_action('em_template_part_after', $template_name, $template_path, $located, $args);
+}
+
+
+/**
+ * Locate a template and return the path for inclusion.
+ */
+function em_locate_template($template_name, $template_path = '', $default_path = '')
+{
+	if (!$template_path)
+		$template_path = TEMPLATEPATH . '/';
+
+	if (!$default_path)
+		$default_path = EVENTS_MAKER_PATH . 'templates/';
+
+	// look within passed path within the theme - this is priority
+	$template = locate_template(array(
+		trailingslashit($template_path) . $template_name,
+		$template_name
+	));
+	
+	// get default template
+	if (!$template)
+		$template = $default_path . $template_name;
+
+	// return what we found
+	return apply_filters('em_locate_template', $template, $template_name, $template_path);
 }

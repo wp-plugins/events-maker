@@ -176,7 +176,7 @@ class Events_Maker_Metaboxes
 
 
 	/**
-	 * 
+	 * Add event metaboxes
 	*/
 	public function add_events_meta_boxes($post_type, $post)
 	{
@@ -235,7 +235,7 @@ class Events_Maker_Metaboxes
 
 
 	/**
-	 * 
+	 * Event date & time metabox callback
 	*/
 	public function event_date_time_cb($post)
 	{
@@ -447,6 +447,8 @@ class Events_Maker_Metaboxes
 		$html .= '
 			</div>
 		</div>';
+		
+		do_action('em_before_metabox_event_datetime');
 
 		echo $html;
 
@@ -455,7 +457,7 @@ class Events_Maker_Metaboxes
 
 
 	/**
-	 * 
+	 * Event tickets metabox callback
 	*/
 	public function event_tickets_cb($post)
 	{
@@ -518,6 +520,8 @@ class Events_Maker_Metaboxes
 				<label for="event_tickets_url">'.__('Buy tickets URL', 'events-maker').':</label> <input id="event_tickets_url" class="regular-text" type="text" name="event_tickets_url" value="'.esc_url(get_post_meta($post->ID, '_event_tickets_url', true)).'" />
 			</div>
 		</div>';
+		
+		do_action('em_before_metabox_event_tickets');
 
 		echo $html;
 
@@ -527,174 +531,255 @@ class Events_Maker_Metaboxes
 
 
 	/**
-	 * 
+	 * Event options metabox callback
 	*/
 	public function event_options_cb($post)
 	{
+		// security nonce
 		wp_nonce_field('events_maker_save_event_options', 'event_nonce_options');
 
-		$opts = get_post_meta($post->ID, '_event_display_options', true);
-		$html_arr = array();
-
-		$html_arr['display-google-map'] = '
-		<div>
-			<input id="event_google_map" type="checkbox" name="event_display_options[google_map]" '.checked((isset($opts['google_map']) && $opts['google_map'] !== '' ? $opts['google_map'] : '1'), '1', false).' /> <label for="event_google_map">'.__('Display Google Map', 'events-maker').'</label>
-		</div>';
-
+		$options = array(
+			'google_map' => __('Display Google Map', 'events-maker'),
+			'display_location_details' => __('Display Location Details', 'events-maker')
+		);
+		
+		// if tickets are enabled
 		if($this->options['general']['use_event_tickets'])
-		{
-			$html_arr['display-tickets-info'] = '
-		<div>
-			<input id="event_price_tickets_info" type="checkbox" name="event_display_options[price_tickets_info]" '.checked((isset($opts['price_tickets_info']) && $opts['price_tickets_info'] !== '' ? $opts['price_tickets_info'] : '1'), '1', false).' /> <label for="event_price_tickets_info">'.__('Display Tickets Info', 'events-maker').'</label>
-		</div>';
-		}
-
+			$options = array_merge($options, array('price_tickets_info' => __('Display Tickets Info', 'events-maker')));
+		// if organizers are enabled
 		if($this->options['general']['use_organizers'])
+			$options = array_merge($options, array('display_organizer_details' => __('Display Organizer Details', 'events-maker')));
+		
+		$options = apply_filters('em_metabox_event_display_options', $options, $post);
+		$values = apply_filters('em_metabox_event_display_values', get_post_meta($post->ID, '_event_display_options', true), $post);
+		
+		// display options
+		do_action('em_before_metabox_event_display_options', $post);
+
+		foreach($options as $key => $name)
 		{
-			$html_arr['display-organizer-details'] = '
-		<div>
-			<input id="event_display_organizer_details" type="checkbox" name="event_display_options[display_organizer_details]" '.checked((isset($opts['display_organizer_details']) && $opts['display_organizer_details'] !== '' ? $opts['display_organizer_details'] : '1'), '1', false).' /> <label for="event_display_organizer_details">'.__('Display Organizer Details', 'events-maker').'</label>
-		</div>';
+			?>
+			<label for="event_display_option_<?php echo $key; ?>">
+				<input id="event_display_option_<?php echo $key; ?>" type="checkbox" name="event_display_options[<?php echo $key; ?>]" <?php checked((isset($values[$key]) && $values[$key] !== '' ? $values[$key] : '1'), (isset($this->options['general']['default_event_options'][$key]) ? (bool)$this->options['general']['default_event_options'][$key] : '0')); ?> /><?php echo $name; ?>
+			</label><br />
+			<?php
 		}
 
-		$html_arr['display-location-details'] = '
-		<div>
-			<input id="event_display_location_details" type="checkbox" name="event_display_options[display_location_details]" '.checked((isset($opts['display_location_details']) && $opts['display_location_details'] !== '' ? $opts['display_location_details'] : '1'), '1', false).' /> <label for="event_display_location_details">'.__('Display Location Details', 'events-maker').'</label>
-		</div>';
-
-		foreach(apply_filters('em_metabox_event_options', $html_arr, $opts) as $option)
-		{
-			echo $option;
-		}
-
-		do_action('em_after_metabox_event_options', $opts);
+		do_action('em_after_metabox_event_display_options', $post);
 	}
 
 
 	/**
-	 * Saves event with new metaboxes
+	 * Save event metaboxes data
 	*/
 	public function save_event($post_ID)
 	{
 		// break if doing autosave
 		if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
 			return $post_ID;
-
-		// verify if event_nonce_datetime nonce is set and valid
-		if(!isset($_POST['event_nonce_datetime']) || !wp_verify_nonce($_POST['event_nonce_datetime'], 'events_maker_save_event_datetime'))
-        	return $post_ID;
-
-		// if tickets are not used do not validate them
-		if($this->options['general']['use_event_tickets'])
-		{
-			// verify if event_nonce_tickets nonce is set and valid
-			if(!isset($_POST['event_nonce_tickets']) || !wp_verify_nonce($_POST['event_nonce_tickets'], 'events_maker_save_event_tickets'))
-				return $post_ID;
-		}
-
-		// verify if event_nonce_options nonce is set and valid
-		if(isset($_POST['event_nonce_options']) && !wp_verify_nonce($_POST['event_nonce_options'], 'events_maker_save_event_options'))
-        	return $post_ID;
-
+			
 		// break if current user can't edit events
 		if(!current_user_can('edit_event', $post_ID))
 			return $post_ID;
 
-		// event date and time section
-		$em_helper = new Events_Maker_Helper();
-		$event_all_day = isset($_POST['event_all_day']) ? 1 : 0;
-		$start_date_ok = false;
-
-		update_post_meta($post_ID, '_event_all_day', $event_all_day);
-		$event_start_date = $event_end_date = $current_datetime = current_time('mysql', false);
-		$current_date = date('Y-m-d', current_time('timestamp', false));
-
-		// is it all day long event?
-		if($event_all_day === 1)
+		// event date & time validation
+		
+		if(isset($_POST['event_nonce_datetime']) && wp_verify_nonce($_POST['event_nonce_datetime'], 'events_maker_save_event_datetime'))
 		{
-			if($em_helper->is_valid_date($_POST['event_start_date']))
+			// event date and time section
+			$em_helper = new Events_Maker_Helper();
+			$event_all_day = isset($_POST['event_all_day']) ? 1 : 0;
+			$start_date_ok = false;
+	
+			update_post_meta($post_ID, '_event_all_day', $event_all_day);
+			$event_start_date = $event_end_date = $current_datetime = current_time('mysql', false);
+			$current_date = date('Y-m-d', current_time('timestamp', false));
+	
+			// is it all day long event?
+			if($event_all_day === 1)
 			{
-				$start_date_ok = true;
-				update_post_meta($post_ID, '_event_start_date', $_POST['event_start_date'].' 00:00:00');
-				$event_start_date = $_POST['event_start_date'].' 00:00:00';
-			}
-			else
-			{
-				update_post_meta($post_ID, '_event_start_date', $current_datetime);
-				$event_start_date = $current_datetime;
-			}
-
-			if($em_helper->is_valid_date($_POST['event_end_date']))
-			{
-				if($start_date_ok)
+				if($em_helper->is_valid_date($_POST['event_start_date']))
 				{
-					if($em_helper->is_after_date($_POST['event_end_date'], $_POST['event_start_date']))
+					$start_date_ok = true;
+					update_post_meta($post_ID, '_event_start_date', $_POST['event_start_date'].' 00:00:00');
+					$event_start_date = $_POST['event_start_date'].' 00:00:00';
+				}
+				else
+				{
+					update_post_meta($post_ID, '_event_start_date', $current_datetime);
+					$event_start_date = $current_datetime;
+				}
+	
+				if($em_helper->is_valid_date($_POST['event_end_date']))
+				{
+					if($start_date_ok)
+					{
+						if($em_helper->is_after_date($_POST['event_end_date'], $_POST['event_start_date']))
+						{
+							update_post_meta($post_ID, '_event_end_date', $_POST['event_end_date'].' 00:00:00');
+							$event_end_date = $_POST['event_end_date'].' 00:00:00';
+						}
+						else
+						{
+							$event_end_date = $event_start_date;
+							update_post_meta($post_ID, '_event_end_date', $event_end_date);
+						}
+					}
+					else
 					{
 						update_post_meta($post_ID, '_event_end_date', $_POST['event_end_date'].' 00:00:00');
 						$event_end_date = $_POST['event_end_date'].' 00:00:00';
 					}
-					else
-					{
-						$event_end_date = $event_start_date;
-						update_post_meta($post_ID, '_event_end_date', $event_end_date);
-					}
 				}
 				else
 				{
-					update_post_meta($post_ID, '_event_end_date', $_POST['event_end_date'].' 00:00:00');
-					$event_end_date = $_POST['event_end_date'].' 00:00:00';
-				}
-			}
-			else
-			{
-				$event_end_date = $event_start_date;
-				update_post_meta($post_ID, '_event_end_date', $event_end_date);
-			}
-		}
-		else
-		{
-			if($em_helper->is_valid_date($_POST['event_start_date']) && $em_helper->is_valid_time($_POST['event_start_time']))
-			{
-				$start_date_ok = true;
-				$event_start_date = date('Y-m-d H:i:s', strtotime($_POST['event_start_date'].' '.$_POST['event_start_time']));
-				update_post_meta($post_ID, '_event_start_date', $event_start_date);
-			}
-			else
-			{
-				update_post_meta($post_ID, '_event_start_date', $current_datetime);
-				$event_start_date = $current_datetime;
-			}
-
-			if($em_helper->is_valid_date($_POST['event_end_date']) && $em_helper->is_valid_time($_POST['event_end_time']))
-			{
-				if($start_date_ok)
-				{
-					if($em_helper->is_after_date($_POST['event_end_date'].' '.$_POST['event_end_time'], $_POST['event_start_date'].' '.$_POST['event_start_time']))
-					{
-						$event_end_date = date('Y-m-d H:i:s', strtotime($_POST['event_end_date'].' '.$_POST['event_end_time']));
-						update_post_meta($post_ID, '_event_end_date', $event_end_date);
-					}
-					else
-					{
-						$event_end_date = $event_start_date;
-						update_post_meta($post_ID, '_event_end_date', $event_end_date);
-					}
-				}
-				else
-				{
-					$event_end_date = date('Y-m-d H:i:s', strtotime($_POST['event_end_date'].' '.$_POST['event_end_time']));
+					$event_end_date = $event_start_date;
 					update_post_meta($post_ID, '_event_end_date', $event_end_date);
 				}
 			}
 			else
 			{
-				$event_end_date = $event_start_date;
-				update_post_meta($post_ID, '_event_end_date', $event_end_date);
+				if($em_helper->is_valid_date($_POST['event_start_date']) && $em_helper->is_valid_time($_POST['event_start_time']))
+				{
+					$start_date_ok = true;
+					$event_start_date = date('Y-m-d H:i:s', strtotime($_POST['event_start_date'].' '.$_POST['event_start_time']));
+					update_post_meta($post_ID, '_event_start_date', $event_start_date);
+				}
+				else
+				{
+					update_post_meta($post_ID, '_event_start_date', $current_datetime);
+					$event_start_date = $current_datetime;
+				}
+	
+				if($em_helper->is_valid_date($_POST['event_end_date']) && $em_helper->is_valid_time($_POST['event_end_time']))
+				{
+					if($start_date_ok)
+					{
+						if($em_helper->is_after_date($_POST['event_end_date'].' '.$_POST['event_end_time'], $_POST['event_start_date'].' '.$_POST['event_start_time']))
+						{
+							$event_end_date = date('Y-m-d H:i:s', strtotime($_POST['event_end_date'].' '.$_POST['event_end_time']));
+							update_post_meta($post_ID, '_event_end_date', $event_end_date);
+						}
+						else
+						{
+							$event_end_date = $event_start_date;
+							update_post_meta($post_ID, '_event_end_date', $event_end_date);
+						}
+					}
+					else
+					{
+						$event_end_date = date('Y-m-d H:i:s', strtotime($_POST['event_end_date'].' '.$_POST['event_end_time']));
+						update_post_meta($post_ID, '_event_end_date', $event_end_date);
+					}
+				}
+				else
+				{
+					$event_end_date = $event_start_date;
+					update_post_meta($post_ID, '_event_end_date', $event_end_date);
+				}
 			}
-		}
 
-		// if tickets are not used do not save them
-		if($this->options['general']['use_event_tickets'])
+			// removes all previous occurrences
+			delete_post_meta($post_ID, '_event_occurrence_date');
+			delete_post_meta($post_ID, '_event_occurrence_last_date');
+	
+			// adds first occurrence even for one time events
+			update_post_meta($post_ID, '_event_occurrence_date', $event_start_date.'|'.$event_end_date);
+	
+			$recurrence = $_POST['event_recurrence'];
+	
+			if(isset($this->recurrences[$recurrence['type']]))
+			{
+				$recurrence['until'] = date('Y-m-d', strtotime($recurrence['until']));
+				$today = (int)date('N', strtotime($event_start_date));
+	
+				if($recurrence['type'] === 'once')
+				{
+					$event_recurrence = array(
+						'type' => 'once',
+						'repeat' => 1,
+						'until' => $current_date,
+						'weekly_days' => array($today),
+						'monthly_day_type' => 1,
+						'separate_end_date' => array()
+					);
+	
+					// adds last occurrence (same as first)
+					update_post_meta($post_ID, '_event_occurrence_last_date', $event_start_date.'|'.$event_end_date);
+				}
+				elseif($recurrence['type'] === 'custom')
+				{
+					$event_recurrence = array(
+						'type' => 'custom',
+						'repeat' => 1,
+						'until' => $current_date,
+						'weekly_days' => array($today),
+						'monthly_day_type' => 1
+					);
+	
+					if(!empty($recurrence['custom']['separate_end_date']))
+						$separates = $recurrence['custom']['separate_end_date'];
+					else
+						$separates = array();
+	
+					// adds custom dates
+					$event_recurrence['separate_end_date'] = $this->add_custom_dates($post_ID, $recurrence['custom']['dates'], $event_all_day, $separates, $event_start_date, $event_end_date);
+				}
+				else
+				{
+					$weekly_days = array();
+					$monthly_day_type = 1;
+	
+					if($recurrence['type'] === 'weekly')
+					{
+						if(isset($recurrence['weekly']['weekly_days']))
+						{
+							foreach($recurrence['weekly']['weekly_days'] as $week_id => $weekday)
+							{
+								$id = (int)$week_id;
+	
+								if($id >= 1 && $id <= 7)
+									$weekly_days[] = $id;
+							}
+	
+							if(empty($weekly_days))
+								$weekly_days = array($today);
+						}
+						else
+							$weekly_days = array($today);
+					}
+					elseif($recurrence['type'] === 'monthly')
+					{
+						$weekly_days = array($today);
+	
+						if(isset($recurrence['monthly']['monthly_day_type']))
+						{
+							$id = (int)$recurrence['monthly']['monthly_day_type'];
+	
+							$monthly_day_type = ($id === 2 ? 2 : 1);
+						}
+					}
+	
+					$event_recurrence = array(
+						'type' => $recurrence['type'],
+						'repeat' => (($repeat = (int)$recurrence['repeat']) > 0 ? $repeat : 1),
+						'until' => $recurrence['until'],
+						'weekly_days' => $weekly_days,
+						'monthly_day_type' => $monthly_day_type,
+						'separate_end_date' => array()
+					);
+	
+					// creates occurrences
+					$this->create_recurrences($post_ID, $event_start_date, $event_end_date, $recurrence['type'], $recurrence['repeat'], $recurrence['until'], $weekly_days, $monthly_day_type);
+				}
+			}
+	
+			update_post_meta($post_ID, '_event_recurrence', $event_recurrence);
+
+		}
+		
+		// event tickets validation, if tickets are in use
+		if($this->options['general']['use_event_tickets'] && isset($_POST['event_nonce_tickets']) && wp_verify_nonce($_POST['event_nonce_tickets'], 'events_maker_save_event_tickets'))
 		{
 			update_post_meta($post_ID, '_event_free', (isset($_POST['event_free']) ? 1 : 0));
 
@@ -746,122 +831,43 @@ class Events_Maker_Metaboxes
 				update_post_meta($post_ID, '_event_tickets_url', '');
 			}
 		}
-
-		// removes all previous occurrences
-		delete_post_meta($post_ID, '_event_occurrence_date');
-		delete_post_meta($post_ID, '_event_occurrence_last_date');
-
-		// adds first occurrence even for one time events
-		update_post_meta($post_ID, '_event_occurrence_date', $event_start_date.'|'.$event_end_date);
-
-		$recurrence = $_POST['event_recurrence'];
-
-		if(isset($this->recurrences[$recurrence['type']]))
+		
+		// event display options validation				
+		if(isset($_POST['event_nonce_options']) && wp_verify_nonce($_POST['event_nonce_options'], 'events_maker_save_event_options'))
 		{
-			$recurrence['until'] = date('Y-m-d', strtotime($recurrence['until']));
-			$today = (int)date('N', strtotime($event_start_date));
-
-			if($recurrence['type'] === 'once')
+			$event_display_options = array(
+				'google_map' => __('Display Google Map', 'events-maker'),
+				'display_location_details' => __('Display Location Details', 'events-maker')
+			);
+			
+			// if tickets are enabled
+			if($this->options['general']['use_event_tickets'])
+				$event_display_options = array_merge($event_display_options, array('price_tickets_info' => __('Display Tickets Info', 'events-maker')));
+			// if organizers are enabled
+			if($this->options['general']['use_organizers'])
+				$event_display_options = array_merge($event_display_options, array('display_organizer_details' => __('Display Organizer Details', 'events-maker')));
+			
+			$options = apply_filters('em_metabox_event_display_options', $options, get_post($post_ID));
+	
+			if(is_array($event_display_options) && !empty($event_display_options))
 			{
-				$event_recurrence = array(
-					'type' => 'once',
-					'repeat' => 1,
-					'until' => $current_date,
-					'weekly_days' => array($today),
-					'monthly_day_type' => 1,
-					'separate_end_date' => array()
-				);
-
-				// adds last occurrence (same as first)
-				update_post_meta($post_ID, '_event_occurrence_last_date', $event_start_date.'|'.$event_end_date);
-			}
-			elseif($recurrence['type'] === 'custom')
-			{
-				$event_recurrence = array(
-					'type' => 'custom',
-					'repeat' => 1,
-					'until' => $current_date,
-					'weekly_days' => array($today),
-					'monthly_day_type' => 1
-				);
-
-				if(!empty($recurrence['custom']['separate_end_date']))
-					$separates = $recurrence['custom']['separate_end_date'];
-				else
-					$separates = array();
-
-				// adds custom dates
-				$event_recurrence['separate_end_date'] = $this->add_custom_dates($post_ID, $recurrence['custom']['dates'], $event_all_day, $separates, $event_start_date, $event_end_date);
+				$event_display_values = array();
+	
+				foreach($event_display_options as $key => $name)
+				{
+					$event_display_values[$key] = isset($_POST['event_display_options'][$key]) ? 1 : 0;
+				}
+	
+				update_post_meta($post_ID, '_event_display_options', $event_display_values);
 			}
 			else
-			{
-				$weekly_days = array();
-				$monthly_day_type = 1;
-
-				if($recurrence['type'] === 'weekly')
-				{
-					if(isset($recurrence['weekly']['weekly_days']))
-					{
-						foreach($recurrence['weekly']['weekly_days'] as $week_id => $weekday)
-						{
-							$id = (int)$week_id;
-
-							if($id >= 1 && $id <= 7)
-								$weekly_days[] = $id;
-						}
-
-						if(empty($weekly_days))
-							$weekly_days = array($today);
-					}
-					else
-						$weekly_days = array($today);
-				}
-				elseif($recurrence['type'] === 'monthly')
-				{
-					$weekly_days = array($today);
-
-					if(isset($recurrence['monthly']['monthly_day_type']))
-					{
-						$id = (int)$recurrence['monthly']['monthly_day_type'];
-
-						$monthly_day_type = ($id === 2 ? 2 : 1);
-					}
-				}
-
-				$event_recurrence = array(
-					'type' => $recurrence['type'],
-					'repeat' => (($repeat = (int)$recurrence['repeat']) > 0 ? $repeat : 1),
-					'until' => $recurrence['until'],
-					'weekly_days' => $weekly_days,
-					'monthly_day_type' => $monthly_day_type,
-					'separate_end_date' => array()
-				);
-
-				// creates occurrences
-				$this->create_recurrences($post_ID, $event_start_date, $event_end_date, $recurrence['type'], $recurrence['repeat'], $recurrence['until'], $weekly_days, $monthly_day_type);
-			}
+				update_post_meta($post_ID, '_event_display_options', array());
 		}
-
-		update_post_meta($post_ID, '_event_recurrence', $event_recurrence);
-
-		$event_display_options = apply_filters('em_event_display_options', array('google_map', 'price_tickets_info', 'display_organizer_details', 'display_location_details'));
-
-		if(is_array($event_display_options) && !empty($event_display_options))
-		{
-			$event_display_options_arr = array();
-
-			foreach($event_display_options as $event_option)
-			{
-				$event_display_options_arr[$event_option] = isset($_POST['event_display_options'][$event_option]) ? 1 : 0;
-			}
-
-			update_post_meta($post_ID, '_event_display_options', $event_display_options_arr);
-		}
-		else
-			update_post_meta($post_ID, '_event_display_options', array());
 	}
 
-
+	/**
+	 * Add custom recurrence dates
+	*/
 	private function add_custom_dates($post_id, $dates, $all_day, $separate_end_date, $start, $end)
 	{
 		$custom_dates = $separates = array();
@@ -958,7 +964,9 @@ class Events_Maker_Metaboxes
 		return $separates;
 	}
 
-
+	/**
+	 * Create custom recurrence dates
+	*/
 	private function create_recurrences($post_id, $start, $end, $type, $repeat, $until, $weekly_days, $monthly_day_type)
 	{
 		$em_helper = new Events_Maker_Helper();

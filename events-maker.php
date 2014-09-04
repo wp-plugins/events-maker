@@ -2,7 +2,7 @@
 /*
 Plugin Name: Events Maker
 Description: Events Maker is an easy to use but flexible events management plugin made the WordPress way.
-Version: 1.1.6
+Version: 1.2.0
 Author: dFactory
 Author URI: http://www.dfactory.eu/
 Plugin URI: http://www.dfactory.eu/plugins/events-maker/
@@ -30,18 +30,18 @@ define('EVENTS_MAKER_UPDATE_VERSION_1', '1.0.10');
 
 $events_maker = new Events_Maker();
 
-include_once(EVENTS_MAKER_PATH.'includes/functions-core.php');
-include_once(EVENTS_MAKER_PATH.'includes/update.php');
-include_once(EVENTS_MAKER_PATH.'includes/settings.php');
-include_once(EVENTS_MAKER_PATH.'includes/query.php');
-include_once(EVENTS_MAKER_PATH.'includes/taxonomies.php');
-include_once(EVENTS_MAKER_PATH.'includes/templates.php');
-include_once(EVENTS_MAKER_PATH.'includes/shortcodes.php');
-include_once(EVENTS_MAKER_PATH.'includes/listing.php');
-include_once(EVENTS_MAKER_PATH.'includes/metaboxes.php');
-include_once(EVENTS_MAKER_PATH.'includes/widgets.php');
-include_once(EVENTS_MAKER_PATH.'includes/helper.php');
-include_once(EVENTS_MAKER_PATH.'includes/welcome.php');
+include_once(EVENTS_MAKER_PATH.'includes/core-functions.php');
+include_once(EVENTS_MAKER_PATH.'includes/class-update.php');
+include_once(EVENTS_MAKER_PATH.'includes/class-settings.php');
+include_once(EVENTS_MAKER_PATH.'includes/class-query.php');
+include_once(EVENTS_MAKER_PATH.'includes/class-taxonomies.php');
+include_once(EVENTS_MAKER_PATH.'includes/class-templates.php');
+include_once(EVENTS_MAKER_PATH.'includes/class-shortcodes.php');
+include_once(EVENTS_MAKER_PATH.'includes/class-listing.php');
+include_once(EVENTS_MAKER_PATH.'includes/class-metaboxes.php');
+include_once(EVENTS_MAKER_PATH.'includes/class-widgets.php');
+include_once(EVENTS_MAKER_PATH.'includes/class-helper.php');
+include_once(EVENTS_MAKER_PATH.'includes/class-welcome.php');
 
 class Events_Maker
 {
@@ -71,11 +71,18 @@ class Events_Maker
 			'use_organizers' => true,
 			'use_tags' => true,
 			'use_event_tickets' => true,
+			'default_event_options' => array(
+				'google_map' => true,
+				'display_location_details' => true,
+				'price_tickets_info' => true,
+				'display_organizer_details' => true,
+			),
 			'full_calendar_display' => array(
 				'type' => 'manual',
 				'page' => 0,
 				'content' => 'after'
 			),
+			'events_in_rss' => true,
 			'deactivation_delete' => false,
 			'event_nav_menu' => array(
 				'show' => false,
@@ -121,7 +128,7 @@ class Events_Maker
 			'event_locations_rewrite_slug' => 'location',
 			'event_organizers_rewrite_slug' => 'organizer'
 		),
-		'version' => '1.1.6'
+		'version' => '1.2.0'
 	);
 	private $transient_id = '';
 
@@ -151,7 +158,8 @@ class Events_Maker
 		add_action('wp_enqueue_scripts', array(&$this, 'front_scripts_styles'));
 		add_action('admin_notices', array(&$this, 'event_admin_notices'));
 		add_action('after_setup_theme', array(&$this, 'pass_variables'), 9);
-		add_action('wp', array(&$this, 'load_pluggable_functions'), 10);
+		add_action('wp', array(&$this, 'load_pluggable_functions'));
+		add_action('wp', array(&$this, 'load_pluggable_hooks'));
 		add_action('admin_print_footer_scripts', array(&$this, 'view_full_calendar_button'));
 
 		// filters
@@ -375,7 +383,16 @@ class Events_Maker
 	*/
 	public function load_pluggable_functions() 
 	{
-	    include_once(EVENTS_MAKER_PATH.'includes/functions-template.php');
+	    include_once(EVENTS_MAKER_PATH.'includes/template-functions.php');
+	}
+	
+	
+	/**
+	 * Load pluggable template hooks
+	*/
+	public function load_pluggable_hooks() 
+	{
+	    include_once(EVENTS_MAKER_PATH.'includes/template-hooks.php');
 	}
 
 
@@ -837,65 +854,45 @@ class Events_Maker
 			EVENTS_MAKER_URL.'/css/wp-like-ui-theme.css'
 		);
 
-		if($page === 'edit-tags.php')
+		if($page === 'edit-tags.php' && in_array($screen->post_type, apply_filters('em_event_post_type', array('event'))))
 		{
-			// event organizer taxonomy
-			if($screen->id === 'edit-event-organizer' && $screen->taxonomy === 'event-organizer' && in_array($screen->post_type, apply_filters('em_event_post_type', array('event'))))
-			{
-				wp_enqueue_media();
-
-				wp_register_script(
-					'events-maker-edit-organizer',
-					EVENTS_MAKER_URL.'/js/admin-tags.js',
-					array('jquery')
-				);
-
-				wp_enqueue_script('events-maker-edit-organizer');
-
-				wp_localize_script(
-					'events-maker-edit-organizer',
-					'emArgs',
-					array(
-						'title' => __('Select organizer image', 'events-maker'),
-						'button' => array('text' => __('Add image', 'events-maker')),
-						'frame' => 'select',
-						'multiple' => FALSE
-					)
-				);
-
-				wp_enqueue_style('events-maker-admin');
-			}
-			// event location taxonomy
-			elseif($screen->id === 'edit-event-location' && $screen->taxonomy === 'event-location' && in_array($screen->post_type, apply_filters('em_event_post_type', array('event'))))
+			// event location & organizer
+			if(($screen->id === 'edit-event-organizer' && $screen->taxonomy === 'event-organizer') || ($screen->id === 'edit-event-location' && $screen->taxonomy === 'event-location') || ($screen->id === 'edit-event-category' && $screen->taxonomy === 'event-category'))
 			{
 				$timezone = explode('/', get_option('timezone_string'));
+				
+				wp_enqueue_media();
+				wp_enqueue_style('wp-color-picker');
 
-				if(!isset($timezone[1]))
-					$timezone[1] = 'Poland, Białystok';
+				wp_register_script(
+					'events-maker-edit-tags',
+					EVENTS_MAKER_URL.'/js/admin-tags.js',
+					array('jquery', 'wp-color-picker')
+				);
 
+				wp_enqueue_script('events-maker-edit-tags');
+				
 				wp_register_script(
 					'events-maker-google-maps',
 					'https://maps.googleapis.com/maps/api/js?sensor=false&language='.substr(get_locale(), 0, 2)
 				);
-
-				wp_enqueue_script('events-maker-google-maps');
-
-				wp_register_script(
-					'events-maker-admin-locations',
-					EVENTS_MAKER_URL.'/js/admin-locations.js',
-					array('jquery', 'events-maker-google-maps')
-				);
-
-				wp_enqueue_script('events-maker-admin-locations');
+				
+				// on event locations only
+				if ($screen->id === 'edit-event-location')
+					wp_enqueue_script('events-maker-google-maps');
 
 				wp_localize_script(
-					'events-maker-admin-locations',
+					'events-maker-edit-tags',
 					'emArgs',
 					array(
+						'title' => __('Select image', 'events-maker'),
+						'button' => array('text' => __('Add image', 'events-maker')),
+						'frame' => 'select',
+						'multiple' => false,
 						'country' => $timezone[1]
 					)
 				);
-
+				
 				wp_enqueue_style('events-maker-admin');
 			}
 		}
@@ -979,6 +976,14 @@ class Events_Maker
 		);
 
 		wp_enqueue_style('events-maker-front');
+		
+		wp_register_script(
+			'events-maker-sorting',
+			EVENTS_MAKER_URL.'/js/front-sorting.js',
+			array('jquery')
+		);
+
+		wp_enqueue_script('events-maker-sorting');
 	}
 
 

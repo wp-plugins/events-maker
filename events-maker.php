@@ -2,7 +2,7 @@
 /*
 Plugin Name: Events Maker
 Description: Events Maker is an easy to use but flexible events management plugin made the WordPress way.
-Version: 1.2.0
+Version: 1.2.1
 Author: dFactory
 Author URI: http://www.dfactory.eu/
 Plugin URI: http://www.dfactory.eu/plugins/events-maker/
@@ -128,7 +128,7 @@ class Events_Maker
 			'event_locations_rewrite_slug' => 'location',
 			'event_organizers_rewrite_slug' => 'organizer'
 		),
-		'version' => '1.2.0'
+		'version' => '1.2.1'
 	);
 	private $transient_id = '';
 
@@ -323,32 +323,92 @@ class Events_Maker
 	{
 		$this->currencies = array(
 			'codes' => array(
-				'usd' => __('US Dollars (&#36;)', 'events-maker'),
-				'eur' => __('Euros (&euro;)', 'events-maker'),
-				'gbp' => __('Pounds Sterling (&pound;)', 'events-maker'),
-				'aud' => __('Australian Dollars (&#36;)', 'events-maker'),
-				'brl' => __('Brazilian Real (R&#36;)', 'events-maker'),
-				'cad' => __('Canadian Dollars (&#36;)', 'events-maker'),
-				'czk' => __('Czech Koruna', 'events-maker'),
-				'dkk' => __('Danish Krone', 'events-maker'),
-				'hkd' => __('Hong Kong Dollar (&#36;)', 'events-maker'),
-				'huf' => __('Hungarian Forint', 'events-maker'),
-				'ils' => __('Israeli Shekel (&#8362;)', 'events-maker'),
-				'jpy' => __('Japanese Yen (&yen;)', 'events-maker'),
-				'myr' => __('Malaysian Ringgits', 'events-maker'),
-				'mxn' => __('Mexican Peso (&#36;)', 'events-maker'),
-				'nzd' => __('New Zealand Dollar (&#36;)', 'events-maker'),
-				'nok' => __('Norwegian Krone', 'events-maker'),
-				'php' => __('Philippine Pesos', 'events-maker'),
-				'pln' => __('Polish Zloty', 'events-maker'),
-				'sgd' => __('Singapore Dollar (&#36;)', 'events-maker'),
-				'sek' => __('Swedish Krona', 'events-maker'),
-				'chf' => __('Swiss Franc', 'events-maker'),
-				'twd' => __('Taiwan New Dollars', 'events-maker'),
-				'thb' => __('Thai Baht (&#3647;)', 'events-maker'),
-				'inr' => __('Indian Rupee (&#8377;)', 'events-maker'),
-				'try' => __('Turkish Lira (&#8378;)', 'events-maker'),
-				'rial' => __('Iranian Rial (&#65020;)', 'events-maker')
+				'AUD' => __('Australian Dollar', 'events-maker'),
+				'BDT' => __('Bangladeshi Taka', 'events-maker'),
+				'BRL' => __('Brazilian Real', 'events-maker'),
+				'BGN' => __('Bulgarian Lev', 'events-maker'),
+				'CAD' => __('Canadian Dollar', 'events-maker'),
+				'CLP' => __('Chilean Peso', 'events-maker'),
+				'CNY' => __('Chinese Yuan', 'events-maker'),
+				'COP' => __('Colombian Peso', 'events-maker'),
+				'HRK' => __('Croatian kuna', 'events-maker'),
+				'CZK' => __('Czech Koruna', 'events-maker'),
+				'DKK' => __('Danish Krone', 'events-maker'),
+				'EUR' => __('Euro', 'events-maker'),
+				'HKD' => __('Hong Kong Dollar', 'events-maker'),
+				'HUF' => __('Hungarian Forint', 'events-maker'),
+				'ISK' => __('Icelandic krona', 'events-maker'),
+				'INR' => __('Indian Rupee', 'events-maker'),
+				'IDR' => __('Indonesian Rupiah', 'events-maker'),
+				'ILS' => __('Israeli Shekel', 'events-maker'),
+				'IRR' => __('Iranian Rial', 'events-maker'),
+				'JPY' => __('Japanese Yen', 'events-maker'),
+				'MYR' => __('Malaysian Ringgit', 'events-maker'),
+				'MXN' => __('Mexican Peso', 'events-maker'),
+				'NZD' => __('New Zealand Dollar', 'events-maker'),
+				'NGN' => __('Nigerian Naira', 'events-maker'),
+				'NOK' => __('Norwegian Krone', 'events-maker'),
+				'PHP' => __('Philippine Peso', 'events-maker'),
+				'PLN' => __('Polish Zloty', 'events-maker'),
+				'GBP' => __('Pound Sterling', 'events-maker'),
+				'RON' => __('Romanian Leu', 'events-maker'),
+				'RUB' => __('Russian Ruble', 'events-maker'),
+				'SGD' => __('Singapore Dollar', 'events-maker'),
+				'ZAR' => __('South African Rand', 'events-maker'),
+				'KRW' => __('South Korean Won', 'events-maker'),
+				'SEK' => __('Swedish Krona', 'events-maker'),
+				'CHF' => __('Swiss Franc', 'events-maker'),
+				'TWD' => __('Taiwan New Dollar', 'events-maker'),
+				'THB' => __('Thai Baht', 'events-maker'),
+				'TRY' => __('Turkish Lira', 'events-maker'),
+				'UAH' => __('Ukrainian Hryvnia', 'events-maker'),
+				'AED' => __('United Arab Emirates Dirham', 'events-maker'),
+				'USD' => __('United States Dollar', 'events-maker'),
+				'VND' => __('Vietnamese Dong', 'events-maker')
+			),
+			'symbols' => array(
+				'AUD' => '&#36;',
+				'BDT' => '&#2547;',
+				'BRL' => 'R&#36;',
+				'BGN' => '&#1083;&#1074;',
+				'CAD' => '&#36;',
+				'CLP' => '&#36;',
+				'CNY' => '&#165;',
+				'COP' => '&#36;',
+				'HRK' => 'kn',
+				'CZK' => 'K&#269;',
+				'DKK' => 'kr',
+				'EUR' => '&#8364;',
+				'HKD' => 'HK&#36;',
+				'HUF' => 'Ft',
+				'ISK' => 'kr',
+				'INR' => '&#8377;',
+				'IDR' => 'Rp',
+				'ILS' => '&#8362;',
+				'IRR' => '&#65020;',
+				'JPY' => '&#165;',
+				'MYR' => 'RM',
+				'MXN' => '&#36;',
+				'NZD' => '&#36;',
+				'NGN' => '&#8358;',
+				'NOK' => 'kr',
+				'PHP' => 'Php',
+				'PLN' => 'z&#322;',
+				'GBP' => '&#163;',
+				'RON' => 'lei',
+				'RUB' => '&#1088;&#1091;&#1073;',
+				'SGD' => '&#36;',
+				'ZAR' => 'R',
+				'KRW' => '&#8361;',
+				'SEK' => 'kr',
+				'CHF' => 'SFr.',
+				'TWD' => 'NT&#36;',
+				'THB' => '&#3647;',
+				'TRY' => '&#8378;',
+				'UAH' => '&#8372;',
+				'AED' => 'د.إ',
+				'USD' => '&#36;',
+				'VND' => '&#8363;'
 			),
 			'positions' => array(
 				'before' => __('before the price', 'events-maker'),
@@ -490,7 +550,7 @@ class Events_Maker
 	*/
 	public function load_textdomain()
 	{
-		load_plugin_textdomain('events-maker', FALSE, EVENTS_MAKER_REL_PATH.'languages/');
+		load_plugin_textdomain('events-maker', false, EVENTS_MAKER_REL_PATH.'languages/');
 	}
 
 
@@ -504,7 +564,7 @@ class Events_Maker
 		$screen = get_current_screen();
 		$message_arr = get_transient($this->transient_id);
 
-		if($screen->post_type === 'event' && $message_arr !== FALSE)
+		if($screen->post_type === 'event' && $message_arr !== false)
 		{
 			if(($pagenow === 'post.php' && $screen->id === 'event') || $screen->id === 'event_page_events-settings')
 			{
@@ -594,17 +654,17 @@ class Events_Maker
 		);
 
 		$args_event_categories = array(
-			'public' => TRUE,
-			'hierarchical' => TRUE,
+			'public' => true,
+			'hierarchical' => true,
 			'labels' => $labels_event_categories,
-			'show_ui' => TRUE,
-			'show_admin_column' => TRUE,
+			'show_ui' => true,
+			'show_admin_column' => true,
 			'update_count_callback' => '_update_post_term_count',
-			'query_var' => TRUE,
+			'query_var' => true,
 			'rewrite' => array(
 				'slug' => $this->options['permalinks']['event_rewrite_base'].'/'.$this->options['permalinks']['event_categories_rewrite_slug'],
-				'with_front' => FALSE,
-				'hierarchical' => TRUE
+				'with_front' => false,
+				'hierarchical' => true
 			),
 			'capabilities' => array(
 				'manage_terms' => 'manage_event_categories',
@@ -615,17 +675,17 @@ class Events_Maker
 		);
 
 		$args_event_locations = array(
-			'public' => TRUE,
-			'hierarchical' => TRUE,
+			'public' => true,
+			'hierarchical' => true,
 			'labels' => $labels_event_locations,
-			'show_ui' => TRUE,
-			'show_admin_column' => TRUE,
+			'show_ui' => true,
+			'show_admin_column' => true,
 			'update_count_callback' => '_update_post_term_count',
-			'query_var' => TRUE,
+			'query_var' => true,
 			'rewrite' => array(
 				'slug' => $this->options['permalinks']['event_rewrite_base'].'/'.$this->options['permalinks']['event_locations_rewrite_slug'],
-				'with_front' => FALSE,
-				'hierarchical' => FALSE
+				'with_front' => false,
+				'hierarchical' => false
 			),
 			'capabilities' => array(
 				'manage_terms' => 'manage_event_locations',
@@ -637,7 +697,7 @@ class Events_Maker
 
 		register_taxonomy('event-category', apply_filters('em_register_event_categories_for', $post_types), apply_filters('em_register_event_categories', $args_event_categories));
 
-		if($this->options['general']['use_tags'] === TRUE)
+		if($this->options['general']['use_tags'])
 		{
 			$labels_event_tags = array(
 				'name' => _x('Event Tags', 'taxonomy general name', 'events-maker'),
@@ -658,17 +718,17 @@ class Events_Maker
 			);
 
 			$args_event_tags = array(
-				'public' => TRUE,
-				'hierarchical' => FALSE,
+				'public' => true,
+				'hierarchical' => false,
 				'labels' => $labels_event_tags,
-				'show_ui' => TRUE,
-				'show_admin_column' => TRUE,
+				'show_ui' => true,
+				'show_admin_column' => true,
 				'update_count_callback' => '_update_post_term_count',
-				'query_var' => TRUE,
+				'query_var' => true,
 				'rewrite' => array(
 					'slug' => $this->options['permalinks']['event_rewrite_base'].'/'.$this->options['permalinks']['event_tags_rewrite_slug'],
-					'with_front' => FALSE,
-					'hierarchical' => FALSE
+					'with_front' => false,
+					'hierarchical' => false
 				),
 				'capabilities' => array(
 					'manage_terms' => 'manage_event_tags',
@@ -683,7 +743,7 @@ class Events_Maker
 
 		register_taxonomy('event-location', apply_filters('em_register_event_locations_for', $post_types), apply_filters('em_register_event_locations', $args_event_locations));
 
-		if($this->options['general']['use_organizers'] === TRUE)
+		if($this->options['general']['use_organizers'])
 		{
 			$labels_event_organizers = array(
 				'name' => _x('Organizers', 'taxonomy general name', 'events-maker'),
@@ -701,17 +761,17 @@ class Events_Maker
 			);
 
 			$args_event_organizers = array(
-				'public' => TRUE,
-				'hierarchical' => TRUE,
+				'public' => true,
+				'hierarchical' => true,
 				'labels' => $labels_event_organizers,
-				'show_ui' => TRUE,
-				'show_admin_column' => TRUE,
+				'show_ui' => true,
+				'show_admin_column' => true,
 				'update_count_callback' => '_update_post_term_count',
-				'query_var' => TRUE,
+				'query_var' => true,
 				'rewrite' => array(
 					'slug' => $this->options['permalinks']['event_rewrite_base'].'/'.$this->options['permalinks']['event_organizers_rewrite_slug'],
-					'with_front' => FALSE,
-					'hierarchical' => FALSE
+					'with_front' => false,
+					'hierarchical' => false
 				),
 				'capabilities' => array(
 					'manage_terms' => 'manage_event_organizers',
@@ -750,10 +810,10 @@ class Events_Maker
 
 		$taxonomies = array('event-category', 'event-location');
 
-		if($this->options['general']['use_tags'] === TRUE)
+		if($this->options['general']['use_tags'])
 			$taxonomies[] = 'event-tag';
 
-		if($this->options['general']['use_organizers'] === TRUE)
+		if($this->options['general']['use_organizers'])
 			$taxonomies[] = 'event-organizer';
 
 		// Menu icon
@@ -767,13 +827,13 @@ class Events_Maker
 		$args_event = array(
 			'labels' => $labels_event,
 			'description' => '',
-			'public' => TRUE,
-			'exclude_from_search' => FALSE,
-			'publicly_queryable' => TRUE,
-			'show_ui' => TRUE,
-			'show_in_menu' => TRUE,
-			'show_in_admin_bar' => TRUE,
-			'show_in_nav_menus' => TRUE,
+			'public' => true,
+			'exclude_from_search' => false,
+			'publicly_queryable' => true,
+			'show_ui' => true,
+			'show_in_menu' => true,
+			'show_in_admin_bar' => true,
+			'show_in_nav_menus' => true,
 			'menu_position' => 5,
 			'menu_icon' => $menu_icon,
 			'capability_type' => 'event',
@@ -790,18 +850,18 @@ class Events_Maker
 				'delete_post' => 'delete_event',
 				'read_post' => 'read_event',
 			),
-			'map_meta_cap' => FALSE,
-			'hierarchical' => FALSE,
+			'map_meta_cap' => false,
+			'hierarchical' => false,
 			'supports' => $this->get_supports($this->options['general']['supports']),
 			'rewrite' => array(
 				'slug' => $this->options['permalinks']['event_rewrite_base'].'/'.$this->options['permalinks']['event_rewrite_slug'],
-				'with_front' => FALSE,
-				'feeds'=> TRUE,
-				'pages'=> TRUE
+				'with_front' => false,
+				'feeds'=> true,
+				'pages'=> true
 			),
 			'has_archive' => $this->options['permalinks']['event_rewrite_base'],
-			'query_var' => TRUE,
-			'can_export' => TRUE,
+			'query_var' => true,
+			'can_export' => true,
 			'taxonomies' => $taxonomies,
 		);
 
@@ -823,7 +883,7 @@ class Events_Maker
 			3 => __('Custom field deleted.', 'events-maker'),
 			4 => __('Event updated.', 'events-maker'),
 			//translators: %s: date and time of the revision
-			5 => isset($_GET['revision']) ? sprintf(__('Event restored to revision from %s', 'events-maker'), wp_post_revision_title((int)$_GET['revision'], FALSE)) : FALSE,
+			5 => isset($_GET['revision']) ? sprintf(__('Event restored to revision from %s', 'events-maker'), wp_post_revision_title((int)$_GET['revision'], false)) : false,
 			6 => sprintf(__('Event published. <a href="%s">View event</a>', 'events-maker'), esc_url(get_permalink($post_ID))),
 			7 => __('Event saved.', 'events-maker'),
 			8 => sprintf(__('Event submitted. <a target="_blank" href="%s">Preview event</a>', 'events-maker'), esc_url( add_query_arg('preview', 'true', get_permalink($post_ID)))),

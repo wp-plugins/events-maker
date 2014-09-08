@@ -346,9 +346,21 @@ class Events_Maker_Query
 
 		// does query contain post type as a string or post types array
 		if(is_array($post_types))
-			$run_query = (bool)array_intersect($post_types, apply_filters('em_event_post_type', array('event')));
+		{
+			// check if there are defferrnces between the arrays
+			if ((bool)array_diff($post_types, apply_filters('em_event_post_type', array('event'))))
+			{
+				// at least one of the post_types is not an event post type, don't run the query
+				$run_query = false;
+			}
+			else 
+			{
+				// all the post type are of event post type
+				$run_query = true;	
+			}
+		}	
 		else
-			$run_query = in_array($post_types, apply_filters('em_event_post_type', array('event')));
+			$run_query = (bool)in_array($post_types, apply_filters('em_event_post_type', array('event')));
 
 		if($run_query)
 		{

@@ -30,6 +30,10 @@ class Events_Maker_Taxonomies
 		add_action('create_event-category', array(&$this, 'event_category_save_meta_fields'));
 		add_action('create_event-location', array(&$this, 'event_location_save_meta_fields'));
 		add_action('create_event-organizer', array(&$this, 'event_organizer_save_meta_fields'));
+		
+		// filters
+		add_filter('manage_edit-event-category_columns', array(&$this, 'event_category_columns'));
+		add_filter('manage_event-category_custom_column', array(&$this, 'event_category_manage_columns'), 10, 3);
 	}
 
 
@@ -40,9 +44,11 @@ class Events_Maker_Taxonomies
 	{
 		$this->category_fields = apply_filters('em_event_category_fields', array(
 			'color' => array(
-				'label' => __('Category Color', 'events-maker'),
+				'label' => __('Color', 'events-maker'),
 				'default' => '',
 				'description' => 'The color of events filed under that category (to be used in Full Calendar display).',
+				'column' => true,
+				'callback' => array(&$this, 'event_category_manage_columns_content')
 			)
 		));
 
@@ -51,36 +57,43 @@ class Events_Maker_Taxonomies
 				'label' => __('Map', 'events-maker'),
 				'default' => '',
 				'description' => '',
+				'column' => false
 			),
 			'address' => array(
 				'label' => __('Address', 'events-maker'),
 				'default' => '',
 				'description' => '',
+				'column' => false
 			),
 			'city' => array(
 				'label' => __('City', 'events-maker'),
 				'default' => '',
 				'description' => '',
+				'column' => false
 			),
 			'state' => array(
 				'label' => __('State / Province', 'events-maker'),
 				'default' => '',
 				'description' => '',
+				'column' => false
 			),
 			'zip' => array(
 				'label' => __('Zip Code', 'events-maker'),
 				'default' => '',
 				'description' => '',
+				'column' => false
 			),
 			'country' => array(
 				'label' => __('Country', 'events-maker'),
 				'default' => '',
 				'description' => '',
+				'column' => false
 			),
 			'image' => array(
 				'label' => __('Image', 'events-maker'),
 				'default' => '',
 				'description' => '',
+				'column' => false
 			)
 		));
 
@@ -89,26 +102,31 @@ class Events_Maker_Taxonomies
 				'label' => __('Contact name', 'events-maker'),
 				'default' => '',
 				'description' => '',
+				'column' => false
 			),
 			'phone' => array(
 				'label' => __('Phone', 'events-maker'),
 				'default' => '',
 				'description' => '',
+				'column' => false
 			),
 			'email' => array(
 				'label' => __('E-mail', 'events-maker'),
 				'default' => '',
 				'description' => '',
+				'column' => false
 			),
 			'website' => array(
 				'label' => __('Website', 'events-maker'),
 				'default' => '',
 				'description' => '',
+				'column' => false
 			),
 			'image' => array(
 				'label' => __('Image', 'events-maker'),
 				'default' => '',
-				'description' => ''
+				'description' => '',
+				'column' => false
 			)
 		));
 	}
@@ -119,7 +137,7 @@ class Events_Maker_Taxonomies
 	*/
 	public function event_category_add_meta_fields()
 	{
-		foreach($this->category_fields as $key => $args)
+		foreach($this->category_fields as $key => $field)
 		{
 			$html = '<div class="form-field">';
 
@@ -127,13 +145,13 @@ class Events_Maker_Taxonomies
 			{
 			    default:
 					$html .= '
-						<label for="event-'.$key.'">'.$args['label'].'</label>
+						<label for="event-'.$key.'">'.$field['label'].'</label>
 						<input id="em-color-picker" type="text" name="term_meta['.$key.']" id="event-'.$key.'" value="" size="40"/>';
 					break;
 			}
 			
-			if (!empty($args['description']))
-				$html .= '<p>' . esc_attr($args['description']) . '</p>';
+			if (!empty($field['description']))
+				$html .= '<p>' . esc_attr($field['description']) . '</p>';
 			
 			$html .= '</div>';
 
@@ -147,7 +165,7 @@ class Events_Maker_Taxonomies
 	*/
 	public function event_location_add_meta_fields()
 	{	
-		foreach($this->location_fields as $key => $args)
+		foreach($this->location_fields as $key => $field)
 		{
 			$html = '<div class="form-field">';
 
@@ -155,7 +173,7 @@ class Events_Maker_Taxonomies
 			{
 			    case 'google-map':
 			        $html .= '
-						<label>'.$args['label'].'</label>
+						<label>'.$field['label'].'</label>
 						<div id="event-'.$key.'" class="event-minimap">
 						</div>
 						<input type="hidden" name="term_meta[latitude]" id="event-'.$key.'-latitude" value="0" />
@@ -165,7 +183,7 @@ class Events_Maker_Taxonomies
 				case 'image':
 			        $html .= '
 						<div id="em-tax-image-buttons">
-							<label>'.$args['label'].'</label>
+							<label>'.$field['label'].'</label>
 							<input id="em_upload_image_id" type="hidden" name="term_meta[image]" value="0" />
 							<input id="em_upload_image_button" type="button" class="button button-secondary" value="'.__('Select image', 'events-maker').'" />
 							<input id="em_turn_off_image_button" type="button" class="button button-secondary" value="'.__('Remove image', 'events-maker').'" disabled="disabled" />
@@ -178,13 +196,13 @@ class Events_Maker_Taxonomies
 
 				default:
 					$html .= '
-						<label for="event-'.$key.'">'.$args['label'].'</label>
+						<label for="event-'.$key.'">'.$field['label'].'</label>
 						<input type="text" name="term_meta['.$key.']" id="event-'.$key.'" value="" size="40" class="google-map-input" />';
 					break;
 			}
 
 			if (!empty($args['description']))
-				$html .= '<p>' . esc_attr($args['description']) . '</p>';
+				$html .= '<p>' . esc_attr($field['description']) . '</p>';
 
 			$html .= '</div>';
 
@@ -198,7 +216,7 @@ class Events_Maker_Taxonomies
 	*/
 	public function event_organizer_add_meta_fields()
 	{
-		foreach($this->organizer_fields as $key => $args)
+		foreach($this->organizer_fields as $key => $field)
 		{
 			$html = '<div class="form-field">';
 
@@ -207,7 +225,7 @@ class Events_Maker_Taxonomies
 			    case 'image':
 			        $html .= '
 						<div id="em-tax-image-buttons">
-							<label>'.$args['label'].'</label>
+							<label>'.$field['label'].'</label>
 							<input id="em_upload_image_id" type="hidden" name="term_meta[image]" value="0" />
 							<input id="em_upload_image_button" type="button" class="button button-secondary" value="'.__('Select image', 'events-maker').'" />
 							<input id="em_turn_off_image_button" type="button" class="button button-secondary" value="'.__('Remove image', 'events-maker').'" disabled="disabled" />
@@ -220,13 +238,13 @@ class Events_Maker_Taxonomies
 
 				default:
 					$html .= '
-						<label for="event-'.$key.'">'.$args['label'].'</label>
+						<label for="event-'.$key.'">'.$field['label'].'</label>
 						<input type="text" name="term_meta['.$key.']" id="event-'.$key.'" value="" size="40" />';
 					break;
 			}
 			
-			if (!empty($args['description']))
-				$html .= '<p>' . esc_attr($args['description']) . '</p>';
+			if (!empty($field['description']))
+				$html .= '<p>' . esc_attr($field['description']) . '</p>';
 
 			$html .= '</div>';
 
@@ -241,9 +259,9 @@ class Events_Maker_Taxonomies
 	public function event_category_edit_meta_fields($term)
 	{
 		// retrieve the existing value(s) for this meta field, this returns an array
-		$term_meta = get_option('event_category_'.$term->term_id);
+		$term_meta = get_option('event_category_'.$term->term_taxonomy_id);
 
-		foreach($this->category_fields as $key => $args)
+		foreach($this->category_fields as $key => $field)
 		{
 			$html = '<tr class="form-field">';
 
@@ -252,14 +270,14 @@ class Events_Maker_Taxonomies
 				case 'color':			
 					$html .= '
 						<th scope="row" valign="top">
-							<label for="event-'.$key.'">'.$args['label'].'</label>
+							<label for="event-'.$key.'">'.$field['label'].'</label>
 						</th>
 						<td>
 							<input id="em-color-picker" type="text" name="term_meta['.$key.']" id="event-'.$key.'" value="'.esc_attr($term_meta[$key]).'"/>';
 					
-					if (!empty($args['description']))
+					if (!empty($field['description']))
 						$html .= 
-							'<br /><span class="description">' . esc_attr($args['description']) . '</span>';
+							'<br /><span class="description">' . esc_attr($field['description']) . '</span>';
 					
 					$html .= 
 						'</td>';
@@ -268,14 +286,14 @@ class Events_Maker_Taxonomies
 				default:
 					$html .= '
 						<th scope="row" valign="top">
-							<label for="event-'.$key.'">'.$args['label'].'</label>
+							<label for="event-'.$key.'">'.$field['label'].'</label>
 						</th>
 						<td>
 							<input type="text" name="term_meta['.$key.']" id="event-'.$key.'" value="'.esc_attr($term_meta[$key]).'" />';
 					
-					if (!empty($args['description']))
+					if (!empty($field['description']))
 						$html .= 
-							'<br /><span class="description">' . esc_attr($args['description']) . '</span>';
+							'<br /><span class="description">' . esc_attr($field['description']) . '</span>';
 					
 					$html .= 
 						'</td>';				
@@ -295,7 +313,7 @@ class Events_Maker_Taxonomies
 	public function event_location_edit_meta_fields($term)
 	{
 		// retrieve the existing value(s) for this meta field, this returns an array
-		$term_meta = get_option('event_location_'.$term->term_id);
+		$term_meta = get_option('event_location_'.$term->term_taxonomy_id);
 
 		// image ID
 		$image_id = (int)(isset($term_meta['image']) ? $term_meta['image'] : 0);
@@ -305,7 +323,7 @@ class Events_Maker_Taxonomies
 		else
 			$image[0] = '';
 
-		foreach($this->location_fields as $key => $args)
+		foreach($this->location_fields as $key => $field)
 		{
 			$html = '<tr class="form-field">';
 
@@ -314,7 +332,7 @@ class Events_Maker_Taxonomies
 			    case 'google-map':
 			        $html .= '
 						<th scope="row" valign="top">
-							<label>'.$args['label'].'</label>
+							<label>'.$field['label'].'</label>
 						</th>
 						<td>
 							<div id="event-google-map">
@@ -322,9 +340,9 @@ class Events_Maker_Taxonomies
 							<input type="hidden" name="term_meta[latitude]" id="event-'.$key.'-latitude" value="'.esc_attr($term_meta['latitude']).'" />
 							<input type="hidden" name="term_meta[longitude]" id="event-'.$key.'-longitude" value="'.esc_attr($term_meta['longitude']).'" />';
 					
-					if (!empty($args['description']))
+					if (!empty($field['description']))
 						$html .= 
-							'<br /><span class="description">' . esc_attr($args['description']) . '</span>';
+							'<br /><span class="description">' . esc_attr($field['description']) . '</span>';
 					
 					$html .= 
 						'</td>';		
@@ -333,7 +351,7 @@ class Events_Maker_Taxonomies
 				case 'image':
 			        $html .= '
 			        	<th scope="row" valign="top">
-							<label>'.$args['label'].'</label>
+							<label>'.$field['label'].'</label>
 						</th>
 							<td>
 							<div id="em-tax-image-buttons">
@@ -346,9 +364,9 @@ class Events_Maker_Taxonomies
 								'.($image[0] !== '' ? '<img src="'.$image[0].'" alt="" />' : '<img src="" alt="" style="display: none;" />').'
 							</div>';
 					
-					if (!empty($args['description']))
+					if (!empty($field['description']))
 						$html .= 
-							'<br /><span class="description">' . esc_attr($args['description']) . '</span>';
+							'<br /><span class="description">' . esc_attr($field['description']) . '</span>';
 					
 					$html .= 
 						'</td>';
@@ -357,14 +375,14 @@ class Events_Maker_Taxonomies
 				default:
 					$html .= '
 						<th scope="row" valign="top">
-							<label for="event-'.$key.'">'.$args['label'].'</label>
+							<label for="event-'.$key.'">'.$field['label'].'</label>
 						</th>
 						<td>
 							<input type="text" name="term_meta['.$key.']" id="event-'.$key.'" value="'.esc_attr($term_meta[$key]).'" class="google-map-input" />';
 					
-					if (!empty($args['description']))
+					if (!empty($field['description']))
 						$html .= 
-							'<br /><span class="description">' . esc_attr($args['description']) . '</span>';
+							'<br /><span class="description">' . esc_attr($field['description']) . '</span>';
 					
 					$html .= 
 						'</td>';
@@ -384,7 +402,7 @@ class Events_Maker_Taxonomies
 	public function event_organizer_edit_meta_fields($term)
 	{
 		// retrieve the existing value(s) for this meta field, this returns an array
-		$term_meta = get_option('event_organizer_'.$term->term_id);
+		$term_meta = get_option('event_organizer_'.$term->term_taxonomy_id);
 
 		// image ID
 		$image_id = (int)(isset($term_meta['image']) ? $term_meta['image'] : 0);
@@ -394,7 +412,7 @@ class Events_Maker_Taxonomies
 		else
 			$image[0] = '';
 
-		foreach($this->organizer_fields as $key => $name)
+		foreach($this->organizer_fields as $key => $field)
 		{
 			$html = '<tr class="form-field">';
 
@@ -403,7 +421,7 @@ class Events_Maker_Taxonomies
 			    case 'image':
 			        $html .= '
 			        	<th scope="row" valign="top">
-							<label>'.$name.'</label>
+							<label>'.$field['label'].'</label>
 						</th>
 							<td>
 							<div id="em-tax-image-buttons">
@@ -416,9 +434,9 @@ class Events_Maker_Taxonomies
 								'.($image[0] !== '' ? '<img src="'.$image[0].'" alt="" />' : '<img src="" alt="" style="display: none;" />').'
 							</div>';
 					
-					if (!empty($args['description']))
+					if (!empty($field['description']))
 						$html .= 
-							'<br /><span class="description">' . esc_attr($args['description']) . '</span>';
+							'<br /><span class="description">' . esc_attr($field['description']) . '</span>';
 					
 					$html .= 
 						'</td>';
@@ -427,14 +445,14 @@ class Events_Maker_Taxonomies
 				default:
 					$html .= '
 						<th scope="row" valign="top">
-							<label for="event-'.$key.'">'.$name.'</label>
+							<label for="event-'.$key.'">'.$field['label'].'</label>
 						</th>
 						<td>
 							<input type="text" name="term_meta['.$key.']" id="event-'.$key.'" value="'.esc_attr($term_meta[$key]).'" />';
 					
-					if (!empty($args['description']))
+					if (!empty($field['description']))
 						$html .= 
-							'<br /><span class="description">' . esc_attr($args['description']) . '</span>';
+							'<br /><span class="description">' . esc_attr($field['description']) . '</span>';
 					
 					$html .= 
 						'</td>';
@@ -453,11 +471,17 @@ class Events_Maker_Taxonomies
 	*/
 	public function event_category_save_meta_fields($term_id)
 	{
+		$taxonomy = (isset($_POST['taxonomy'])) ? esc_attr($_POST['taxonomy']) : esc_attr($_GET['taxonomy']);
+		$term = get_term($term_id, $taxonomy);
+		
+		if (!current_user_can('manage_event_categories'))
+        	return;
+		
 		if(isset($_POST['term_meta']) && is_array($_POST['term_meta']))
 		{
-			$term_meta = array();
+			$term_meta = get_option('event_category_'.$term->term_taxonomy_id);
 
-			foreach($this->category_fields as $key => $args)
+			foreach($this->category_fields as $key => $field)
 			{
 				switch($key)
 				{
@@ -468,7 +492,7 @@ class Events_Maker_Taxonomies
 				}
 			}
 
-			update_option('event_category_'.$term_id, $term_meta);
+			update_option('event_category_'.$term->term_taxonomy_id, $term_meta);
 		}
 	}
 
@@ -478,11 +502,17 @@ class Events_Maker_Taxonomies
 	*/
 	public function event_location_save_meta_fields($term_id)
 	{
+		$taxonomy = (isset($_POST['taxonomy'])) ? esc_attr($_POST['taxonomy']) : esc_attr($_GET['taxonomy']);
+		$term = get_term($term_id, $taxonomy);
+		
+		if (!current_user_can('manage_event_locations'))
+        	return;
+		
 		if(isset($_POST['term_meta']) && is_array($_POST['term_meta']))
 		{
-			$term_meta = array();
+			$term_meta = get_option('event_location_'.$term->term_taxonomy_id);
 
-			foreach($this->location_fields as $key => $args)
+			foreach($this->location_fields as $key => $field)
 			{
 				switch($key)
 				{
@@ -505,7 +535,7 @@ class Events_Maker_Taxonomies
 				}
 			}
 
-			update_option('event_location_'.$term_id, $term_meta);
+			update_option('event_location_'.$term->term_taxonomy_id, $term_meta);
 		}
 	}
 
@@ -515,11 +545,17 @@ class Events_Maker_Taxonomies
 	*/
 	public function event_organizer_save_meta_fields($term_id)
 	{
+		$taxonomy = (isset($_POST['taxonomy'])) ? esc_attr($_POST['taxonomy']) : esc_attr($_GET['taxonomy']);
+		$term = get_term($term_id, $taxonomy);
+		
+		if (!current_user_can('manage_event_organizers'))
+        	return;
+		
 		if(isset($_POST['term_meta']) && is_array($_POST['term_meta']))
 		{
-			$term_meta = array();
+			$term_meta = get_option('event_organizer_'.$term->term_taxonomy_id);
 
-			foreach($this->organizer_fields as $key => $args)
+			foreach($this->organizer_fields as $key => $field)
 			{
 				switch($key)
 				{
@@ -545,8 +581,83 @@ class Events_Maker_Taxonomies
 				}
 			}
 
-			update_option('event_organizer_'.$term_id, $term_meta);
+			update_option('event_organizer_'.$term->term_taxonomy_id, $term_meta);
 		}
+	}
+
+
+	/**
+	 * Columns for event-category taxonomy
+	*/
+	public function event_category_columns($columns)
+	{
+		// move posts count to default
+		$temp = $columns['posts'];
+		unset($columns['posts']);
+		
+		foreach ($this->category_fields as $key => $field)
+		{
+			if ($field['column'] === true)
+				$columns = array_merge($columns, array($key => esc_attr($field['label'])));
+		}
+		
+		// restore count
+		$columns['posts'] = $temp;
+		
+	    return $columns;
+	}
+	
+	
+	/**
+	 * Columns content for event-category taxonomy
+	*/
+	public function event_category_manage_columns($output, $column_name, $term_id)
+	{
+		$screen = get_current_screen();
+		
+		if (empty($screen) || $screen->base != 'edit-tags')
+			return;
+	
+	    $term = get_term($term_id, $screen->taxonomy);
+		
+		foreach ($this->category_fields as $key => $field)
+		{
+			if ($field['column'] === true && $key == $column_name)
+			{
+				$output .= call_user_func($field['callback'], $output, $column_name, $term_id);
+			}
+		}
+
+	    return $output;
+	}
+	
+	
+	/**
+	 * Single column content for event-category taxonomy
+	*/
+	public function event_category_manage_columns_content($output, $column_name, $term_id)
+	{
+		$taxonomy = (isset($_POST['taxonomy'])) ? esc_attr($_POST['taxonomy']) : esc_attr($_GET['taxonomy']);
+		$term = get_term($term_id, $taxonomy);
+		
+		// retrieve the existing value(s) for this term meta fields
+		$term_meta = get_option('event_category_'.$term->term_taxonomy_id);
+		
+		switch ($column_name)
+		{
+		    case 'color':
+				$output = '<span class="em-category-color"';
+		        $output .= !empty($term_meta['color']) ? ' style="background-color:' . $term_meta['color'] . '"': '';
+				$output .= '></span>';
+				
+		        break;
+				
+			default:
+				$output = !empty($term_meta[$column_name]) ? esc_attr($term_meta[$column_name]) : '&#8212;';
+				break;
+		}
+				
+		return apply_filters('em_event_category_column_content', $output, $column_name, $term_id);
 	}
 }
 ?>

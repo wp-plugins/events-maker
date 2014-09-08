@@ -209,7 +209,7 @@ class Events_Maker_Settings
 		$tab_key = (isset($_GET['tab']) ? $_GET['tab'] : 'general');
 
 		echo '
-		<div class="wrap">'.screen_icon().'
+		<div class="wrap">
 			<h2>'.__('Events Maker', 'events-maker').'</h2>
 			<h2 class="nav-tab-wrapper">';
 
@@ -555,7 +555,7 @@ class Events_Maker_Settings
 		foreach($this->currencies['codes'] as $code => $currency)
 		{
 			echo '
-					<option value="'.esc_attr($code).'" '.selected($code, $this->options['general']['currencies']['code'], false).'>'.$currency.'</option>';
+					<option value="'.esc_attr($code).'" '.selected($code, strtoupper($this->options['general']['currencies']['code']), false).'>'.esc_html($currency).' ('.$this->currencies['symbols'][$code].')</option>';
 		}
 
 		echo '
@@ -1173,10 +1173,10 @@ class Events_Maker_Settings
 	{
 		if(isset($_POST['save_em_general']))
 		{
-			//rewrite rules
+			// rewrite rules
 			$input['rewrite_rules'] = false;
 
-			//supports
+			// supports
 			$supports = array();
 			$input['supports'] = (isset($input['supports']) ? array_flip($input['supports']) : NULL);
 
@@ -1187,17 +1187,17 @@ class Events_Maker_Settings
 
 			$input['supports'] = $supports;
 
-			//currencies
+			// currencies
 			$input['currencies']['symbol'] = sanitize_text_field($input['currencies']['symbol']);
-			$input['currencies']['code'] = (isset($input['currencies']['code']) && in_array($input['currencies']['code'], array_keys($this->currencies['codes'])) ? $input['currencies']['code'] : $this->defaults['currencies']['code']);
+			$input['currencies']['code'] = (isset($input['currencies']['code']) && in_array($input['currencies']['code'], array_keys($this->currencies['codes'])) ? strtoupper($input['currencies']['code']) : $this->defaults['currencies']['code']);
 			$input['currencies']['format'] = (isset($input['currencies']['format']) && in_array($input['currencies']['format'], array_keys($this->currencies['formats'])) ? $input['currencies']['format'] : $this->defaults['currencies']['format']);
 			$input['currencies']['position'] = (isset($input['currencies']['position']) && in_array($input['currencies']['position'], array_keys($this->currencies['positions'])) ? $input['currencies']['position'] : $this->defaults['currencies']['position']);
 
-			//default order
+			// default order
 			$input['order_by'] = (isset($input['order_by']) && in_array($input['order_by'], array_keys($this->sortings)) ? $input['order_by'] : $this->defaults['general']['order_by']);
 			$input['order'] = (isset($input['order']) && in_array($input['order'], array_keys($this->orders)) ? $input['order'] : $this->defaults['general']['order']);
 
-			//date, time, weekday
+			// date, time, weekday
 			$input['datetime_format']['date'] = sanitize_text_field($input['datetime_format']['date']);
 			$input['datetime_format']['time'] = sanitize_text_field($input['datetime_format']['time']);
 			$input['first_weekday'] = (in_array($input['first_weekday'], array(1, 7)) ? (int)$input['first_weekday']: $this->defaults['general']['first_weekday']);

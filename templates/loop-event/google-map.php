@@ -11,6 +11,13 @@
  
 if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
+// locations
+$locations = em_get_location(get_queried_object_id());
+
+// locations available?
+if (!isset($locations) || empty($locations))
+	return;
+
 ?>
 
 <?php
@@ -31,5 +38,5 @@ $args = apply_filters('em_loop_event_google_map_args', array(
 	'scrollzoom' => true
 ));
 
-em_display_google_map($args);
+em_display_google_map($args, $locations);
 ?>

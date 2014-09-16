@@ -23,20 +23,25 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
     <?php
     if (!empty($location) && !is_wp_error($location)) : ?>
     
-	    <?php if (!empty($location_details['address'])) ?>	    	
+	    <?php if (!empty($location_details['address'])) : ?>	    	
 	    	<div class="location-address"><strong><?php echo __('Address', 'events-maker'); ?>:</strong> <?php echo $location_details['address']; ?></div>
+	    <?php endif; ?>
 	    
-	    <?php if (!empty($location_details['zip'])) ?>    	
+	    <?php if (!empty($location_details['zip'])) : ?>    	
 	    	<div class="location-zip"><strong><?php echo __('Zip Code', 'events-maker'); ?>:</strong> <?php echo $location_details['zip']; ?></div>
+	    <?php endif; ?>
 	    
-	    <?php if (!empty($location_details['city'])) ?>   	
+	    <?php if (!empty($location_details['city'])) : ?>   	
 	    	<div class="location-city"><strong><?php echo __('City', 'events-maker'); ?>:</strong> <?php echo $location_details['city']; ?></div>
+	    <?php endif; ?>
 	    
-	    <?php if (!empty($location_details['state'])) ?>	
-	    	<div class="location-state"><strong><?php echo __('State / Province', 'events-maker'); ?>:</strong> <?php echo $location_details['state']; ?></div>   
+	    <?php if (!empty($location_details['state'])) : ?>	
+	    	<div class="location-state"><strong><?php echo __('State / Province', 'events-maker'); ?>:</strong> <?php echo $location_details['state']; ?></div>
+	    <?php endif; ?>
 	         
-	    <?php if (!empty($location_details['country'])) ?>	
+	    <?php if (!empty($location_details['country'])) : ?>	
 	    	<div class="location-country"><strong><?php echo __('Country', 'events-maker'); ?>:</strong> <?php echo $location_details['country']; ?></div>
+	    <?php endif; ?>
 	    	
 	    <?php if (!empty($location_details['image'])) : ?>
         	

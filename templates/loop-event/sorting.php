@@ -24,12 +24,12 @@ if ($wp_query->found_posts == 1)
 		
 		<?php
 		$orderby = apply_filters('em_events_orderby', array(
-			'menu_order'	=> __('Default sorting', 'events-maker'),
-			'popularity'	=> __('Sort by popularity', 'events-maker'),
-			'date'			=> __('Sort by newness', 'events-maker'),
-			'date-desc'		=> __('Sort by newness', 'events-maker'),
-			'title'			=> __('Sort by price: low to high', 'events-maker'),
-			'title-desc'	=> __('Sort by price: high to low', 'events-maker')
+			'event_start_date'		=> __('Sort by start date: ascending', 'events-maker'),
+			'event_start_date-desc'	=> __('Sort by start date: descending', 'events-maker'),
+			'event_end_date'		=> __('Sort by end date: ascending', 'events-maker'),
+			'event_end_date-desc'	=> __('Sort by end date: descending', 'events-maker'),
+			'title'					=> __('Sort by title: ascending', 'events-maker'),
+			'title-desc'			=> __('Sort by title: descending', 'events-maker')
 		));
 
 		foreach ($orderby as $id => $name)

@@ -47,5 +47,5 @@ $args = apply_filters('em_single_event_google_map_args', array(
 	'scrollzoom' => true
 ));
 
-em_display_google_map($args);
+em_display_google_map($args, $locations);
 ?>

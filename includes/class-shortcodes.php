@@ -553,8 +553,12 @@ class Events_Maker_Shortcodes
 			foreach(array_unique($locations_tmp) as $location_id)
 			{
 				$location = em_get_location($location_id);
-				$location->location_meta['name'] = $location->name;
-				$markers[] = $location->location_meta;
+				
+				if (!empty($location->location_meta['latitude']) && !empty($location->location_meta['latitude']))
+				{
+					$location->location_meta['name'] = $location->name;
+					$markers[] = $location->location_meta;
+				}
 			}
 		}
 		elseif(is_tax('event-location') || (in_array(get_post_type(), apply_filters('em_event_post_type', array('event'))) && is_single()))
@@ -564,8 +568,12 @@ class Events_Maker_Shortcodes
 			if(isset($term->term_id))
 			{
 				$location = em_get_location($term->term_id);
-				$location->location_meta['name'] = $location->name;
-				$markers[] = $location->location_meta;
+				
+				if (!empty($location->location_meta['latitude']) && !empty($location->location_meta['latitude']))
+				{
+					$location->location_meta['name'] = $location->name;
+					$markers[] = $location->location_meta;
+				}
 			}
 			elseif(isset($term->ID))
 			{
@@ -575,8 +583,11 @@ class Events_Maker_Shortcodes
 				{
 					foreach($locations as $location)
 					{
-						$location->location_meta['name'] = $location->name;
-						$markers[] = $location->location_meta;
+						if (!empty($location->location_meta['latitude']) && !empty($location->location_meta['latitude']))
+						{
+							$location->location_meta['name'] = $location->name;
+							$markers[] = $location->location_meta;
+						}
 					}
 				}
 			}

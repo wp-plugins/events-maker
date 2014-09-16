@@ -847,7 +847,7 @@ class Events_Maker_Metaboxes
 			if($this->options['general']['use_organizers'])
 				$event_display_options = array_merge($event_display_options, array('display_organizer_details' => __('Display Organizer Details', 'events-maker')));
 			
-			$options = apply_filters('em_metabox_event_display_options', $options, get_post($post_ID));
+			$event_display_options = apply_filters('em_metabox_event_display_options', $event_display_options, $post_ID);
 	
 			if(is_array($event_display_options) && !empty($event_display_options))
 			{

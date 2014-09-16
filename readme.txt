@@ -4,7 +4,7 @@ Donate link: http://www.dfactory.eu/
 Tags: event, event categories, events management, event management, events manager, event manager, event organizer, events calendar, events maker, google map, map, locations, organizers, widget, attendance, attendee, Booking, calendar, event registration, ticket, tickets, ticketing, bookings
 Requires at least: 3.5
 Tested up to: 4.0
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -85,6 +85,11 @@ No questions yet.
 
 == Changelog ==
 
+= 1.2.2 =
+* Fix: Google map not displayed poperly if location data was empty
+* Fix: Location and organizer details displayed improperly
+* Fix: Undefined variable: options in class-metaboxes.php
+* Fix: Undefined offset: 1 in events-maker.php
 
 = 1.2.1 =
 * Fix: Event query not working properly for multiple post types
@@ -188,7 +193,5 @@ Initial release
 
 == Upgrade Notice ==
 
-= 1.2.1 =
-* Fix: Event query not working properly for multiple post types
-* Tweak: Currency list extended
-* Tweak: Added category color column
+= 1.2.2 =
+* Bugfix release

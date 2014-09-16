@@ -2,7 +2,7 @@
 /*
 Plugin Name: Events Maker
 Description: Events Maker is an easy to use but flexible events management plugin made the WordPress way.
-Version: 1.2.1
+Version: 1.2.2
 Author: dFactory
 Author URI: http://www.dfactory.eu/
 Plugin URI: http://www.dfactory.eu/plugins/events-maker/
@@ -128,7 +128,7 @@ class Events_Maker
 			'event_locations_rewrite_slug' => 'location',
 			'event_organizers_rewrite_slug' => 'organizer'
 		),
-		'version' => '1.2.1'
+		'version' => '1.2.2'
 	);
 	private $transient_id = '';
 
@@ -457,7 +457,7 @@ class Events_Maker
 
 
 	/**
-	 * 
+	 * Get support options
 	*/
 	private function get_supports()
 	{
@@ -474,7 +474,7 @@ class Events_Maker
 
 
 	/**
-	 * 
+	 * Get default options
 	*/
 	public function get_defaults()
 	{
@@ -483,7 +483,7 @@ class Events_Maker
 
 
 	/**
-	 * 
+	 * Get options
 	*/
 	public function get_options()
 	{
@@ -492,7 +492,7 @@ class Events_Maker
 
 
 	/**
-	 * 
+	 * Get currencies options
 	*/
 	public function get_currencies()
 	{
@@ -501,7 +501,7 @@ class Events_Maker
 
 
 	/**
-	 * 
+	 * Get recurrencies options
 	*/
 	public function get_recurrences()
 	{
@@ -510,7 +510,7 @@ class Events_Maker
 
 
 	/**
-	 * 
+	 * Get session id
 	*/
 	public function get_session_id()
 	{
@@ -519,7 +519,7 @@ class Events_Maker
 
 
 	/**
-	 * Generates random string
+	 * Generate random string
 	*/
 	private function generate_hash()
 	{
@@ -537,7 +537,7 @@ class Events_Maker
 
 
 	/**
-	 * Initializes cookie-session
+	 * Initialize cookie-session
 	*/
 	public function init_session()
 	{
@@ -546,7 +546,7 @@ class Events_Maker
 
 
 	/**
-	 * Loads text domain
+	 * Load text domain
 	*/
 	public function load_textdomain()
 	{
@@ -555,7 +555,7 @@ class Events_Maker
 
 
 	/**
-	 * 
+	 * Print admin notices
 	*/
 	public function event_admin_notices()
 	{
@@ -582,7 +582,7 @@ class Events_Maker
 
 
 	/**
-	 * 
+	 * Print admin notices
 	*/
 	public function display_notice($html = '', $status = 'error', $paragraph = false, $network = true)
 	{
@@ -600,7 +600,7 @@ class Events_Maker
 
 
 	/**
-	 * 
+	 * Print admin notices
 	*/
 	public function admin_display_notice()
 	{
@@ -898,7 +898,7 @@ class Events_Maker
 
 
 	/**
-	 * 
+	 * Enqueue admin scripts and style
 	*/
 	public function admin_scripts_styles($page)
 	{
@@ -920,6 +920,9 @@ class Events_Maker
 			if(($screen->id === 'edit-event-organizer' && $screen->taxonomy === 'event-organizer') || ($screen->id === 'edit-event-location' && $screen->taxonomy === 'event-location') || ($screen->id === 'edit-event-category' && $screen->taxonomy === 'event-category'))
 			{
 				$timezone = explode('/', get_option('timezone_string'));
+				
+				if(!isset($timezone[1]))
+					$timezone[1] = 'United Kingdom, London';
 				
 				wp_enqueue_media();
 				wp_enqueue_style('wp-color-picker');
@@ -1026,7 +1029,7 @@ class Events_Maker
 
 
 	/**
-	 * 
+	 * Enqueue frontend scripts and style
 	*/
 	public function front_scripts_styles()
 	{
@@ -1076,7 +1079,7 @@ class Events_Maker
 
 
 	/**
-	 * Adds links to Support Forum
+	 * Add links to Support Forum
 	*/
 	public function plugin_extend_links($links, $file) 
 	{
@@ -1098,7 +1101,7 @@ class Events_Maker
 
 
 	/**
-	 * Adds button link to view full events calendar
+	 * Add button link to view full events calendar
 	*/
 	public function view_full_calendar_button()
 	{
@@ -1124,7 +1127,7 @@ class Events_Maker
 
 
 	/**
-	 * Maps capabilities
+	 * Map capabilities
 	*/
 	public function event_map_meta_cap($caps, $cap, $user_id, $args)
 	{

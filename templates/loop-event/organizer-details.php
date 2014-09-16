@@ -23,17 +23,21 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
     <?php
     if (!empty($organizer) && !is_wp_error($organizer)) : ?>
     
-	    <?php if (!empty($organizer_details['contact_name'])) ?>   	
+	    <?php if (!empty($organizer_details['contact_name'])) : ?>   	
 			<div class="organizer-contact-name"><strong><?php echo __('Contact name', 'events-maker'); ?>:</strong> <span class="fn"><?php echo $organizer_details['contact_name']; ?></span></div>
+		<?php endif; ?>
         
-        <?php if (!empty($organizer_details['phone'])) ?>
+        <?php if (!empty($organizer_details['phone'])) : ?>
 			<div class="organizer-phone"><strong><?php echo __('Phone', 'events-maker'); ?>:</strong> <span class="tel"><?php echo $organizer_details['phone']; ?></span></div>
+		<?php endif; ?>
         
-        <?php if (!empty($organizer_details['email'])) ?>
+        <?php if (!empty($organizer_details['email'])) : ?>
         	<div class="organizer-email"><strong><?php echo __('Email', 'events-maker'); ?>:</strong> <span class="email"><?php echo $organizer_details['email']; ?></span></div>
+        <?php endif; ?>
         
-        <?php if (!empty($organizer_details['website'])) ?>
+        <?php if (!empty($organizer_details['website'])) : ?>
         	<div class="organizer-website"><strong><?php echo __('Website', 'events-maker'); ?>:</strong> <span class="fn"><a href="<?php echo $organizer_details['website']; ?>" target="_blank" rel="nofollow"><?php echo $organizer_details['website']; ?></a></span></div>
+        <?php endif; ?>
         
         <?php if (!empty($organizer_details['image'])) : ?>
         	

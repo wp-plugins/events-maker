@@ -194,10 +194,10 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 		);
 
 		$this->em_css_styles = array(
-			'basic' => __('basic', 'news-manager'),
-			'dark' => __('dark', 'news-manager'),
-			'light' => __('light', 'news-manager'),
-			'flat' => __('flat', 'news-manager')
+			'basic' => __('basic', 'events-maker'),
+			'dark' => __('dark', 'events-maker'),
+			'light' => __('light', 'events-maker'),
+			'flat' => __('flat', 'events-maker')
 		);
 	}
 
@@ -273,7 +273,7 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 			<input id="'.$this->get_field_id('highlight_weekends').'" type="checkbox" name="'.$this->get_field_name('highlight_weekends').'" value="" '.checked(true, (isset($instance['highlight_weekends']) ? $instance['highlight_weekends'] : $this->em_defaults['highlight_weekends']), false).' /> <label for="'.$this->get_field_id('highlight_weekends').'">'.__('Highlight weekends', 'events-maker').'</label>
 		</p>
 		<p>
-			<label>'.__('CSS Style', 'news-manager').':</label>
+			<label>'.__('CSS Style', 'events-maker').':</label>
 			<select name="'.$this->get_field_name('css_style').'">';
 
 		foreach($this->em_css_styles as $style => $trans)

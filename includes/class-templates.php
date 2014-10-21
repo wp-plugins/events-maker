@@ -22,24 +22,27 @@ class Events_Maker_Templates
 	// Locate and include template files
 	public function template_include($template)
 	{
-		if(is_post_type_archive('event'))
-			$new_template = em_locate_template('archive-event.php');
-
-		if(is_tax('event-category'))
-			$new_template = em_locate_template('taxonomy-event-category.php');
+		if ($this->options['templates']['default_templates'] === true)
+		{
+			if(is_post_type_archive('event'))
+				$new_template = em_locate_template('archive-event.php');
+	
+			if(is_tax('event-category'))
+				$new_template = em_locate_template('taxonomy-event-category.php');
+			
+			if(is_tax('event-location'))
+				$new_template = em_locate_template('taxonomy-event-location.php');
+			
+			if(is_tax('event-organizer'))
+				$new_template = em_locate_template('taxonomy-event-organizer.php');
+			
+			if(is_tax('event-tag'))
+				$new_template = em_locate_template('taxonomy-event-tag.php');
+	
+			if(is_singular('event'))
+				$new_template = em_locate_template('single-event.php');
+		}
 		
-		if(is_tax('event-location'))
-			$new_template = em_locate_template('taxonomy-event-location.php');
-		
-		if(is_tax('event-organizer'))
-			$new_template = em_locate_template('taxonomy-event-organizer.php');
-		
-		if(is_tax('event-tag'))
-			$new_template = em_locate_template('taxonomy-event-tag.php');
-
-		if(is_singular('event'))
-			$new_template = em_locate_template('single-event.php');
-
 		return apply_filters('em_template_include', (!empty($new_template) ? $new_template : $template));
 	}
 	

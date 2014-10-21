@@ -4,7 +4,7 @@ Donate link: http://www.dfactory.eu/
 Tags: event, event categories, events management, event management, events manager, event manager, event organizer, events calendar, events maker, google map, map, locations, organizers, widget, attendance, attendee, Booking, calendar, event registration, ticket, tickets, ticketing, bookings
 Requires at least: 3.5
 Tested up to: 4.0
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -84,6 +84,10 @@ No questions yet.
 4. screenshot-4.png
 
 == Changelog ==
+
+= 1.2.3 =
+* Fix: Translation files currupted
+* Fix: Disabling default templates not working
 
 = 1.2.2 =
 * Fix: Google map not displayed poperly if location data was empty
@@ -193,5 +197,6 @@ Initial release
 
 == Upgrade Notice ==
 
-= 1.2.2 =
-* Bugfix release
+= 1.2.3 =
+* Fix: Translation files currupted
+* Fix: Disabling default templates not working

@@ -8,6 +8,9 @@ class Events_Maker_Widgets
 	private $options = array();
 
 
+	/**
+	 * 
+	 */
 	public function __construct($events_maker)
 	{
 		//settings
@@ -20,7 +23,7 @@ class Events_Maker_Widgets
 
 	/**
 	 * 
-	*/
+	 */
 	public function register_widgets()
 	{
 		register_widget('Events_Maker_List_Widget');
@@ -181,6 +184,7 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 		$this->em_defaults = array(
 			'title' => __('Events Calendar', 'events-maker'),
 			'show_past_events' => $this->em_options['general']['show_past_events'],
+			'show_occurrences' => $this->em_options['general']['show_occurrences'],
 			'highlight_weekends' => true,
 			'categories' => 'all',
 			'locations' => 'all',
@@ -204,7 +208,7 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 
 	/**
 	 * 
-	*/
+	 */
 	public function get_widget_calendar_month()
 	{
 		if(!empty($_POST['action']) && !empty($_POST['date']) && !empty($_POST['widget_id']) && !empty($_POST['nonce']) && $_POST['action'] === 'get-events-widget-calendar-month' && check_ajax_referer('events-maker-widget-calendar', 'nonce', false))
@@ -221,7 +225,7 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 
 	/**
 	 * 
-	*/
+	 */
 	public function widget($args, $instance)
 	{
 		if(++$this->em_included_widgets === 1)
@@ -257,7 +261,7 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 
 	/**
 	 * 
-	*/
+	 */
 	public function form($instance)
 	{
 		$category = isset($instance['categories']) ? $instance['categories'] : $this->em_defaults['categories'];
@@ -270,6 +274,7 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 		</p>
 		<p>
 			<input id="'.$this->get_field_id('show_past_events').'" type="checkbox" name="'.$this->get_field_name('show_past_events').'" value="" '.checked(true, (isset($instance['show_past_events']) ? $instance['show_past_events'] : $this->em_defaults['show_past_events']), false).' /> <label for="'.$this->get_field_id('show_past_events').'">'.__('Show past events', 'events-maker').'</label><br />
+			<input id="'.$this->get_field_id('show_occurrences').'" type="checkbox" name="'.$this->get_field_name('show_occurrences').'" value="" '.checked(true, (isset($instance['show_occurrences']) ? $instance['show_occurrences'] : $this->em_defaults['show_occurrences']), false).' /> <label for="'.$this->get_field_id('show_occurrences').'">'.__('Show occurrences', 'events-maker').'</label><br />
 			<input id="'.$this->get_field_id('highlight_weekends').'" type="checkbox" name="'.$this->get_field_name('highlight_weekends').'" value="" '.checked(true, (isset($instance['highlight_weekends']) ? $instance['highlight_weekends'] : $this->em_defaults['highlight_weekends']), false).' /> <label for="'.$this->get_field_id('highlight_weekends').'">'.__('Highlight weekends', 'events-maker').'</label>
 		</p>
 		<p>
@@ -344,12 +349,17 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 
 	/**
 	 * 
-	*/
+	 */
 	public function update($new_instance, $old_instance)
 	{
-		//checkboxes
-		$old_instance['show_past_events'] = (isset($new_instance['show_past_events']) ? true : false);
-		$old_instance['highlight_weekends'] = (isset($new_instance['highlight_weekends']) ? true : false);
+		// show past events
+		$old_instance['show_past_events'] = isset($new_instance['show_past_events']);
+
+		// highlight weekends
+		$old_instance['highlight_weekends'] = isset($new_instance['highlight_weekends']);
+
+		// show occurrences
+		$old_instance['show_occurrences'] = isset($new_instance['show_occurrences']);
 
 		//title
 		$old_instance['title'] = sanitize_text_field(isset($new_instance['title']) ? $new_instance['title'] : $this->em_defaults['title']);
@@ -426,22 +436,22 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 
 	/**
 	 * 
-	*/
+	 */
 	private function display_calendar($options, $start_date, $events, $widget_id, $ajax = false)
 	{
 		global $wp_locale;
 
-		$weekdays = array(1 => 7, 2 => 6, 3 => 5, 4 => 4, 5 => 3, 6 => 2, 7 => 1);
+		$weekdays = array(1 => 7, 2 => 6, 3 => 5, 4 => 4, 5 => 3, 6 => 2, 7 => 1, 8 => 0);
 		$date = explode(' ', date('Y m j t', strtotime($start_date.'-02')));
 		$month = (int)$date[1] - 1;
 		$prev_month = (($a = $month - 1) === -1 ? 11 : $a);
 		$prev_month_pad = str_pad($prev_month + 1, 2, '0', STR_PAD_LEFT);
 		$next_month = ($month + 1) % 12;
 		$next_month_pad = str_pad($next_month + 1, 2, '0', STR_PAD_LEFT);
-		$first_day = (($first = date('w', strtotime(date($date[0].'-'.$date[1].'-01')))) === '0' ? 7 : $first);
+		$first_day = (($first = date('w', strtotime(date($date[0].'-'.$date[1].'-01')))) === '0' ? 7 : $first) + ($this->em_options['general']['first_weekday'] === 7 ? 1 : 0);
 		$rel = $widget_id.'|';
 
-		//Polylang and WPML compatibility
+		// Polylang and WPML compatibility
 		if(defined('ICL_LANGUAGE_CODE'))
 			$rel .= ICL_LANGUAGE_CODE;
 
@@ -455,7 +465,7 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 		for($i = 1; $i <= 7; $i++)
 		{
 			$html .= '
-						<th scope="col">'.$wp_locale->get_weekday_initial($wp_locale->get_weekday($i !== 7 ? $i : 0)).'</th>';
+						<th scope="col">'.$wp_locale->get_weekday_initial($wp_locale->get_weekday($this->em_options['general']['first_weekday'] === 7 ? ($i !== 7 ? ($i - 1) : 6) : ($i !== 7 ? $i : 0))).'</th>';
 		}
 
 		$html .= '
@@ -463,13 +473,20 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 				</thead>
 				<tbody>';
 
-		$weeks = ceil(($date[3] - $weekdays[$first_day]) / 7) + 1;
+		$weeks = (int)ceil(($date[3] - $weekdays[$first_day]) / 7) + 1;
+
+		// sunday as first day?
+		if($this->em_options['general']['first_weekday'] === 7 && $first_day === 8)
+			$first_day_sunday_week = true;
+		else
+			$first_day_sunday_week = false;
+
 		$now = date_parse(current_time('mysql'));
 		$day = $k = 1;
 
 		for($i = 1; $i <= $weeks; $i++)
 		{
-			$html .= '<tr>';
+			$row = '<tr>';
 
 			for($j = 1; $j <= 7; $j++)
 			{
@@ -485,23 +502,28 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 				if($real_day === false)
 					$td_class[] = 'pad';
 
-				if($options['highlight_weekends'] === true && $j >= 6 && $j <= 7)
+				if($options['highlight_weekends'] === true && ($this->em_options['general']['first_weekday'] === 1 && ($j === 6 || $j === 7)) || ($this->em_options['general']['first_weekday'] === 7 && ($j === 1 || $j === 7)) && !in_array('pad', $td_class, true))
 					$td_class[] = 'weekend';
 
-				$html .= '<td'.(!empty($td_class) ? ' class="'.implode(' ', $td_class).'"' : '').'>';
+				$row .= '<td'.(!empty($td_class) ? ' class="'.implode(' ', $td_class).'"' : '').'>';
 
 				if($real_day === true)
 				{
-					$html .= (in_array($day, $events) ? '<a href="'.esc_url(em_get_event_date_link($date[0], $month + 1, $day)).'">'.$day.'</a>' : $day);
+					$row .= (in_array($day, $events) ? '<a href="'.esc_url(em_get_event_date_link($date[0], $month + 1, $day)).'">'.$day.'</a>' : $day);
 					$day++;
 				}
 				else
-					$html .= '&nbsp';
+					$row .= '&nbsp';
 
-				$html .= '</td>';
+				$row .= '</td>';
 			}
 
-			$html .= '</tr>';
+			$row .= '</tr>';
+
+			if($i === 1 && $first_day_sunday_week)
+				continue;
+			else
+				$html .= $row;
 		}
 
 		$html .= '
@@ -526,17 +548,19 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 
 	/**
 	 * 
-	*/
+	 */
 	private function get_events_days($date, $options)
 	{
 		$days = $allevents = $exclude_ids = array();
+		$show_occurrences = (isset($options['show_occurrences']) ? $options['show_occurrences'] : $this->em_options['general']['show_occurrences']);
 
 		$args = array(
 			'post_type' => 'event',
 			'posts_per_page' => -1,
 			'suppress_filters' => false,
-			'date_range' => 'between',
-			'event_show_past_events' => $options['show_past_events']
+			'event_date_range' => 'between',
+			'event_show_past_events' => $options['show_past_events'],
+			'event_show_occurrences' => $show_occurrences
 		);
 
 		if($options['categories'] === 'selected')
@@ -572,11 +596,11 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 			);
 		}
 
-		//Polylang and WPML compatibility
+		// Polylang and WPML compatibility
 		if(defined('ICL_LANGUAGE_CODE'))
 			$args['lang'] = ICL_LANGUAGE_CODE;
 
-		$allevents['start'] = get_posts(
+		$allevents['start'] = em_get_events(
 			array_merge(
 				$args,
 				array(
@@ -591,7 +615,7 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 			$exclude_ids[] = $event->ID;
 		}
 
-		$allevents['end'] = get_posts(
+		$allevents['end'] = em_get_events(
 			array_merge(
 				$args,
 				array(
@@ -608,14 +632,17 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 			{
 				foreach($events as $event)
 				{
-					$s_datetime = explode(' ', get_post_meta($event->ID, '_event_start_date', true));
+					// gets start date
+					$s_datetime = explode(' ', ($show_occurrences ? $event->event_occurrence_start_date : $event->_event_start_date));
 					$s_date = explode('-', $s_datetime[0]);
-					$e_datetime = explode(' ', get_post_meta($event->ID, '_event_end_date', true));
+
+					// gets end date
+					$e_datetime = explode(' ', ($show_occurrences ? $event->event_occurrence_end_date : $event->_event_end_date));
 					$e_date = explode('-', $e_datetime[0]);
 
 					if(count($s_date) === 3 && count($e_date) === 3)
 					{
-						//same years and same months
+						// same years and same months
 						if($s_date[0] === $e_date[0] && $s_date[1] === $e_date[1])
 						{
 							for($i = $s_date[2]; $i <= $e_date[2]; $i++)
@@ -653,7 +680,7 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 
 	/**
 	 * 
-	*/
+	 */
 	private function display_taxonomy_checkbox_list($taxonomy_name, $name, $instance, $depth = 0, $parent = 0)
 	{
 		$html = '';
@@ -757,7 +784,7 @@ class Events_Maker_List_Widget extends WP_Widget
 
 	/**
 	 * 
-	*/
+	 */
 	public function widget($args, $instance)
 	{
 		$instance['title'] = apply_filters('widget_title', $instance['title'], $instance, $this->id_base);
@@ -778,7 +805,7 @@ class Events_Maker_List_Widget extends WP_Widget
 
 	/**
 	 * 
-	*/
+	 */
 	public function form($instance)
 	{
 		$category = isset($instance['categories']) ? $instance['categories'] : $this->em_defaults['categories'];
@@ -916,7 +943,7 @@ class Events_Maker_List_Widget extends WP_Widget
 
 	/**
 	 * 
-	*/
+	 */
 	public function update($new_instance, $old_instance)
 	{
 		//number of events
@@ -1012,7 +1039,7 @@ class Events_Maker_List_Widget extends WP_Widget
 
 	/**
 	 * 
-	*/
+	 */
 	private function display_taxonomy_checkbox_list($taxonomy_name, $name, $instance, $depth = 0, $parent = 0)
 	{
 		$html = '';
@@ -1089,7 +1116,7 @@ class Events_Maker_Categories_Widget extends WP_Widget
 
 	/**
 	 * 
-	*/
+	 */
 	public function widget($args, $instance)
 	{
 		$instance['title'] = apply_filters('widget_title', $instance['title'], $instance, $this->id_base);
@@ -1104,7 +1131,7 @@ class Events_Maker_Categories_Widget extends WP_Widget
 
 	/**
 	 * 
-	*/
+	 */
 	public function form($instance)
 	{
 		$html = '
@@ -1148,7 +1175,7 @@ class Events_Maker_Categories_Widget extends WP_Widget
 
 	/**
 	 * 
-	*/
+	 */
 	public function update($new_instance, $old_instance)
 	{
 		//title
@@ -1206,7 +1233,7 @@ class Events_Maker_Locations_Widget extends WP_Widget
 
 	/**
 	 * 
-	*/
+	 */
 	public function widget($args, $instance)
 	{
 		$instance['title'] = apply_filters('widget_title', $instance['title'], $instance, $this->id_base);
@@ -1221,7 +1248,7 @@ class Events_Maker_Locations_Widget extends WP_Widget
 
 	/**
 	 * 
-	*/
+	 */
 	public function form($instance)
 	{
 		$html = '
@@ -1265,7 +1292,7 @@ class Events_Maker_Locations_Widget extends WP_Widget
 
 	/**
 	 * 
-	*/
+	 */
 	public function update($new_instance, $old_instance)
 	{
 		//title
@@ -1323,7 +1350,7 @@ class Events_Maker_Organizers_Widget extends WP_Widget
 
 	/**
 	 * 
-	*/
+	 */
 	public function widget($args, $instance)
 	{
 		$instance['title'] = apply_filters('widget_title', $instance['title'], $instance, $this->id_base);
@@ -1338,7 +1365,7 @@ class Events_Maker_Organizers_Widget extends WP_Widget
 
 	/**
 	 * 
-	*/
+	 */
 	public function form($instance)
 	{
 		$html = '
@@ -1382,7 +1409,7 @@ class Events_Maker_Organizers_Widget extends WP_Widget
 
 	/**
 	 * 
-	*/
+	 */
 	public function update($new_instance, $old_instance)
 	{
 		//title

@@ -4,7 +4,7 @@ Donate link: http://www.dfactory.eu/
 Tags: event, event categories, events management, event management, events manager, event manager, event organizer, events calendar, events maker, google map, map, locations, organizers, widget, attendance, attendee, Booking, calendar, event registration, ticket, tickets, ticketing, bookings
 Requires at least: 3.5
 Tested up to: 4.0
-Stable tag: 1.2.3
+Stable tag: 1.2.4
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -58,6 +58,7 @@ For more information, check out plugin page at [dFactory](http://www.dfactory.eu
 * Catalan - by Jordi Altimira
 * Dutch - by [Heleen van den Bos](http://www.bostekst.nl/)
 * French - by Marc Abel
+* Italian - by [Lorenzo De Tomasi](http://isotype.org)
 * Japanese - by stranger-jp
 * Norwegian - by Anders Kleppe
 * Polish - by Bartosz Arendt
@@ -74,7 +75,9 @@ For more information, check out plugin page at [dFactory](http://www.dfactory.eu
 
 == Frequently Asked Questions ==
 
-No questions yet.
+= Q. I have a question =
+
+A. Chances are, someone else has asked it. Check out the support forum at: http://www.dfactory.eu/support/
 
 == Screenshots ==
 
@@ -84,6 +87,15 @@ No questions yet.
 4. screenshot-4.png
 
 == Changelog ==
+
+= 1.2.4 =
+* New: Italian translation, thanks to [Lorenzo De Tomasi](http://isotype.org)
+* New: Recurring events option for event calendar widget
+* Fix: All day events display in full calendar view
+* Fix: First day of the week option not working
+* Fix: Event display options metabox not working properly
+* Fix: A typo in em_get_organizers_for() function
+* Tweak: Breadrumb date incorrect in archive page view
 
 = 1.2.3 =
 * Fix: Translation files currupted
@@ -197,6 +209,5 @@ Initial release
 
 == Upgrade Notice ==
 
-= 1.2.3 =
-* Fix: Translation files currupted
-* Fix: Disabling default templates not working
+= 1.2.4 =
+Multiple bugfixes, Italian translation, thanks to [Lorenzo De Tomasi](http://isotype.org)

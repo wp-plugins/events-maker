@@ -560,7 +560,7 @@ class Events_Maker_Metaboxes
 		{
 			?>
 			<label for="event_display_option_<?php echo $key; ?>">
-				<input id="event_display_option_<?php echo $key; ?>" type="checkbox" name="event_display_options[<?php echo $key; ?>]" <?php checked((isset($values[$key]) && $values[$key] !== '' ? $values[$key] : '1'), (isset($this->options['general']['default_event_options'][$key]) ? (bool)$this->options['general']['default_event_options'][$key] : '0')); ?> /><?php echo $name; ?>
+				<input id="event_display_option_<?php echo $key; ?>" type="checkbox" name="event_display_options[<?php echo $key; ?>]" <?php checked((isset($values[$key]) && !empty($values[$key]) ? $values[$key] : isset($this->options['general']['default_event_options'][$key])) ? '1' : '0', '1'); ?> /><?php echo $name; ?>
 			</label><br />
 			<?php
 		}

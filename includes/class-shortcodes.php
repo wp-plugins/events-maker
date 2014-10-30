@@ -30,7 +30,7 @@ class Events_Maker_Shortcodes
 
 	/**
 	 *
-	*/
+	 */
 	public function after_delete_trash_calendar_page($post_id)
 	{
 		// wpml or polylang?
@@ -51,7 +51,7 @@ class Events_Maker_Shortcodes
 
 	/**
 	 * 
-	*/
+	 */
 	public function after_change_status_calendar_page($new_status, $old_status, $post)
 	{
 		if($post->post_type === 'page' && $old_status === 'publish' && $new_status !== 'publish')
@@ -75,7 +75,7 @@ class Events_Maker_Shortcodes
 
 	/**
 	 * 
-	*/
+	 */
 	public function add_full_calendar($content)
 	{
 		if($this->options['general']['full_calendar_display']['type'] === 'page' && is_page($this->options['general']['full_calendar_display']['page']))
@@ -92,7 +92,7 @@ class Events_Maker_Shortcodes
 
 	/**
 	 * 
-	*/
+	 */
 	public function check_calendar_page()
 	{
 		if(!current_user_can('manage_options'))
@@ -210,7 +210,7 @@ class Events_Maker_Shortcodes
 
 	/**
 	 * 
-	*/
+	 */
 	public function create_calendar_page($network = false)
 	{
 		$id = wp_insert_post(
@@ -263,7 +263,7 @@ class Events_Maker_Shortcodes
 
 	/**
 	 * 
-	*/
+	 */
 	public function register_shortcodes()
 	{
 		add_shortcode('em-full-calendar', array(&$this, 'calendar_shortcode'));
@@ -273,7 +273,7 @@ class Events_Maker_Shortcodes
 
 	/**
 	 * 
-	*/
+	 */
 	public function calendar_shortcode($args)
 	{
 		$defaults = array(
@@ -407,6 +407,7 @@ class Events_Maker_Shortcodes
 			'emCalendarArgs',
 			array(
 				'firstWeekDay' => ($this->options['general']['first_weekday'] === 7 ? 0 : 1),
+				'timeFormat' => str_replace(array('s', 'i', 'H', 'h', 'G', 'g'), array('ss', 'mm', 'HH', 'hh', 'H', 'h'), $this->options['general']['datetime_format']['time']),
 				'events' => $this->get_full_calendar_events($args)
 			)
 		);
@@ -433,7 +434,7 @@ class Events_Maker_Shortcodes
 
 	/**
 	 * 
-	*/
+	 */
 	private function get_full_calendar_events($args)
 	{
 		$events = em_get_events($args);
@@ -468,23 +469,25 @@ class Events_Maker_Shortcodes
 				}
 			}
 
-			if(em_is_recurring($event->ID))
+			if(em_is_recurring($event->ID) && $this->options['general']['show_occurrences'])
 			{
 				$start = $event->event_occurrence_start_date;
 				$end = $event->event_occurrence_end_date;
 			}
 			else
 			{
-				$start = get_post_meta($event->ID, '_event_start_date', true);
-				$end = get_post_meta($event->ID, '_event_end_date', true);
+				$start = $event->_event_start_date;
+				$end = $event->_event_end_date;
 			}
+
+			$all_day_event = em_is_all_day($event->ID);
 
 			$calendar[] = array(
 				'title' => $event->post_title,
 				'start' => $start,
-				'end' => $end,
+				'end' => ($all_day_event ? date('Y-m-d H:i:s', strtotime($end.'+1 day')) : $end),
 				'className' => implode(' ', $classes),
-				'allDay' => em_is_all_day($event->ID),
+				'allDay' => $all_day_event,
 				'url' => get_permalink($event->ID),
 				'backgroundColor' => (isset($term_meta['color']) ? $term_meta['color'] : '')
 			);
@@ -496,7 +499,7 @@ class Events_Maker_Shortcodes
 
 	/**
 	 * 
-	*/
+	 */
 	public function google_map_shortcode($args)
 	{
 		$markers = array();
@@ -632,7 +635,7 @@ class Events_Maker_Shortcodes
 
 	/**
 	 * 
-	*/
+	 */
 	private function get_proper_arg($arg, $default, $array)
 	{
 		$arg = strtolower($arg);

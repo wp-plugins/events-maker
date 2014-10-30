@@ -24,8 +24,9 @@ function em_get_events($args = array())
 		'suppress_filters' => false,
 		'posts_per_page' => -1
 	);
+
 	$args = wp_parse_args($args, $defaults);
-	
+
 	return apply_filters('em_get_events', get_posts($args));
 }
 
@@ -253,22 +254,22 @@ function em_get_current_occurrence($post_id = 0)
  */
 function em_get_the_date($post_id = 0, $args = array())
 {
+	$post_id = (int)(empty($post_id) ? get_the_ID() : $post_id);
+	$date = array();
 
-	$post_id 	= (int)(empty($post_id) ? get_the_ID() : $post_id);
-	$date 		= array();
-	
 	if(empty($post_id))
 		return false;
-	
+
 	$defaults = array(
-		'range'   	=> '',		// start, end
-		'output' 	=> '',		// datetime, date, time
-		'format' 	=> '',		// date or time format
+		'range' => '', // start, end
+		'output' => '', // datetime, date, time
+		'format' => '', // date or time format
 	);
+
 	$args = apply_filters('em_get_the_date_args', wp_parse_args($args, $defaults));
- 
+
 	$occurrence = em_get_current_occurrence($post_id);
-	
+
 	// if current event is event occurrence?
 	if(!empty($occurrence))
 	{
@@ -283,18 +284,18 @@ function em_get_the_date($post_id = 0, $args = array())
 
 	if(empty($start_date))
 		return false;
-	
+
 	// date format options
 	$options = get_option('events_maker_general');
 	$date_format = $options['datetime_format']['date'];
 	$time_format = $options['datetime_format']['time'];
-	
+
 	if(!empty($args['format']) && is_array($args['format']))
 	{
 		$date_format = (!empty($args['format']['date']) ? $args['format']['date'] : $date_format);
 		$time_format = (!empty($args['format']['time']) ? $args['format']['time'] : $time_format);
 	}
-	
+
 	// what is there to display?
 	if(!empty($args['range']))
 	{
@@ -311,18 +312,15 @@ function em_get_the_date($post_id = 0, $args = array())
 	{
 		foreach ($date as $key => $value)
 		{
-			if ($args['output'] === 'date') // output date only
-			{
+			// output date only
+			if($args['output'] === 'date')
 				$date[$key] = !empty($args['format']) ? em_format_date($value, 'date', $args['format']) : em_format_date($value, 'date', $date_format);
-			} 
-			elseif ($args['output'] === 'time') // output time only
-			{
+			// output time only
+			elseif($args['output'] === 'time')
 				$date[$key] = !empty($args['format']) ? em_format_date($value, 'time', $args['format']) : em_format_date($value, 'time', $time_format);
-			}
-			else // output date & time
-			{
+			// output date & time
+			else
 				$date[$key] = !empty($args['format']) ? em_format_date($value, 'datetime', $args['format']) : em_format_date($value, 'datetime', $date_format.' '.$time_format);
-			}
 		}
 	}
 
@@ -375,9 +373,9 @@ function em_get_the_end($post_id = 0, $type = 'datetime')
  * @param string $format
  * @return string
  */
-function em_format_date($date = NULL, $type = 'datetime', $format = false)
+function em_format_date($date = null, $type = 'datetime', $format = false)
 {
-	if($date === NULL)
+	if(empty($date))
 		$date = current_time('timestamp', false);
 
 	$options = get_option('events_maker_general');
@@ -418,7 +416,7 @@ function em_is_all_day($post_id = 0)
 	if(empty($post_id))
 		return false;
 
-	return apply_filters('em_is_all_day', (get_post_meta((int)$post_id, '_event_all_day', true) === '1' ? true : false), $post_id);
+	return (bool)apply_filters('em_is_all_day', (get_post_meta((int)$post_id, '_event_all_day', true) === '1'), $post_id);
 }
 
 
@@ -436,7 +434,7 @@ function em_is_recurring($post_id = 0)
 
 	$recurrence = get_post_meta($post_id, '_event_recurrence', true);
 
-	return apply_filters('em_is_recurring',	($recurrence['type'] === 'once' ? false : true), $post_id);
+	return apply_filters('em_is_recurring', ($recurrence['type'] === 'once' ? false : true), $post_id);
 }
 
 
@@ -684,7 +682,7 @@ function em_get_organizers_for($post_id = 0)
 	{
 		foreach($organizers as $id => $organizer)
 		{
-			$locations[$id]->organizer_meta = (get_option('event_organizer_'.$organizer->term_taxonomy_id) ? get_option('event_organizer_'.$organizer->term_taxonomy_id) : get_option('event_organizer_'.$organizer->term_id));
+			$organizers[$id]->organizer_meta = (get_option('event_organizer_'.$organizer->term_taxonomy_id) ? get_option('event_organizer_'.$organizer->term_taxonomy_id) : get_option('event_organizer_'.$organizer->term_id));
 		}
 	}
 

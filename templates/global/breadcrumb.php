@@ -79,7 +79,7 @@ elseif (is_year())
 }
 elseif (is_post_type_archive())
 {
-	$post_type = get_post_type_object(get_post_type());
+	$post_type = get_post_type_object('event');
 	$name = $post_type->labels->name;
 	
 	if (is_search())

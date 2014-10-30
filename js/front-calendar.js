@@ -6,14 +6,15 @@ jQuery(document).ready(function($) {
 			center: 'title',
 			right: 'month,agendaWeek,agendaDay'
 		},
-		timeFormat: 'H:mm',
+		timeFormat: emCalendarArgs.timeFormat,
 		columnFormat: {
 			month: 'ddd',
 			week: 'ddd, DD/MM',
 			day: 'dddd'
 		},
-		firstDay: emCalendarArgs.firstWeekDay,
+		firstDay: parseInt(emCalendarArgs.firstWeekDay),
 		events: emCalendarArgs.events,
-		editable: false
+		editable: false,
+		fixedWeekCount: false
     });
 });

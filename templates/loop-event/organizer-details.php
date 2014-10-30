@@ -1,6 +1,6 @@
 <?php
 /**
- * Event location details
+ * Event organizer details
  * 
  * Override this template by copying it to yourtheme/loop-event/organizer-details.php
  *
@@ -15,41 +15,78 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
 <div class="archive-meta entry-meta">
 
-    <?php
+    <?php // organizer details
     $organizer = em_get_organizer();
-    $organizer_details = $organizer->organizer_meta;
+    $organizer_details = apply_filters('em_loop_event_organizer_details', $organizer->organizer_meta);
     ?>
     
     <?php
     if (!empty($organizer) && !is_wp_error($organizer)) : ?>
     
-	    <?php if (!empty($organizer_details['contact_name'])) : ?>   	
-			<div class="organizer-contact-name"><strong><?php echo __('Contact name', 'events-maker'); ?>:</strong> <span class="fn"><?php echo $organizer_details['contact_name']; ?></span></div>
-		<?php endif; ?>
-        
-        <?php if (!empty($organizer_details['phone'])) : ?>
-			<div class="organizer-phone"><strong><?php echo __('Phone', 'events-maker'); ?>:</strong> <span class="tel"><?php echo $organizer_details['phone']; ?></span></div>
-		<?php endif; ?>
-        
-        <?php if (!empty($organizer_details['email'])) : ?>
-        	<div class="organizer-email"><strong><?php echo __('Email', 'events-maker'); ?>:</strong> <span class="email"><?php echo $organizer_details['email']; ?></span></div>
-        <?php endif; ?>
-        
-        <?php if (!empty($organizer_details['website'])) : ?>
-        	<div class="organizer-website"><strong><?php echo __('Website', 'events-maker'); ?>:</strong> <span class="fn"><a href="<?php echo $organizer_details['website']; ?>" target="_blank" rel="nofollow"><?php echo $organizer_details['website']; ?></a></span></div>
-        <?php endif; ?>
-        
-        <?php if (!empty($organizer_details['image'])) : ?>
-        	
-        	<div class="archive-thumbnail organizer-image">
-        		
-        		<strong><?php echo __('Image', 'events-maker'); ?>:</strong><br />
-        		<?php $image_thb = wp_get_attachment_image_src($organizer_details['image'], 'post-thumbnail'); ?>
-        		<img src="<?php echo $image_thb[0]; ?>" class="attachment-thumbnail photo" title="<?php echo single_term_title('', false); ?>" alt="<?php echo single_term_title('', false); ?>" />
-        	
-        	</div>
-        
-        <?php endif; ?>
+    	<?php // organizer fields
+    	foreach ($organizer_details as $key => $value) :
+			
+			if (!empty($value)) :
+			
+		    	switch ($key) :
+
+		    		case 'contact_name' :
+						$field['label'] = __('Contact name', 'events-maker');
+						$field['content'] = '<span class="fn">' . $value . '</span>';
+						break;
+						
+					case 'phone' :
+						$field['label'] = __('Phone', 'events-maker');
+						$field['content'] = '<span class="tel">' . $value . '</span>';
+						break;
+						
+					case 'email' :
+						$field['label'] = __('Email', 'events-maker');
+						$field['content'] = '<span class="email">' . $value . '</span>';
+						break;
+						
+					case 'website' :
+						$field['label'] = __('Website', 'events-maker');
+						$field['content'] = '<span class="fn"><a href="' . esc_url($value) . '" target="_blank" rel="nofollow">' . $value . '</a></span>';
+						break;
+						
+					case 'country' :
+						$field['label'] == __('Country', 'events-maker');
+						$field['content'] = $value;
+						break;
+						
+					case 'image' :
+						$field['label'] = __('Image', 'events-maker');
+						
+						$attr = apply_filters('em_loop_event_organizer_details_image_attr', array(
+							'class'	=> 'attachment-thumbnail photo',
+							'alt'   => apply_filters('em_loop_event_organizer_details_image_title', trim(strip_tags(single_term_title('', false)))),
+						));
+						$size = apply_filters('em_loop_event_organizer_details_image_size', 'post-thumbnail');
+
+						$field['content'] = apply_filters('em_loop_event_organizer_details_image_html', '<br />' . wp_get_attachment_image($organizer_details['image'], $size, false, $attr));
+						break;
+						
+					default :
+						$field['label'] = strtoupper($key);
+						$field['content'] = $value;
+						break;
+						
+				endswitch;
+				
+				$field = apply_filters('em_loop_event_organizer_details_field', $field, $key);
+	
+				$html = '<div class="organizer-' . $key . '">';
+					$html .= '<strong>' . $field['label'] . ':</strong> ';
+					$html .= $field['content'];
+				$html .= '</div>';
+					
+				echo apply_filters('em_loop_event_organizer_details_html', $html, $key);
+				
+			endif;
+			
+		endforeach;
+		?>
     
     <?php endif; ?>
 

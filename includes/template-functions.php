@@ -576,12 +576,14 @@ if (!function_exists('em_page_title'))
 {
 	function em_page_title($echo = true)
 	{
+		$date = get_query_var('event_ondate');
+
 		if (em_is_event_archive('day'))
-			$page_title = sprintf(__('Event Daily Archives: %s', 'events-maker'), '<span>' . get_the_date() . '</span>');
+			$page_title = sprintf(__('Event Daily Archives: %s', 'events-maker'), '<span>' . em_format_date($date, 'date') . '</span>');
 		elseif (em_is_event_archive('month'))
-			$page_title = sprintf(__('Event Monthly Archives: %s', 'events-maker'), '<span>' . get_the_date(_x('F Y', 'monthly archives date format', 'events-maker')) . '</span>');
+			$page_title = sprintf(__('Event Monthly Archives: %s', 'events-maker'), '<span>' . em_format_date($date.'/28', 'date', _x('F Y', 'monthly archives date format', 'events-maker')) . '</span>');
 		elseif (em_is_event_archive('year'))
-			$page_title = sprintf(__('Event Yearly Archives: %s', 'events-maker'), '<span>' . get_the_date(_x('Y', 'yearly archives date format', 'events-maker')) . '</span>');
+			$page_title = sprintf(__('Event Yearly Archives: %s', 'events-maker'), '<span>' . em_format_date($date.'/01/28', 'date', _x('Y', 'yearly archives date format', 'events-maker')) . '</span>');
 		elseif (is_tax('event-category'))
 			$page_title = sprintf(__('Events Category: %s', 'events-maker'), single_term_title('', false));
 		elseif (is_tax('event-location'))

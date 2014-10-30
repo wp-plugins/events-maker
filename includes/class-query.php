@@ -46,13 +46,13 @@ class Events_Maker_Query
 			'event_ondate',
 			$this->options['permalinks']['event_rewrite_base'].'/%event_ondate%',
 			array(
-				'with_front' => FALSE
+				'with_front' => false
 			)
 		);
 
-		if($this->options['general']['rewrite_rules'] === TRUE)
+		if($this->options['general']['rewrite_rules'])
 		{
-			$this->options['general']['rewrite_rules'] = FALSE;
+			$this->options['general']['rewrite_rules'] = false;
 			update_option('events_maker_general', $this->options['general']);
 			flush_rewrite_rules();
 		}
@@ -81,7 +81,7 @@ class Events_Maker_Query
 					$sb = $em_helper->is_valid_date($start);
 					$eb = $em_helper->is_valid_date($end);
 
-					if($sb === TRUE && $eb === TRUE)
+					if($sb === true && $eb === true)
 					{
 						$meta_args = array(
 							array(
@@ -98,7 +98,7 @@ class Events_Maker_Query
 							)
 						);
 					}
-					elseif($sb === TRUE && $eb !== TRUE)
+					elseif($sb === true && $eb !== true)
 					{
 						$meta_args = array(
 							array(
@@ -109,7 +109,7 @@ class Events_Maker_Query
 							)
 						);
 					}
-					elseif($sb !== TRUE && $eb === TRUE)
+					elseif($sb !== true && $eb === true)
 					{
 						$meta_args = array(
 							array(
@@ -182,7 +182,7 @@ class Events_Maker_Query
 
 		// show occurrences?
 		if(
-			is_admin()
+			(is_admin() && (!defined('DOING_AJAX') || (defined('DOING_AJAX') && !DOING_AJAX)))
 			||
 			(!isset($query->query_vars['event_show_occurrences']) || (isset($query->query_vars['event_show_occurrences']) && !$query->query_vars['event_show_occurrences']))
 		)
@@ -213,7 +213,7 @@ class Events_Maker_Query
 
 		// show occurrences?
 		if(
-			is_admin()
+			(is_admin() && (!defined('DOING_AJAX') || (defined('DOING_AJAX') && !DOING_AJAX)))
 			||
 			(!isset($query->query_vars['event_show_occurrences']) || (isset($query->query_vars['event_show_occurrences']) && !$query->query_vars['event_show_occurrences']))
 			||
@@ -238,7 +238,7 @@ class Events_Maker_Query
 
 		// show occurrences?
 		if(
-			is_admin()
+			(is_admin() && (!defined('DOING_AJAX') || (defined('DOING_AJAX') && !DOING_AJAX)))
 			||
 			(!isset($query->query_vars['event_show_occurrences']) || (isset($query->query_vars['event_show_occurrences']) && !$query->query_vars['event_show_occurrences']))
 		)
@@ -348,17 +348,13 @@ class Events_Maker_Query
 		if(is_array($post_types))
 		{
 			// check if there are defferrnces between the arrays
-			if ((bool)array_diff($post_types, apply_filters('em_event_post_type', array('event'))))
-			{
+			if((bool)array_diff($post_types, apply_filters('em_event_post_type', array('event'))))
 				// at least one of the post_types is not an event post type, don't run the query
 				$run_query = false;
-			}
 			else 
-			{
 				// all the post type are of event post type
 				$run_query = true;	
-			}
-		}	
+		}
 		else
 			$run_query = (bool)in_array($post_types, apply_filters('em_event_post_type', array('event')));
 
@@ -403,7 +399,8 @@ class Events_Maker_Query
 				$query->set('event_start_before', $ondate_end);
 				$query->set('event_end_after', $ondate_start);
 			}
-			else $query->query_vars['event_ondate'] = $defaults['event_ondate'];
+			else
+				$query->query_vars['event_ondate'] = $defaults['event_ondate'];
 
 			if(!isset($query->query_vars['event_date_range']) || !in_array($query->query_vars['event_date_range'], array('between', 'outside'), true))
 				$query->query_vars['event_date_range'] = $defaults['event_date_range'];
@@ -472,7 +469,7 @@ class Events_Maker_Query
 
 			if(!isset($query->query_vars['order']))
 				$query->query_vars['order'] = $this->options['general']['order'];
-			
+
 			// some ninja fixes
 			if($query->query_vars['event_show_occurrences'] && $query->query_vars['event_show_past_events'] && !$event_order_by)
 				$query->query_vars['meta_key'] = $keys['end'];

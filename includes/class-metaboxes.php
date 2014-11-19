@@ -25,6 +25,97 @@ class Events_Maker_Metaboxes
 		add_action('after_setup_theme', array(&$this, 'set_recurrences'));
 		add_action('after_setup_theme', array(&$this, 'load_defaults'));
 		add_action('save_post', array(&$this, 'save_event'), 10, 2);
+		add_action('post_submitbox_misc_actions', array(&$this, 'display_options'));
+	}
+	
+	
+	/**
+	 * Output event data options.
+	 *
+	 */
+	public function display_options()
+	{
+		global $post;
+		
+		$post_types = apply_filters('em_event_post_type', array('event'));
+		
+		if (!in_array($post->post_type, $post_types))
+			return;
+
+		$options = array(
+			'google_map' => __('Google Map', 'events-maker'),
+			'display_location_details' => __('Location Details', 'events-maker')
+		);
+		
+		// if tickets are enabled
+		if($this->options['general']['use_event_tickets'])
+			$options = array_merge($options, array('price_tickets_info' => __('Tickets', 'events-maker')));
+		// if organizers are enabled
+		if($this->options['general']['use_organizers'])
+			$options = array_merge($options, array('display_organizer_details' => __('Organizer Details', 'events-maker')));
+		
+		$options = apply_filters('em_metabox_event_display_options', $options, $post);
+		$values = apply_filters('em_metabox_event_display_values', get_post_meta($post->ID, '_event_display_options', true), $post);
+		$featured = apply_filters('em_metabox_event_featured_value', (bool)get_post_meta($post->ID, '_event_featured', true), $post);
+		$options_html = array();
+		?>
+
+		<div class="misc-pub-section" id="event-options">
+			
+			<input id="current_options" type="hidden" name="current_options" value="<?php echo htmlspecialchars(json_encode($values)); ?>" />
+			<input id="current_featured" type="hidden" name="current_featured" value="<?php echo $featured; ?>" />
+			
+			<?php wp_nonce_field('events_maker_save_event_options', 'event_nonce_options'); ?>
+			
+			<span id="event-options-shortlist">
+			
+				<?php _e('Display options:', 'events-maker'); ?>
+				<strong>
+					<?php
+					foreach($options as $key => $name)
+					{
+						if (isset($values[$key]) ? (bool)$values[$key] : isset($this->options['general']['default_event_options'][$key])) 
+							$options_html[] = $name;
+					}
+					if ($featured)
+						$options_html[] = __('Featured', 'events-maker');
+					
+					echo implode(', ', $options_html);
+					?>
+				</strong>
+
+			</span>
+
+			<a href="#event-options" class="edit-event-options hide-if-no-js"><?php _e('Edit', 'events-maker'); ?></a>
+
+			<div id="event-options-list" class="hide-if-js">
+				<?php
+				echo '<p>' . __('Define the display options for this event.', 'events-maker') . '</p>';
+				
+				// display options
+				do_action('em_before_metabox_event_display_options', $post);
+				
+				foreach($options as $key => $name)
+				{
+					?>
+					<label for="event_display_option_<?php echo $key; ?>">
+						<input id="event_display_option_<?php echo $key; ?>" type="checkbox" name="event_display_options[<?php echo $key; ?>]" <?php checked((isset($values[$key]) ? (bool)$values[$key] : isset($this->options['general']['default_event_options'][$key])) ? '1' : '0', '1'); ?> /><?php echo $name; ?>
+					</label><br />
+					<?php
+				}
+
+				do_action('em_after_metabox_event_display_options', $post);
+
+				echo '<p>' . __('Enable to feature this event.', 'events-maker') . '</p>';
+				echo '<input type="checkbox" name="event_featured" id="event_featured" ' . checked($featured, true, false) . ' /> <label for="event_featured">' . __('Featured', 'events-maker') . '</label><br />';
+				?>
+				<p>
+					<a href="#event-options" class="save-event-options hide-if-no-js button"><?php _e('OK', 'events-maker'); ?></a>
+					<a href="#event-options" class="cancel-event-options hide-if-no-js"><?php _e('Cancel', 'events-maker'); ?></a>
+				</p>
+			</div>
+		</div>
+		<?php
 	}
 
 
@@ -57,13 +148,6 @@ class Events_Maker_Metaboxes
 			$this->metaboxes[] = apply_filters(
 				'em_'.$post_type.'_metaboxes',
 				array(
-					'event-options-box' => array(
-						'title' => __('Event Display Options', 'events-maker'),
-						'callback' => array(&$this, 'event_options_cb'),
-						'post_type' => $post_type,
-						'context' => 'side',
-						'priority' => 'core'
-					),
 					'event-date-time-box' => array(
 						'title' => __('Event Date and Time', 'events-maker'),
 						'callback' => array(&$this, 'event_date_time_cb'),
@@ -209,7 +293,6 @@ class Events_Maker_Metaboxes
 			}
 	
 			$sideboxes = array();
-			$event_options_box = $wp_meta_boxes[$post->post_type]['side']['core']['event-options-box'];
 	
 			unset($wp_meta_boxes[$post->post_type]['side']['core']['event-options-box']);
 	
@@ -222,8 +305,6 @@ class Events_Maker_Metaboxes
 	
 				if($id === 'submitdiv')
 				{
-					$sideboxes['event-options-box'] = $event_options_box;
-	
 					if($found_priority !== false)
 						$sideboxes['postimagediv'] = $post_image_box;
 				}
@@ -531,45 +612,6 @@ class Events_Maker_Metaboxes
 
 
 	/**
-	 * Event options metabox callback
-	*/
-	public function event_options_cb($post)
-	{
-		// security nonce
-		wp_nonce_field('events_maker_save_event_options', 'event_nonce_options');
-
-		$options = array(
-			'google_map' => __('Display Google Map', 'events-maker'),
-			'display_location_details' => __('Display Location Details', 'events-maker')
-		);
-		
-		// if tickets are enabled
-		if($this->options['general']['use_event_tickets'])
-			$options = array_merge($options, array('price_tickets_info' => __('Display Tickets Info', 'events-maker')));
-		// if organizers are enabled
-		if($this->options['general']['use_organizers'])
-			$options = array_merge($options, array('display_organizer_details' => __('Display Organizer Details', 'events-maker')));
-		
-		$options = apply_filters('em_metabox_event_display_options', $options, $post);
-		$values = apply_filters('em_metabox_event_display_values', get_post_meta($post->ID, '_event_display_options', true), $post);
-		
-		// display options
-		do_action('em_before_metabox_event_display_options', $post);
-
-		foreach($options as $key => $name)
-		{
-			?>
-			<label for="event_display_option_<?php echo $key; ?>">
-				<input id="event_display_option_<?php echo $key; ?>" type="checkbox" name="event_display_options[<?php echo $key; ?>]" <?php checked((isset($values[$key]) && !empty($values[$key]) ? $values[$key] : isset($this->options['general']['default_event_options'][$key])) ? '1' : '0', '1'); ?> /><?php echo $name; ?>
-			</label><br />
-			<?php
-		}
-
-		do_action('em_after_metabox_event_display_options', $post);
-	}
-
-
-	/**
 	 * Save event metaboxes data
 	*/
 	public function save_event($post_ID)
@@ -583,7 +625,6 @@ class Events_Maker_Metaboxes
 			return $post_ID;
 
 		// event date & time validation
-		
 		if(isset($_POST['event_nonce_datetime']) && wp_verify_nonce($_POST['event_nonce_datetime'], 'events_maker_save_event_datetime'))
 		{
 			// event date and time section
@@ -835,33 +876,33 @@ class Events_Maker_Metaboxes
 		// event display options validation				
 		if(isset($_POST['event_nonce_options']) && wp_verify_nonce($_POST['event_nonce_options'], 'events_maker_save_event_options'))
 		{
-			$event_display_options = array(
-				'google_map' => __('Display Google Map', 'events-maker'),
-				'display_location_details' => __('Display Location Details', 'events-maker')
+			$options = array(
+				'google_map' => __('Google Map', 'events-maker'),
+				'display_location_details' => __('Location Details', 'events-maker')
 			);
-			
+
 			// if tickets are enabled
 			if($this->options['general']['use_event_tickets'])
-				$event_display_options = array_merge($event_display_options, array('price_tickets_info' => __('Display Tickets Info', 'events-maker')));
+				$options = array_merge($options, array('price_tickets_info' => __('Tickets', 'events-maker')));
 			// if organizers are enabled
 			if($this->options['general']['use_organizers'])
-				$event_display_options = array_merge($event_display_options, array('display_organizer_details' => __('Display Organizer Details', 'events-maker')));
-			
-			$event_display_options = apply_filters('em_metabox_event_display_options', $event_display_options, $post_ID);
-	
-			if(is_array($event_display_options) && !empty($event_display_options))
+				$options = array_merge($options, array('display_organizer_details' => __('Organizer Details', 'events-maker')));
+
+			$options = apply_filters('em_metabox_event_display_options', $options, $post_ID);
+			$values = array();
+
+			if(is_array($options) && !empty($options))
 			{
-				$event_display_values = array();
-	
-				foreach($event_display_options as $key => $name)
+				foreach($options as $key => $name)
 				{
-					$event_display_values[$key] = isset($_POST['event_display_options'][$key]) ? 1 : 0;
+					$values[$key] = isset($_POST['event_display_options'][$key]) ? true : false;
 				}
-	
-				update_post_meta($post_ID, '_event_display_options', $event_display_values);
 			}
-			else
-				update_post_meta($post_ID, '_event_display_options', array());
+
+			update_post_meta($post_ID, '_event_display_options', $values);
+			
+			// validate featured event
+			update_post_meta($post_ID, '_event_featured', isset($_POST['event_featured']) && !empty($_POST['event_featured']) ? true : false);
 		}
 	}
 

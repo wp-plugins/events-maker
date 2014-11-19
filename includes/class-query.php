@@ -143,6 +143,7 @@ class Events_Maker_Query
 		$query_vars[] = 'event_ticket_type';
 		$query_vars[] = 'event_ondate';
 		$query_vars[] = 'event_show_past_events';
+		$query_vars[] = 'event_show_featured';
 		$query_vars[] = 'event_show_occurrences';
 
 		return $query_vars;
@@ -608,6 +609,16 @@ class Events_Maker_Query
 					'value' => ($query->query_vars['event_ticket_type'] === 'free' ? 1 : 0),
 					'compare' => '=',
 					'type' => 'NUMERIC'
+				);
+			}
+			
+			if(isset($query->query_vars['event_show_featured']) && (bool)$query->query_vars['event_show_featured'] === true)
+			{
+				$meta_args[] = array(
+					'key' => '_event_featured',
+					'value' => 1,
+					'compare' => '=',
+					'type' => 'BINARY'
 				);
 			}
 

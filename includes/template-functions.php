@@ -45,7 +45,8 @@ if (!function_exists('em_display_events'))
 			'posts_per_page' => ($args['number_of_events'] === 0 ? -1 : $args['number_of_events']),
 			'order' => $args['order'],
 			'event_show_past_events' => (bool)$args['show_past_events'],
-			'event_show_occurrences' => (bool)$args['show_occurrences']
+			'event_show_occurrences' => (bool)$args['show_occurrences'],
+			'event_show_featured' => (bool)$args['show_featured']
 		);
 	
 		if(!empty($args['categories']))

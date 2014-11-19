@@ -41,7 +41,113 @@ jQuery(document).ready(function($) {
 
 	// timepicker
 	$('#event_start_time, #event_end_time').timepicker(timeOptions);
+	
+	
+	// event options
+	$('#event-options .edit-event-options').click(function () {
+		if ($('#event-options-list').is(":hidden")) {
+			$('#event-options-list').slideDown('fast');
+			$(this).hide();
+		}
+		return false;
+	});
+	
+	$('#event-options .save-event-options').click(function () {
+		$('#event-options-list').slideUp('fast');
+		$('#event-options .edit-event-options').show();
+		
+		var label = ', ' + $.trim($('#event-options-shortlist strong').text());
+		var options = $("label[for*='event_display_option']");
+		
+		$(options).each(function(index, value) {
+		    if ($(this).find('input').is(':checked')) {   	
+		    	if (label.indexOf($.trim($(this).text())) < 2) {
+		    		if (label.length > 2) {
+						label = label + ', ' + $.trim($(this).text());
+					} else {
+						label = label + $.trim($(this).text());
+					}
+				}
+		    } else {
+				if (label.indexOf($.trim($(this).text())) >= 2) {
+					label = label.replace(', ' + $.trim($(this).text()), '');
+				}
+			}
+		});
 
+		if ($('input[name=event_featured]').is(':checked')) {
+			// if string does not exist, add it
+			if (label.indexOf($.trim($('label[for=event_featured]').text())) < 2) {
+				if (label.length > 2) {
+					label = label + ', ' + $.trim($('label[for=event_featured]').text());
+				} else {
+					label = label + $.trim($('label[for=event_featured]').text());
+				}
+			}
+			$('input[name=event_featured]').attr('checked', 'checked');
+		} else {
+			// if string exists, remove it
+			if (label.indexOf($.trim($('label[for=event_featured]').text())) >= 2) {
+				label = label.replace(', ' + $.trim($('label[for=event_featured]').text()), '');
+			}
+		}
+		
+		// remove first comma
+		label = label.replace(', ', '');
+		
+		$('#event-options-shortlist strong').text(label);
+		return false;
+	});
+	
+	$('#event-options .cancel-event-options').click(function () {
+		$('#event-options-list').slideUp('fast');
+		$('#event-options .edit-event-options').show();
+		
+		var label = $.trim($('#event-options-shortlist strong').text());
+		if (label.length > 0) {
+			label = ', ' + label;
+		}
+		var current_featured = $('#current_featured').val();
+		var current_options = $.parseJSON($('#current_options').val());
+		
+		$.each(current_options, function(index, value) {
+			if (value == true) {
+				// if string does not exist, add it
+				if (label.indexOf($.trim($('label[for=event_display_option_' + index + ']').text())) < 2) {
+					label = label + ', ' + $.trim($('label[for=event_display_option_' + index + ']').text());
+				}
+				$('input#event_display_option_' + index).attr('checked', 'checked');
+			} else {
+				// if string exists, remove it
+				if (label.indexOf($.trim($('label[for=event_display_option_' + index + ']').text())) >= 2) {
+					label = label.replace(', ' + $.trim($('label[for=event_display_option_' + index + ']').text()), '');
+				}
+				$('input#event_display_option_' + index).removeAttr('checked');
+			}
+		});
+		
+		if (current_featured == '1') {
+			// if string does not exist, add it
+			if (label.indexOf($.trim($('label[for=event_featured]').text())) < 2) {
+				label = label + ', ' + $.trim($('label[for=event_featured]').text());
+			}
+			$('input[name=event_featured]').attr('checked', 'checked');
+		} else {
+			// if string exists, remove it
+			if (label.indexOf($.trim($('label[for=event_featured]').text())) >= 2) {
+				label = label.replace(', ' + $.trim($('label[for=event_featured]').text()), '');
+			}
+			$('input[name=event_featured]').removeAttr('checked');
+		}
+		
+		// remove first comma
+		label = label.replace(', ', '');
+
+		$('#event-options-shortlist strong').text(label);
+		return false;
+	});
+
+	
 
 	// adds new ticket
 	$(document).on('click', '#event_add_ticket', function(event) {

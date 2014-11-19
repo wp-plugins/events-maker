@@ -12,7 +12,7 @@
 if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
 // Extra event classes
-$classes = apply_filters('em_loop_event_classes', array('hcalendar'));
+$classes = apply_filters('em_single_event_classes', array('hcalendar'));
 
 ?>
 

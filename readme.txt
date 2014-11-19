@@ -4,7 +4,7 @@ Donate link: http://www.dfactory.eu/
 Tags: event, event categories, events management, event management, events manager, event manager, event organizer, events calendar, events maker, google map, map, locations, organizers, widget, attendance, attendee, Booking, calendar, event registration, ticket, tickets, ticketing, bookings
 Requires at least: 3.5
 Tested up to: 4.0
-Stable tag: 1.2.4
+Stable tag: 1.3.0
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -26,12 +26,14 @@ For more information, check out plugin page at [dFactory](http://www.dfactory.eu
 * Advanced recurring events, including daily, monthly, yearly and custom occurrences
 * Interactive Full Calendar display
 * Compatibility with Twenty Thirteen and Twenty Fourteen themes 
+* Featured events
 * Event Categories and Tags
 * Event Ogranizers
 * Organizers contact details and image
 * Event Locations
 * Breadcrumb navigation
 * Google maps
+* Duplicating events
 * RSS feed support
 * Customizeable template files
 * Google Rich Snippets ready
@@ -87,6 +89,13 @@ A. Chances are, someone else has asked it. Check out the support forum at: http:
 4. screenshot-4.png
 
 == Changelog ==
+
+= 1.3.0 =
+* New: Featured events
+* New: Duplicating events
+* Tweak: Multiple admin UI tweaks
+* Tweak: Adjust admin date display to selected time format
+* Tweak: Full Calendar updated to 2.2.1
 
 = 1.2.4 =
 * New: Italian translation, thanks to [Lorenzo De Tomasi](http://isotype.org)
@@ -209,5 +218,5 @@ Initial release
 
 == Upgrade Notice ==
 
-= 1.2.4 =
-Multiple bugfixes, Italian translation, thanks to [Lorenzo De Tomasi](http://isotype.org)
+= 1.3.0 =
+New features: Featured events and Duplicating events, Tweak: Admin UI improvements

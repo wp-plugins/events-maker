@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Events Maker\n"
-"POT-Creation-Date: 2014-10-21 10:39+0100\n"
-"PO-Revision-Date: 2014-10-21 10:39+0100\n"
+"POT-Creation-Date: 2014-11-19 12:51+0100\n"
+"PO-Revision-Date: 2014-11-19 12:51+0100\n"
 "Last-Translator: Bartosz Arendt <info@dfactory.eu>\n"
 "Language-Team: dFactory <info@dfactory.pl>\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.9\n"
+"X-Generator: Poedit 1.6.10\n"
 "X-Poedit-KeywordsList: gettext;gettext_noop;__;_e;esc_attr__;esc_attr_e;"
 "_n:1,2;_x:1,2c\n"
 "X-Poedit-Basepath: .\n"
@@ -263,8 +263,8 @@ msgstr ""
 msgid "New Event Category Name"
 msgstr ""
 
-#: ../events-maker.php:638 ../includes/class-settings.php:318
-#: ../includes/class-settings.php:337
+#: ../events-maker.php:638 ../includes/class-listing.php:135
+#: ../includes/class-settings.php:327 ../includes/class-settings.php:346
 msgid "Categories"
 msgstr ""
 
@@ -314,8 +314,8 @@ msgstr ""
 msgid "New Event Location Name"
 msgstr ""
 
-#: ../events-maker.php:653 ../includes/class-settings.php:323
-#: ../includes/class-settings.php:342
+#: ../events-maker.php:653 ../includes/class-settings.php:332
+#: ../includes/class-settings.php:351
 msgid "Locations"
 msgstr ""
 
@@ -369,8 +369,9 @@ msgstr ""
 msgid "Choose from the most used event tags"
 msgstr ""
 
-#: ../events-maker.php:717 ../includes/class-settings.php:280
-#: ../includes/class-settings.php:321 ../includes/class-settings.php:340
+#: ../events-maker.php:717 ../includes/class-listing.php:137
+#: ../includes/class-settings.php:288 ../includes/class-settings.php:330
+#: ../includes/class-settings.php:349
 msgid "Tags"
 msgstr ""
 
@@ -420,8 +421,8 @@ msgstr ""
 msgid "New Event Organizer Name"
 msgstr ""
 
-#: ../events-maker.php:760 ../includes/class-settings.php:281
-#: ../includes/class-settings.php:326 ../includes/class-settings.php:345
+#: ../events-maker.php:760 ../includes/class-settings.php:289
+#: ../includes/class-settings.php:335 ../includes/class-settings.php:354
 msgid "Organizers"
 msgstr ""
 
@@ -435,8 +436,8 @@ msgctxt "post type singular name"
 msgid "Event"
 msgstr ""
 
-#: ../events-maker.php:797 ../includes/class-widgets.php:719
-#: ../includes/template-functions.php:594
+#: ../events-maker.php:797 ../includes/class-widgets.php:746
+#: ../includes/template-functions.php:597
 msgid "Events"
 msgstr ""
 
@@ -548,198 +549,257 @@ msgstr ""
 msgid "Are you sure you want to reset these settings to defaults?"
 msgstr ""
 
-#: ../events-maker.php:1095 ../includes/class-welcome.php:48
+#: ../events-maker.php:1096 ../includes/class-welcome.php:48
 msgid "Support"
 msgstr ""
 
-#: ../events-maker.php:1121
+#: ../events-maker.php:1122
 msgid "View Calendar"
 msgstr ""
 
-#: ../includes/class-listing.php:58
+#: ../includes/class-listing.php:61
 msgid "Start Date"
 msgstr ""
 
-#: ../includes/class-listing.php:59
+#: ../includes/class-listing.php:62
 msgid "End Date"
 msgstr ""
 
-#: ../includes/class-listing.php:130
+#: ../includes/class-listing.php:139
 msgid "Start"
 msgstr ""
 
-#: ../includes/class-listing.php:131
+#: ../includes/class-listing.php:140
 msgid "End"
 msgstr ""
 
-#: ../includes/class-listing.php:132 ../includes/class-metaboxes.php:299
+#: ../includes/class-listing.php:142 ../includes/class-metaboxes.php:380
 msgid "Recurrence"
 msgstr ""
 
-#: ../includes/class-listing.php:135 ../includes/class-settings.php:282
+#: ../includes/class-listing.php:145 ../includes/class-metaboxes.php:52
+#: ../includes/class-metaboxes.php:886 ../includes/class-settings.php:290
 #: ../templates/single-event/tickets.php:41
 #: ../templates/single-event/tickets.php:55
 msgid "Tickets"
 msgstr ""
 
-#: ../includes/class-listing.php:166
-msgid "Paid"
+#: ../includes/class-listing.php:147 ../includes/class-metaboxes.php:81
+#: ../includes/class-metaboxes.php:110
+msgid "Featured"
 msgstr ""
 
-#: ../includes/class-listing.php:179 ../templates/single-event/tickets.php:57
-msgid "Free"
+#: ../includes/class-listing.php:178
+msgid "paid"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:48
+#: ../includes/class-listing.php:191
+msgid "free"
+msgstr ""
+
+#: ../includes/class-listing.php:200
+msgid "Toggle featured"
+msgstr ""
+
+#: ../includes/class-listing.php:202
+msgid "Yes"
+msgstr ""
+
+#: ../includes/class-listing.php:204
+msgid "No"
+msgstr ""
+
+#: ../includes/class-listing.php:228
+msgid "Duplicate this item"
+msgstr ""
+
+#: ../includes/class-listing.php:228
+msgid "Duplicate"
+msgstr ""
+
+#: ../includes/class-listing.php:244 ../includes/class-listing.php:250
+msgid "No event to duplicate has been supplied!"
+msgstr ""
+
+#: ../includes/class-listing.php:253
+msgid "You do not have permission to copy this event."
+msgstr ""
+
+#: ../includes/class-listing.php:268
+msgid "Copy creation failed, could not find original event:"
+msgstr ""
+
+#: ../includes/class-listing.php:359
+msgid "You do not have permission to access this page."
+msgstr ""
+
+#: ../includes/class-listing.php:362
+msgid "You have taken too long. Please go back and retry."
+msgstr ""
+
+#: ../includes/class-metaboxes.php:46 ../includes/class-metaboxes.php:880
+msgid "Google Map"
+msgstr ""
+
+#: ../includes/class-metaboxes.php:47 ../includes/class-metaboxes.php:881
+msgid "Location Details"
+msgstr ""
+
+#: ../includes/class-metaboxes.php:55 ../includes/class-metaboxes.php:889
+msgid "Organizer Details"
+msgstr ""
+
+#: ../includes/class-metaboxes.php:72
+msgid "Display options:"
+msgstr ""
+
+#: ../includes/class-metaboxes.php:89 ../templates/loop-event/meta.php:37
+#: ../templates/single-event/meta.php:37
+msgid "Edit"
+msgstr ""
+
+#: ../includes/class-metaboxes.php:93
+msgid "Define the display options for this event."
+msgstr ""
+
+#: ../includes/class-metaboxes.php:109
+msgid "Enable to feature this event."
+msgstr ""
+
+#: ../includes/class-metaboxes.php:113
+msgid "OK"
+msgstr ""
+
+#: ../includes/class-metaboxes.php:114
+msgid "Cancel"
+msgstr ""
+
+#: ../includes/class-metaboxes.php:139
 msgid "Ticket Name"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:49
+#: ../includes/class-metaboxes.php:140
 msgid "Price"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:61
-msgid "Event Display Options"
-msgstr ""
-
-#: ../includes/class-metaboxes.php:68
+#: ../includes/class-metaboxes.php:152
 msgid "Event Date and Time"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:75
+#: ../includes/class-metaboxes.php:159
 msgid "Event Tickets"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:136 ../includes/class-metaboxes.php:140
-#: ../includes/class-metaboxes.php:379 ../includes/class-metaboxes.php:423
-#: ../includes/class-metaboxes.php:439 ../includes/class-metaboxes.php:495
-#: ../includes/class-metaboxes.php:511
+#: ../includes/class-metaboxes.php:220 ../includes/class-metaboxes.php:224
+#: ../includes/class-metaboxes.php:460 ../includes/class-metaboxes.php:504
+#: ../includes/class-metaboxes.php:520 ../includes/class-metaboxes.php:576
+#: ../includes/class-metaboxes.php:592
 msgid "Delete"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:138 ../includes/class-metaboxes.php:290
-#: ../includes/class-metaboxes.php:378 ../includes/class-metaboxes.php:422
-#: ../includes/class-metaboxes.php:438
+#: ../includes/class-metaboxes.php:222 ../includes/class-metaboxes.php:371
+#: ../includes/class-metaboxes.php:459 ../includes/class-metaboxes.php:503
+#: ../includes/class-metaboxes.php:519
 msgid "Start date/time"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:139 ../includes/class-metaboxes.php:293
-#: ../includes/class-metaboxes.php:382 ../includes/class-metaboxes.php:426
-#: ../includes/class-metaboxes.php:442
+#: ../includes/class-metaboxes.php:223 ../includes/class-metaboxes.php:374
+#: ../includes/class-metaboxes.php:463 ../includes/class-metaboxes.php:507
+#: ../includes/class-metaboxes.php:523
 msgid "End date/time"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:141
+#: ../includes/class-metaboxes.php:225
 msgid "Are you sure you want to delete this ticket?"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:142
+#: ../includes/class-metaboxes.php:226
 msgid "Are you sure you want to delete this occurrence?"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:150 ../includes/class-metaboxes.php:347
+#: ../includes/class-metaboxes.php:234 ../includes/class-metaboxes.php:428
 msgid "day"
 msgid_plural "days"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../includes/class-metaboxes.php:151
+#: ../includes/class-metaboxes.php:235
 msgid "days"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:152 ../includes/class-metaboxes.php:349
+#: ../includes/class-metaboxes.php:236 ../includes/class-metaboxes.php:430
 msgid "week"
 msgid_plural "weeks"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../includes/class-metaboxes.php:153
+#: ../includes/class-metaboxes.php:237
 msgid "weeks"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:154 ../includes/class-metaboxes.php:351
+#: ../includes/class-metaboxes.php:238 ../includes/class-metaboxes.php:432
 msgid "month"
 msgid_plural "months"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../includes/class-metaboxes.php:155
+#: ../includes/class-metaboxes.php:239
 msgid "months"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:156 ../includes/class-metaboxes.php:353
+#: ../includes/class-metaboxes.php:240 ../includes/class-metaboxes.php:434
 msgid "year"
 msgid_plural "years"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../includes/class-metaboxes.php:157
+#: ../includes/class-metaboxes.php:241
 msgid "years"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:296
+#: ../includes/class-metaboxes.php:377
 msgid "All-day event?"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:336
+#: ../includes/class-metaboxes.php:417
 msgid "day of the month"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:336
+#: ../includes/class-metaboxes.php:417
 msgid "day of the week"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:344
+#: ../includes/class-metaboxes.php:425
 msgid "Repeat every"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:344
+#: ../includes/class-metaboxes.php:425
 msgid "until"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:376 ../includes/class-metaboxes.php:420
-#: ../includes/class-metaboxes.php:436
+#: ../includes/class-metaboxes.php:457 ../includes/class-metaboxes.php:501
+#: ../includes/class-metaboxes.php:517
 msgid "Separate end date"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:387
+#: ../includes/class-metaboxes.php:468
 msgid "Add new occurrence"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:473
+#: ../includes/class-metaboxes.php:554
 msgid "Is this a free event?"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:478
+#: ../includes/class-metaboxes.php:559
 msgid "Add new ticket"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:520
+#: ../includes/class-metaboxes.php:601
 #: ../templates/single-event/tickets.php:70
 msgid "Buy tickets URL"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:542 ../includes/class-metaboxes.php:839
-#: ../includes/class-settings.php:428
-msgid "Display Google Map"
-msgstr ""
-
-#: ../includes/class-metaboxes.php:543 ../includes/class-metaboxes.php:840
-#: ../includes/class-settings.php:429
-msgid "Display Location Details"
-msgstr ""
-
-#: ../includes/class-metaboxes.php:548 ../includes/class-metaboxes.php:845
-#: ../includes/class-settings.php:434
-msgid "Display Tickets Info"
-msgstr ""
-
-#: ../includes/class-metaboxes.php:551 ../includes/class-metaboxes.php:848
-#: ../includes/class-settings.php:437
-msgid "Display Organizer Details"
-msgstr ""
-
-#: ../includes/class-settings.php:71 ../includes/class-widgets.php:744
+#: ../includes/class-settings.php:71 ../includes/class-widgets.php:772
 msgid "Publish date"
 msgstr ""
 
@@ -751,15 +811,15 @@ msgstr ""
 msgid "Events end date"
 msgstr ""
 
-#: ../includes/class-settings.php:77 ../includes/class-widgets.php:70
-#: ../includes/class-widgets.php:749 ../includes/class-widgets.php:1084
-#: ../includes/class-widgets.php:1201 ../includes/class-widgets.php:1318
+#: ../includes/class-settings.php:77 ../includes/class-widgets.php:73
+#: ../includes/class-widgets.php:777 ../includes/class-widgets.php:1115
+#: ../includes/class-widgets.php:1232 ../includes/class-widgets.php:1349
 msgid "Ascending"
 msgstr ""
 
-#: ../includes/class-settings.php:78 ../includes/class-widgets.php:71
-#: ../includes/class-widgets.php:750 ../includes/class-widgets.php:1085
-#: ../includes/class-widgets.php:1202 ../includes/class-widgets.php:1319
+#: ../includes/class-settings.php:78 ../includes/class-widgets.php:74
+#: ../includes/class-widgets.php:778 ../includes/class-widgets.php:1116
+#: ../includes/class-widgets.php:1233 ../includes/class-widgets.php:1350
 msgid "Descending"
 msgstr ""
 
@@ -784,508 +844,536 @@ msgid "General settings saved."
 msgstr ""
 
 #: ../includes/class-settings.php:101
-msgid "Templates settings saved."
+msgid "Display settings saved."
 msgstr ""
 
 #: ../includes/class-settings.php:102
-msgid "Capabilities settings saved."
+msgid "Templates settings saved."
 msgstr ""
 
 #: ../includes/class-settings.php:103
-msgid "Permalinks settings saved."
+msgid "Capabilities settings saved."
 msgstr ""
 
 #: ../includes/class-settings.php:104
-msgid "General settings restored to defaults."
+msgid "Permalinks settings saved."
 msgstr ""
 
 #: ../includes/class-settings.php:105
-msgid "Templates settings restored to defaults."
+msgid "General settings restored to defaults."
 msgstr ""
 
 #: ../includes/class-settings.php:106
-msgid "Capabilities settings restored to defaults."
+msgid "Display settings restored to defaults."
 msgstr ""
 
 #: ../includes/class-settings.php:107
-msgid "Permalinks settings restored to defaults."
+msgid "Templates settings restored to defaults."
 msgstr ""
 
 #: ../includes/class-settings.php:108
-msgid "There is no such menu."
+msgid "Capabilities settings restored to defaults."
 msgstr ""
 
 #: ../includes/class-settings.php:109
+msgid "Permalinks settings restored to defaults."
+msgstr ""
+
+#: ../includes/class-settings.php:110
+msgid "There is no such menu."
+msgstr ""
+
+#: ../includes/class-settings.php:111
 msgid "Menu name can not be empty."
 msgstr ""
 
-#: ../includes/class-settings.php:114
+#: ../includes/class-settings.php:116
 msgid "General"
 msgstr ""
 
-#: ../includes/class-settings.php:120
+#: ../includes/class-settings.php:122
+msgid "Display"
+msgstr ""
+
+#: ../includes/class-settings.php:128
 msgid "Templates"
 msgstr ""
 
-#: ../includes/class-settings.php:126
+#: ../includes/class-settings.php:134
 msgid "Capabilities"
 msgstr ""
 
-#: ../includes/class-settings.php:132
+#: ../includes/class-settings.php:140
 msgid "Permalinks"
 msgstr ""
 
-#: ../includes/class-settings.php:140
+#: ../includes/class-settings.php:148
 msgid "Publish Events"
 msgstr ""
 
-#: ../includes/class-settings.php:141
+#: ../includes/class-settings.php:149
 msgid "Edit Events"
 msgstr ""
 
-#: ../includes/class-settings.php:142
+#: ../includes/class-settings.php:150
 msgid "Edit Others Events"
 msgstr ""
 
-#: ../includes/class-settings.php:143
+#: ../includes/class-settings.php:151
 msgid "Edit Published Events"
 msgstr ""
 
-#: ../includes/class-settings.php:144
+#: ../includes/class-settings.php:152
 msgid "Delete Published Events"
 msgstr ""
 
-#: ../includes/class-settings.php:145
+#: ../includes/class-settings.php:153
 msgid "Delete Events"
 msgstr ""
 
-#: ../includes/class-settings.php:146
+#: ../includes/class-settings.php:154
 msgid "Delete Others Events"
 msgstr ""
 
-#: ../includes/class-settings.php:147
+#: ../includes/class-settings.php:155
 msgid "Read Private Events"
 msgstr ""
 
-#: ../includes/class-settings.php:148
+#: ../includes/class-settings.php:156
 msgid "Manage Event Categories"
 msgstr ""
 
-#: ../includes/class-settings.php:152
+#: ../includes/class-settings.php:160
 msgid "title"
 msgstr ""
 
-#: ../includes/class-settings.php:153
+#: ../includes/class-settings.php:161
 msgid "editor"
 msgstr ""
 
-#: ../includes/class-settings.php:154
+#: ../includes/class-settings.php:162
 msgid "author"
 msgstr ""
 
-#: ../includes/class-settings.php:155
+#: ../includes/class-settings.php:163
 msgid "thumbnail"
 msgstr ""
 
-#: ../includes/class-settings.php:156
+#: ../includes/class-settings.php:164
 msgid "excerpt"
 msgstr ""
 
-#: ../includes/class-settings.php:157
+#: ../includes/class-settings.php:165
 msgid "custom fields"
 msgstr ""
 
-#: ../includes/class-settings.php:158
+#: ../includes/class-settings.php:166
 msgid "comments"
 msgstr ""
 
-#: ../includes/class-settings.php:159
+#: ../includes/class-settings.php:167
 msgid "trackbacks"
 msgstr ""
 
-#: ../includes/class-settings.php:160
+#: ../includes/class-settings.php:168
 msgid "revisions"
 msgstr ""
 
-#: ../includes/class-settings.php:164
+#: ../includes/class-settings.php:172
 msgid "Manage Event Tags"
 msgstr ""
 
-#: ../includes/class-settings.php:166
+#: ../includes/class-settings.php:174
 msgid "Manage Event Locations"
 msgstr ""
 
-#: ../includes/class-settings.php:169
+#: ../includes/class-settings.php:177
 msgid "Manage Event Organizers"
 msgstr ""
 
-#: ../includes/class-settings.php:187 ../includes/class-settings.php:200
+#: ../includes/class-settings.php:195 ../includes/class-settings.php:208
 #: ../includes/class-welcome.php:46
 msgid "Settings"
 msgstr ""
 
-#: ../includes/class-settings.php:213 ../includes/class-settings.php:226
+#: ../includes/class-settings.php:221 ../includes/class-settings.php:234
 msgid "Events Maker"
 msgstr ""
 
-#: ../includes/class-settings.php:228
+#: ../includes/class-settings.php:236
 msgid "Need support?"
 msgstr ""
 
-#: ../includes/class-settings.php:229
+#: ../includes/class-settings.php:237
 msgid "If you are having problems with this plugin, checkout plugin"
 msgstr ""
 
-#: ../includes/class-settings.php:229 ../includes/class-welcome.php:47
+#: ../includes/class-settings.php:237 ../includes/class-welcome.php:47
 msgid "Documentation"
 msgstr ""
 
-#: ../includes/class-settings.php:229
+#: ../includes/class-settings.php:237
 msgid "or talk about them in the"
 msgstr ""
 
-#: ../includes/class-settings.php:229
+#: ../includes/class-settings.php:237
 msgid "Support forum"
 msgstr ""
 
-#: ../includes/class-settings.php:231
+#: ../includes/class-settings.php:239
 msgid "Do you like this plugin?"
 msgstr ""
 
-#: ../includes/class-settings.php:232
+#: ../includes/class-settings.php:240
 msgid "Rate it 5"
 msgstr ""
 
-#: ../includes/class-settings.php:232
+#: ../includes/class-settings.php:240
 msgid "on WordPress.org"
 msgstr ""
 
-#: ../includes/class-settings.php:233
+#: ../includes/class-settings.php:241
 msgid "Blog about it & link to the"
 msgstr ""
 
-#: ../includes/class-settings.php:233
+#: ../includes/class-settings.php:241
 msgid "plugin page"
 msgstr ""
 
-#: ../includes/class-settings.php:234
+#: ../includes/class-settings.php:242
 msgid "Check out our other"
 msgstr ""
 
-#: ../includes/class-settings.php:234
+#: ../includes/class-settings.php:242
 msgid "WordPress plugins"
 msgstr ""
 
-#: ../includes/class-settings.php:243
+#: ../includes/class-settings.php:251
 msgid "Created by"
 msgstr ""
 
-#: ../includes/class-settings.php:260
+#: ../includes/class-settings.php:268
 msgid "Reset to defaults"
 msgstr ""
 
-#: ../includes/class-settings.php:278
+#: ../includes/class-settings.php:286
 msgid "General settings"
 msgstr ""
 
-#: ../includes/class-settings.php:279
+#: ../includes/class-settings.php:287
 msgid "Event features support"
 msgstr ""
 
-#: ../includes/class-settings.php:283
-msgid "Event default options"
-msgstr ""
-
-#: ../includes/class-settings.php:284
-msgid "Full Calendar display"
-msgstr ""
-
-#: ../includes/class-settings.php:285
+#: ../includes/class-settings.php:291
 msgid "RSS feed"
 msgstr ""
 
-#: ../includes/class-settings.php:286
+#: ../includes/class-settings.php:292
 msgid "Deactivation"
 msgstr ""
 
-#: ../includes/class-settings.php:289
+#: ../includes/class-settings.php:295
 msgid "Currency settings"
 msgstr ""
 
-#: ../includes/class-settings.php:290
+#: ../includes/class-settings.php:296
 msgid "Currency"
 msgstr ""
 
-#: ../includes/class-settings.php:291
+#: ../includes/class-settings.php:297
 msgid "Currency position"
 msgstr ""
 
-#: ../includes/class-settings.php:292
+#: ../includes/class-settings.php:298
 msgid "Currency symbol"
 msgstr ""
 
-#: ../includes/class-settings.php:293
+#: ../includes/class-settings.php:299
 msgid "Currency display format"
 msgstr ""
 
-#: ../includes/class-settings.php:296
+#: ../includes/class-settings.php:302
 msgid "Query settings"
 msgstr ""
 
-#: ../includes/class-settings.php:297 ../includes/class-widgets.php:852
-#: ../includes/class-widgets.php:1120 ../includes/class-widgets.php:1237
-#: ../includes/class-widgets.php:1354
+#: ../includes/class-settings.php:303 ../includes/class-widgets.php:880
+#: ../includes/class-widgets.php:1151 ../includes/class-widgets.php:1268
+#: ../includes/class-widgets.php:1385
 msgid "Order by"
 msgstr ""
 
-#: ../includes/class-settings.php:298
+#: ../includes/class-settings.php:304
 msgid "Sort order"
 msgstr ""
 
-#: ../includes/class-settings.php:299
+#: ../includes/class-settings.php:305
 msgid "Past events"
 msgstr ""
 
-#: ../includes/class-settings.php:300
+#: ../includes/class-settings.php:306
 msgid "Current events"
 msgstr ""
 
-#: ../includes/class-settings.php:301
+#: ../includes/class-settings.php:307
 msgid "Occurrences"
 msgstr ""
 
-#: ../includes/class-settings.php:304
-msgid "Other settings"
-msgstr ""
-
-#: ../includes/class-settings.php:305
-msgid "Link in menu"
-msgstr ""
-
-#: ../includes/class-settings.php:306
-msgid "Date and time format"
-msgstr ""
-
-#: ../includes/class-settings.php:307
-msgid "First day of the week"
-msgstr ""
-
 #: ../includes/class-settings.php:311
-msgid "Templates settings"
+msgid "Display settings"
 msgstr ""
 
 #: ../includes/class-settings.php:312
-msgid "Default templates"
+msgid "Event default options"
 msgstr ""
 
 #: ../includes/class-settings.php:313
-msgid "Events archive"
+msgid "Date and time format"
 msgstr ""
 
 #: ../includes/class-settings.php:314
-msgid "Archive event content"
+msgid "First day of the week"
 msgstr ""
 
-#: ../includes/class-settings.php:315 ../includes/class-settings.php:336
-msgid "Single event"
+#: ../includes/class-settings.php:315
+msgid "Full Calendar display"
 msgstr ""
 
 #: ../includes/class-settings.php:316
+msgid "Link in menu"
+msgstr ""
+
+#: ../includes/class-settings.php:320
+msgid "Templates settings"
+msgstr ""
+
+#: ../includes/class-settings.php:321
+msgid "Default templates"
+msgstr ""
+
+#: ../includes/class-settings.php:322
+msgid "Events archive"
+msgstr ""
+
+#: ../includes/class-settings.php:323
+msgid "Archive event content"
+msgstr ""
+
+#: ../includes/class-settings.php:324 ../includes/class-settings.php:345
+msgid "Single event"
+msgstr ""
+
+#: ../includes/class-settings.php:325
 msgid "Single event content"
 msgstr ""
 
-#: ../includes/class-settings.php:317
+#: ../includes/class-settings.php:326
 msgid "Widget event content"
 msgstr ""
 
-#: ../includes/class-settings.php:330
+#: ../includes/class-settings.php:339
 msgid "Capabilities settings"
 msgstr ""
 
-#: ../includes/class-settings.php:334
+#: ../includes/class-settings.php:343
 msgid "Permalinks settings"
 msgstr ""
 
-#: ../includes/class-settings.php:335
+#: ../includes/class-settings.php:344
 msgid "Events base"
 msgstr ""
 
-#: ../includes/class-settings.php:368
+#: ../includes/class-settings.php:377
 msgid "Select which features would you like to enable for your events."
 msgstr ""
 
-#: ../includes/class-settings.php:382
+#: ../includes/class-settings.php:391
 msgid "Enable Event Tags"
 msgstr ""
 
-#: ../includes/class-settings.php:384
+#: ../includes/class-settings.php:393
 msgid "Enable if you want to use Event Tags."
 msgstr ""
 
-#: ../includes/class-settings.php:398
+#: ../includes/class-settings.php:407
 msgid "Enable Event Organizers"
 msgstr ""
 
-#: ../includes/class-settings.php:400
+#: ../includes/class-settings.php:409
 msgid ""
 "Enable if you want to use Event Organizers (including organizer contact "
 "details)."
 msgstr ""
 
-#: ../includes/class-settings.php:414
+#: ../includes/class-settings.php:423
 msgid "Enable Event Tickets"
 msgstr ""
 
-#: ../includes/class-settings.php:416
+#: ../includes/class-settings.php:425
 msgid ""
 "Enable if you want to use Event Tickets (including free events, paid events "
 "and multiple ticket types)."
 msgstr ""
 
-#: ../includes/class-settings.php:454
+#: ../includes/class-settings.php:437
+msgid "Display Google Map"
+msgstr ""
+
+#: ../includes/class-settings.php:438
+msgid "Display Location Details"
+msgstr ""
+
+#: ../includes/class-settings.php:443
+msgid "Display Tickets Info"
+msgstr ""
+
+#: ../includes/class-settings.php:446
+msgid "Display Organizer Details"
+msgstr ""
+
+#: ../includes/class-settings.php:463
 msgid ""
 "Select default display options for single event (this can overriden for each "
 "event separately)."
 msgstr ""
 
-#: ../includes/class-settings.php:503
+#: ../includes/class-settings.php:512
 msgid "There are no pages."
 msgstr ""
 
-#: ../includes/class-settings.php:507
+#: ../includes/class-settings.php:516
 msgid ""
 "Select how and where would you like to display events full calendar. Use "
 "<code>[em-full-calendar]</code> shortcode for manual display."
 msgstr ""
 
-#: ../includes/class-settings.php:521
+#: ../includes/class-settings.php:530
 msgid "Enable RSS feed"
 msgstr ""
 
-#: ../includes/class-settings.php:523
+#: ../includes/class-settings.php:532
 msgid "Enable to include events in your website main RSS feed."
 msgstr ""
 
-#: ../includes/class-settings.php:537
+#: ../includes/class-settings.php:546
 msgid "Enable delete on deactivation"
 msgstr ""
 
-#: ../includes/class-settings.php:539
+#: ../includes/class-settings.php:548
 msgid "Enable if you want all plugin data to be deleted on deactivation."
 msgstr ""
 
-#: ../includes/class-settings.php:564
+#: ../includes/class-settings.php:573
 msgid "Choose the currency that will be used for ticket prices."
 msgstr ""
 
-#: ../includes/class-settings.php:587
+#: ../includes/class-settings.php:596
 msgid "Choose the location of the currency sign."
 msgstr ""
 
-#: ../includes/class-settings.php:603
+#: ../includes/class-settings.php:612
 msgid ""
 "This will appear next to all the currency figures on the website. Ex. $, "
 "USD, €..."
 msgstr ""
 
-#: ../includes/class-settings.php:628
+#: ../includes/class-settings.php:637
 msgid ""
 "This determines how your currency is displayed. Ex. 1,234.56 or 1,200 or "
 "1200."
 msgstr ""
 
-#: ../includes/class-settings.php:651
+#: ../includes/class-settings.php:660
 msgid ""
 "Select how to order your events list (works for both: admin and front-end "
 "default query)."
 msgstr ""
 
-#: ../includes/class-settings.php:674
+#: ../includes/class-settings.php:683
 msgid ""
 "Select events list order (works for both: admin and front-end default query)."
 msgstr ""
 
-#: ../includes/class-settings.php:688 ../includes/class-widgets.php:272
+#: ../includes/class-settings.php:697 ../includes/class-widgets.php:276
 msgid "Show past events"
 msgstr ""
 
-#: ../includes/class-settings.php:690
+#: ../includes/class-settings.php:699
 msgid ""
 "Select whether to include past events in events list (works for front-end "
 "default query)."
 msgstr ""
 
-#: ../includes/class-settings.php:704
+#: ../includes/class-settings.php:713
 msgid "Expire current events"
 msgstr ""
 
-#: ../includes/class-settings.php:706
+#: ../includes/class-settings.php:715
 msgid ""
 "Select how to handle already started events (works for front-end default "
 "query)."
 msgstr ""
 
-#: ../includes/class-settings.php:720
+#: ../includes/class-settings.php:729 ../includes/class-widgets.php:277
 msgid "Show occurrences"
 msgstr ""
 
-#: ../includes/class-settings.php:722
+#: ../includes/class-settings.php:731
 msgid ""
 "Select whether to include event occurrences in events list (works for front-"
 "end default query)."
 msgstr ""
 
-#: ../includes/class-settings.php:738
+#: ../includes/class-settings.php:747
 msgid "Show link in menu"
 msgstr ""
 
-#: ../includes/class-settings.php:744
+#: ../includes/class-settings.php:753
 msgid "Menu"
 msgstr ""
 
-#: ../includes/class-settings.php:755 ../includes/class-widgets.php:92
-#: ../includes/class-widgets.php:268 ../includes/class-widgets.php:745
-#: ../includes/class-widgets.php:792 ../includes/class-widgets.php:1112
-#: ../includes/class-widgets.php:1229 ../includes/class-widgets.php:1346
+#: ../includes/class-settings.php:764 ../includes/class-widgets.php:95
+#: ../includes/class-widgets.php:272 ../includes/class-widgets.php:773
+#: ../includes/class-widgets.php:820 ../includes/class-widgets.php:1143
+#: ../includes/class-widgets.php:1260 ../includes/class-widgets.php:1377
 msgid "Title"
 msgstr ""
 
-#: ../includes/class-settings.php:757
+#: ../includes/class-settings.php:766
 msgid ""
 "Note: if global WordPress permalinks were changed remember to save Events "
 "Maker general settings again."
 msgstr ""
 
-#: ../includes/class-settings.php:761
+#: ../includes/class-settings.php:770
 msgid "Note: there is no menu to which you could add events archive link."
 msgstr ""
 
-#: ../includes/class-settings.php:767
+#: ../includes/class-settings.php:776
 msgid ""
 "Select if you want to automatically add events archive link to nav menu."
 msgstr ""
 
-#: ../includes/class-settings.php:781
+#: ../includes/class-settings.php:790
 msgid "Date"
 msgstr ""
 
-#: ../includes/class-settings.php:783
+#: ../includes/class-settings.php:792
 msgid "Time"
 msgstr ""
 
-#: ../includes/class-settings.php:785
+#: ../includes/class-settings.php:794
 msgid "Enter your preffered date and time formatting."
 msgstr ""
 
-#: ../includes/class-settings.php:806
+#: ../includes/class-settings.php:815
 msgid "Select preffered first day of the week for the calendar display."
 msgstr ""
 
-#: ../includes/class-settings.php:820
+#: ../includes/class-settings.php:829
 msgid "Enable to use default templates"
 msgstr ""
 
-#: ../includes/class-settings.php:822
+#: ../includes/class-settings.php:831
 msgid ""
 "For each of the events pages, the corresponding template is used. To use "
 "your own template simply give it the same name and store in your theme "
@@ -1295,39 +1383,39 @@ msgid ""
 "folder to use."
 msgstr ""
 
-#: ../includes/class-settings.php:960
+#: ../includes/class-settings.php:969
 msgid "These settings will work only if permalinks are enabled."
 msgstr ""
 
-#: ../includes/class-settings.php:975
+#: ../includes/class-settings.php:984
 msgid "General Events root slug to prefix all your events pages with."
 msgstr ""
 
-#: ../includes/class-settings.php:992
+#: ../includes/class-settings.php:1001
 msgid "Single event page slug."
 msgstr ""
 
-#: ../includes/class-settings.php:1009
+#: ../includes/class-settings.php:1018
 msgid "Event Locations page slug."
 msgstr ""
 
-#: ../includes/class-settings.php:1026
+#: ../includes/class-settings.php:1035
 msgid "Event Categories page slug."
 msgstr ""
 
-#: ../includes/class-settings.php:1043
+#: ../includes/class-settings.php:1052
 msgid "Event Tags page slug."
 msgstr ""
 
-#: ../includes/class-settings.php:1060
+#: ../includes/class-settings.php:1069
 msgid "Event Organizers page slug."
 msgstr ""
 
-#: ../includes/class-settings.php:1079
+#: ../includes/class-settings.php:1088
 msgid "Role"
 msgstr ""
 
-#: ../includes/class-settings.php:1083
+#: ../includes/class-settings.php:1092
 msgid "None"
 msgstr ""
 
@@ -1361,8 +1449,8 @@ msgstr ""
 msgid "No thanks"
 msgstr ""
 
-#: ../includes/class-shortcodes.php:222 ../includes/class-widgets.php:168
-#: ../includes/class-widgets.php:182
+#: ../includes/class-shortcodes.php:222 ../includes/class-widgets.php:171
+#: ../includes/class-widgets.php:185
 msgid "Events Calendar"
 msgstr ""
 
@@ -1385,43 +1473,44 @@ msgid "Map"
 msgstr ""
 
 #: ../includes/class-taxonomies.php:63
-#: ../templates/loop-event/location-details.php:27
+#: ../templates/loop-event/location-details.php:34
 msgid "Address"
 msgstr ""
 
 #: ../includes/class-taxonomies.php:69
-#: ../templates/loop-event/location-details.php:35
+#: ../templates/loop-event/location-details.php:44
 msgid "City"
 msgstr ""
 
 #: ../includes/class-taxonomies.php:75
-#: ../templates/loop-event/location-details.php:39
+#: ../templates/loop-event/location-details.php:49
 msgid "State / Province"
 msgstr ""
 
 #: ../includes/class-taxonomies.php:81
-#: ../templates/loop-event/location-details.php:31
+#: ../templates/loop-event/location-details.php:39
 msgid "Zip Code"
 msgstr ""
 
 #: ../includes/class-taxonomies.php:87
-#: ../templates/loop-event/location-details.php:43
+#: ../templates/loop-event/location-details.php:54
+#: ../templates/loop-event/organizer-details.php:54
 msgid "Country"
 msgstr ""
 
 #: ../includes/class-taxonomies.php:93 ../includes/class-taxonomies.php:126
-#: ../templates/loop-event/location-details.php:50
-#: ../templates/loop-event/organizer-details.php:46
+#: ../templates/loop-event/location-details.php:59
+#: ../templates/loop-event/organizer-details.php:59
 msgid "Image"
 msgstr ""
 
 #: ../includes/class-taxonomies.php:102
-#: ../templates/loop-event/organizer-details.php:27
+#: ../templates/loop-event/organizer-details.php:34
 msgid "Contact name"
 msgstr ""
 
 #: ../includes/class-taxonomies.php:108
-#: ../templates/loop-event/organizer-details.php:31
+#: ../templates/loop-event/organizer-details.php:39
 msgid "Phone"
 msgstr ""
 
@@ -1430,7 +1519,7 @@ msgid "E-mail"
 msgstr ""
 
 #: ../includes/class-taxonomies.php:120
-#: ../templates/loop-event/organizer-details.php:39
+#: ../templates/loop-event/organizer-details.php:49
 msgid "Website"
 msgstr ""
 
@@ -1572,251 +1661,255 @@ msgstr ""
 msgid "Go to Events Maker Settings"
 msgstr ""
 
-#: ../includes/class-widgets.php:49 ../includes/class-widgets.php:56
+#: ../includes/class-widgets.php:52 ../includes/class-widgets.php:59
 msgid "Events Archives"
 msgstr ""
 
-#: ../includes/class-widgets.php:51
+#: ../includes/class-widgets.php:54
 msgid "Displays events archives"
 msgstr ""
 
-#: ../includes/class-widgets.php:65
+#: ../includes/class-widgets.php:68
 msgid "Monthly"
 msgstr ""
 
-#: ../includes/class-widgets.php:66
+#: ../includes/class-widgets.php:69
 msgid "Yearly"
 msgstr ""
 
-#: ../includes/class-widgets.php:96 ../includes/class-widgets.php:1116
-#: ../includes/class-widgets.php:1233 ../includes/class-widgets.php:1350
+#: ../includes/class-widgets.php:99 ../includes/class-widgets.php:1147
+#: ../includes/class-widgets.php:1264 ../includes/class-widgets.php:1381
 msgid "Display as dropdown"
 msgstr ""
 
-#: ../includes/class-widgets.php:97
+#: ../includes/class-widgets.php:100
 msgid "Show amount of events"
 msgstr ""
 
-#: ../includes/class-widgets.php:100
+#: ../includes/class-widgets.php:103
 msgid "Display Type"
 msgstr ""
 
-#: ../includes/class-widgets.php:113 ../includes/class-widgets.php:864
-#: ../includes/class-widgets.php:1132 ../includes/class-widgets.php:1249
-#: ../includes/class-widgets.php:1366
+#: ../includes/class-widgets.php:116 ../includes/class-widgets.php:892
+#: ../includes/class-widgets.php:1163 ../includes/class-widgets.php:1280
+#: ../includes/class-widgets.php:1397
 msgid "Order"
 msgstr ""
 
-#: ../includes/class-widgets.php:125
+#: ../includes/class-widgets.php:128
 msgid "Limit"
 msgstr ""
 
-#: ../includes/class-widgets.php:170
+#: ../includes/class-widgets.php:173
 msgid "Displays events calendar"
 msgstr ""
 
-#: ../includes/class-widgets.php:192 ../includes/class-widgets.php:737
+#: ../includes/class-widgets.php:196 ../includes/class-widgets.php:765
 msgid "all"
 msgstr ""
 
-#: ../includes/class-widgets.php:193 ../includes/class-widgets.php:738
+#: ../includes/class-widgets.php:197 ../includes/class-widgets.php:766
 msgid "selected"
 msgstr ""
 
-#: ../includes/class-widgets.php:197
+#: ../includes/class-widgets.php:201
 msgid "basic"
 msgstr ""
 
-#: ../includes/class-widgets.php:198
+#: ../includes/class-widgets.php:202
 msgid "dark"
 msgstr ""
 
-#: ../includes/class-widgets.php:199
+#: ../includes/class-widgets.php:203
 msgid "light"
 msgstr ""
 
-#: ../includes/class-widgets.php:200
+#: ../includes/class-widgets.php:204
 msgid "flat"
 msgstr ""
 
-#: ../includes/class-widgets.php:273
+#: ../includes/class-widgets.php:278
 msgid "Highlight weekends"
 msgstr ""
 
-#: ../includes/class-widgets.php:276
+#: ../includes/class-widgets.php:281
 msgid "CSS Style"
 msgstr ""
 
-#: ../includes/class-widgets.php:289 ../includes/class-widgets.php:800
+#: ../includes/class-widgets.php:294 ../includes/class-widgets.php:828
 msgid "Event Categories"
 msgstr ""
 
-#: ../includes/class-widgets.php:304 ../includes/class-widgets.php:815
+#: ../includes/class-widgets.php:309 ../includes/class-widgets.php:843
 msgid "Event Locations"
 msgstr ""
 
-#: ../includes/class-widgets.php:325 ../includes/class-widgets.php:834
+#: ../includes/class-widgets.php:330 ../includes/class-widgets.php:862
 msgid "Event Organizers"
 msgstr ""
 
-#: ../includes/class-widgets.php:687 ../includes/class-widgets.php:1046
+#: ../includes/class-widgets.php:714 ../includes/class-widgets.php:1077
 msgid "No results were found."
 msgstr ""
 
-#: ../includes/class-widgets.php:708
+#: ../includes/class-widgets.php:735
 msgid "Events List"
 msgstr ""
 
-#: ../includes/class-widgets.php:710
+#: ../includes/class-widgets.php:737
 msgid "Displays a list of events"
 msgstr ""
 
-#: ../includes/class-widgets.php:731 ../includes/template-functions.php:35
+#: ../includes/class-widgets.php:759 ../includes/template-functions.php:35
 msgid "No Events"
 msgstr ""
 
-#: ../includes/class-widgets.php:742
+#: ../includes/class-widgets.php:770
 msgid "Start date"
 msgstr ""
 
-#: ../includes/class-widgets.php:743
+#: ../includes/class-widgets.php:771
 msgid "End date"
 msgstr ""
 
-#: ../includes/class-widgets.php:796
+#: ../includes/class-widgets.php:824
 msgid "Number of events"
 msgstr ""
 
-#: ../includes/class-widgets.php:879
+#: ../includes/class-widgets.php:907
 msgid "Display past events"
 msgstr ""
 
-#: ../includes/class-widgets.php:881
+#: ../includes/class-widgets.php:909
 msgid "Display event occurrenses"
 msgstr ""
 
-#: ../includes/class-widgets.php:883
+#: ../includes/class-widgets.php:911
 msgid "Display event excerpt"
 msgstr ""
 
-#: ../includes/class-widgets.php:885
+#: ../includes/class-widgets.php:913
+msgid "Display featured events only"
+msgstr ""
+
+#: ../includes/class-widgets.php:915
 msgid "Display event thumbnail"
 msgstr ""
 
-#: ../includes/class-widgets.php:888
+#: ../includes/class-widgets.php:918
 msgid "Thumbnail size"
 msgstr ""
 
-#: ../includes/class-widgets.php:903
+#: ../includes/class-widgets.php:933
 msgid "No events message"
 msgstr ""
 
-#: ../includes/class-widgets.php:907
+#: ../includes/class-widgets.php:937
 msgid "Date format"
 msgstr ""
 
-#: ../includes/class-widgets.php:909
+#: ../includes/class-widgets.php:939
 msgid "Time format"
 msgstr ""
 
-#: ../includes/class-widgets.php:1064 ../includes/class-widgets.php:1071
+#: ../includes/class-widgets.php:1095 ../includes/class-widgets.php:1102
 msgid "Events Categories"
 msgstr ""
 
-#: ../includes/class-widgets.php:1066
+#: ../includes/class-widgets.php:1097
 msgid "Displays a list of events categories"
 msgstr ""
 
-#: ../includes/class-widgets.php:1079 ../includes/class-widgets.php:1196
-#: ../includes/class-widgets.php:1313
+#: ../includes/class-widgets.php:1110 ../includes/class-widgets.php:1227
+#: ../includes/class-widgets.php:1344
 msgid "ID"
 msgstr ""
 
-#: ../includes/class-widgets.php:1080 ../includes/class-widgets.php:1197
-#: ../includes/class-widgets.php:1314
+#: ../includes/class-widgets.php:1111 ../includes/class-widgets.php:1228
+#: ../includes/class-widgets.php:1345
 msgid "Name"
 msgstr ""
 
-#: ../includes/class-widgets.php:1117 ../includes/class-widgets.php:1234
-#: ../includes/class-widgets.php:1351
+#: ../includes/class-widgets.php:1148 ../includes/class-widgets.php:1265
+#: ../includes/class-widgets.php:1382
 msgid "Show hierarchy"
 msgstr ""
 
-#: ../includes/class-widgets.php:1181 ../includes/class-widgets.php:1188
+#: ../includes/class-widgets.php:1212 ../includes/class-widgets.php:1219
 msgid "Events Locations"
 msgstr ""
 
-#: ../includes/class-widgets.php:1183
+#: ../includes/class-widgets.php:1214
 msgid "Displays a list of events locations"
 msgstr ""
 
-#: ../includes/class-widgets.php:1298 ../includes/class-widgets.php:1305
+#: ../includes/class-widgets.php:1329 ../includes/class-widgets.php:1336
 msgid "Events Organizers"
 msgstr ""
 
-#: ../includes/class-widgets.php:1300
+#: ../includes/class-widgets.php:1331
 msgid "Displays a list of events organizers"
 msgstr ""
 
-#: ../includes/template-functions.php:136
+#: ../includes/template-functions.php:137
 msgid "<strong>Category: </strong>"
 msgstr ""
 
-#: ../includes/template-functions.php:162
+#: ../includes/template-functions.php:163
 msgid "<strong>Tags: </strong>"
 msgstr ""
 
-#: ../includes/template-functions.php:194
-#: ../includes/template-functions.php:206
+#: ../includes/template-functions.php:195
+#: ../includes/template-functions.php:207
 msgid "<strong>Location: </strong>"
 msgstr ""
 
-#: ../includes/template-functions.php:268
-#: ../includes/template-functions.php:280
+#: ../includes/template-functions.php:269
+#: ../includes/template-functions.php:281
 msgid "<strong>Organizer: </strong>"
 msgstr ""
 
-#: ../includes/template-functions.php:580
+#: ../includes/template-functions.php:583
 #, php-format
 msgid "Event Daily Archives: %s"
 msgstr ""
 
-#: ../includes/template-functions.php:582
+#: ../includes/template-functions.php:585
 #, php-format
 msgid "Event Monthly Archives: %s"
 msgstr ""
 
-#: ../includes/template-functions.php:582
+#: ../includes/template-functions.php:585
 msgctxt "monthly archives date format"
 msgid "F Y"
 msgstr ""
 
-#: ../includes/template-functions.php:584
+#: ../includes/template-functions.php:587
 #, php-format
 msgid "Event Yearly Archives: %s"
 msgstr ""
 
-#: ../includes/template-functions.php:584
+#: ../includes/template-functions.php:587
 msgctxt "yearly archives date format"
 msgid "Y"
 msgstr ""
 
-#: ../includes/template-functions.php:586
+#: ../includes/template-functions.php:589
 #, php-format
 msgid "Events Category: %s"
 msgstr ""
 
-#: ../includes/template-functions.php:588
+#: ../includes/template-functions.php:591
 #, php-format
 msgid "Events Location: %s"
 msgstr ""
 
-#: ../includes/template-functions.php:590
+#: ../includes/template-functions.php:593
 #, php-format
 msgid "Events Organizer: %s"
 msgstr ""
 
-#: ../includes/template-functions.php:592
+#: ../includes/template-functions.php:595
 #, php-format
 msgid "Events Tag: %s"
 msgstr ""
@@ -1858,11 +1951,7 @@ msgstr ""
 msgid "% Comments"
 msgstr ""
 
-#: ../templates/loop-event/meta.php:37 ../templates/single-event/meta.php:37
-msgid "Edit"
-msgstr ""
-
-#: ../templates/loop-event/organizer-details.php:35
+#: ../templates/loop-event/organizer-details.php:44
 msgid "Email"
 msgstr ""
 
@@ -1896,4 +1985,8 @@ msgstr ""
 
 #: ../templates/loop-event/sorting.php:32
 msgid "Sort by title: descending"
+msgstr ""
+
+#: ../templates/single-event/tickets.php:57
+msgid "Free"
 msgstr ""

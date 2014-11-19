@@ -755,6 +755,7 @@ class Events_Maker_List_Widget extends WP_Widget
 			'show_occurrences' => $this->em_options['general']['show_occurrences'],
 			'show_event_thumbnail' => true,
 			'show_event_excerpt' => false,
+			'show_featured' => false,
 			'no_events_message' => __('No Events', 'events-maker'),
 			'date_format' => $this->em_options['general']['datetime_format']['date'],
 			'time_format' => $this->em_options['general']['datetime_format']['time']
@@ -909,6 +910,8 @@ class Events_Maker_List_Widget extends WP_Widget
 			<br />
 			<input id="'.$this->get_field_id('show_event_excerpt').'" type="checkbox" name="'.$this->get_field_name('show_event_excerpt').'" value="" '.checked(true, (isset($instance['show_event_excerpt']) ? $instance['show_event_excerpt'] : $this->em_defaults['show_event_excerpt']), false).' /> <label for="'.$this->get_field_id('show_event_excerpt').'">'.__('Display event excerpt', 'events-maker').'</label>
 			<br />
+			<input id="'.$this->get_field_id('show_featured').'" type="checkbox" name="'.$this->get_field_name('show_featured').'" value="" '.checked(true, (isset($instance['show_featured']) ? $instance['show_featured'] : $this->em_defaults['show_featured']), false).' /> <label for="'.$this->get_field_id('show_featured').'">'.__('Display featured events only', 'events-maker').'</label>
+			<br />
 			<input id="'.$this->get_field_id('show_event_thumbnail').'" class="em-show-event-thumbnail" type="checkbox" name="'.$this->get_field_name('show_event_thumbnail').'" value="" '.checked(true, $show_event_thumbnail, false).' /> <label for="'.$this->get_field_id('show_event_thumbnail').'">'.__('Display event thumbnail', 'events-maker').'</label>
 		</p>
 		<p class="em-event-thumbnail-size"'.($show_event_thumbnail === true ? '' : ' style="display: none;"').'>
@@ -961,6 +964,7 @@ class Events_Maker_List_Widget extends WP_Widget
 		$old_instance['show_occurrences'] = (isset($new_instance['show_occurrences']) ? true : false);
 		$old_instance['show_event_thumbnail'] = (isset($new_instance['show_event_thumbnail']) ? true : false);
 		$old_instance['show_event_excerpt'] = (isset($new_instance['show_event_excerpt']) ? true : false);
+		$old_instance['show_featured'] = (isset($new_instance['show_featured']) ? true : false);
 
 		//texts
 		$old_instance['title'] = sanitize_text_field(isset($new_instance['title']) ? $new_instance['title'] : $this->em_defaults['title']);

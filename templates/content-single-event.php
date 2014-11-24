@@ -38,13 +38,13 @@ $classes = apply_filters('em_single_event_classes', array('hcalendar'));
 			do_action ('em_before_single_event_title');
 			?>
 			
-	        <h1 class="entry-title summary">
-	        	
-	        	<?php the_title(); ?>
-	        	
-	        </h1>
-	        
-	        <?php
+			<h1 class="entry-title summary">
+				
+				<?php the_title(); ?>
+				
+			</h1>
+			
+			<?php
 			/**
 			 * em_after_single_event_title hook
 			 * 
@@ -58,18 +58,19 @@ $classes = apply_filters('em_single_event_classes', array('hcalendar'));
 			?>
 
 	    </header>
-	
-	    <div class="entry-content description">
-	    	
-	        <?php the_content(); ?>
-	        
-	    </div>
+	    
+	    <?php
+		/**
+		 * em_single_event_content hook
+		 * 
+		 * @hooked em_display_event_content - 10
+		 */
+		do_action('em_single_event_content');
+		?>
 	    
 	    <?php
 		/**
 		 * em_after_single_event hook
-		 * 
-		 * @hooked em_display_event_tags - 10
 		 */
 		do_action('em_after_single_event');
 		?>

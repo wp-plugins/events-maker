@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Events Maker\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-19 12:51+0100\n"
-"PO-Revision-Date: 2014-11-19 14:06+0100\n"
+"PO-Revision-Date: 2014-11-19 12:56+0100\n"
 "Last-Translator: Bartosz Arendt <info@dfactory.eu>\n"
 "Language-Team: dFactory <info@dfactory.pl>\n"
 "Language: pl_PL\n"
@@ -692,7 +692,7 @@ msgstr "płatne"
 
 #: ../includes/class-listing.php:191
 msgid "free"
-msgstr "bezpłatne"
+msgstr "bezpłątne"
 
 #: ../includes/class-listing.php:200
 msgid "Toggle featured"

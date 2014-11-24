@@ -17,9 +17,9 @@ if ($wp_query->max_num_pages <= 1)
 	return;
 ?>
 
-<nav class="navigation paging-navigation" role="navigation">
+<nav class="navigation paging-navigation pagination" role="navigation">
 	
-	<div class="loop-pagination pagination events-maker-pagination">
+	<div class="loop-pagination nav-links">
 		
 		<?php
 		$big = 999999999; // need an unlikely integer

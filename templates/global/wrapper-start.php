@@ -26,6 +26,9 @@ switch($template) {
 	case 'twentyfourteen' :
 		$output = '<div id="primary" class="content-area"><div id="content" role="main" class="site-content twentyfourteen"><div class="tf-fix">';
 		break;
+	case 'twentyfifteen' :
+		$output = '<div id="primary" class="content-area"><main id="main" role="main" class="site-main twentyfifteen">';
+		break;
 	default :
 		$output = '<div id="container"><div id="content" role="main">';
 		break;

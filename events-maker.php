@@ -1,8 +1,8 @@
 <?php
 /*
 Plugin Name: Events Maker
-Description: Events Maker is an easy to use but flexible events management plugin made the WordPress way.
-Version: 1.3.0
+Description: Events Maker is a complete, powerful but easy to use events management plugin made the WordPress way.
+Version: 1.3.1
 Author: dFactory
 Author URI: http://www.dfactory.eu/
 Plugin URI: http://www.dfactory.eu/plugins/events-maker/
@@ -12,7 +12,7 @@ Text Domain: events-maker
 Domain Path: /languages
 
 Events Maker
-Copyright (C) 2013, Digital Factory - info@digitalfactory.pl
+Copyright (C) 2013-2014, Digital Factory - info@digitalfactory.pl
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -128,7 +128,7 @@ class Events_Maker
 			'event_locations_rewrite_slug' => 'location',
 			'event_organizers_rewrite_slug' => 'organizer'
 		),
-		'version' => '1.3.0'
+		'version' => '1.3.1'
 	);
 	private $transient_id = '';
 
@@ -171,7 +171,7 @@ class Events_Maker
 
 	/**
 	 * Multisite activation
-	*/
+	 */
 	public function multisite_activation($networkwide)
 	{
 		if(is_multisite() && $networkwide)
@@ -199,7 +199,7 @@ class Events_Maker
 
 	/**
 	 * Activation
-	*/
+	 */
 	public function activate_single()
 	{
 		global $wp_roles;
@@ -243,7 +243,7 @@ class Events_Maker
 
 	/**
 	 * Multisite deactivation
-	*/
+	 */
 	public function multisite_deactivation($networkwide)
 	{
 		if(is_multisite() && $networkwide)
@@ -275,7 +275,7 @@ class Events_Maker
 
 	/**
 	 * Deactivation
-	*/
+	 */
 	public function deactivate_single($multi = false)
 	{
 		global $wp_roles;
@@ -318,7 +318,7 @@ class Events_Maker
 
 	/**
 	 * Passes variables to other classes
-	*/
+	 */
 	public function pass_variables()
 	{
 		$this->currencies = array(
@@ -440,25 +440,25 @@ class Events_Maker
 
 	/**
 	 * Load pluggable template functions
-	*/
+	 */
 	public function load_pluggable_functions() 
 	{
-	    include_once(EVENTS_MAKER_PATH.'includes/template-functions.php');
+		include_once(EVENTS_MAKER_PATH.'includes/template-functions.php');
 	}
 	
 	
 	/**
 	 * Load pluggable template hooks
-	*/
+	 */
 	public function load_pluggable_hooks() 
 	{
-	    include_once(EVENTS_MAKER_PATH.'includes/template-hooks.php');
+		include_once(EVENTS_MAKER_PATH.'includes/template-hooks.php');
 	}
 
 
 	/**
 	 * Get support options
-	*/
+	 */
 	private function get_supports()
 	{
 		$supports = array();
@@ -475,7 +475,7 @@ class Events_Maker
 
 	/**
 	 * Get default options
-	*/
+	 */
 	public function get_defaults()
 	{
 		return $this->defaults;
@@ -484,7 +484,7 @@ class Events_Maker
 
 	/**
 	 * Get options
-	*/
+	 */
 	public function get_options()
 	{
 		return $this->options;
@@ -493,7 +493,7 @@ class Events_Maker
 
 	/**
 	 * Get currencies options
-	*/
+	 */
 	public function get_currencies()
 	{
 		return $this->currencies;
@@ -502,7 +502,7 @@ class Events_Maker
 
 	/**
 	 * Get recurrencies options
-	*/
+	 */
 	public function get_recurrences()
 	{
 		return $this->recurrences;
@@ -511,7 +511,7 @@ class Events_Maker
 
 	/**
 	 * Get session id
-	*/
+	 */
 	public function get_session_id()
 	{
 		return $this->transient_id;
@@ -520,7 +520,7 @@ class Events_Maker
 
 	/**
 	 * Generate random string
-	*/
+	 */
 	private function generate_hash()
 	{
 		$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_[]{}<>~`+=,.;:/?|';
@@ -538,7 +538,7 @@ class Events_Maker
 
 	/**
 	 * Initialize cookie-session
-	*/
+	 */
 	public function init_session()
 	{
 		setcookie('em_transient_id', $this->transient_id, 0, COOKIEPATH, COOKIE_DOMAIN);
@@ -547,7 +547,7 @@ class Events_Maker
 
 	/**
 	 * Load text domain
-	*/
+	 */
 	public function load_textdomain()
 	{
 		load_plugin_textdomain('events-maker', false, EVENTS_MAKER_REL_PATH.'languages/');
@@ -556,7 +556,7 @@ class Events_Maker
 
 	/**
 	 * Print admin notices
-	*/
+	 */
 	public function event_admin_notices()
 	{
 		global $pagenow;
@@ -583,7 +583,7 @@ class Events_Maker
 
 	/**
 	 * Print admin notices
-	*/
+	 */
 	public function display_notice($html = '', $status = 'error', $paragraph = false, $network = true)
 	{
 		$this->notices[] = array(
@@ -601,7 +601,7 @@ class Events_Maker
 
 	/**
 	 * Print admin notices
-	*/
+	 */
 	public function admin_display_notice()
 	{
 		foreach($this->notices as $notice)
@@ -618,7 +618,7 @@ class Events_Maker
 
 	/**
 	 * Registration of new custom taxonomies: event-category, event-tag, event-location, event-organizer
-	*/
+	 */
 	public function register_taxonomies()
 	{
 		$post_types = apply_filters('em_event_post_type', array('event'));
@@ -788,7 +788,7 @@ class Events_Maker
 
 	/**
 	 * Registration of new register post types: event
-	*/
+	 */
 	public function register_post_types()
 	{
 		$labels_event = array(
@@ -871,7 +871,7 @@ class Events_Maker
 
 	/**
 	 * Custom post type messages
-	*/
+	 */
 	public function register_post_types_messages($messages)
 	{
 		global $post, $post_ID;
@@ -899,7 +899,7 @@ class Events_Maker
 
 	/**
 	 * Enqueue admin scripts and style
-	*/
+	 */
 	public function admin_scripts_styles($page)
 	{
 		$screen = get_current_screen();
@@ -1031,7 +1031,7 @@ class Events_Maker
 
 	/**
 	 * Enqueue frontend scripts and style
-	*/
+	 */
 	public function front_scripts_styles()
 	{
 		wp_register_style(
@@ -1053,7 +1053,7 @@ class Events_Maker
 
 	/**
 	 * Edit screen icon
-	*/
+	 */
 	public function edit_screen_icon()
 	{
 		// Screen icon
@@ -1081,7 +1081,7 @@ class Events_Maker
 
 	/**
 	 * Add links to Support Forum
-	*/
+	 */
 	public function plugin_extend_links($links, $file) 
 	{
 		if(!current_user_can('install_plugins'))
@@ -1103,33 +1103,28 @@ class Events_Maker
 
 	/**
 	 * Add button link to view full events calendar
-	*/
+	 */
 	public function view_full_calendar_button()
 	{
-	    $screen = get_current_screen();
+		$screen = get_current_screen();
 
-	    if($screen->id == 'edit-event' || $screen->id == 'event')
-	    {
-	    	$options = get_option('events_maker_general');
-
-			if(!isset($options['full_calendar_display']['type']) || !isset($options['full_calendar_display']['page']) || empty($options['full_calendar_display']['page']))
-				return;
-
+		if($screen->id === 'edit-event' || $screen->id === 'event')
+		{
 			if($options['full_calendar_display']['type'] === 'page')
 			{
-	        	?>
-	            <script>
-	            	jQuery('.wrap h2 .add-new-h2').after('<a href="<?php echo get_permalink($options['full_calendar_display']['page']); ?>" class="add-new-h2"><?php echo __('View Calendar', 'events-maker'); ?></a>');
-	            </script>
-	        	<?php
+				?>
+			   <script type="text/javascript">
+					jQuery('.wrap h2 .add-new-h2').after('<a href="<?php echo get_permalink($options['full_calendar_display']['page']); ?>" class="add-new-h2"><?php echo __('View Calendar', 'events-maker'); ?></a>');
+				</script>
+				<?php
 			}
-	    }
+		}
 	}
 
 
 	/**
 	 * Map capabilities
-	*/
+	 */
 	public function event_map_meta_cap($caps, $cap, $user_id, $args)
 	{
 		if('edit_event' === $cap || 'delete_event' === $cap || 'read_event' === $cap)

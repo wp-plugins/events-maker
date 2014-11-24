@@ -218,11 +218,11 @@ class Events_Maker_Listing
 		
 		$post_types = apply_filters('em_event_post_type', array('event'));
 
-		if (!in_array($post->post_type, $post_types))
-			return;
+		if(!in_array($post->post_type, $post_types))
+			return $actions;
 		
-		if (!current_user_can('edit_post', $post->ID))
-			return;
+		if(!current_user_can('edit_post', $post->ID))
+			return $actions;
 		
 		// duplicate link
 		$actions['duplicate_event'] = '<a class="duplicate-event" title="'.esc_attr__('Duplicate this item', 'events-maker').'" href="'.wp_nonce_url(admin_url($pagenow. '?post='.$post->ID.'&action=duplicate_event'), 'events-maker-duplicate-event', 'em_nonce').'">'.__('Duplicate', 'events-maker').'</a>';

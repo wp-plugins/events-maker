@@ -33,13 +33,7 @@ class Events_Maker_Shortcodes
 	 */
 	public function after_delete_trash_calendar_page($post_id)
 	{
-		// wpml or polylang?
-		if(function_exists('icl_object_id'))
-			$check_id = (int)icl_object_id($post_id, 'page', true);
-		else
-			$check_id = (int)$post_id;
-
-		if(get_post_type($post_id) === 'page' && $post_id === $check_id)
+		if(get_post_type($post_id) === 'page' && (int)$post_id === $this->options['general']['full_calendar_display']['page'])
 		{
 			$this->options['general']['full_calendar_display']['type'] = 'manual';
 			$this->options['general']['full_calendar_display']['page'] = 0;
@@ -54,21 +48,12 @@ class Events_Maker_Shortcodes
 	 */
 	public function after_change_status_calendar_page($new_status, $old_status, $post)
 	{
-		if($post->post_type === 'page' && $old_status === 'publish' && $new_status !== 'publish')
+		if($post->post_type === 'page' && $old_status === 'publish' && $new_status !== 'publish' && $post->ID === $this->options['general']['full_calendar_display']['page'])
 		{
-			// wpml or polylang?
-			if(function_exists('icl_object_id'))
-				$check_id = (int)icl_object_id($post->ID, 'page', true);
-			else
-				$check_id = (int)$post->ID;
+			$this->options['general']['full_calendar_display']['type'] = 'manual';
+			$this->options['general']['full_calendar_display']['page'] = 0;
 
-			if($post->ID === $check_id)
-			{
-				$this->options['general']['full_calendar_display']['type'] = 'manual';
-				$this->options['general']['full_calendar_display']['page'] = 0;
-
-				update_option('events_maker_general', $this->options['general']);
-			}
+			update_option('events_maker_general', $this->options['general']);
 		}
 	}
 
@@ -78,7 +63,13 @@ class Events_Maker_Shortcodes
 	 */
 	public function add_full_calendar($content)
 	{
-		if($this->options['general']['full_calendar_display']['type'] === 'page' && is_page($this->options['general']['full_calendar_display']['page']))
+		$page_id = $this->options['general']['full_calendar_display']['page'];
+		
+		// wpml and polylang compatibility
+		if(function_exists('icl_object_id'))
+			$page_id = icl_object_id($this->options['general']['full_calendar_display']['page'], 'page', true);
+
+		if($this->options['general']['full_calendar_display']['type'] === 'page' && is_page($page_id))
 		{
 			if($this->options['general']['full_calendar_display']['content'] === 'before')
 				$content = '[em-full-calendar]'.$content;
@@ -229,10 +220,6 @@ class Events_Maker_Shortcodes
 		{
 			$this->options['general']['full_calendar_display']['type'] = 'page';
 			$this->options['general']['full_calendar_display']['page'] = $id;
-
-			// wpml and polylang compatibility
-			if(function_exists('icl_object_id'))
-				$this->options['general']['full_calendar_display']['page'] = icl_object_id($id, 'page', true);
 
 			if($network)
 				$page = true;

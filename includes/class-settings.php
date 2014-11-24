@@ -30,14 +30,14 @@ class Events_Maker_Settings
 		$this->transient_id = $events_maker->get_session_id();
 
 		//actions
-		add_action('init', array(&$this, 'update_nav_menu'));
-		add_action('admin_menu', array(&$this, 'settings_page'));
-		add_action('admin_init', array(&$this, 'register_settings'));
-		add_action('after_setup_theme', array(&$this, 'set_currencies'));
-		add_action('after_setup_theme', array(&$this, 'load_defaults'));
+		add_action('init', array($this, 'update_nav_menu'));
+		add_action('admin_menu', array($this, 'settings_page'));
+		add_action('admin_init', array($this, 'register_settings'));
+		add_action('after_setup_theme', array($this, 'set_currencies'));
+		add_action('after_setup_theme', array($this, 'load_defaults'));
 
 		//filters
-		add_filter('plugin_action_links', array(&$this, 'plugin_settings_link'), 10, 2);
+		add_filter('plugin_action_links', array($this, 'plugin_settings_link'), 10, 2);
 	}
 
 
@@ -88,14 +88,8 @@ class Events_Maker_Settings
 			'after' => __('after the content', 'events-maker')
 		);
 
-		$this->pages = get_pages(
-			array(
-				'sort_column' => 'post_title',
-				'sort_order' => 'asc',
-				'number' => 0
-			)
-		);
-		
+		$this->pages = $this->get_pages();
+
 		$this->errors = apply_filters('em_settings_errors', array(
 			'settings_gene_saved' => __('General settings saved.', 'events-maker'),
 			'settings_disp_saved' => __('Display settings saved.', 'events-maker'),
@@ -179,8 +173,43 @@ class Events_Maker_Settings
 
 
 	/**
+	 * Gets pages with default admin language
+	 */
+	function get_pages()
+	{
+		$args = array(
+			'posts_per_page' => -1,
+			'post_type' => 'page',
+			'orderby' => 'title',
+			'order' => 'asc',
+			'suppress_filters' => false
+		);
+
+		if(class_exists('SitePress') && array_key_exists('sitepress', $GLOBALS))
+		{
+			global $sitepress;
+
+			$current_lang = $sitepress->get_current_language();
+			$default_lang = $sitepress->get_default_language();
+			$sitepress->switch_lang($default_lang);
+
+			$args['lang'] = $default_lang;
+		}
+		elseif(class_exists('Polylang') && function_exists('pll_default_language'))
+			$args['lang'] = pll_default_language('slug');
+
+		$pages = get_posts($args);
+
+		if(class_exists('SitePress') && array_key_exists('sitepress', $GLOBALS))
+			$sitepress->switch_lang($current_lang);
+
+		return $pages;
+	}
+
+
+	/**
 	 * Adds link to Settings page
-	*/
+	 */
 	public function plugin_settings_link($links, $file) 
 	{
 		if(!is_admin() || !current_user_can('manage_options'))
@@ -287,76 +316,76 @@ class Events_Maker_Settings
 	public function register_settings()
 	{
 		// general
-		register_setting('events_maker_general', 'events_maker_general', array(&$this, 'validate_general'));
+		register_setting('events_maker_general', 'events_maker_general', array($this, 'validate_general'));
 		add_settings_section('events_maker_general', __('General settings', 'events-maker'), '', 'events_maker_general');
-		add_settings_field('em_available_functions', __('Event features support', 'events-maker'), array(&$this, 'em_available_functions'), 'events_maker_general', 'events_maker_general');
-		add_settings_field('em_use_tags', __('Tags', 'events-maker'), array(&$this, 'em_use_tags'), 'events_maker_general', 'events_maker_general');
-		add_settings_field('em_use_organizers', __('Organizers', 'events-maker'), array(&$this, 'em_use_organizers'), 'events_maker_general', 'events_maker_general');
-		add_settings_field('em_use_event_tickets', __('Tickets', 'events-maker'), array(&$this, 'em_use_event_tickets'), 'events_maker_general', 'events_maker_general');
-		add_settings_field('em_events_in_rss', __('RSS feed', 'events-maker'), array(&$this, 'em_events_in_rss'), 'events_maker_general', 'events_maker_general');
-		add_settings_field('em_deactivation_delete', __('Deactivation', 'events-maker'), array(&$this, 'em_deactivation_delete'), 'events_maker_general', 'events_maker_general');
+		add_settings_field('em_available_functions', __('Event features support', 'events-maker'), array($this, 'em_available_functions'), 'events_maker_general', 'events_maker_general');
+		add_settings_field('em_use_tags', __('Tags', 'events-maker'), array($this, 'em_use_tags'), 'events_maker_general', 'events_maker_general');
+		add_settings_field('em_use_organizers', __('Organizers', 'events-maker'), array($this, 'em_use_organizers'), 'events_maker_general', 'events_maker_general');
+		add_settings_field('em_use_event_tickets', __('Tickets', 'events-maker'), array($this, 'em_use_event_tickets'), 'events_maker_general', 'events_maker_general');
+		add_settings_field('em_events_in_rss', __('RSS feed', 'events-maker'), array($this, 'em_events_in_rss'), 'events_maker_general', 'events_maker_general');
+		add_settings_field('em_deactivation_delete', __('Deactivation', 'events-maker'), array($this, 'em_deactivation_delete'), 'events_maker_general', 'events_maker_general');
 
 		// general: currencies
 		add_settings_section('events_maker_currencies', __('Currency settings', 'events-maker'), '', 'events_maker_general');
-		add_settings_field('em_tickets_currency_code', __('Currency', 'events-maker'), array(&$this, 'em_tickets_currency_code'), 'events_maker_general', 'events_maker_currencies');
-		add_settings_field('em_tickets_currency_position', __('Currency position', 'events-maker'), array(&$this, 'em_tickets_currency_position'), 'events_maker_general', 'events_maker_currencies');
-		add_settings_field('em_tickets_currency_symbol', __('Currency symbol', 'events-maker'), array(&$this, 'em_tickets_currency_symbol'), 'events_maker_general', 'events_maker_currencies');
-		add_settings_field('em_tickets_currency_format', __('Currency display format', 'events-maker'), array(&$this, 'em_tickets_currency_format'), 'events_maker_general', 'events_maker_currencies');
+		add_settings_field('em_tickets_currency_code', __('Currency', 'events-maker'), array($this, 'em_tickets_currency_code'), 'events_maker_general', 'events_maker_currencies');
+		add_settings_field('em_tickets_currency_position', __('Currency position', 'events-maker'), array($this, 'em_tickets_currency_position'), 'events_maker_general', 'events_maker_currencies');
+		add_settings_field('em_tickets_currency_symbol', __('Currency symbol', 'events-maker'), array($this, 'em_tickets_currency_symbol'), 'events_maker_general', 'events_maker_currencies');
+		add_settings_field('em_tickets_currency_format', __('Currency display format', 'events-maker'), array($this, 'em_tickets_currency_format'), 'events_maker_general', 'events_maker_currencies');
 
 		// general: query
 		add_settings_section('events_maker_query', __('Query settings', 'events-maker'), '', 'events_maker_general');
-		add_settings_field('em_order_by', __('Order by', 'events-maker'), array(&$this, 'em_order_by'), 'events_maker_general', 'events_maker_query');
-		add_settings_field('em_order', __('Sort order', 'events-maker'), array(&$this, 'em_order'), 'events_maker_general', 'events_maker_query');
-		add_settings_field('em_show_past_events', __('Past events', 'events-maker'), array(&$this, 'em_show_past_events'), 'events_maker_general', 'events_maker_query');
-		add_settings_field('em_expire_current', __('Current events', 'events-maker'), array(&$this, 'em_expire_current'), 'events_maker_general', 'events_maker_query');
-		add_settings_field('em_show_occurrences', __('Occurrences', 'events-maker'), array(&$this, 'em_show_occurrences'), 'events_maker_general', 'events_maker_query');
+		add_settings_field('em_order_by', __('Order by', 'events-maker'), array($this, 'em_order_by'), 'events_maker_general', 'events_maker_query');
+		add_settings_field('em_order', __('Sort order', 'events-maker'), array($this, 'em_order'), 'events_maker_general', 'events_maker_query');
+		add_settings_field('em_show_past_events', __('Past events', 'events-maker'), array($this, 'em_show_past_events'), 'events_maker_general', 'events_maker_query');
+		add_settings_field('em_expire_current', __('Current events', 'events-maker'), array($this, 'em_expire_current'), 'events_maker_general', 'events_maker_query');
+		add_settings_field('em_show_occurrences', __('Occurrences', 'events-maker'), array($this, 'em_show_occurrences'), 'events_maker_general', 'events_maker_query');
 		
 		// display
-		register_setting('events_maker_display', 'events_maker_general', array(&$this, 'validate_general'));
+		register_setting('events_maker_display', 'events_maker_general', array($this, 'validate_general'));
 		add_settings_section('events_maker_display', __('Display settings', 'events-maker'), '', 'events_maker_display');
-		add_settings_field('em_default_event_options', __('Event default options', 'events-maker'), array(&$this, 'em_default_event_options'), 'events_maker_display', 'events_maker_display');
-		add_settings_field('em_date_format', __('Date and time format', 'events-maker'), array(&$this, 'em_date_format'), 'events_maker_display', 'events_maker_display');
-		add_settings_field('em_first_weekday', __('First day of the week', 'events-maker'), array(&$this, 'em_first_weekday'), 'events_maker_display', 'events_maker_display');
-		add_settings_field('em_full_calendar_display', __('Full Calendar display', 'events-maker'), array(&$this, 'em_full_calendar_display'), 'events_maker_display', 'events_maker_display');
-		add_settings_field('em_event_nav_menu', __('Link in menu', 'events-maker'), array(&$this, 'em_event_nav_menu'), 'events_maker_display', 'events_maker_display');
+		add_settings_field('em_default_event_options', __('Event default options', 'events-maker'), array($this, 'em_default_event_options'), 'events_maker_display', 'events_maker_display');
+		add_settings_field('em_date_format', __('Date and time format', 'events-maker'), array($this, 'em_date_format'), 'events_maker_display', 'events_maker_display');
+		add_settings_field('em_first_weekday', __('First day of the week', 'events-maker'), array($this, 'em_first_weekday'), 'events_maker_display', 'events_maker_display');
+		add_settings_field('em_full_calendar_display', __('Full Calendar display', 'events-maker'), array($this, 'em_full_calendar_display'), 'events_maker_display', 'events_maker_display');
+		add_settings_field('em_event_nav_menu', __('Link in menu', 'events-maker'), array($this, 'em_event_nav_menu'), 'events_maker_display', 'events_maker_display');
 
 		// templates
-		register_setting('events_maker_templates', 'events_maker_templates', array(&$this, 'validate_templates'));
+		register_setting('events_maker_templates', 'events_maker_templates', array($this, 'validate_templates'));
 		add_settings_section('events_maker_templates', __('Templates settings', 'events-maker'), '', 'events_maker_templates');
-		add_settings_field('em_default_templates', __('Default templates', 'events-maker'), array(&$this, 'em_default_templates'), 'events_maker_templates', 'events_maker_templates');
-		add_settings_field('em_template_archive', __('Events archive', 'events-maker'), array(&$this, 'em_template_archive'), 'events_maker_templates', 'events_maker_templates');
-		add_settings_field('em_template_content_archive_event', __('Archive event content', 'events-maker'), array(&$this, 'em_template_content_archive_event'), 'events_maker_templates', 'events_maker_templates');
-		add_settings_field('em_template_single', __('Single event', 'events-maker'), array(&$this, 'em_template_single'), 'events_maker_templates', 'events_maker_templates');
-		add_settings_field('em_template_content_single_event', __('Single event content', 'events-maker'), array(&$this, 'em_template_content_single_event'), 'events_maker_templates', 'events_maker_templates');
-		add_settings_field('em_template_content_widget_event', __('Widget event content', 'events-maker'), array(&$this, 'em_template_content_widget_event'), 'events_maker_templates', 'events_maker_templates');
-		add_settings_field('em_template_tax_categories', __('Categories', 'events-maker'), array(&$this, 'em_template_tax_categories'), 'events_maker_templates', 'events_maker_templates');
+		add_settings_field('em_default_templates', __('Default templates', 'events-maker'), array($this, 'em_default_templates'), 'events_maker_templates', 'events_maker_templates');
+		add_settings_field('em_template_archive', __('Events archive', 'events-maker'), array($this, 'em_template_archive'), 'events_maker_templates', 'events_maker_templates');
+		add_settings_field('em_template_content_archive_event', __('Archive event content', 'events-maker'), array($this, 'em_template_content_archive_event'), 'events_maker_templates', 'events_maker_templates');
+		add_settings_field('em_template_single', __('Single event', 'events-maker'), array($this, 'em_template_single'), 'events_maker_templates', 'events_maker_templates');
+		add_settings_field('em_template_content_single_event', __('Single event content', 'events-maker'), array($this, 'em_template_content_single_event'), 'events_maker_templates', 'events_maker_templates');
+		add_settings_field('em_template_content_widget_event', __('Widget event content', 'events-maker'), array($this, 'em_template_content_widget_event'), 'events_maker_templates', 'events_maker_templates');
+		add_settings_field('em_template_tax_categories', __('Categories', 'events-maker'), array($this, 'em_template_tax_categories'), 'events_maker_templates', 'events_maker_templates');
 
 		if($this->options['general']['use_tags'])
-			add_settings_field('em_template_tax_tags', __('Tags', 'events-maker'), array(&$this, 'em_template_tax_tags'), 'events_maker_templates', 'events_maker_templates');
+			add_settings_field('em_template_tax_tags', __('Tags', 'events-maker'), array($this, 'em_template_tax_tags'), 'events_maker_templates', 'events_maker_templates');
 
-		add_settings_field('em_template_tax_locations', __('Locations', 'events-maker'), array(&$this, 'em_template_tax_locations'), 'events_maker_templates', 'events_maker_templates');
+		add_settings_field('em_template_tax_locations', __('Locations', 'events-maker'), array($this, 'em_template_tax_locations'), 'events_maker_templates', 'events_maker_templates');
 
 		if($this->options['general']['use_organizers'])
-			add_settings_field('em_template_tax_organizers', __('Organizers', 'events-maker'), array(&$this, 'em_template_tax_organizers'), 'events_maker_templates', 'events_maker_templates');
+			add_settings_field('em_template_tax_organizers', __('Organizers', 'events-maker'), array($this, 'em_template_tax_organizers'), 'events_maker_templates', 'events_maker_templates');
 
 		// capabilities
-		register_setting('events_maker_capabilities', 'events_maker_capabilities', array(&$this, 'validate_capabilities'));
-		add_settings_section('events_maker_capabilities', __('Capabilities settings', 'events-maker'), array(&$this, 'em_capabilities_table'), 'events_maker_capabilities');
+		register_setting('events_maker_capabilities', 'events_maker_capabilities', array($this, 'validate_capabilities'));
+		add_settings_section('events_maker_capabilities', __('Capabilities settings', 'events-maker'), array($this, 'em_capabilities_table'), 'events_maker_capabilities');
 
 		// permalinks
-		register_setting('events_maker_permalinks', 'events_maker_permalinks', array(&$this, 'validate_permalinks'));
-		add_settings_section('events_maker_permalinks', __('Permalinks settings', 'events-maker'), array(&$this, 'em_permalinks_desc'), 'events_maker_permalinks');
-		add_settings_field('em_archive_event', __('Events base', 'events-maker'), array(&$this, 'em_archive_event'), 'events_maker_permalinks', 'events_maker_permalinks');
-		add_settings_field('em_single_event', __('Single event', 'events-maker'), array(&$this, 'em_single_event'), 'events_maker_permalinks', 'events_maker_permalinks');
-		add_settings_field('em_category_event', __('Categories', 'events-maker'), array(&$this, 'em_category_event'), 'events_maker_permalinks', 'events_maker_permalinks');
+		register_setting('events_maker_permalinks', 'events_maker_permalinks', array($this, 'validate_permalinks'));
+		add_settings_section('events_maker_permalinks', __('Permalinks settings', 'events-maker'), array($this, 'em_permalinks_desc'), 'events_maker_permalinks');
+		add_settings_field('em_archive_event', __('Events base', 'events-maker'), array($this, 'em_archive_event'), 'events_maker_permalinks', 'events_maker_permalinks');
+		add_settings_field('em_single_event', __('Single event', 'events-maker'), array($this, 'em_single_event'), 'events_maker_permalinks', 'events_maker_permalinks');
+		add_settings_field('em_category_event', __('Categories', 'events-maker'), array($this, 'em_category_event'), 'events_maker_permalinks', 'events_maker_permalinks');
 
 		if($this->options['general']['use_tags'])
-			add_settings_field('em_tag_event', __('Tags', 'events-maker'), array(&$this, 'em_tag_event'), 'events_maker_permalinks', 'events_maker_permalinks');
+			add_settings_field('em_tag_event', __('Tags', 'events-maker'), array($this, 'em_tag_event'), 'events_maker_permalinks', 'events_maker_permalinks');
 
-		add_settings_field('em_location_event', __('Locations', 'events-maker'), array(&$this, 'em_location_event'), 'events_maker_permalinks', 'events_maker_permalinks');
+		add_settings_field('em_location_event', __('Locations', 'events-maker'), array($this, 'em_location_event'), 'events_maker_permalinks', 'events_maker_permalinks');
 
 		if($this->options['general']['use_organizers'])
-			add_settings_field('em_organizer_event', __('Organizers', 'events-maker'), array(&$this, 'em_organizer_event'), 'events_maker_permalinks', 'events_maker_permalinks');
+			add_settings_field('em_organizer_event', __('Organizers', 'events-maker'), array($this, 'em_organizer_event'), 'events_maker_permalinks', 'events_maker_permalinks');
 			
 		do_action('em_after_register_settings');
 	}
@@ -1188,19 +1217,19 @@ class Events_Maker_Settings
 		if(isset($_POST['save_em_general']))
 		{
 			$input = $this->options['general'];
-			
+
 			// rewrite rules
-			$input['rewrite_rules'] = false;
+			$input['rewrite_rules'] = true;
 
 			// supports
 			$supports = array();
-			$input_old['supports'] = (isset($input_old['supports']) ? array_flip($input_old['supports']) : NULL);
+			$input_old['supports'] = (isset($input_old['supports']) ? array_flip($input_old['supports']) : null);
 
 			foreach($this->supports as $functionality => $label)
 			{
-				$supports[$functionality] = (isset($input_old['supports'][$functionality]) ? true : false);
+				$supports[$functionality] = isset($input_old['supports'][$functionality]);
 			}
-			
+
 			$input['supports'] = $supports;
 
 			// currencies
@@ -1214,47 +1243,62 @@ class Events_Maker_Settings
 			$input['order'] = (isset($input_old['order']) && in_array($input_old['order'], array_keys($this->orders)) ? $input_old['order'] : $this->defaults['general']['order']);
 
 			// treat current event as expired
-			$input['expire_current'] = (isset($input_old['expire_current']) ? true : false);
+			$input['expire_current'] = isset($input_old['expire_current']);
 
 			// show past events
-			$input['show_past_events'] = (isset($input_old['show_past_events']) ? true : false);
+			$input['show_past_events'] = isset($input_old['show_past_events']);
 
 			// show occurrences
-			$input['show_occurrences'] = (isset($input_old['show_occurrences']) ? true : false);
+			$input['show_occurrences'] = isset($input_old['show_occurrences']);
 
 			// use organizers
-			$input['use_organizers'] = (isset($input_old['use_organizers']) ? true : false);
+			$input['use_organizers'] = isset($input_old['use_organizers']);
 
 			// use tags
-			$input['use_tags'] = (isset($input_old['use_tags']) ? true : false);
+			$input['use_tags'] = isset($input_old['use_tags']);
 
 			// use tickets
-			$input['use_event_tickets'] = (isset($input_old['use_event_tickets']) ? true : false);
-			
+			$input['use_event_tickets'] = isset($input_old['use_event_tickets']);
+
 			// RSS feed
-			$input['events_in_rss'] = (isset($input_old['events_in_rss']) ? true : false);
+			$input['events_in_rss'] = isset($input_old['events_in_rss']);
 
 			// deactivation
-			$input['deactivation_delete'] = (isset($input_old['deactivation_delete']) ? true : false);
-			
+			$input['deactivation_delete'] = isset($input_old['deactivation_delete']);
+
 			set_transient($this->transient_id, maybe_serialize(array('status' => 'updated', 'text' => $this->errors['settings_gene_saved'])), 60);
 		}
 		elseif(isset($_POST['reset_em_general']))
 		{
-			$input = $this->defaults['general'];
+			$input = $this->options['general'];
 
-			if(!$this->options['general']['display_page_notice'])
-				$input['display_page_notice'] = false;
+			// special values
+			$input['rewrite_rules'] = true;
+			$input['display_page_notice'] = $this->options['general']['display_page_notice'];
+
+			// general defaults settings
+			$input['supports'] = $this->defaults['general']['supports'];
+			$input['currencies'] = $this->defaults['general']['currencies'];
+			$input['order_by'] = $this->defaults['general']['order_by'];
+			$input['order'] = $this->defaults['general']['order'];
+			$input['expire_current'] = $this->defaults['general']['expire_current'];
+			$input['show_past_events'] = $this->defaults['general']['show_past_events'];
+			$input['show_occurrences'] = $this->defaults['general']['show_occurrences'];
+			$input['use_organizers'] = $this->defaults['general']['use_organizers'];
+			$input['use_tags'] = $this->defaults['general']['use_tags'];
+			$input['use_event_tickets'] = $this->defaults['general']['use_event_tickets'];
+			$input['events_in_rss'] = $this->defaults['general']['events_in_rss'];
+			$input['deactivation_delete'] = $this->defaults['general']['deactivation_delete'];
 
 			set_transient($this->transient_id, maybe_serialize(array('status' => 'updated', 'text' => $this->errors['settings_gene_reseted'])), 60);
 		}
 		elseif(isset($_POST['save_em_display']))
 		{
 			$input = $this->options['general'];
-			
+
 			// rewrite rules
 			$input['rewrite_rules'] = false;
-			
+
 			// date, time, weekday
 			$input['datetime_format']['date'] = sanitize_text_field($input_old['datetime_format']['date']);
 			$input['datetime_format']['time'] = sanitize_text_field($input_old['datetime_format']['time']);
@@ -1265,17 +1309,18 @@ class Events_Maker_Settings
 
 			if($input['datetime_format']['time'] === '')
 				$input['datetime_format']['time'] = get_option('time_format');
-			
+
 			// event default options
 			$default_event_options = array();
 
-			if (isset($input_old['default_event_options']))
+			if(isset($input_old['default_event_options']))
 			{
 				foreach($input_old['default_event_options'] as $key => $value)
 				{
 					$default_event_options[$key] = (isset($input_old['default_event_options'][$key]) ? true : false);
 				}
 			}
+
 			$input['default_event_options'] = $default_event_options;
 
 			// full calendar display
@@ -1285,10 +1330,6 @@ class Events_Maker_Settings
 			{
 				// page id
 				$input['full_calendar_display']['page'] = (int)(isset($input_old['full_calendar_display']['page']) ? $input_old['full_calendar_display']['page'] : $this->defaults['general']['full_calendar_display']['post']);
-
-				// wpml and polylang compatibility
-				if($input['full_calendar_display']['page'] !== 0 && function_exists('icl_object_id'))
-					$input['full_calendar_display']['page'] = icl_object_id($input['full_calendar_display']['page'], 'page', true);
 
 				// content display position
 				$input['full_calendar_display']['content'] = (isset($input_old['full_calendar_display']['content'], $this->calendar_contents[$input['full_calendar_display']['content']]) ? $input_old['full_calendar_display']['content'] : $this->defaults['general']['full_calendar_display']['content']);
@@ -1355,18 +1396,20 @@ class Events_Maker_Settings
 		}
 		elseif(isset($_POST['reset_em_display']))
 		{
-			$input = $this->defaults['general'];
+			$input = $this->options['general'];
 
-			if(!$this->options['general']['display_page_notice'])
-				$input['display_page_notice'] = false;
+			// special values
+			$input['rewrite_rules'] = false;
+			$input['display_page_notice'] = $this->options['general']['display_page_notice'];
 
-			//menu
-			$input['event_nav_menu']['show'] = false;
-			$input['event_nav_menu']['menu_id'] = $this->defaults['general']['event_nav_menu']['menu_id'];
-			$input['event_nav_menu']['menu_name'] = $this->defaults['general']['event_nav_menu']['menu_name'];
+			// display defaults settings
+			$input['first_weekday'] = $this->defaults['general']['first_weekday'];
+			$input['default_event_options'] = $this->defaults['general']['default_event_options'];
+			$input['full_calendar_display'] = $this->defaults['general']['full_calendar_display'];
+			$input['event_nav_menu'] = $this->defaults['general']['event_nav_menu'];
 			$input['event_nav_menu']['item_id'] = $this->update_menu();
 
-			//datetime format
+			// datetime format
 			$input['datetime_format'] = array(
 				'date' => get_option('date_format'),
 				'time' => get_option('time_format')
@@ -1374,6 +1417,8 @@ class Events_Maker_Settings
 
 			set_transient($this->transient_id, maybe_serialize(array('status' => 'updated', 'text' => $this->errors['settings_disp_reseted'])), 60);
 		}
+		else
+			$input = $input_old;
 
 		return $input;
 	} 

@@ -32,7 +32,7 @@ if (!isset($locations) || empty($locations))
 <?php
 $args = apply_filters('em_single_event_google_map_args', array(
 	'width' => '100%',
-	'height' => '200px',
+	'height' => '300px',
 	'zoom' => 15,
 	'maptype' => 'roadmap',
 	'maptypecontrol' => true,

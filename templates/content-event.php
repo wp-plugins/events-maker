@@ -37,14 +37,14 @@ $classes = apply_filters('em_loop_event_classes', array('hcalendar'));
 			 */
 			do_action ('em_before_loop_event_title');
 			?>
-
-	        <h3 class="entry-title summary">
-	        	
-	        	<a href="<?php the_permalink(); ?>" class="url" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
-	        	
-	        </h3>
-	        
-	        <?php
+			
+			<h3 class="entry-title summary">
+				
+				<a href="<?php the_permalink(); ?>" class="url" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
+				
+			</h3>
+			
+			<?php
 			/**
 			 * em_after_loop_event_title hook
 			 * 
@@ -56,13 +56,19 @@ $classes = apply_filters('em_loop_event_classes', array('hcalendar'));
 			?>
 
 	    </header>
+	    
+	    <?php
+		/**
+		 * em_loop_event_content hook
+		 * 
+		 * @hooked em_display_event_excerpt - 10
+		 */
+		do_action('em_loop_event_content');
+		?>
 		
 		<?php
 		/**
 		 * em_after_loop_event hook
-		 * 
-		 * @hooked em_display_event_excerpt - 10
-		 * @hooked em_display_event_tags - 20
 		 */
 		do_action('em_after_loop_event');
 		?>

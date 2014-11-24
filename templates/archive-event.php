@@ -23,11 +23,11 @@ get_header('events'); ?>
 	do_action('em_before_main_content');
 	?>
 	
-		<header class="archive-header">
+		<header class="archive-header page-header">
 			
 			<?php if (apply_filters('em_show_page_title', true)) : ?>
 
-				<h1 class="archive-title"><?php em_page_title(); ?></h1>
+				<h1 class="archive-title page-title"><?php em_page_title(); ?></h1>
 
 			<?php endif; ?>
 			

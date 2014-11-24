@@ -27,6 +27,10 @@ switch($template) {
 		$output = '</div></div></div>';
 		get_sidebar('content');
 		break;
+	case 'twentyfifteen' :
+		$output = '</div></main>';
+		get_sidebar('content');
+		break;
 	default :
 		$output = '</div></div>';
 		break;

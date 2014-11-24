@@ -15,7 +15,7 @@ global $post, $wp_query;
 
 $home_label = apply_filters('em_breadcrumbs_home_label', get_bloginfo('name')); // text for the 'Home' link
 $delimiter = apply_filters('em_breadcrumbs_delimiter', ' &raquo; '); // delimiter between crumbs
-$wrap_before = apply_filters('em_breadcrumbs_wrap_before', '<nav class="navigation breadcrumbs-navigation" role="navigation"><p class="loop-breadcrumbs breadcrumbs">');
+$wrap_before = apply_filters('em_breadcrumbs_wrap_before', '<nav class="navigation breadcrumb-navigation" role="navigation"><p class="loop-breadcrumbs breadcrumbs">');
 $wrap_after = apply_filters('em_breadcrumbs_wrap_after', '</p></nav>');
 $before = apply_filters('em_breadcrumbs_current_before', ''); // before the crumb
 $after = apply_filters('em_breadcrumbs_current_after', ''); // after the crumb

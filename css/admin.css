@@ -1,1 +1,246 @@
-/* Events settings */.df-sidebar {    float: right;    width: 280px;    margin: 20px -300px 20px 20px;    position: relative;}.df-ads a {	display: block;}.df-credits {    background: #fff;    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);    margin-bottom: 20px;}.df-credits .inner {    padding-left: 10px;    padding-right: 10px;}.df-credits h3 {    font-size: 14px;    line-height: 1.4;    margin: 0;    padding: 8px 12px;    border-bottom: 1px solid #eee;}.df-credits .df-link {    font-family: Georgia, "Times New Roman", "Bitstream Charter", Times, serif;    font-style: italic;    padding-bottom: 10px;    margin: 0;}.df-credits .df-link a {    vertical-align: middle;    padding: 5px 0 0 4px;}.events-maker-settings .df-credits form {    min-width: 260px;    margin-bottom: 1em;}.events-maker-settings .df-credits form input {    margin: 0;    padding: 0;}.events-maker-settings {    margin-right: 300px;}.events-maker-settings hr, .df-credits hr {    border: solid #eee;    border-width: 1px 0 0;    clear: both;    height: 0;}.events-maker-settings form {    float: left;    min-width: 463px;    width: auto;}.events-maker-settings fieldset span.description {    margin-bottom: 8px;    margin-top: 4px;    display: block;}.events-maker-settings .ui-button {    margin-bottom: 5px;}.events-maker-settings .description {    font-size: 13px;    margin-bottom: 8px;}.events-maker-settings span.description code strong {    font-weight: bold;}/* Events list */.tablenav.top .alignleft.actions select[name="m"] {    display: none;}.post-type-event .widefat th#recurrence,.post-type-event .widefat th#tickets {    width: 6em;}.post-type-event .widefat th#featured {    width: 2em;}.post-type-event .widefat th .dashicons,.post-type-event .widefat th .dashicons:before,.post-type-event .widefat th .comment-grey-bubble:before {	font-size: 1em;}.post-type-event .widefat th .dash-title {	display:none;}.post-type-event .metabox-prefs .dash-icon {	display:none;}.post-type-event .widefat td .dashicons,.post-type-event .widefat td .dashicons:before {	font-size: 1.1em;}.post-type-event .widefat td.featured a:focus {	box-shadow: none;	-moz-box-shadow: none;	-webkit-box-shadow: none;}/* Widgets screen */ul.terms-checkbox-list, ul.terms-checkbox-list li {    margin: 0;}ul.terms-checkbox-list.depth-level-1 {    margin-left: 10px;}ul.terms-checkbox-list.depth-level-2 {    margin-left: 20px;}ul.terms-checkbox-list.depth-level-3 {    margin-left: 30px;}ul.terms-checkbox-list.depth-level-4 {    margin-left: 40px;}.events-maker-list {    margin: 0 0 1em;    padding: 0;}.checkbox-list {    border: 1px solid #dfdfdf;    background: #fff;    max-height: 200px;    min-height: 16px;    overflow: auto;    padding: 0.5em 0.9em;    margin: 0.5em 0 0;}/* Events edit screen */#event-options-shortlist:before {    display: inline-block;    font: 400 20px/1 dashicons;    left: -1px;    padding: 0 2px 0 0;    position: relative;    text-decoration: none !important;    vertical-align: top;    color: #888;    content: "\f464";    top: -1px;}#poststuff #event-date-time-box .inside {    margin-top: 10px;}#event-date-time-box label {    display: inline-block;    width: 20%;}#event-date-time-box .event-date-time {    padding: 5px 0;}#event-date-time-box .dashicons {    font-size: 14px;    line-height: 15px;    vertical-align: middle;}#event-date-time-box .date-time-row, #event-date-time-box .event-custom {    font-size: 13px;    line-height: 1.5;    margin: 1em 0;}#event-date-time-box fieldset label {    display: inline-block;    margin: 0.25em 0.5em 0.25em 0;    width: auto;}#event-cost-tickets-box .event_ticket_delete {    margin-left: 5px;}#event-cost-tickets-box .dashicons {    font-size: 14px;    line-height: 15px;    vertical-align: middle;}/* Edit Event Location */#event-google-map {    width: 95%;    height: 340px;}#event-google-map.event-minimap {    height: 200px;}/* Edit Event Organizer */#em-tax-image-buttons input {    float: left;    margin: 2px 5px 0 0;    width: auto;}#em-tax-image-preview {    clear: both;    padding-top: 10px;    width: 95%;}#em-tax-image-preview img {    max-width: 100%;}#em-tax-image-preview.edit img {    max-width: 220px;}#em-tax-image-buttons .em-spinner {    display: none;    float: left;    position: relative;    top: 5px;    background: url('../../../../wp-admin/images/wpspin_light.gif') no-repeat;    background-size: 16px 16px;    opacity: 0.5;    filter: alpha(opacity=50);    margin: 0;    padding: 0;    width: 16px;    height: 16px;}.em-category-color {    display: block;    width: 1.5em;    height: 1.5em;}/* All Mobile Sizes (devices and browser) */@media only screen and (max-width: 959px) {    .df-sidebar {        width: 100%;        float: none;        margin: 20px 0;    }    .df-credits {    	width: 63%;		float:left;    }    .df-ads {        width: 35%;        float: right;        margin-left: 2%;    }    .df-ads img {    	max-width: 100%;    }    .events-maker-settings {        margin-right: 0;    }}
+/* Events settings */
+.df-sidebar {
+    float: right;
+    width: 280px;
+    margin: 20px -300px 20px 20px;
+    position: relative;
+}
+.df-ads a {
+	display: block;
+}
+.df-credits {
+    background: #fff;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+.df-credits .inner {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.df-credits h3 {
+    font-size: 14px;
+    line-height: 1.4;
+    margin: 0;
+    padding: 8px 12px;
+    border-bottom: 1px solid #eee;
+}
+.df-credits .df-link {
+    font-family: Georgia, "Times New Roman", "Bitstream Charter", Times, serif;
+    font-style: italic;
+    padding-bottom: 10px;
+    margin: 0;
+}
+.df-credits .df-link a {
+    vertical-align: middle;
+    padding: 5px 0 0 4px;
+}
+.events-maker-settings .df-credits form {
+    min-width: 260px;
+    margin-bottom: 1em;
+}
+.events-maker-settings .df-credits form input {
+    margin: 0;
+    padding: 0;
+}
+.events-maker-settings {
+    margin-right: 300px;
+}
+.events-maker-settings hr, .df-credits hr {
+    border: solid #eee;
+    border-width: 1px 0 0;
+    clear: both;
+    height: 0;
+}
+.events-maker-settings form {
+    float: left;
+    min-width: 463px;
+    width: auto;
+}
+.events-maker-settings fieldset span.description {
+    margin-bottom: 8px;
+    margin-top: 4px;
+    display: block;
+}
+.events-maker-settings .ui-button {
+    margin-bottom: 5px;
+}
+.events-maker-settings .description {
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+.events-maker-settings span.description code strong {
+    font-weight: bold;
+}
+/* Events list */
+.tablenav.top .alignleft.actions select[name="m"] {
+    display: none;
+}
+.post-type-event .widefat th#recurrence,
+.post-type-event .widefat th#tickets {
+    width: 6em;
+}
+.post-type-event .widefat th#featured {
+    width: 2em;
+}
+.post-type-event .widefat th .dashicons,
+.post-type-event .widefat th .dashicons:before,
+.post-type-event .widefat th .comment-grey-bubble:before {
+	font-size: 1em;
+}
+.post-type-event .widefat th .dash-title {
+	display:none;
+}
+.post-type-event .metabox-prefs .dash-icon {
+	display:none;
+}
+.post-type-event .widefat td .dashicons,
+.post-type-event .widefat td .dashicons:before {
+	font-size: 1.1em;
+}
+.post-type-event .widefat td.featured a:focus {
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+}
+/* Widgets screen */
+ul.terms-checkbox-list, ul.terms-checkbox-list li {
+    margin: 0;
+}
+ul.terms-checkbox-list.depth-level-1 {
+    margin-left: 10px;
+}
+ul.terms-checkbox-list.depth-level-2 {
+    margin-left: 20px;
+}
+ul.terms-checkbox-list.depth-level-3 {
+    margin-left: 30px;
+}
+ul.terms-checkbox-list.depth-level-4 {
+    margin-left: 40px;
+}
+.events-maker-list {
+    margin: 0 0 1em;
+    padding: 0;
+}
+.checkbox-list {
+    border: 1px solid #dfdfdf;
+    background: #fff;
+    max-height: 200px;
+    min-height: 16px;
+    overflow: auto;
+    padding: 0.5em 0.9em;
+    margin: 0.5em 0 0;
+}
+/* Events edit screen */
+#event-options-shortlist:before {
+    display: inline-block;
+    font: 400 20px/1 dashicons;
+    left: -1px;
+    padding: 0 2px 0 0;
+    position: relative;
+    text-decoration: none !important;
+    vertical-align: top;
+    color: #888;
+    content: "\f464";
+    top: -1px;
+}
+#poststuff #event-date-time-box .inside {
+    margin-top: 10px;
+}
+#event-date-time-box label {
+    display: inline-block;
+    width: 20%;
+}
+#event-date-time-box .event-date-time {
+    padding: 5px 0;
+}
+#event-date-time-box .dashicons {
+    font-size: 14px;
+    line-height: 15px;
+    vertical-align: middle;
+}
+#event-date-time-box .date-time-row, #event-date-time-box .event-custom {
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 1em 0;
+}
+#event-date-time-box fieldset label {
+    display: inline-block;
+    margin: 0.25em 0.5em 0.25em 0;
+    width: auto;
+}
+#event-cost-tickets-box .event_ticket_delete {
+    margin-left: 5px;
+}
+#event-cost-tickets-box .dashicons {
+    font-size: 14px;
+    line-height: 15px;
+    vertical-align: middle;
+}
+/* Edit Event Location */
+#event-google-map {
+    width: 95%;
+    height: 340px;
+}
+#event-google-map.event-minimap {
+    height: 200px;
+}
+/* Edit Event Organizer */
+#em-tax-image-buttons input {
+    float: left;
+    margin: 2px 5px 0 0;
+    width: auto;
+}
+#em-tax-image-preview {
+    clear: both;
+    padding-top: 10px;
+    width: 95%;
+}
+#em-tax-image-preview img {
+    max-width: 100%;
+}
+#em-tax-image-preview.edit img {
+    max-width: 220px;
+}
+#em-tax-image-buttons .em-spinner {
+    display: none;
+    float: left;
+    position: relative;
+    top: 5px;
+    background: url('../../../../wp-admin/images/wpspin_light.gif') no-repeat;
+    background-size: 16px 16px;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+    margin: 0;
+    padding: 0;
+    width: 16px;
+    height: 16px;
+}
+.em-category-color {
+    display: block;
+    width: 1.5em;
+    height: 1.5em;
+}
+/* All Mobile Sizes (devices and browser) */
+@media only screen and (max-width: 959px) {
+    .df-sidebar {
+        width: 100%;
+        float: none;
+        margin: 20px 0;
+    }
+    .df-credits {
+    	width: 63%;
+		float:left;
+    }
+    .df-ads {
+        width: 35%;
+        float: right;
+        margin-left: 2%;
+    }
+    .df-ads img {
+    	max-width: 100%;
+    }
+    .events-maker-settings {
+        margin-right: 0;
+    }
+}

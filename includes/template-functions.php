@@ -163,9 +163,13 @@ if (!function_exists('em_display_event_tags'))
 		$tags = get_the_term_list($post_id, 'event-tag', __('<strong>Tags: </strong>', 'events-maker'), '', '');
 		if ($tags && !is_wp_error($tags)) 
 		{ ?>
-			<footer class="entry-meta">
+			<footer class="entry-footer">
 				
-				<span class="term-list event-tag tag-links"><?php echo $tags; ?></span>
+				<div class="entry-meta">
+					
+					<span class="term-list event-tag tags-links tag-links"><?php echo $tags; ?></span>
+					
+				</div>
 				
 			</footer>
 		<?php
@@ -620,7 +624,7 @@ if (!function_exists('em_taxonomy_archive_description'))
 			if (!empty($term_description))
 			{
 				?>
-				<div class="archive-description term-description">
+				<div class="archive-description term-description taxonomy-description">
 					
 					<?php echo apply_filters('em_taxonomy_archive_description', $term_description); ?>
 					
@@ -792,7 +796,19 @@ if (!function_exists('em_display_single_event_thumbnail'))
 
 
 /**
- * Display event meta in loop
+ * Display single event content
+ */
+if (!function_exists('em_display_event_content'))
+{
+	function em_display_event_content()
+	{
+		em_get_template('single-event/content.php');
+	}
+}
+
+
+/**
+ * Display single event meta
  */
 if (!function_exists('em_display_single_event_meta'))
 {

@@ -26,6 +26,7 @@ class Events_Maker_Query
 		add_filter('posts_where', array(&$this, 'posts_where'), 10, 2);
 		add_filter('posts_orderby', array(&$this, 'posts_orderby'), 10, 2);
 		add_filter('request', array(&$this, 'feed_request'));
+		// add_filter('the_posts', array(&$this, 'sticky_featured'));
 	}
 
 
@@ -637,5 +638,88 @@ class Events_Maker_Query
 
 		return $feeds;
 	}
+	
+	
+	/**
+	 * Put sticky events to top at event archives
+	 */
+	function sticky_featured($posts)
+	{
+		$post_types = apply_filters('em_event_post_type', array('event'));
+		
+	    // apply the magic on events archive only
+	    if (!is_admin() && is_main_query() && (is_post_type_archive($post_types) || is_tax(array('event-category', 'event-tag', 'event-location', 'event-organizer'))))
+	    {
+			global $wp_query;
+					
+			$args = array(
+				'post_type'  => $post_types,
+				'meta_query' => array(
+					array(
+						'key' => '_event_featured',
+						'value' => 1,
+						'compare' => '='
+					),
+				),
+				'cache_results' => false,
+				'posts_per_page' => -1,
+				'no_found_rows' => true,
+				'suppress_filters' => true
+			);
+			$sticky_posts = get_posts($args);
+			
+			if (!empty($sticky_posts))
+			{
+		        $num_posts = count($posts);
+		        $sticky_offset = 0;
+				
+				// get sticky posts ids
+				foreach ($sticky_posts as $index => $value)
+				{
+					$sticky_ids[] = $value->ID;
+				}
+
+		        // loop through the post array and find the sticky post
+		        for ($i = 0; $i < $num_posts; $i++)
+		        {
+
+		            // put sticky posts at the top of the posts array
+		            if (in_array($posts[$i]->ID, $sticky_ids))
+		            {
+		                $sticky_post = $posts[$i];
+		
+		                // remove sticky from current position
+		                array_splice($posts, $i, 1);
+		
+		                // move to front, after other stickies
+		                array_splice($posts, $sticky_offset, 0, array($sticky_post));
+		                $sticky_offset++;
+						
+						// remove post from sticky posts array
+						foreach ($sticky_posts as $index => $value)
+						{
+					       if ($value->ID == $sticky_post->ID)
+					       {
+					           unset($sticky_posts[$index]);
+					       }
+					   }
+		            }
+		        }
+				
+				// fetch sticky posts that weren't in the query results
+		        if (!empty($sticky_posts))
+		        {
+					foreach ($sticky_posts as $sticky_post)
+					{
+		                array_splice($posts, $sticky_offset, 0, array($sticky_post));
+		                $sticky_offset++;
+		            }				
+		        }
+			}
+	    }
+	
+	    return $posts;
+	}
+
 }
 ?>

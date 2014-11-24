@@ -82,6 +82,11 @@
     max-width: 100%;
 }
 
+/* Fix for Twenty Fifteen */
+.twentyfifteen .breadcrumb-navigation {
+	padding: 0 10%;
+}
+
 /* Events Google Map */
 
 #event-google-map {
@@ -110,10 +115,6 @@
 
 .single-event .entry-content {
     clear: both;
-}
-
-.single-event .entry-header, .archive-header {
-    font-size: 1.2em;
 }
 
 /* Full Calendar */

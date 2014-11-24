@@ -11,7 +11,7 @@ jQuery(document).ready(function($) {
 
 
 	// whether to restore settings to defaults
-	$(document).on('click', 'input#reset_em_general, input#reset_em_templates, input#reset_em_capabilities, input#reset_em_permalinks', function() {
+	$(document).on('click', 'input#reset_em_general, input#reset_em_display, input#reset_em_templates, input#reset_em_capabilities, input#reset_em_permalinks', function() {
 		return confirm(emArgs.resetToDefaults);
 	});
 

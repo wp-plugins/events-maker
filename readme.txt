@@ -1,20 +1,34 @@
-=== Events Maker ===
+=== Events Maker by dFactory===
 Contributors: dfactory
 Donate link: http://www.dfactory.eu/
 Tags: event, event categories, events management, event management, events manager, event manager, event organizer, events calendar, events maker, google map, map, locations, organizers, widget, attendance, attendee, Booking, calendar, event registration, ticket, tickets, ticketing, bookings
 Requires at least: 3.5
-Tested up to: 4.0
-Stable tag: 1.3.0
+Tested up to: 4.0.1
+Stable tag: 1.3.1
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
-Events Maker is an easy to use but flexible events management plugin made the WordPress way.
+Events Maker is a complete, powerful but easy to use events management plugin made the WordPress way.
 
 == Description ==
 
-[Events Maker](http://www.dfactory.eu/plugins/events-maker/) is an easy to use but flexible events management plugin made the WordPress way.
+[Events Maker](http://www.dfactory.eu/plugins/events-maker/) is a fully featured event management plugin from [dFactory](http://www.dfactory.eu/) including recurring events, locations management, full calendar and google maps integration.
 
-For more information, check out plugin page at [dFactory](http://www.dfactory.eu/) site.
+= Powerful, flexible events management =
+
+Events Maker allows you to easily create and manage your events. But at the same time is powerful and very flexible in customization. 
+
+= Responsive Events Calendar =
+
+Users can browse for your events in a beautiful, responsive events calendar and display all events for the selected month, week od day.
+
+= Locations with Google Maps =
+
+Support for event locations and Google Maps has never been easier. Thanks to the geolocation you won't need to mess around with latitude and longitude.
+
+= WPML & Polylang compatibility =
+
+Events Maker allows you to create and manage events, categories, locations and organizers in different languages using WPML or Polylang. So now, if you build a multilingual website, you won't have to worry about the multilingual capability anymore.
 
 = Features include: =
 
@@ -87,8 +101,14 @@ A. Chances are, someone else has asked it. Check out the support forum at: http:
 2. screenshot-2.png
 3. screenshot-3.png
 4. screenshot-4.png
+5. screenshot-4.png
+6. screenshot-4.png
 
 == Changelog ==
+
+= 1.3.1 =
+* Fix: Post row actions removed from post types other than event
+* Fix: Full calendar pages not displayed on other languages using WPML or Polylang
 
 = 1.3.0 =
 * New: Featured events
@@ -218,5 +238,6 @@ Initial release
 
 == Upgrade Notice ==
 
-= 1.3.0 =
-New features: Featured events and Duplicating events, Tweak: Admin UI improvements
+= 1.3.1 =
+* Fix: Post row actions removed from post types other than event
+* Fix: Full calendar pages not displayed on other languages using WPML or Polylang

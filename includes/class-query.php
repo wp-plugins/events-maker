@@ -236,7 +236,7 @@ class Events_Maker_Query
 	{
 		global $wpdb;
 
-		//todo	dodac tutaj sprawdzenie: $fields = $query->get('fields'); $fields !== 'ids' && $fields !== 'id=>parent'
+		//todo $fields = $query->get('fields'); $fields !== 'ids' && $fields !== 'id=>parent'
 
 		// show occurrences?
 		if(
@@ -437,6 +437,7 @@ class Events_Maker_Query
 				$keys = array('start' => '_event_start_date', 'end' => '_event_end_date');
 
 			$event_order_by = true;
+			$meta_args = $query->get('meta_query');
 
 			if(isset($query->query_vars['orderby']))
 			{
@@ -444,11 +445,18 @@ class Events_Maker_Query
 				{
 					$query->query_vars['meta_key'] = $keys['start'];
 					$query->query_vars['orderby'] = 'meta_value';
+					// required to create alias of the meta table in the sql query
+					$meta_args[] = array(
+						'key' => $keys['start']
+					);
 				}
 				elseif($query->query_vars['orderby'] === 'event_end_date')
 				{
 					$query->query_vars['meta_key'] = $keys['end'];
 					$query->query_vars['orderby'] = 'meta_value';
+					$meta_args[] = array(
+						'key' => $keys['end']
+					);
 				}
 				else
 					$event_order_by = false;
@@ -459,6 +467,9 @@ class Events_Maker_Query
 				{
 					$query->query_vars['meta_key'] = $keys[$this->options['general']['order_by']];
 					$query->query_vars['orderby'] = 'meta_value';
+					$meta_args[] = array(
+						'key' => $keys[$this->options['general']['order_by']]
+					);
 				}
 				elseif($this->options['general']['order_by'] === 'publish')
 				{
@@ -471,6 +482,17 @@ class Events_Maker_Query
 
 			if(!isset($query->query_vars['order']))
 				$query->query_vars['order'] = $this->options['general']['order'];
+			
+			// this must be the second meta query in sql, in order to sort by 2 meta keys at once
+			if(isset($query->query_vars['event_show_featured']) && (bool)$query->query_vars['event_show_featured'] === true)
+			{
+				$meta_args[] = array(
+					'key' => '_event_featured',
+					'value' => 1,
+					'compare' => '=',
+					'type' => 'BINARY'
+				);
+			}
 
 			// some ninja fixes
 			if($query->query_vars['event_show_occurrences'] && $query->query_vars['event_show_past_events'] && !$event_order_by)
@@ -505,8 +527,6 @@ class Events_Maker_Query
 				$eb_date = ':00';
 			else
 				$eb_date = '';
-
-			$meta_args = $query->get('meta_query');
 
 			if($query->query_vars['event_show_occurrences'])
 			{
@@ -612,16 +632,6 @@ class Events_Maker_Query
 					'type' => 'NUMERIC'
 				);
 			}
-			
-			if(isset($query->query_vars['event_show_featured']) && (bool)$query->query_vars['event_show_featured'] === true)
-			{
-				$meta_args[] = array(
-					'key' => '_event_featured',
-					'value' => 1,
-					'compare' => '=',
-					'type' => 'BINARY'
-				);
-			}
 
 			$query->set('meta_query', $meta_args);
 		}
@@ -641,7 +651,7 @@ class Events_Maker_Query
 	
 	
 	/**
-	 * Put sticky events to top at event archives
+	 * Put sticky events on top of events list
 	 */
 	function sticky_featured($posts)
 	{

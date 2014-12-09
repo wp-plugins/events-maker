@@ -398,13 +398,15 @@ class Events_Maker_Metaboxes
 					unset($weekdays[0]);
 				}
 				else
-					$weekdays = array_combine(range(1, 7), array_values($weekdays));
+					$weekdays = array_combine(range(0, 6), array_values($weekdays));
 				
 				$options['weekly'] .= '<fieldset>';
+				
 				foreach($weekdays as $day_id => $day)
 				{
 					$options['weekly'] .= '<input id="event_recurrence_weekday_'.$day_id.'" type="checkbox" name="event_recurrence[weekly][weekly_days]['.$day_id.']" value="'.$day_id.'" '.checked(in_array($day_id, $check_options), true, false).'/><label for="event_recurrence_weekday_'.$day_id.'">'.esc_html($day).'</label>';
 				}
+
 				$options['weekly'] .= '</fieldset>';
 			}
 			elseif($id === 'monthly')

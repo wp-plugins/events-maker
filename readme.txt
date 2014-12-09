@@ -4,7 +4,7 @@ Donate link: http://www.dfactory.eu/
 Tags: event, event categories, events management, event management, events manager, event manager, event organizer, events calendar, events maker, google map, map, locations, organizers, widget, attendance, attendee, Booking, calendar, event registration, ticket, tickets, ticketing, bookings
 Requires at least: 3.5
 Tested up to: 4.0.1
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -105,6 +105,11 @@ A. Chances are, someone else has asked it. Check out the support forum at: http:
 6. screenshot-4.png
 
 == Changelog ==
+
+= 1.3.2 =
+* Fix: Event content not displayed for single events
+* Fix: General and display options not resetting
+* Tweak: Event options not set in wpml-config.xml
 
 = 1.3.1 =
 * Fix: Post row actions removed from post types other than event
@@ -238,6 +243,6 @@ Initial release
 
 == Upgrade Notice ==
 
-= 1.3.1 =
-* Fix: Post row actions removed from post types other than event
-* Fix: Full calendar pages not displayed on other languages using WPML or Polylang
+= 1.3.2 =
+* Fix: Event content not displayed for single events
+* Fix: General and display options not resetting

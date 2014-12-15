@@ -32,7 +32,7 @@ if (!function_exists('em_display_events'))
 			'show_occurrences' => $options['show_occurrences'],
 			'show_event_thumbnail' => true,
 			'show_event_excerpt' => false,
-			'no_events_message' => __('No Events', 'events-maker'),
+			'no_events_message' => __('Apologies, but no events were found.', 'events-maker'),
 			'date_format' => $options['datetime_format']['date'],
 			'time_format' => $options['datetime_format']['time']
 		);

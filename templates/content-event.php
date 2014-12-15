@@ -9,9 +9,19 @@
  * @since 	1.1.0
  */
  
-if (!defined('ABSPATH')) exit; // Exit if accessed directly
+if (!defined('ABSPATH')) exit; // exit if accessed directly
 
-// Extra event classes
+global $post;
+
+// if in a shortcode, extract args
+if ($args && is_array($args)) {
+	extract($args);
+	
+	// get events args and post object sent via em_get_template()
+	$post = apply_filters('em_loop_event_post', $args[0]); // event post object
+}
+
+// extra event classes
 $classes = apply_filters('em_loop_event_classes', array('hcalendar'));
 
 ?>

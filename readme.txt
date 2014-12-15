@@ -4,7 +4,7 @@ Donate link: http://www.dfactory.eu/
 Tags: event, event categories, events management, event management, events manager, event manager, event organizer, events calendar, events maker, google map, map, locations, organizers, widget, attendance, attendee, Booking, calendar, event registration, ticket, tickets, ticketing, bookings
 Requires at least: 3.5
 Tested up to: 4.0.1
-Stable tag: 1.3.2
+Stable tag: 1.3.3
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -105,6 +105,10 @@ A. Chances are, someone else has asked it. Check out the support forum at: http:
 6. screenshot-4.png
 
 == Changelog ==
+
+= 1.3.3 =
+* New: Introducing [em-events] shortcode
+* Tweak: Documentation improvements
 
 = 1.3.2 =
 * Fix: Event content not displayed for single events
@@ -243,6 +247,6 @@ Initial release
 
 == Upgrade Notice ==
 
-= 1.3.2 =
-* Fix: Event content not displayed for single events
-* Fix: General and display options not resetting
+= 1.3.3 =
+* New: Introducing [em-events] shortcode
+* Tweak: Documentation improvements

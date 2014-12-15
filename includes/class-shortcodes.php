@@ -1,4 +1,14 @@
 <?php
+/**
+ * Events Maker shortcodes
+ *
+ * You may use the shortcodes anywhere in your website
+ *
+ * @author 	Digital Factory
+ * @package Events Maker/Functions
+ * @version 1.0.0
+ */
+ 
 if(!defined('ABSPATH')) exit;
 
 new Events_Maker_Shortcodes($events_maker);
@@ -26,40 +36,21 @@ class Events_Maker_Shortcodes
 		// filters
 		add_filter('the_content', array(&$this, 'add_full_calendar'));
 	}
-
-
+	
+	
 	/**
-	 *
+	 * Register shortcodes
 	 */
-	public function after_delete_trash_calendar_page($post_id)
+	public function register_shortcodes()
 	{
-		if(get_post_type($post_id) === 'page' && (int)$post_id === $this->options['general']['full_calendar_display']['page'])
-		{
-			$this->options['general']['full_calendar_display']['type'] = 'manual';
-			$this->options['general']['full_calendar_display']['page'] = 0;
-
-			update_option('events_maker_general', $this->options['general']);
-		}
+		add_shortcode('em-events', array(&$this, 'events_shortcode'));
+		add_shortcode('em-full-calendar', array(&$this, 'calendar_shortcode'));
+		add_shortcode('em-google-map', array(&$this, 'google_map_shortcode'));
 	}
 
 
 	/**
-	 * 
-	 */
-	public function after_change_status_calendar_page($new_status, $old_status, $post)
-	{
-		if($post->post_type === 'page' && $old_status === 'publish' && $new_status !== 'publish' && $post->ID === $this->options['general']['full_calendar_display']['page'])
-		{
-			$this->options['general']['full_calendar_display']['type'] = 'manual';
-			$this->options['general']['full_calendar_display']['page'] = 0;
-
-			update_option('events_maker_general', $this->options['general']);
-		}
-	}
-
-
-	/**
-	 * 
+	 * Display full calendar
 	 */
 	public function add_full_calendar($content)
 	{
@@ -82,7 +73,7 @@ class Events_Maker_Shortcodes
 
 
 	/**
-	 * 
+	 * Check if calendar page is created and set
 	 */
 	public function check_calendar_page()
 	{
@@ -200,7 +191,7 @@ class Events_Maker_Shortcodes
 
 
 	/**
-	 * 
+	 * Create calendar page function
 	 */
 	public function create_calendar_page($network = false)
 	{
@@ -249,17 +240,186 @@ class Events_Maker_Shortcodes
 
 
 	/**
-	 * 
+	 * Events list shortcode
 	 */
-	public function register_shortcodes()
+	public function events_shortcode($args)
 	{
-		add_shortcode('em-full-calendar', array(&$this, 'calendar_shortcode'));
-		add_shortcode('em-google-map', array(&$this, 'google_map_shortcode'));
+		$defaults = array(
+			'start_after' => '',
+			'start_before' => '',
+			'end_after' => '',
+			'end_before' => '',
+			'ondate' => '',
+			'date_range' => 'between',
+			'date_type' => 'all',
+			'ticket_type' => 'all',
+			'show_past_events' => $this->options['general']['show_past_events'],
+			'show_occurrences' => $this->options['general']['show_occurrences'],
+			'number_of_events' => get_option('posts_per_page'),
+			'featured_only' => false,
+			'disable_pagination' => false,
+			'categories' => '',
+			'locations' => '',
+			'organizers' => '',
+			'order_by' => 'start',
+			'order' => 'asc',
+			'author' => '',
+			'style' => 'loop'
+		);
+
+		// parse arguments
+		$args = shortcode_atts($defaults, $args);
+
+		// makes strings
+		$args['start_after'] = (string)$args['start_after'];
+		$args['start_before'] = (string)$args['start_before'];
+		$args['end_after'] = (string)$args['end_after'];
+		$args['end_before'] = (string)$args['end_before'];
+		$args['ondate'] = (string)$args['ondate'];
+		$args['order_by'] = (string)$args['order_by'];
+		$args['order'] = (string)$args['order'];
+		$args['categories'] = (string)$args['categories'];
+		$args['locations'] = (string)$args['locations'];
+		$args['organizers'] = (string)$args['organizers'];
+
+		// valid date range?
+		if(!in_array($args['date_range'], array('between', 'outside'), true))
+			$args['date_range'] = $defaults['date_range'];
+
+		// valid date type?
+		if(!in_array($args['date_type'], array('all', 'all_day', 'not_all_day'), true))
+			$args['date_type'] = $defaults['date_type'];
+
+		// valid ticket type?
+		if(!in_array($args['ticket_type'], array('all', 'free', 'paid'), true))
+			$args['ticket_type'] = $defaults['ticket_type'];
+
+		$authors = $users = array();
+
+		if(trim($args['author']) !== '')
+			$users = explode(',', $args['author']);
+
+		if(!empty($users))
+		{
+			foreach($users as $author)
+			{
+				$authors[] = (int)$author;
+			}
+
+			// removes possible duplicates
+			$events_args['author__in'] = array_unique($authors);
+		}
+	
+		// valid style?
+		if(!in_array($args['style'], array('loop', 'widget'), true))
+			$args['style'] = $defaults['style'];
+			
+		if ($args['style'] == 'widget')
+			$template = 'content-widget-event.php';
+		else
+			$template = 'content-event.php';
+		
+		// sets new arguments
+		$events_args['event_start_after'] = $args['start_after'];
+		$events_args['event_start_before'] = $args['start_before'];
+		$events_args['event_end_after'] = $args['end_after'];
+		$events_args['event_end_before'] = $args['end_before'];
+		$events_args['event_ondate'] = $args['ondate'];
+		$events_args['event_date_range'] = $args['date_range'];
+		$events_args['event_date_type'] = $args['date_type'];
+		$events_args['event_ticket_type'] = $args['ticket_type'];
+		$events_args['event_show_past_events'] = (bool)(int)$args['show_past_events'];
+		$events_args['event_show_occurrences'] = (bool)(int)$args['show_occurrences'];
+		$events_args['event_show_featured'] = (bool)(int)$args['featured_only'];
+		$events_args['post_type'] = 'event';
+		$events_args['suppress_filters'] = false;
+		$events_args['posts_per_page'] = (int)$args['number_of_events'];
+		$events_args['paged'] = (get_query_var('paged') ? get_query_var('paged') : 1);
+		
+		if(!empty($args['categories']))
+		{
+			$events_args['tax_query'][] = array(
+				'taxonomy' => 'event-category',
+				'field' => 'id',
+				'terms' => explode(',', $args['categories']),
+				'include_children' => false,
+				'operator' => 'IN'
+			);
+		}
+	
+		if(!empty($args['locations']))
+		{
+			$events_args['tax_query'][] = array(
+				'taxonomy' => 'event-location',
+				'field' => 'id',
+				'terms' => explode(',', $args['locations']),
+				'include_children' => false,
+				'operator' => 'IN'
+			);
+		}
+	
+		if(!empty($args['organizers']))
+		{
+			$events_args['tax_query'][] = array(
+				'taxonomy' => 'event-organizer',
+				'field' => 'id',
+				'terms' => explode(',', $args['organizers']),
+				'include_children' => false,
+				'operator' => 'IN'
+			);
+		}
+		
+		global $wp_query;
+		
+		// replace global wp_query with events query
+		$temp_query = $wp_query;
+		$wp_query = new WP_Query($events_args);
+
+		if ($wp_query->have_posts())
+		{
+			ob_start();
+			
+			foreach ($wp_query->posts as $post)
+			{
+				setup_postdata($post);
+				
+				em_get_template($template, array($post, $args));
+			}
+			
+			wp_reset_postdata();
+		}
+		else
+		{
+			ob_start();
+			?>
+			<article id="post-0" class="post no-results not-found">
+			
+			    <div class="entry-content">
+			    	
+			        <p><?php _e('Apologies, but no events were found.', 'events-maker'); ?></p>
+			        
+			    </div>
+			
+			</article>
+			<?php
+		}
+		
+		// display pagination
+		if ((bool)(int)$args['disable_pagination'] != true)	
+			em_paginate_links();
+		
+		$html = ob_get_contents();
+		ob_end_clean();
+		
+		// restore original query
+		$wp_query = $temp_query;
+		
+		return apply_filters('em_shortcode_events', $html);
 	}
 
 
 	/**
-	 * 
+	 * Events full calendar shortcode
 	 */
 	public function calendar_shortcode($args)
 	{
@@ -274,6 +434,9 @@ class Events_Maker_Shortcodes
 			'ticket_type' => 'all',
 			'show_past_events' => $this->options['general']['show_past_events'],
 			'show_occurrences' => $this->options['general']['show_occurrences'],
+			'categories' => '',
+			'locations' => '',
+			'organizers' => '',
 			'post_type' => 'event',
 			'author' => ''
 		);
@@ -346,6 +509,43 @@ class Events_Maker_Shortcodes
 		unset($args['ticket_type']);
 		unset($args['show_past_events']);
 		unset($args['show_occurrences']);
+		
+		if(!empty($args['categories']))
+		{
+			$args['tax_query'][] = array(
+				'taxonomy' => 'event-category',
+				'field' => 'id',
+				'terms' => explode(',', $args['categories']),
+				'include_children' => false,
+				'operator' => 'IN'
+			);
+		}
+	
+		if(!empty($args['locations']))
+		{
+			$args['tax_query'][] = array(
+				'taxonomy' => 'event-location',
+				'field' => 'id',
+				'terms' => explode(',', $args['locations']),
+				'include_children' => false,
+				'operator' => 'IN'
+			);
+		}
+	
+		if(!empty($args['organizers']))
+		{
+			$args['tax_query'][] = array(
+				'taxonomy' => 'event-organizer',
+				'field' => 'id',
+				'terms' => explode(',', $args['organizers']),
+				'include_children' => false,
+				'operator' => 'IN'
+			);
+		}
+
+		unset($args['categories']);
+		unset($args['locations']);
+		unset($args['organizers']);
 
 		wp_register_script(
 			'events-maker-moment',
@@ -420,7 +620,7 @@ class Events_Maker_Shortcodes
 
 
 	/**
-	 * 
+	 * Get events for calendar display
 	 */
 	private function get_full_calendar_events($args)
 	{
@@ -485,7 +685,7 @@ class Events_Maker_Shortcodes
 
 
 	/**
-	 * 
+	 * Google map shortcode
 	 */
 	public function google_map_shortcode($args)
 	{
@@ -494,9 +694,9 @@ class Events_Maker_Shortcodes
 		$booleans = array('on', 'off');
 		$defaults = array(
 			'width' => '100%',
-			'height' => '200px',
+			'height' => '300px',
 			'zoom' => 15,
-			'maptype' => 'ROADMAP',
+			'maptype' => 'roadmap',
 			'locations' => '',
 			'maptypecontrol' => 'on',
 			'zoomcontrol' => 'on',
@@ -621,7 +821,7 @@ class Events_Maker_Shortcodes
 
 
 	/**
-	 * 
+	 * Helper
 	 */
 	private function get_proper_arg($arg, $default, $array)
 	{
@@ -634,6 +834,36 @@ class Events_Maker_Shortcodes
 			return 1;
 		else
 			return 0;
+	}
+
+
+	/**
+	 * Detect calendar page delete or move to trash action
+	 */
+	public function after_delete_trash_calendar_page($post_id)
+	{
+		if(get_post_type($post_id) === 'page' && (int)$post_id === $this->options['general']['full_calendar_display']['page'])
+		{
+			$this->options['general']['full_calendar_display']['type'] = 'manual';
+			$this->options['general']['full_calendar_display']['page'] = 0;
+
+			update_option('events_maker_general', $this->options['general']);
+		}
+	}
+
+
+	/**
+	 * Detect calendar change status action
+	 */
+	public function after_change_status_calendar_page($new_status, $old_status, $post)
+	{
+		if($post->post_type === 'page' && $old_status === 'publish' && $new_status !== 'publish' && $post->ID === $this->options['general']['full_calendar_display']['page'])
+		{
+			$this->options['general']['full_calendar_display']['type'] = 'manual';
+			$this->options['general']['full_calendar_display']['page'] = 0;
+
+			update_option('events_maker_general', $this->options['general']);
+		}
 	}
 }
 ?>

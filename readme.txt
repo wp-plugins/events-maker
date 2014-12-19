@@ -3,8 +3,8 @@ Contributors: dfactory
 Donate link: http://www.dfactory.eu/
 Tags: event, event categories, events management, event management, events manager, event manager, event organizer, events calendar, events maker, google map, map, locations, organizers, widget, attendance, attendee, Booking, calendar, event registration, ticket, tickets, ticketing, bookings
 Requires at least: 3.5
-Tested up to: 4.0.1
-Stable tag: 1.3.3
+Tested up to: 4.1.0
+Stable tag: 1.3.4
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -73,7 +73,9 @@ Events Maker allows you to create and manage events, categories, locations and o
 * Brazilian Portuguese - by Adson Nunes
 * Catalan - by Jordi Altimira
 * Dutch - by [Heleen van den Bos](http://www.bostekst.nl/)
+* Finnish - by [Ari-Pekka Koponen](http://www.versi.fi/)
 * French - by Marc Abel
+* German - by [Martin Stoehr](http://www.stoehrinteractive.com)
 * Italian - by [Lorenzo De Tomasi](http://isotype.org)
 * Japanese - by stranger-jp
 * Norwegian - by Anders Kleppe
@@ -105,6 +107,10 @@ A. Chances are, someone else has asked it. Check out the support forum at: http:
 6. screenshot-4.png
 
 == Changelog ==
+
+= 1.3.4 =
+* New: German translation, thanks to [Martin Stoehr](http://www.stoehrinteractive.com)
+* New: Finnish translation, thanks to [Ari-Pekka Koponen](http://www.versi.fi/)
 
 = 1.3.3 =
 * New: Introducing [em-events] shortcode
@@ -247,6 +253,6 @@ Initial release
 
 == Upgrade Notice ==
 
-= 1.3.3 =
-* New: Introducing [em-events] shortcode
-* Tweak: Documentation improvements
+= 1.3.4 =
+* New: German translation, thanks to [Martin Stoehr](http://www.stoehrinteractive.com)
+* New: Finnish translation, thanks to [Ari-Pekka Koponen](http://www.versi.fi/)

@@ -155,56 +155,62 @@ class Events_Maker_Listing
 	*/
 	public function add_new_event_columns_content($column_name, $id)
 	{
-		$mode = !empty($_GET['mode']) ? sanitize_text_field($_GET['mode']) : '';
+		global $pagenow;
 
-		switch($column_name)
-		{
-			case 'start_date':
-			case 'end_date':
-				$date = get_post_meta($id, '_event_'.$column_name, true);
-
-				echo (em_is_all_day($id) ? date_i18n('Y-m-d', strtotime($date)) : date_i18n('Y-m-d, ' . $this->options['general']['datetime_format']['time'], strtotime($date)));
-				break;
-
-			case 'recurrence':
-				$recurrence = get_post_meta($id, '_event_recurrence', true);
-
-				echo $this->recurrences[$recurrence['type']];
-				break;
-
-			case 'tickets':
-				if(!em_is_free($id))
-				{
-					echo __('paid', 'events-maker').'<br />';
-
-					if($mode === 'excerpt')
+		$screen = get_current_screen();
+		
+		// event edit screen only
+		if($pagenow === 'edit.php' && in_array($screen->post_type, apply_filters('em_event_post_type', array('event'))))
+		{			
+			$mode = !empty($_GET['mode']) ? sanitize_text_field($_GET['mode']) : '';
+	
+			switch($column_name)
+			{
+				case 'start_date':
+				case 'end_date':
+					$date = get_post_meta($id, '_event_'.$column_name, true);
+	
+					echo (em_is_all_day($id) ? date_i18n('Y-m-d', strtotime($date)) : date_i18n('Y-m-d, ' . $this->options['general']['datetime_format']['time'], strtotime($date)));
+					break;
+	
+				case 'recurrence':
+					$recurrence = get_post_meta($id, '_event_recurrence', true);
+	
+					echo $this->recurrences[$recurrence['type']];
+					break;
+	
+				case 'tickets':
+					if(!em_is_free($id))
 					{
-						$tickets = get_post_meta($id, '_event_tickets', true);
-
-						foreach($tickets as $ticket)
+						echo __('paid', 'events-maker').'<br />';
+	
+						if($mode === 'excerpt')
 						{
-							echo $ticket['name'].': '.em_get_currency_symbol($ticket['price']).'<br />';
+							$tickets = get_post_meta($id, '_event_tickets', true);
+	
+							foreach($tickets as $ticket)
+							{
+								echo $ticket['name'].': '.em_get_currency_symbol($ticket['price']).'<br />';
+							}
 						}
 					}
-				}
-				else
-					echo __('free', 'events-maker');
-				break;
-				
-			case 'featured':
-				global $pagenow;
-				
-				$url = wp_nonce_url(admin_url('admin-ajax.php?action=events_maker_feature_event&event_id='.$id), 'events-maker-feature-event', 'em_nonce');
-				$is_event_featured = (int)get_post_meta($id, '_event_featured', true);
-				
-				echo '<a href="'.esc_url($url).'" class="toggle-featured-event" data-post-id="'.$id.'" title="'.__('Toggle featured', 'events-maker') . '">';
-				if ($is_event_featured)
-					echo '<span class="dashicons dashicons-star-filled" title="' . __('Yes') . '"></span>';
-				else
-					echo '<span class="dashicons dashicons-star-empty" title="' . __('No') . '"></span>';
-				echo '</a>';
-				
-				break;
+					else
+						echo __('free', 'events-maker');
+					break;
+					
+				case 'featured':	
+					$url = wp_nonce_url(admin_url('admin-ajax.php?action=events_maker_feature_event&event_id='.$id), 'events-maker-feature-event', 'em_nonce');
+					$is_event_featured = (int)get_post_meta($id, '_event_featured', true);
+					
+					echo '<a href="'.esc_url($url).'" class="toggle-featured-event" data-post-id="'.$id.'" title="'.__('Toggle featured', 'events-maker') . '">';
+					if ($is_event_featured)
+						echo '<span class="dashicons dashicons-star-filled" title="' . __('Yes') . '"></span>';
+					else
+						echo '<span class="dashicons dashicons-star-empty" title="' . __('No') . '"></span>';
+					echo '</a>';
+					
+					break;
+			}
 		}
 	}
 	

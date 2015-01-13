@@ -4,15 +4,15 @@ Donate link: http://www.dfactory.eu/
 Tags: event, event categories, events management, event management, events manager, event manager, event organizer, events calendar, events maker, google map, map, locations, organizers, widget, attendance, attendee, Booking, calendar, event registration, ticket, tickets, ticketing, bookings
 Requires at least: 3.5
 Tested up to: 4.1.0
-Stable tag: 1.3.4
+Stable tag: 1.4.0
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
-Events Maker is a complete, powerful but easy to use events management plugin made the WordPress way.
+Fully featured event management system including recurring events, locations management, full calendar, iCal feed/files, google maps and more.
 
 == Description ==
 
-[Events Maker](http://www.dfactory.eu/plugins/events-maker/) is a fully featured event management plugin from [dFactory](http://www.dfactory.eu/) including recurring events, locations management, full calendar and google maps integration.
+[Events Maker](http://www.dfactory.eu/plugins/events-maker/) is a fully featured event management plugin from [dFactory](http://www.dfactory.eu/) including recurring events, locations management, full calendar, iCal feed/files support and google maps integration.
 
 = Powerful, flexible events management =
 
@@ -21,6 +21,10 @@ Events Maker allows you to easily create and manage your events. But at the same
 = Responsive Events Calendar =
 
 Users can browse for your events in a beautiful, responsive events calendar and display all events for the selected month, week od day.
+
+= Automatic iCal support =
+
+Events Maker automatically generates an iCal feed/files for all your events, categories, tags, locations, organizers and single events which can be used to import event information into calendar applications such as Google Calendar, iCalendar, Outlook, ThunderBird, etc.
 
 = Locations with Google Maps =
 
@@ -37,6 +41,7 @@ Events Maker allows you to create and manage events, categories, locations and o
 * Ajax Events Calendar
 * Display options for single events
 * Multiple Tickets and Pricing
+* Automatic iCal feed/files support
 * Advanced recurring events, including daily, monthly, yearly and custom occurrences
 * Interactive Full Calendar display
 * Compatibility with Twenty Thirteen and Twenty Fourteen themes 
@@ -65,7 +70,6 @@ Events Maker allows you to create and manage events, categories, locations and o
 
 * Front-end events submissions
 * Event registration & booking system
-* iCal & Google Calendar integration
 * Events search & filtering
 
 = Translations: =
@@ -107,6 +111,11 @@ A. Chances are, someone else has asked it. Check out the support forum at: http:
 6. screenshot-4.png
 
 == Changelog ==
+
+= 1.4.0 =
+* New: iCal support for Google Calendar, iCalendar, Outlook, ThunderBird and others
+* Fix: Woocommerce clash with featured column content
+* Fix: Event locations widget empty due to a typo in taxonomy name
 
 = 1.3.4 =
 * New: German translation, thanks to [Martin Stoehr](http://www.stoehrinteractive.com)
@@ -253,6 +262,5 @@ Initial release
 
 == Upgrade Notice ==
 
-= 1.3.4 =
-* New: German translation, thanks to [Martin Stoehr](http://www.stoehrinteractive.com)
-* New: Finnish translation, thanks to [Ari-Pekka Koponen](http://www.versi.fi/)
+= 1.4.0 =
+* New: iCal support for Google Calendar, iCalendar, Outlook, ThunderBird and others

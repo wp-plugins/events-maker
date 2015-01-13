@@ -2,7 +2,7 @@
 /*
 Plugin Name: Events Maker
 Description: Events Maker is a complete, powerful but easy to use events management plugin made the WordPress way.
-Version: 1.3.4
+Version: 1.4.0
 Author: dFactory
 Author URI: http://www.dfactory.eu/
 Plugin URI: http://www.dfactory.eu/plugins/events-maker/
@@ -40,6 +40,7 @@ include_once(EVENTS_MAKER_PATH.'includes/class-shortcodes.php');
 include_once(EVENTS_MAKER_PATH.'includes/class-listing.php');
 include_once(EVENTS_MAKER_PATH.'includes/class-metaboxes.php');
 include_once(EVENTS_MAKER_PATH.'includes/class-widgets.php');
+include_once(EVENTS_MAKER_PATH.'includes/class-ical.php');
 include_once(EVENTS_MAKER_PATH.'includes/class-helper.php');
 include_once(EVENTS_MAKER_PATH.'includes/class-welcome.php');
 
@@ -82,6 +83,7 @@ class Events_Maker
 				'page' => 0,
 				'content' => 'after'
 			),
+			'ical_feed' => true,
 			'events_in_rss' => true,
 			'deactivation_delete' => false,
 			'event_nav_menu' => array(
@@ -128,7 +130,7 @@ class Events_Maker
 			'event_locations_rewrite_slug' => 'location',
 			'event_organizers_rewrite_slug' => 'organizer'
 		),
-		'version' => '1.3.4'
+		'version' => '1.4.0'
 	);
 	private $transient_id = '';
 
@@ -900,7 +902,7 @@ class Events_Maker
 	/**
 	 * Enqueue admin scripts and style
 	 */
-	public function admin_scripts_styles($page)
+	public function admin_scripts_styles($pagenow)
 	{
 		$screen = get_current_screen();
 
@@ -914,7 +916,7 @@ class Events_Maker
 			EVENTS_MAKER_URL.'/css/wp-like-ui-theme.css'
 		);
 
-		if($page === 'edit-tags.php' && in_array($screen->post_type, apply_filters('em_event_post_type', array('event'))))
+		if($pagenow === 'edit-tags.php' && in_array($screen->post_type, apply_filters('em_event_post_type', array('event'))))
 		{
 			// event location & organizer
 			if(($screen->id === 'edit-event-organizer' && $screen->taxonomy === 'event-organizer') || ($screen->id === 'edit-event-location' && $screen->taxonomy === 'event-location') || ($screen->id === 'edit-event-category' && $screen->taxonomy === 'event-category'))
@@ -960,7 +962,7 @@ class Events_Maker
 			}
 		}
 		// widgets
-		elseif($page === 'widgets.php')
+		elseif($pagenow === 'widgets.php')
 		{
 			wp_register_script(
 				'events-maker-admin-widgets',
@@ -972,7 +974,7 @@ class Events_Maker
 			wp_enqueue_style('events-maker-admin');
 		}
 		// event options page
-		elseif($page === 'event_page_events-settings')
+		elseif($pagenow === 'event_page_events-settings')
 		{
 			wp_register_script(
 				'events-maker-admin-settings',
@@ -993,7 +995,7 @@ class Events_Maker
 			wp_enqueue_style('events-maker-admin');
 		}
 		// list of events
-		elseif($page === 'edit.php' && in_array($screen->post_type, apply_filters('em_event_post_type', array('event'))))
+		elseif($pagenow === 'edit.php' && in_array($screen->post_type, apply_filters('em_event_post_type', array('event'))))
 		{
 			global $wp_locale;
 
@@ -1024,7 +1026,7 @@ class Events_Maker
 			wp_enqueue_style('events-maker-wplike');
 		}
 		// update
-		elseif($page === 'event_page_events-maker-update')
+		elseif($pagenow === 'event_page_events-maker-update')
 			wp_enqueue_style('events-maker-admin');
 	}
 

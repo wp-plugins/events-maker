@@ -1243,7 +1243,7 @@ class Events_Maker_Locations_Widget extends WP_Widget
 		$instance['title'] = apply_filters('widget_title', $instance['title'], $instance, $this->id_base);
 
 		$html = $args['before_widget'].$args['before_title'].(!empty($instance['title']) ? $instance['title'] : '').$args['after_title'];
-		$html .= em_display_event_taxonomy('event-locations', $instance);
+		$html .= em_display_event_taxonomy('event-location', $instance);
 		$html .= $args['after_widget'];
 
 		echo $html;

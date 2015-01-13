@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) exit; // exit if accessed directly
 global $post;
 
 // if in a shortcode, extract args
-if ($args && is_array($args)) {
+if (isset($args) && is_array($args)) {
 	extract($args);
 	
 	// get events args and post object sent via em_get_template()

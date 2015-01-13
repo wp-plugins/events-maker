@@ -322,6 +322,7 @@ class Events_Maker_Settings
 		add_settings_field('em_use_tags', __('Tags', 'events-maker'), array($this, 'em_use_tags'), 'events_maker_general', 'events_maker_general');
 		add_settings_field('em_use_organizers', __('Organizers', 'events-maker'), array($this, 'em_use_organizers'), 'events_maker_general', 'events_maker_general');
 		add_settings_field('em_use_event_tickets', __('Tickets', 'events-maker'), array($this, 'em_use_event_tickets'), 'events_maker_general', 'events_maker_general');
+		add_settings_field('em_ical_feed', __('iCal feed/files', 'events-maker'), array($this, 'em_ical_feed'), 'events_maker_general', 'events_maker_general');
 		add_settings_field('em_events_in_rss', __('RSS feed', 'events-maker'), array($this, 'em_events_in_rss'), 'events_maker_general', 'events_maker_general');
 		add_settings_field('em_deactivation_delete', __('Deactivation', 'events-maker'), array($this, 'em_deactivation_delete'), 'events_maker_general', 'events_maker_general');
 
@@ -548,6 +549,24 @@ class Events_Maker_Settings
 		echo '
 				</div>
 				<span class="description">'.__('Select how and where would you like to display events full calendar. Use <code>[em-full-calendar]</code> shortcode for manual display.', 'events-maker').'</span>
+			</fieldset>
+		</div>';
+	}
+	
+	
+	/**
+	 * 
+	*/
+	public function em_ical_feed()
+	{
+		$permalinks = get_option('permalink_structure');
+		echo '
+		<div id="em_ical_feed">
+			<fieldset>
+				<input id="em-ical-feed" type="checkbox" name="events_maker_general[ical_feed]" '.checked($this->options['general']['ical_feed'], true, false).' /><label for="em-ical-feed">'.__('Enable iCal feed/files', 'events-maker').'</label>
+				<br />
+				<span class="description">'.__('Enable to generate an iCal feed/files for all your events, categories, tags, locations, organizers and single events. iCal feed/files are accessible under event URL extended with:', 'events-maker').'<code><strong>'.(!empty($permalinks) ? '/feed/ical' : '&feed=ical').'</strong></code><br />'.
+				__('For example:', 'events-maker').' <code>'.get_post_type_archive_link('event').'<strong>'.(!empty($permalinks) ? 'feed/ical' : '&feed=ical').'</strong></code></span>
 			</fieldset>
 		</div>';
 	}
@@ -1259,6 +1278,9 @@ class Events_Maker_Settings
 
 			// use tickets
 			$input['use_event_tickets'] = isset($input_old['use_event_tickets']);
+			
+			// iCal feed
+			$input['ical_feed'] = isset($input_old['ical_feed']);
 
 			// RSS feed
 			$input['events_in_rss'] = isset($input_old['events_in_rss']);
@@ -1287,6 +1309,7 @@ class Events_Maker_Settings
 			$input['use_organizers'] = $this->defaults['general']['use_organizers'];
 			$input['use_tags'] = $this->defaults['general']['use_tags'];
 			$input['use_event_tickets'] = $this->defaults['general']['use_event_tickets'];
+			$input['ical_feed'] = $this->defaults['general']['ical_feed'];
 			$input['events_in_rss'] = $this->defaults['general']['events_in_rss'];
 			$input['deactivation_delete'] = $this->defaults['general']['deactivation_delete'];
 

@@ -42,7 +42,7 @@ class Events_Maker_iCal
 	{
 		if (is_admin() || (defined('DOING_AJAX') && DOING_AJAX))
 			return $request;
-		
+
 		// is this an ical feed request
 		if(isset($request->query_vars['feed']) && $request->query_vars['feed'] === 'ical')
 		{
@@ -123,7 +123,7 @@ class Events_Maker_iCal
 			array(
 				'post_type' => 'event',
 				'suppress_filters' => false,
-				'event_show_past_events' => (int)$this->options['general']['show_past_events'],
+				'event_show_past_events' => false,
 				'event_show_occurrences' => false,
 				'orderby' => 'event_start_date',
 				'order' => 'asc'
@@ -139,29 +139,82 @@ class Events_Maker_iCal
 			foreach($events as $event)
 			{
 				// get the event date
-				$event_date = em_get_the_date($event->ID);
+				$start_date = get_post_meta($event->ID, '_event_start_date', true);
+				$end_date = get_post_meta($event->ID, '_event_end_date', true);
 		
-				// all day
+				// convert to gmt, all day
 				if(em_is_all_day($event->ID))
 				{
-					$event_start = date('Ymd', strtotime(get_gmt_from_date($event_date['start'])));
-					$event_end = date('Ymd', strtotime(get_gmt_from_date($event_date['end'])));
+					$event_start = date('Ymd', strtotime(get_gmt_from_date(date('Y-m-d H:i:s', strtotime($start_date)))));
+					$event_end = date('Ymd', strtotime(get_gmt_from_date(date('Y-m-d H:i:s', strtotime($end_date)))));
 				}
+				// convert to gmt, other
 				else
 				{
-					$event_start = date('Ymd\THis\Z', strtotime(get_gmt_from_date($event_date['start'])));
-					$event_end = date('Ymd\THis\Z', strtotime(get_gmt_from_date($event_date['end'])));
+					$event_start = date('Ymd\THis\Z', strtotime(get_gmt_from_date(date('Y-m-d H:i:s', strtotime($start_date)))));
+					$event_end = date('Ymd\THis\Z', strtotime(get_gmt_from_date(date('Y-m-d H:i:s', strtotime($end_date)))));
 				}
 				
-				// single event data
+				// get categories, if available
+				if($categories = wp_get_post_terms($event->ID, 'event-category', array('fields' => 'names')))
+				{
+					if(!empty($categories) && is_array($categories) && !is_wp_error($categories))
+						$categories_output = "CATEGORIES:" . $this->escape_string(implode(',', (array)$categories)) . "\r\n";
+				}				
+				
+				// get location, if available	
+				if($location = em_get_locations_for($event->ID))
+				{
+					$location_output = "LOCATION:" . $location[0]->name . " ";
+					$location_meta = array();
+					
+					if(!empty($location[0]->location_meta))
+					{
+						foreach($location[0]->location_meta as $key => $value)
+						{
+							if(in_array($key, array('address', 'city', 'state', 'zip', 'country')) && !empty($value))
+								$location_meta[] = $this->escape_string(esc_attr($value));
+						}
+						$location_output .= implode(', ', $location_meta);
+					}
+					$location_output .= "\r\n";
+				}
+				
+				// get organizer, if available	
+				if($organizer = em_get_organizers_for($event->ID))
+				{
+					$organizer_meta = array();
+					
+					if(!empty($organizer[0]->organizer_meta))
+					{
+						$organizer_output = "ORGANIZER;";
+						
+						// contact name
+						if(isset($organizer[0]->organizer_meta['contact_name']) && !empty($organizer[0]->organizer_meta['contact_name']))
+						{
+							$organizer_output .= "CN=" . $this->escape_string($organizer[0]->organizer_meta['contact_name']);
+							// email
+							if(isset($organizer[0]->organizer_meta['email']) && !empty($organizer[0]->organizer_meta['email']))
+								$organizer_output .= ":MAILTO:" . $this->escape_string(esc_url($organizer[0]->organizer_meta['email']));
+							else
+								$organizer_output .= ";";
+						}
+
+						$organizer_output .= "\r\n";
+					}
+				}
+				
+				// single event output
 				$output .= "BEGIN:VEVENT\r\n";
 				$output .= "DTEND:".$event_end."\r\n";
 				$output .= "UID:".uniqid()."\r\n";
 				$output .= "DTSTAMP:".date('Ymd\THis\Z', time())."\r\n";
-				// $output .= "LOCATION:".$this->escape_string($address)."\r\n";
-				$output .= "DESCRIPTION:".$this->escape_string($event->post_content)."\r\n";
-				$output .= "URL;VALUE=URI:".$this->escape_string(get_permalink($event->ID))."\r\n";
-				$output .= "SUMMARY:".$this->escape_string($event->post_title)."\r\n";
+				$output .= !empty($categories_output) ? $categories_output : '';
+				$output .= !empty($location_output) ? $location_output : '';
+				$output .= !empty($organizer_output) ? $organizer_output : '';
+				$output .= "DESCRIPTION:".$this->escape_string(str_replace(array("\r", "\n"), " ", wp_strip_all_tags($event->post_content)))."\r\n";
+				$output .= "URL;VALUE=URI:".$this->escape_string(esc_url(get_permalink($event->ID)))."\r\n";
+				$output .= "SUMMARY:".$this->escape_string(esc_attr($event->post_title))."\r\n";
 				$output .= "DTSTART:".$event_start."\r\n";
 		
 				// event recurrences data
@@ -264,4 +317,13 @@ class Events_Maker_iCal
 	{
 		return preg_replace('/([\,;])/','\\\$1', $string);
 	} 
+	
+	
+	/**
+	 * Helper: convers br to nl
+	*/
+	public function br2nl($string)
+	{
+		return preg_replace('/\<br(\s*)?\/?\>/i', "\r\n", $string);
+	}
 }

@@ -2,7 +2,7 @@
 /*
 Plugin Name: Events Maker
 Description: Events Maker is a complete, powerful but easy to use events management plugin made the WordPress way.
-Version: 1.4.0
+Version: 1.4.1
 Author: dFactory
 Author URI: http://www.dfactory.eu/
 Plugin URI: http://www.dfactory.eu/plugins/events-maker/
@@ -130,7 +130,7 @@ class Events_Maker
 			'event_locations_rewrite_slug' => 'location',
 			'event_organizers_rewrite_slug' => 'organizer'
 		),
-		'version' => '1.4.0'
+		'version' => '1.4.1'
 	);
 	private $transient_id = '';
 
@@ -1108,15 +1108,15 @@ class Events_Maker
 	 */
 	public function view_full_calendar_button()
 	{
-		$screen = get_current_screen();
+		global $pagenow;
 
-		if($screen->id === 'edit-event' || $screen->id === 'event')
+		if($pagenow === 'edit.php' && get_post_type() === 'event')
 		{
-			if(isset($options['full_calendar_display']['type']) && $options['full_calendar_display']['type'] === 'page')
+			if(isset($this->options['general']['full_calendar_display']['type']) && $this->options['general']['full_calendar_display']['type'] === 'page' && isset($this->options['general']['full_calendar_display']['page']))
 			{
 				?>
 			   <script type="text/javascript">
-					jQuery('.wrap h2 .add-new-h2').after('<a href="<?php echo get_permalink($options['full_calendar_display']['page']); ?>" class="add-new-h2"><?php echo __('View Calendar', 'events-maker'); ?></a>');
+					jQuery('.wrap h2 .add-new-h2').after('<a href="<?php echo esc_url(get_permalink((int)$this->options['general']['full_calendar_display']['page'])); ?>" class="add-new-h2"><?php echo __('View Calendar', 'events-maker'); ?></a>');
 				</script>
 				<?php
 			}

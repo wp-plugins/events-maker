@@ -4,7 +4,7 @@ Donate link: http://www.dfactory.eu/
 Tags: event, event categories, events management, event management, events manager, event manager, event organizer, events calendar, events maker, google map, map, locations, organizers, widget, attendance, attendee, Booking, calendar, event registration, ticket, tickets, ticketing, bookings
 Requires at least: 3.5
 Tested up to: 4.1.0
-Stable tag: 1.4.0
+Stable tag: 1.4.1
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -111,6 +111,11 @@ A. Chances are, someone else has asked it. Check out the support forum at: http:
 6. screenshot-4.png
 
 == Changelog ==
+
+= 1.4.1 =
+* Fix: View Calendar button not displayed in admin
+* Fix: iCal feed date not converting properly to GMT
+* Tweak: iCal feed extended with location, organizer and categories data
 
 = 1.4.0 =
 * New: iCal support for Google Calendar, iCalendar, Outlook, ThunderBird and others
@@ -262,5 +267,6 @@ Initial release
 
 == Upgrade Notice ==
 
-= 1.4.0 =
-* New: iCal support for Google Calendar, iCalendar, Outlook, ThunderBird and others
+= 1.4.1 =
+* Fix: View Calendar button not displayed in admin
+* Fix: iCal feed date not converting to GMT

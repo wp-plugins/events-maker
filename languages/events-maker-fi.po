@@ -1,0 +1,1945 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Events Maker\n"
+"POT-Creation-Date: 2014-11-10 14:05+0200\n"
+"PO-Revision-Date: 2014-12-16 10:12+0100\n"
+"Last-Translator: Bartosz Arendt <info@dfactory.eu>\n"
+"Language-Team: dFactory <info@dfactory.pl>\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.1\n"
+"X-Poedit-KeywordsList: gettext;gettext_noop;__;_e;esc_attr__;esc_attr_e;"
+"_n:1,2;_x:1,2c\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../events-maker.php:326
+msgid "Australian Dollar"
+msgstr ""
+
+#: ../events-maker.php:327
+msgid "Bangladeshi Taka"
+msgstr ""
+
+#: ../events-maker.php:328
+msgid "Brazilian Real"
+msgstr ""
+
+#: ../events-maker.php:329
+msgid "Bulgarian Lev"
+msgstr ""
+
+#: ../events-maker.php:330
+msgid "Canadian Dollar"
+msgstr ""
+
+#: ../events-maker.php:331
+msgid "Chilean Peso"
+msgstr ""
+
+#: ../events-maker.php:332
+msgid "Chinese Yuan"
+msgstr ""
+
+#: ../events-maker.php:333
+msgid "Colombian Peso"
+msgstr ""
+
+#: ../events-maker.php:334
+msgid "Croatian kuna"
+msgstr ""
+
+#: ../events-maker.php:335
+msgid "Czech Koruna"
+msgstr ""
+
+#: ../events-maker.php:336
+msgid "Danish Krone"
+msgstr ""
+
+#: ../events-maker.php:337
+msgid "Euro"
+msgstr ""
+
+#: ../events-maker.php:338
+msgid "Hong Kong Dollar"
+msgstr ""
+
+#: ../events-maker.php:339
+msgid "Hungarian Forint"
+msgstr ""
+
+#: ../events-maker.php:340
+msgid "Icelandic krona"
+msgstr ""
+
+#: ../events-maker.php:341
+msgid "Indian Rupee"
+msgstr ""
+
+#: ../events-maker.php:342
+msgid "Indonesian Rupiah"
+msgstr ""
+
+#: ../events-maker.php:343
+msgid "Israeli Shekel"
+msgstr ""
+
+#: ../events-maker.php:344
+msgid "Iranian Rial"
+msgstr ""
+
+#: ../events-maker.php:345
+msgid "Japanese Yen"
+msgstr ""
+
+#: ../events-maker.php:346
+msgid "Malaysian Ringgit"
+msgstr ""
+
+#: ../events-maker.php:347
+msgid "Mexican Peso"
+msgstr ""
+
+#: ../events-maker.php:348
+msgid "New Zealand Dollar"
+msgstr ""
+
+#: ../events-maker.php:349
+msgid "Nigerian Naira"
+msgstr ""
+
+#: ../events-maker.php:350
+msgid "Norwegian Krone"
+msgstr ""
+
+#: ../events-maker.php:351
+msgid "Philippine Peso"
+msgstr ""
+
+#: ../events-maker.php:352
+msgid "Polish Zloty"
+msgstr ""
+
+#: ../events-maker.php:353
+msgid "Pound Sterling"
+msgstr ""
+
+#: ../events-maker.php:354
+msgid "Romanian Leu"
+msgstr ""
+
+#: ../events-maker.php:355
+msgid "Russian Ruble"
+msgstr ""
+
+#: ../events-maker.php:356
+msgid "Singapore Dollar"
+msgstr ""
+
+#: ../events-maker.php:357
+msgid "South African Rand"
+msgstr ""
+
+#: ../events-maker.php:358
+msgid "South Korean Won"
+msgstr ""
+
+#: ../events-maker.php:359
+msgid "Swedish Krona"
+msgstr ""
+
+#: ../events-maker.php:360
+msgid "Swiss Franc"
+msgstr ""
+
+#: ../events-maker.php:361
+msgid "Taiwan New Dollar"
+msgstr ""
+
+#: ../events-maker.php:362
+msgid "Thai Baht"
+msgstr ""
+
+#: ../events-maker.php:363
+msgid "Turkish Lira"
+msgstr ""
+
+#: ../events-maker.php:364
+msgid "Ukrainian Hryvnia"
+msgstr ""
+
+#: ../events-maker.php:365
+msgid "United Arab Emirates Dirham"
+msgstr ""
+
+#: ../events-maker.php:366
+msgid "United States Dollar"
+msgstr ""
+
+#: ../events-maker.php:367
+msgid "Vietnamese Dong"
+msgstr ""
+
+#: ../events-maker.php:414
+msgid "before the price"
+msgstr "hinnan edellä"
+
+#: ../events-maker.php:415
+msgid "after the price"
+msgstr "hinnan jälkeen"
+
+#: ../events-maker.php:430
+msgid "once"
+msgstr "kerran"
+
+#: ../events-maker.php:431
+msgid "daily"
+msgstr "päivittäin"
+
+#: ../events-maker.php:432
+msgid "weekly"
+msgstr "viikoittain"
+
+#: ../events-maker.php:433
+msgid "monthly"
+msgstr "kuukausittain"
+
+#: ../events-maker.php:434
+msgid "yearly"
+msgstr "vuosittain"
+
+#: ../events-maker.php:435
+msgid "custom"
+msgstr "oma"
+
+#: ../events-maker.php:627
+msgctxt "taxonomy general name"
+msgid "Event Categories"
+msgstr "Tapahtumakategoriat"
+
+#: ../events-maker.php:628
+msgctxt "taxonomy singular name"
+msgid "Event Category"
+msgstr "Tapahtumakategoria"
+
+#: ../events-maker.php:629
+msgid "Search Event Categories"
+msgstr "Hae tapahtumakategorioista"
+
+#: ../events-maker.php:630
+msgid "All Event Categories"
+msgstr "Kaikki tapahtumakategoriat"
+
+#: ../events-maker.php:631
+msgid "Parent Event Category"
+msgstr "Päätapahtumakategoria"
+
+#: ../events-maker.php:632
+msgid "Parent Event Category:"
+msgstr "Päätapahtumakategoria:"
+
+#: ../events-maker.php:633
+msgid "Edit Event Category"
+msgstr "Muokkaa tapahtumakategoriaa"
+
+#: ../events-maker.php:634
+msgid "View Event Category"
+msgstr "Katso tapahtumakategoria"
+
+#: ../events-maker.php:635
+msgid "Update Event Category"
+msgstr "Päivitä tapahtumakategoria"
+
+#: ../events-maker.php:636
+msgid "Add New Event Category"
+msgstr "Lisää uusi tapahtumakategoria"
+
+#: ../events-maker.php:637
+msgid "New Event Category Name"
+msgstr "Uuden tapahtumakategorian nimi"
+
+#: ../events-maker.php:638 ../includes/class-settings.php:318
+#: ../includes/class-settings.php:337
+msgid "Categories"
+msgstr "Kategoriat"
+
+#: ../events-maker.php:642
+msgctxt "taxonomy general name"
+msgid "Locations"
+msgstr "Paikat"
+
+#: ../events-maker.php:643
+msgctxt "taxonomy singular name"
+msgid "Event Location"
+msgstr "Tapahtumapaikka"
+
+#: ../events-maker.php:644
+msgid "Search Event Locations"
+msgstr "Hae tapahtumapaikoista"
+
+#: ../events-maker.php:645
+msgid "All Event Locations"
+msgstr "Kaikki tapahtumapaikat"
+
+#: ../events-maker.php:646
+msgid "Parent Event Location"
+msgstr "Päätapahtumapaika"
+
+#: ../events-maker.php:647
+msgid "Parent Event Location:"
+msgstr "Päätapahtumapaikka:"
+
+#: ../events-maker.php:648
+msgid "Edit Event Location"
+msgstr "Muokkaa tapahtumapaikkaa"
+
+#: ../events-maker.php:649
+msgid "View Event Location"
+msgstr "Katso tapahtumapaikka"
+
+#: ../events-maker.php:650
+msgid "Update Event Location"
+msgstr "Päivitä tapahtumapaikka"
+
+#: ../events-maker.php:651
+msgid "Add New Event Location"
+msgstr "Lisää uusi tapahtumapaikka"
+
+#: ../events-maker.php:652
+msgid "New Event Location Name"
+msgstr "Uuden tapahtumapaikan nimi"
+
+#: ../events-maker.php:653 ../includes/class-settings.php:323
+#: ../includes/class-settings.php:342
+msgid "Locations"
+msgstr "Tapahtumapaikat"
+
+#: ../events-maker.php:703
+msgctxt "taxonomy general name"
+msgid "Event Tags"
+msgstr "Tapahtumatagit"
+
+#: ../events-maker.php:704
+msgctxt "taxonomy singular name"
+msgid "Event Tag"
+msgstr "Tapahtumatagi"
+
+#: ../events-maker.php:705
+msgid "Search Event Tags"
+msgstr "Hae tapahtumatageista"
+
+#: ../events-maker.php:706
+msgid "Popular Event Tags"
+msgstr "Suositut tapahtumatagit"
+
+#: ../events-maker.php:707
+msgid "All Event Tags"
+msgstr "Kaikki tapahtumatagit"
+
+#: ../events-maker.php:710
+msgid "Edit Event Tag"
+msgstr "Muokkaa tapahtumatagia"
+
+#: ../events-maker.php:711
+msgid "Update Event Tag"
+msgstr "Päivitä tapahtumatagi"
+
+#: ../events-maker.php:712
+msgid "Add New Event Tag"
+msgstr "Lisää uusi tapahtumatagi"
+
+#: ../events-maker.php:713
+msgid "New Event Tag Name"
+msgstr "Uuden tapahtumatagin nimi"
+
+#: ../events-maker.php:714
+msgid "Separate event tags with commas"
+msgstr "Erottele tapahtumatagit pilkuilla"
+
+#: ../events-maker.php:715
+msgid "Add or remove event tags"
+msgstr "Lisää tai poista tageja"
+
+#: ../events-maker.php:716
+msgid "Choose from the most used event tags"
+msgstr "Valitse useimmin käytetyistä tageista"
+
+#: ../events-maker.php:717 ../includes/class-settings.php:280
+#: ../includes/class-settings.php:321 ../includes/class-settings.php:340
+msgid "Tags"
+msgstr "Taigt"
+
+#: ../events-maker.php:749
+msgctxt "taxonomy general name"
+msgid "Organizers"
+msgstr "Järjestäjät"
+
+#: ../events-maker.php:750
+msgctxt "taxonomy singular name"
+msgid "Event Organizer"
+msgstr "Tapahtuman järjestäjä"
+
+#: ../events-maker.php:751
+msgid "Search Event Organizers"
+msgstr "Hae järjestäjistä"
+
+#: ../events-maker.php:752
+msgid "All Event Organizers"
+msgstr "Kaikki tapahtumajärjestäjät"
+
+#: ../events-maker.php:753
+msgid "Parent Event Organizer"
+msgstr "Päätapahtumajärjestäjä"
+
+#: ../events-maker.php:754
+msgid "Parent Event Organizer:"
+msgstr "Päätapahtumajärjestäjä:"
+
+#: ../events-maker.php:755
+msgid "Edit Event Organizer"
+msgstr "Muokkaa tapahtumajärjestäjää"
+
+#: ../events-maker.php:756
+msgid "View Event Organizer"
+msgstr "Katso tapahtumajärjestäjä"
+
+#: ../events-maker.php:757
+msgid "Update Event Organizer"
+msgstr "Päivitä tapahtumajärjestäjä"
+
+#: ../events-maker.php:758
+msgid "Add New Event Organizer"
+msgstr "Lisää uusi tapahtumajärjestäjä"
+
+#: ../events-maker.php:759
+msgid "New Event Organizer Name"
+msgstr "Uuden tapahtumajärjestäjän nimi"
+
+#: ../events-maker.php:760 ../includes/class-settings.php:281
+#: ../includes/class-settings.php:326 ../includes/class-settings.php:345
+msgid "Organizers"
+msgstr "Järjestäjät"
+
+#: ../events-maker.php:795
+msgctxt "post type general name"
+msgid "Events"
+msgstr "Tapahtumat"
+
+#: ../events-maker.php:796
+msgctxt "post type singular name"
+msgid "Event"
+msgstr "Tapahtuma"
+
+#: ../events-maker.php:797 ../includes/class-widgets.php:719
+#: ../includes/template-functions.php:594
+msgid "Events"
+msgstr "Tapahtumat"
+
+#: ../events-maker.php:798
+msgid "All Events"
+msgstr "Kaikki tapahtumat"
+
+#: ../events-maker.php:799
+msgid "Add New"
+msgstr "Lisää uusi"
+
+#: ../events-maker.php:800
+msgid "Add New Event"
+msgstr "Lisää uusi tapahtuma"
+
+#: ../events-maker.php:801
+msgid "Edit Event"
+msgstr "Muokkaa tapahtumaa"
+
+#: ../events-maker.php:802
+msgid "New Event"
+msgstr "Uusi tapahtuma"
+
+#: ../events-maker.php:803
+msgid "View Event"
+msgstr "Katso tapahtuma"
+
+#: ../events-maker.php:804
+msgid "Event Archive"
+msgstr "Tapahtuma-arkisto"
+
+#: ../events-maker.php:805
+msgid "Search Event"
+msgstr "Hae tapahtumaa"
+
+#: ../events-maker.php:806
+msgid "No events found"
+msgstr "Tapahtumia ei löytynyt."
+
+#: ../events-maker.php:807
+msgid "No events found in trash"
+msgstr "Tapahtumia ei löytynyt roskakorista."
+
+#: ../events-maker.php:881
+#, php-format
+msgid "Event updated. <a href=\"%s\">View event</a>"
+msgstr "Tapahtuma päivitetty. <a href=\"%s\">Katso tapahtuma</a>"
+
+#: ../events-maker.php:882
+msgid "Custom field updated."
+msgstr "Kenttä päivitetty"
+
+#: ../events-maker.php:883
+msgid "Custom field deleted."
+msgstr "Kenttä poistetu"
+
+#: ../events-maker.php:884
+msgid "Event updated."
+msgstr "Tapahtuma päivitetty"
+
+#: ../events-maker.php:886
+#, php-format
+msgid "Event restored to revision from %s"
+msgstr "Tapahtuma palautettu versiosta %s"
+
+#: ../events-maker.php:887
+#, php-format
+msgid "Event published. <a href=\"%s\">View event</a>"
+msgstr "Tapahtuma julkaistu. <a href=\"%s\">Katso tapahtuma</a>"
+
+#: ../events-maker.php:888
+msgid "Event saved."
+msgstr "Tapahtuma tallennettu"
+
+#: ../events-maker.php:889
+#, php-format
+msgid "Event submitted. <a target=\"_blank\" href=\"%s\">Preview event</a>"
+msgstr ""
+"Tapahtuma lisätty. <a target=\"_blank\" href=\"%s\">Esikatsele tapahtuma</a>"
+
+#: ../events-maker.php:890
+#, php-format
+msgid ""
+"Event scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s"
+"\">Preview event</a>"
+msgstr ""
+"Tapahtuma ajastettu:<strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s"
+"\">Esikatsele tapahtuma</a>"
+
+#: ../events-maker.php:892
+msgid "M j, Y @ G:i"
+msgstr "j.n.Y H:i\t"
+
+#: ../events-maker.php:893
+#, php-format
+msgid "Event draft updated. <a target=\"_blank\" href=\"%s\">Preview event</a>"
+msgstr ""
+"Tapahtuman luonnos päivitetty. <a target=\"_blank\" href=\"%s\">Esikatsele "
+"tapahtuma</a>"
+
+#: ../events-maker.php:951 ../includes/class-taxonomies.php:188
+#: ../includes/class-taxonomies.php:230 ../includes/class-taxonomies.php:359
+#: ../includes/class-taxonomies.php:429
+msgid "Select image"
+msgstr "Valitse kuva"
+
+#: ../events-maker.php:952
+msgid "Add image"
+msgstr "Lisää kuvaa"
+
+#: ../events-maker.php:989
+msgid "Are you sure you want to reset these settings to defaults?"
+msgstr "Oletko varma, että haluat palauttaa oletusasetukset?"
+
+#: ../events-maker.php:1095 ../includes/class-welcome.php:48
+msgid "Support"
+msgstr "Tue"
+
+#: ../events-maker.php:1121
+msgid "View Calendar"
+msgstr "Katso kalenteri"
+
+#: ../includes/class-listing.php:58
+msgid "Start Date"
+msgstr "Alkamisajankohta"
+
+#: ../includes/class-listing.php:59
+msgid "End Date"
+msgstr "Loppumisajankohta"
+
+#: ../includes/class-listing.php:130
+msgid "Start"
+msgstr "Alkaa"
+
+#: ../includes/class-listing.php:131
+msgid "End"
+msgstr "Loppuu"
+
+#: ../includes/class-listing.php:132 ../includes/class-metaboxes.php:299
+msgid "Recurrence"
+msgstr "Toisto"
+
+#: ../includes/class-listing.php:135 ../includes/class-settings.php:282
+#: ../templates/single-event/tickets.php:41
+#: ../templates/single-event/tickets.php:55
+msgid "Tickets"
+msgstr "Liput"
+
+#: ../includes/class-listing.php:166
+msgid "Paid"
+msgstr "Maksullinen"
+
+#: ../includes/class-listing.php:179 ../templates/single-event/tickets.php:57
+msgid "Free"
+msgstr "Ilmainen"
+
+#: ../includes/class-metaboxes.php:48
+msgid "Ticket Name"
+msgstr "Lipun nimi"
+
+#: ../includes/class-metaboxes.php:49
+msgid "Price"
+msgstr "Hinta"
+
+#: ../includes/class-metaboxes.php:61
+msgid "Event Display Options"
+msgstr "Tapahtumien näyttämisen asetukset"
+
+#: ../includes/class-metaboxes.php:68
+msgid "Event Date and Time"
+msgstr "Tapahtuman ajankohta"
+
+#: ../includes/class-metaboxes.php:75
+msgid "Event Tickets"
+msgstr "Tapahtuman liput"
+
+#: ../includes/class-metaboxes.php:136 ../includes/class-metaboxes.php:140
+#: ../includes/class-metaboxes.php:379 ../includes/class-metaboxes.php:423
+#: ../includes/class-metaboxes.php:439 ../includes/class-metaboxes.php:495
+#: ../includes/class-metaboxes.php:511
+msgid "Delete"
+msgstr "Poista"
+
+#: ../includes/class-metaboxes.php:138 ../includes/class-metaboxes.php:290
+#: ../includes/class-metaboxes.php:378 ../includes/class-metaboxes.php:422
+#: ../includes/class-metaboxes.php:438
+msgid "Start date/time"
+msgstr "Alkamisajankohta"
+
+#: ../includes/class-metaboxes.php:139 ../includes/class-metaboxes.php:293
+#: ../includes/class-metaboxes.php:382 ../includes/class-metaboxes.php:426
+#: ../includes/class-metaboxes.php:442
+msgid "End date/time"
+msgstr "Loppumisajankohta"
+
+#: ../includes/class-metaboxes.php:141
+msgid "Are you sure you want to delete this ticket?"
+msgstr "Oletko varma, että haluat poistaa tämän lipun?"
+
+#: ../includes/class-metaboxes.php:142
+msgid "Are you sure you want to delete this occurrence?"
+msgstr "Oletko varma, että haluat poistaa tämän toiston?"
+
+#: ../includes/class-metaboxes.php:150 ../includes/class-metaboxes.php:347
+msgid "day"
+msgid_plural "days"
+msgstr[0] "päivä"
+msgstr[1] "päivää"
+
+#: ../includes/class-metaboxes.php:151
+msgid "days"
+msgstr "päivää"
+
+#: ../includes/class-metaboxes.php:152 ../includes/class-metaboxes.php:349
+msgid "week"
+msgid_plural "weeks"
+msgstr[0] "viikko"
+msgstr[1] "viikkoa"
+
+#: ../includes/class-metaboxes.php:153
+msgid "weeks"
+msgstr "viikkoa"
+
+#: ../includes/class-metaboxes.php:154 ../includes/class-metaboxes.php:351
+msgid "month"
+msgid_plural "months"
+msgstr[0] "kuukausi"
+msgstr[1] "kuukautta"
+
+#: ../includes/class-metaboxes.php:155
+msgid "months"
+msgstr "kuukautta"
+
+#: ../includes/class-metaboxes.php:156 ../includes/class-metaboxes.php:353
+msgid "year"
+msgid_plural "years"
+msgstr[0] "vuosi"
+msgstr[1] "vuotta"
+
+#: ../includes/class-metaboxes.php:157
+msgid "years"
+msgstr "vuotta"
+
+#: ../includes/class-metaboxes.php:296
+msgid "All-day event?"
+msgstr "Kestää koko päivän?"
+
+#: ../includes/class-metaboxes.php:336
+msgid "day of the month"
+msgstr "kuukauden päivä"
+
+#: ../includes/class-metaboxes.php:336
+msgid "day of the week"
+msgstr "viikonpäivä"
+
+#: ../includes/class-metaboxes.php:344
+msgid "Repeat every"
+msgstr "Toista joka"
+
+#: ../includes/class-metaboxes.php:344
+msgid "until"
+msgstr "saakka"
+
+#: ../includes/class-metaboxes.php:376 ../includes/class-metaboxes.php:420
+#: ../includes/class-metaboxes.php:436
+msgid "Separate end date"
+msgstr "Erillinen loppumisajankohta"
+
+#: ../includes/class-metaboxes.php:387
+msgid "Add new occurrence"
+msgstr "Lisää uusia toistoja"
+
+#: ../includes/class-metaboxes.php:473
+msgid "Is this a free event?"
+msgstr "Onko tämä ilmainen tapahtuma?"
+
+#: ../includes/class-metaboxes.php:478
+msgid "Add new ticket"
+msgstr "Lisää uusi lippu"
+
+#: ../includes/class-metaboxes.php:520
+#: ../templates/single-event/tickets.php:70
+msgid "Buy tickets URL"
+msgstr "Lippujen ostamisosoite"
+
+#: ../includes/class-metaboxes.php:542 ../includes/class-metaboxes.php:839
+#: ../includes/class-settings.php:428
+msgid "Display Google Map"
+msgstr "Näytä Google Map"
+
+#: ../includes/class-metaboxes.php:543 ../includes/class-metaboxes.php:840
+#: ../includes/class-settings.php:429
+msgid "Display Location Details"
+msgstr "Näytä tapahtumapaikan tiedot"
+
+#: ../includes/class-metaboxes.php:548 ../includes/class-metaboxes.php:845
+#: ../includes/class-settings.php:434
+msgid "Display Tickets Info"
+msgstr "Näytä lipputiedot"
+
+#: ../includes/class-metaboxes.php:551 ../includes/class-metaboxes.php:848
+#: ../includes/class-settings.php:437
+msgid "Display Organizer Details"
+msgstr "Näytä järjestäjätiedot"
+
+#: ../includes/class-settings.php:71 ../includes/class-widgets.php:744
+msgid "Publish date"
+msgstr "Julkaisuajankohta"
+
+#: ../includes/class-settings.php:72
+msgid "Events start date"
+msgstr "Tapahtumien alkamisajankohta"
+
+#: ../includes/class-settings.php:73
+msgid "Events end date"
+msgstr "Tapahtumien loppumisajankohta"
+
+#: ../includes/class-settings.php:77 ../includes/class-widgets.php:70
+#: ../includes/class-widgets.php:749 ../includes/class-widgets.php:1084
+#: ../includes/class-widgets.php:1201 ../includes/class-widgets.php:1318
+msgid "Ascending"
+msgstr "Nouseva"
+
+#: ../includes/class-settings.php:78 ../includes/class-widgets.php:71
+#: ../includes/class-widgets.php:750 ../includes/class-widgets.php:1085
+#: ../includes/class-widgets.php:1202 ../includes/class-widgets.php:1319
+msgid "Descending"
+msgstr "Laskeva"
+
+#: ../includes/class-settings.php:82
+msgid "selected page"
+msgstr "valittu sivu"
+
+#: ../includes/class-settings.php:83
+msgid "manually"
+msgstr "käsin"
+
+#: ../includes/class-settings.php:87
+msgid "before the content"
+msgstr "ennen sisältöä"
+
+#: ../includes/class-settings.php:88
+msgid "after the content"
+msgstr "sisällön jälkeen"
+
+#: ../includes/class-settings.php:100
+msgid "General settings saved."
+msgstr "Yleiset asetukset tallennettu."
+
+#: ../includes/class-settings.php:101
+msgid "Templates settings saved."
+msgstr "Teemapohjien asetukset tallennettu."
+
+#: ../includes/class-settings.php:102
+msgid "Capabilities settings saved."
+msgstr "Oikeuksien asetukset tallennettu"
+
+#: ../includes/class-settings.php:103
+msgid "Permalinks settings saved."
+msgstr "Osoiterakenteen asetukset tallennettu."
+
+#: ../includes/class-settings.php:104
+msgid "General settings restored to defaults."
+msgstr "Yleiset asetukset palautettu oletuksiin."
+
+#: ../includes/class-settings.php:105
+msgid "Templates settings restored to defaults."
+msgstr "Teemapohjien asetukset palautettu oletuksiin."
+
+#: ../includes/class-settings.php:106
+msgid "Capabilities settings restored to defaults."
+msgstr "Oikeuksien asetukset palautettu oletuksiin."
+
+#: ../includes/class-settings.php:107
+msgid "Permalinks settings restored to defaults."
+msgstr "Osoiterakenteen asetukset palautettu oletuksiin."
+
+#: ../includes/class-settings.php:108
+msgid "There is no such menu."
+msgstr "Valikkoa ei ole olemassa."
+
+#: ../includes/class-settings.php:109
+msgid "Menu name can not be empty."
+msgstr "Valikon nimi ei voi olla tyhjä."
+
+#: ../includes/class-settings.php:114
+msgid "General"
+msgstr "Yleinen"
+
+#: ../includes/class-settings.php:120
+msgid "Templates"
+msgstr "Teemapohjat"
+
+#: ../includes/class-settings.php:126
+msgid "Capabilities"
+msgstr "Oikeudet"
+
+#: ../includes/class-settings.php:132
+msgid "Permalinks"
+msgstr "Osoiterakenne"
+
+#: ../includes/class-settings.php:140
+msgid "Publish Events"
+msgstr "Julkaista tapahtumia"
+
+#: ../includes/class-settings.php:141
+msgid "Edit Events"
+msgstr "Muokkaa tapahtumia"
+
+#: ../includes/class-settings.php:142
+msgid "Edit Others Events"
+msgstr "Muokkaa muiden tapahtumia"
+
+#: ../includes/class-settings.php:143
+msgid "Edit Published Events"
+msgstr "Muokkaa julkaistuja tapahtumia"
+
+#: ../includes/class-settings.php:144
+msgid "Delete Published Events"
+msgstr "Poistaa julkaistuja tapahtumia"
+
+#: ../includes/class-settings.php:145
+msgid "Delete Events"
+msgstr "Poistaa tapahtumia"
+
+#: ../includes/class-settings.php:146
+msgid "Delete Others Events"
+msgstr "Poistaa muiden tapahtumia"
+
+#: ../includes/class-settings.php:147
+msgid "Read Private Events"
+msgstr "Lukea yksityisiä tapahtumia"
+
+#: ../includes/class-settings.php:148
+msgid "Manage Event Categories"
+msgstr "Hallinnoida tapahtumakategorioita"
+
+#: ../includes/class-settings.php:152
+msgid "title"
+msgstr "otsikko"
+
+#: ../includes/class-settings.php:153
+msgid "editor"
+msgstr "kirjoittaja"
+
+#: ../includes/class-settings.php:154
+msgid "author"
+msgstr "kirjoittaja"
+
+#: ../includes/class-settings.php:155
+msgid "thumbnail"
+msgstr "artikkelikuva"
+
+#: ../includes/class-settings.php:156
+msgid "excerpt"
+msgstr "lyhennelmä"
+
+#: ../includes/class-settings.php:157
+msgid "custom fields"
+msgstr "avainkentät"
+
+#: ../includes/class-settings.php:158
+msgid "comments"
+msgstr "kommentit"
+
+#: ../includes/class-settings.php:159
+msgid "trackbacks"
+msgstr "linkki-ilmoitukset"
+
+#: ../includes/class-settings.php:160
+msgid "revisions"
+msgstr "versiot"
+
+#: ../includes/class-settings.php:164
+msgid "Manage Event Tags"
+msgstr "Hallitse tapahtumatageja"
+
+#: ../includes/class-settings.php:166
+msgid "Manage Event Locations"
+msgstr "Hallitse tapahtumapaikkoja"
+
+#: ../includes/class-settings.php:169
+msgid "Manage Event Organizers"
+msgstr "Hallitse tapahtumajärjestäjiä"
+
+#: ../includes/class-settings.php:187 ../includes/class-settings.php:200
+#: ../includes/class-welcome.php:46
+msgid "Settings"
+msgstr "Asetukset"
+
+#: ../includes/class-settings.php:213 ../includes/class-settings.php:226
+msgid "Events Maker"
+msgstr "Tapahtumakalenteri"
+
+#: ../includes/class-settings.php:228
+msgid "Need support?"
+msgstr "Tarvitseko apua?"
+
+#: ../includes/class-settings.php:229
+msgid "If you are having problems with this plugin, checkout plugin"
+msgstr "Jos sinulla on ongelmia tämän lisäosan kanssa, katso lisäosa"
+
+#: ../includes/class-settings.php:229 ../includes/class-welcome.php:47
+msgid "Documentation"
+msgstr "Dokumentaatio"
+
+#: ../includes/class-settings.php:229
+msgid "or talk about them in the"
+msgstr "tai keskustele niistä"
+
+#: ../includes/class-settings.php:229
+msgid "Support forum"
+msgstr "Tukifoorumeilla"
+
+#: ../includes/class-settings.php:231
+msgid "Do you like this plugin?"
+msgstr "Tykkäätkö tästä lisäosasta?"
+
+#: ../includes/class-settings.php:232
+msgid "Rate it 5"
+msgstr "Anna sille 5"
+
+#: ../includes/class-settings.php:232
+msgid "on WordPress.org"
+msgstr "WordPress.org -sivustolla"
+
+#: ../includes/class-settings.php:233
+msgid "Blog about it & link to the"
+msgstr "Bloggaa siitä ja linkitä"
+
+#: ../includes/class-settings.php:233
+msgid "plugin page"
+msgstr "Lisäosan sivu"
+
+#: ../includes/class-settings.php:234
+msgid "Check out our other"
+msgstr "Katso meidän muut"
+
+#: ../includes/class-settings.php:234
+msgid "WordPress plugins"
+msgstr "WordPress -lisäosat"
+
+#: ../includes/class-settings.php:243
+msgid "Created by"
+msgstr "Tehnyt"
+
+#: ../includes/class-settings.php:260
+msgid "Reset to defaults"
+msgstr "Palauta oletusasetukset"
+
+#: ../includes/class-settings.php:278
+msgid "General settings"
+msgstr "Yleiset asetukset"
+
+#: ../includes/class-settings.php:279
+msgid "Event features support"
+msgstr "Tapahtumien ominaisuuksien tuki"
+
+#: ../includes/class-settings.php:283
+msgid "Event default options"
+msgstr "Tapahtuman oletusasetukset"
+
+#: ../includes/class-settings.php:284
+msgid "Full Calendar display"
+msgstr "Täysi kalenterinäkymä"
+
+#: ../includes/class-settings.php:285
+msgid "RSS feed"
+msgstr "RSS-syöte"
+
+#: ../includes/class-settings.php:286
+msgid "Deactivation"
+msgstr "Käytöstä poistaminen"
+
+#: ../includes/class-settings.php:289
+msgid "Currency settings"
+msgstr "Valuutta-asetukset"
+
+#: ../includes/class-settings.php:290
+msgid "Currency"
+msgstr "Valuutta"
+
+#: ../includes/class-settings.php:291
+msgid "Currency position"
+msgstr "Valuutan sijainti"
+
+#: ../includes/class-settings.php:292
+msgid "Currency symbol"
+msgstr "Valuuttamerkki"
+
+#: ../includes/class-settings.php:293
+msgid "Currency display format"
+msgstr "Valuutan muoto"
+
+#: ../includes/class-settings.php:296
+msgid "Query settings"
+msgstr "Kyselyn asetukset"
+
+#: ../includes/class-settings.php:297 ../includes/class-widgets.php:852
+#: ../includes/class-widgets.php:1120 ../includes/class-widgets.php:1237
+#: ../includes/class-widgets.php:1354
+msgid "Order by"
+msgstr "Järjestä"
+
+#: ../includes/class-settings.php:298
+msgid "Sort order"
+msgstr "Järjestys"
+
+#: ../includes/class-settings.php:299
+msgid "Past events"
+msgstr "Menneet tapahtumat"
+
+#: ../includes/class-settings.php:300
+msgid "Current events"
+msgstr "Nykyiset tapahtumat"
+
+#: ../includes/class-settings.php:301
+msgid "Occurrences"
+msgstr "Toistot"
+
+#: ../includes/class-settings.php:304
+msgid "Other settings"
+msgstr "Muut asetukset"
+
+#: ../includes/class-settings.php:305
+msgid "Link in menu"
+msgstr "Linkki valikossa"
+
+#: ../includes/class-settings.php:306
+msgid "Date and time format"
+msgstr "Päivämäärän ja ajan muotoilu"
+
+#: ../includes/class-settings.php:307
+msgid "First day of the week"
+msgstr "Viikon ensimmäinen päivä"
+
+#: ../includes/class-settings.php:311
+msgid "Templates settings"
+msgstr "Teemapohjien asetukset"
+
+#: ../includes/class-settings.php:312
+msgid "Default templates"
+msgstr "Oletuspohjat"
+
+#: ../includes/class-settings.php:313
+msgid "Events archive"
+msgstr "Tapahtuma-arkisto"
+
+#: ../includes/class-settings.php:314
+msgid "Archive event content"
+msgstr "Arkiston tapahtuman sisältö"
+
+#: ../includes/class-settings.php:315 ../includes/class-settings.php:336
+msgid "Single event"
+msgstr "Yksittäinen tapahtuma"
+
+#: ../includes/class-settings.php:316
+msgid "Single event content"
+msgstr "Yksittäisen tapahtuman sisältö"
+
+#: ../includes/class-settings.php:317
+msgid "Widget event content"
+msgstr "Vimpaimen tapahtuman sisältö"
+
+#: ../includes/class-settings.php:330
+msgid "Capabilities settings"
+msgstr "Oikeuksien asetukset"
+
+#: ../includes/class-settings.php:334
+msgid "Permalinks settings"
+msgstr "Osoiterakenteen asetukset"
+
+#: ../includes/class-settings.php:335
+msgid "Events base"
+msgstr "Tapahtumien alkuosa"
+
+#: ../includes/class-settings.php:368
+msgid "Select which features would you like to enable for your events."
+msgstr "Valitse, mitkä toiminnot haluat ottaa käyttöön tapahtumillesi"
+
+#: ../includes/class-settings.php:382
+msgid "Enable Event Tags"
+msgstr "Ota käyttöön tapahtumatagit"
+
+#: ../includes/class-settings.php:384
+msgid "Enable if you want to use Event Tags."
+msgstr "Valitse, jos haluat käyttää tapahtumatageja."
+
+#: ../includes/class-settings.php:398
+msgid "Enable Event Organizers"
+msgstr "Ota käyttöön tapahtumajärjestäjät"
+
+#: ../includes/class-settings.php:400
+msgid ""
+"Enable if you want to use Event Organizers (including organizer contact "
+"details)."
+msgstr ""
+"Ota käyttöön, jos haluat käyttää tapahtumajärjestäjiä (mukaanlukien "
+"järjestäjän lisätiedot)."
+
+#: ../includes/class-settings.php:414
+msgid "Enable Event Tickets"
+msgstr "Ota käyttää tapahtumien liput"
+
+#: ../includes/class-settings.php:416
+msgid ""
+"Enable if you want to use Event Tickets (including free events, paid events "
+"and multiple ticket types)."
+msgstr ""
+"Ota käyttöön, jos haluat käyttää tapahtumien lippuja (mukaanlukien ilmaiset "
+"tapahtumat, maksullise tapahtumat ja useat lippuvaihtoehdot)."
+
+#: ../includes/class-settings.php:454
+msgid ""
+"Select default display options for single event (this can overriden for each "
+"event separately)."
+msgstr ""
+"Valitse oletusnäyttämisasetukset yksittäisille tapahtumille (nämä voidaan "
+"ylikirjoittaa tapahtumakohtaisesti)"
+
+#: ../includes/class-settings.php:503
+msgid "There are no pages."
+msgstr "Sivuja ei ole."
+
+#: ../includes/class-settings.php:507
+msgid ""
+"Select how and where would you like to display events full calendar. Use "
+"<code>[em-full-calendar]</code> shortcode for manual display."
+msgstr ""
+"Valitse, missä ja miten haluaisit näyttää täyden tapahtumakalenterin. Käytä "
+"code>[em-full-calendar]</code> lyhytkoodia näyttääksesi kalenterin "
+"manuaalisesti."
+
+#: ../includes/class-settings.php:521
+msgid "Enable RSS feed"
+msgstr "Ota käyttöön RSS-syötteet"
+
+#: ../includes/class-settings.php:523
+msgid "Enable to include events in your website main RSS feed."
+msgstr "Ota käyttöön sisällyttääksesi tapahtumat sivustosi RSS-syötteeseen."
+
+#: ../includes/class-settings.php:537
+msgid "Enable delete on deactivation"
+msgstr "Ota käyttöön poistaminen, kun lisäosa otetaan pois käytöstä"
+
+#: ../includes/class-settings.php:539
+msgid "Enable if you want all plugin data to be deleted on deactivation."
+msgstr ""
+"Ota käyttöön, jos haluat poistaa kaikki lisäosan tiedot, kun lisäosa otetaan "
+"pois käytöstä."
+
+#: ../includes/class-settings.php:564
+msgid "Choose the currency that will be used for ticket prices."
+msgstr "Valitse valuutta, jota käytetään lippujen hinnoissa."
+
+#: ../includes/class-settings.php:587
+msgid "Choose the location of the currency sign."
+msgstr "Valitse valuuttamerkin sijainti."
+
+#: ../includes/class-settings.php:603
+msgid ""
+"This will appear next to all the currency figures on the website. Ex. $, "
+"USD, €..."
+msgstr "Tämä näytetään kaikkien valuuttojen vieressä. Esm. $ tai €."
+
+#: ../includes/class-settings.php:628
+msgid ""
+"This determines how your currency is displayed. Ex. 1,234.56 or 1,200 or "
+"1200."
+msgstr ""
+"Tämä määrää, kuinka valuutta esitetään.  Esim. 1,234.56 tai 1,200 tai 1200."
+
+#: ../includes/class-settings.php:651
+msgid ""
+"Select how to order your events list (works for both: admin and front-end "
+"default query)."
+msgstr ""
+"Valitse kuinka tapahtumalista järjestetään (toimii sekä hallintapaneelissa "
+"että sivuston puolella)."
+
+#: ../includes/class-settings.php:674
+msgid ""
+"Select events list order (works for both: admin and front-end default query)."
+msgstr ""
+"Valitse tapahtumalistan järjestys (toimii sekä hallintapaneelissa että "
+"sivuston puolella)."
+
+#: ../includes/class-settings.php:688 ../includes/class-widgets.php:272
+msgid "Show past events"
+msgstr "Näytä menneet tapahtumat"
+
+#: ../includes/class-settings.php:690
+msgid ""
+"Select whether to include past events in events list (works for front-end "
+"default query)."
+msgstr ""
+"Valitse haluatko sisällyttää menneet tapahtumat tapahtumalistaan (toimii "
+"sivuston puolella)."
+
+#: ../includes/class-settings.php:704
+msgid "Expire current events"
+msgstr "Piilota käynnissä olevat tapahtumat"
+
+#: ../includes/class-settings.php:706
+msgid ""
+"Select how to handle already started events (works for front-end default "
+"query)."
+msgstr ""
+"Valitse kuinka käynnissä olevat tapahtumat käsitellään (toimii sivuston "
+"puolella)."
+
+#: ../includes/class-settings.php:720
+msgid "Show occurrences"
+msgstr "Näytä toistot"
+
+#: ../includes/class-settings.php:722
+msgid ""
+"Select whether to include event occurrences in events list (works for front-"
+"end default query)."
+msgstr ""
+"Valitse näytetäänkö tapahtumien toistot tapahtumalistassa (toimii sivuston "
+"puolella)."
+
+#: ../includes/class-settings.php:738
+msgid "Show link in menu"
+msgstr "Näytä linkit valikossa"
+
+#: ../includes/class-settings.php:744
+msgid "Menu"
+msgstr "Valikko"
+
+#: ../includes/class-settings.php:755 ../includes/class-widgets.php:92
+#: ../includes/class-widgets.php:268 ../includes/class-widgets.php:745
+#: ../includes/class-widgets.php:792 ../includes/class-widgets.php:1112
+#: ../includes/class-widgets.php:1229 ../includes/class-widgets.php:1346
+msgid "Title"
+msgstr "Otsikko"
+
+#: ../includes/class-settings.php:757
+msgid ""
+"Note: if global WordPress permalinks were changed remember to save Events "
+"Maker general settings again."
+msgstr ""
+"Huomio: Jos WordPressin osoiterakennetta on muutettu muista päivittää "
+"Tapahtumakalenterin asetukset uudelleen."
+
+#: ../includes/class-settings.php:761
+msgid "Note: there is no menu to which you could add events archive link."
+msgstr ""
+"Huomio: Ei ole valikoita, joihin tapahtuma-arkiston linkki voitaisiin lisätä."
+
+#: ../includes/class-settings.php:767
+msgid ""
+"Select if you want to automatically add events archive link to nav menu."
+msgstr ""
+"Valitse, jos haluat automaattisesti lisätä tapahtuma-arkiston linkin "
+"valikkoon."
+
+#: ../includes/class-settings.php:781
+msgid "Date"
+msgstr "Ajankohta"
+
+#: ../includes/class-settings.php:783
+msgid "Time"
+msgstr "Aika"
+
+#: ../includes/class-settings.php:785
+msgid "Enter your preffered date and time formatting."
+msgstr "Syötä haluamasi ajan ja päivämäärän muotoilu."
+
+#: ../includes/class-settings.php:806
+msgid "Select preffered first day of the week for the calendar display."
+msgstr "Valitse kalenterinäkymän viikon ensimmäinen päivä."
+
+#: ../includes/class-settings.php:820
+msgid "Enable to use default templates"
+msgstr "Ota käyttöön käyttääksesi oletuspohjia"
+
+#: ../includes/class-settings.php:822
+msgid ""
+"For each of the events pages, the corresponding template is used. To use "
+"your own template simply give it the same name and store in your theme "
+"folder. By default, if Events Maker can't find a template in your theme "
+"directory, it will use its own default template. To prevent this, uncheck "
+"this option. WordPress will then decide which template from your theme's "
+"folder to use."
+msgstr ""
+"Jokainen tapahtumasivu käyttää oheista pohjaa. Voit ylikirjoittaa pohjat "
+"luomalla samannimisen pohjan teemasi kansioon. Oletuksena tapahtumakalenteri "
+"käyttää omia pohjiaan, jos näitä ei löydy teemasta. Voit estää tämän "
+"poistamalla valinnan tästä kohdasta. Tällöin WordPress valitsee oman "
+"hierarkiansa mukaan sivupohjan teemasi tiedostoista."
+
+#: ../includes/class-settings.php:960
+msgid "These settings will work only if permalinks are enabled."
+msgstr ""
+"Nämä asetukset toimivat vain jos helposti luettava osoiterakenne on käytössä "
+"(esim. /esimerkki-artikkeli/)."
+
+#: ../includes/class-settings.php:975
+msgid "General Events root slug to prefix all your events pages with."
+msgstr ""
+"Yleinen etuliite, joka tulee kaikkien tapahtumasivujen osoitteiden eteen."
+
+#: ../includes/class-settings.php:992
+msgid "Single event page slug."
+msgstr "Yksittäisen tapahtuman sivun osoite."
+
+#: ../includes/class-settings.php:1009
+msgid "Event Locations page slug."
+msgstr "Tapahtumapaikan sivun osoite."
+
+#: ../includes/class-settings.php:1026
+msgid "Event Categories page slug."
+msgstr "Tapahtumakategorian sivun osoite."
+
+#: ../includes/class-settings.php:1043
+msgid "Event Tags page slug."
+msgstr "Tapahtumatagin sivun osoite."
+
+#: ../includes/class-settings.php:1060
+msgid "Event Organizers page slug."
+msgstr "Tapahtumajärjestäjän sivun osoite."
+
+#: ../includes/class-settings.php:1079
+msgid "Role"
+msgstr "Rooli"
+
+#: ../includes/class-settings.php:1083
+msgid "None"
+msgstr "Ei mitään"
+
+#: ../includes/class-shortcodes.php:127
+msgid "Calendar page was created successfully on all of the network sites."
+msgstr "Kalenterisivu luotiin onnistuneesti kaikkiin verkoston sivuihin."
+
+#: ../includes/class-shortcodes.php:129
+msgid ""
+"Calendar page was not created on all of the network sites. You can try to "
+"create it manually later."
+msgstr ""
+"Kalenterisivua ei luoto kaikkiin verkostosi sivuihin. Yritä luoda sivu käsin "
+"myöhemmin."
+
+#: ../includes/class-shortcodes.php:131
+msgid ""
+"Calendar page was not created on some of the network sites. You can try to "
+"create it manually later."
+msgstr ""
+"Kalenterisivua ei luotu hoihinkin verkostosi sivuihin. Yritä luoda sivu "
+"käsin myöhemmin."
+
+#: ../includes/class-shortcodes.php:179
+msgid ""
+"Events Maker needs to create a page for your events calendar display. Would "
+"you like to do it automatically?"
+msgstr ""
+"Tapahtumakalenterin täytyy luoda sivu tapahtumien näyttämistä varten. "
+"Haluatko luoda sen automaattisesti?"
+
+#: ../includes/class-shortcodes.php:179
+msgid "Create Calendar Page"
+msgstr "Luo kalenterisivu"
+
+#: ../includes/class-shortcodes.php:179
+msgid "No thanks"
+msgstr "Ei kiitos"
+
+#: ../includes/class-shortcodes.php:222 ../includes/class-widgets.php:168
+#: ../includes/class-widgets.php:182
+msgid "Events Calendar"
+msgstr "Tapahtumakalenteri"
+
+#: ../includes/class-shortcodes.php:240
+msgid "Calendar page was created successfully."
+msgstr "Kalenterisivu luotiin onnistuneesti."
+
+#: ../includes/class-shortcodes.php:250
+msgid ""
+"Calendar page was not created successfully. You can try to create it "
+"manually later."
+msgstr ""
+"Kalenterisivun luominen ei onnistunut. Voit yrittää luoda sen käsin "
+"myöhemmin."
+
+#: ../includes/class-taxonomies.php:47
+msgid "Color"
+msgstr "Väri"
+
+#: ../includes/class-taxonomies.php:57
+msgid "Map"
+msgstr "Kartta"
+
+#: ../includes/class-taxonomies.php:63
+#: ../templates/loop-event/location-details.php:27
+msgid "Address"
+msgstr "Osoite"
+
+#: ../includes/class-taxonomies.php:69
+#: ../templates/loop-event/location-details.php:35
+msgid "City"
+msgstr "Kaupunki"
+
+#: ../includes/class-taxonomies.php:75
+#: ../templates/loop-event/location-details.php:39
+msgid "State / Province"
+msgstr "Maakunta"
+
+#: ../includes/class-taxonomies.php:81
+#: ../templates/loop-event/location-details.php:31
+msgid "Zip Code"
+msgstr "Postinumero"
+
+#: ../includes/class-taxonomies.php:87
+#: ../templates/loop-event/location-details.php:43
+msgid "Country"
+msgstr "Maa"
+
+#: ../includes/class-taxonomies.php:93 ../includes/class-taxonomies.php:126
+#: ../templates/loop-event/location-details.php:50
+#: ../templates/loop-event/organizer-details.php:46
+msgid "Image"
+msgstr "Kuva"
+
+#: ../includes/class-taxonomies.php:102
+#: ../templates/loop-event/organizer-details.php:27
+msgid "Contact name"
+msgstr "Yhteystiedon nimi"
+
+#: ../includes/class-taxonomies.php:108
+#: ../templates/loop-event/organizer-details.php:31
+msgid "Phone"
+msgstr "Puhelinnumero"
+
+#: ../includes/class-taxonomies.php:114
+msgid "E-mail"
+msgstr "Sähköpostiosoite"
+
+#: ../includes/class-taxonomies.php:120
+#: ../templates/loop-event/organizer-details.php:39
+msgid "Website"
+msgstr "Kotisivu"
+
+#: ../includes/class-taxonomies.php:189 ../includes/class-taxonomies.php:231
+#: ../includes/class-taxonomies.php:360 ../includes/class-taxonomies.php:430
+msgid "Remove image"
+msgstr "Poista kuva"
+
+#: ../includes/class-update.php:72
+msgid "Datebase was succesfully updated. Enjoy new features!"
+msgstr "Tietokanta päivitettiin onnistuneesti. Nauti uusista ominaisuuksista!"
+
+#: ../includes/class-update.php:79
+msgid ""
+"Events Maker new features require a database update. Make sure you backup "
+"your database and then click."
+msgstr ""
+
+#: ../includes/class-update.php:79
+msgid "Update"
+msgstr "Päivitä"
+
+#: ../includes/class-welcome.php:19 ../includes/class-welcome.php:37
+msgid "Welcome to Events Maker"
+msgstr "Tervetuloa Tapahtumakalenteriin"
+
+#: ../includes/class-welcome.php:41
+msgid ""
+"Events Maker is an easy to use but flexible events management plugin made "
+"the WordPress way."
+msgstr ""
+
+#: ../includes/class-welcome.php:49
+msgid "dFactory Plugins"
+msgstr ""
+
+#: ../includes/class-welcome.php:54
+msgid "About Events Maker"
+msgstr "Tietoja Events Maker -lisäosasta"
+
+#: ../includes/class-welcome.php:70
+msgid "Main Features"
+msgstr ""
+
+#: ../includes/class-welcome.php:76
+msgid "Easy Event Management"
+msgstr ""
+
+#: ../includes/class-welcome.php:77
+msgid ""
+"Set up date and time, title, desciption and other details of your events in "
+"a WordPress native interface."
+msgstr ""
+
+#: ../includes/class-welcome.php:82
+msgid "Locations and Organizers"
+msgstr "Paikat ja järjestäjät"
+
+#: ../includes/class-welcome.php:83
+msgid ""
+"Organize your events in reusable Categories, Tags, Locations and Organizers."
+msgstr ""
+
+#: ../includes/class-welcome.php:88
+msgid "Multiple Event Tickets"
+msgstr ""
+
+#: ../includes/class-welcome.php:89
+msgid ""
+"Create free or paid events and add as many different types of tickets as you "
+"need."
+msgstr ""
+
+#: ../includes/class-welcome.php:98
+msgid "6 Widgets incl. Ajax Calendar"
+msgstr ""
+
+#: ../includes/class-welcome.php:99
+msgid ""
+"Complete set of widgets allow you to display event details anywhere in a "
+"theme."
+msgstr ""
+
+#: ../includes/class-welcome.php:104
+msgid "Highly Customizable Settings"
+msgstr ""
+
+#: ../includes/class-welcome.php:105
+msgid ""
+"Easily control different areas of the plugin including Permalinks, "
+"Capabilities and many other."
+msgstr ""
+
+#: ../includes/class-welcome.php:110
+msgid "WPML Compatibility"
+msgstr ""
+
+#: ../includes/class-welcome.php:111
+msgid ""
+"Are you running a multilingual events site? Events Maker is fully compatible "
+"with WPML (and probably other multilingual plugins too)."
+msgstr ""
+
+#: ../includes/class-welcome.php:120
+msgid "Under the Hood"
+msgstr ""
+
+#: ../includes/class-welcome.php:124
+msgid "Custom Post Types & Custom Taxonomies"
+msgstr ""
+
+#: ../includes/class-welcome.php:125
+msgid ""
+"Events Maker is built using WordPress custom post types, custom taxonomies "
+"and custom post fields. "
+msgstr ""
+
+#: ../includes/class-welcome.php:128
+msgid "Filters and Actions"
+msgstr ""
+
+#: ../includes/class-welcome.php:129
+msgid ""
+"We have included various hooks and filters so you can plug-into these hooks "
+"to extend the functionalities."
+msgstr ""
+
+#: ../includes/class-welcome.php:133
+msgid "Custom Functions"
+msgstr ""
+
+#: ../includes/class-welcome.php:134
+msgid ""
+"There are 26 custom functions available. You can use it to make Events Maker "
+"suite your individual needs."
+msgstr ""
+
+#: ../includes/class-welcome.php:142
+msgid "Go to Events Maker Settings"
+msgstr "Mene tapahtumakalenterin asetuksiin"
+
+#: ../includes/class-widgets.php:49 ../includes/class-widgets.php:56
+msgid "Events Archives"
+msgstr "Tapahtuma-arkisto"
+
+#: ../includes/class-widgets.php:51
+msgid "Displays events archives"
+msgstr "Näyttää tapahtuma-arkiston"
+
+#: ../includes/class-widgets.php:65
+msgid "Monthly"
+msgstr "Kuukausittain"
+
+#: ../includes/class-widgets.php:66
+msgid "Yearly"
+msgstr "Vuosittain"
+
+#: ../includes/class-widgets.php:96 ../includes/class-widgets.php:1116
+#: ../includes/class-widgets.php:1233 ../includes/class-widgets.php:1350
+msgid "Display as dropdown"
+msgstr "Näytä alasvetovalikkona"
+
+#: ../includes/class-widgets.php:97
+msgid "Show amount of events"
+msgstr "Näytä tapahtumien määrä"
+
+#: ../includes/class-widgets.php:100
+msgid "Display Type"
+msgstr "Näkymän tyyppi"
+
+#: ../includes/class-widgets.php:113 ../includes/class-widgets.php:864
+#: ../includes/class-widgets.php:1132 ../includes/class-widgets.php:1249
+#: ../includes/class-widgets.php:1366
+msgid "Order"
+msgstr "Järjestys"
+
+#: ../includes/class-widgets.php:125
+msgid "Limit"
+msgstr "Määrä"
+
+#: ../includes/class-widgets.php:170
+msgid "Displays events calendar"
+msgstr "Näyttää tapahtumakalenterin"
+
+#: ../includes/class-widgets.php:192 ../includes/class-widgets.php:737
+msgid "all"
+msgstr "kaikki"
+
+#: ../includes/class-widgets.php:193 ../includes/class-widgets.php:738
+msgid "selected"
+msgstr "valittu"
+
+#: ../includes/class-widgets.php:197
+msgid "basic"
+msgstr "perus"
+
+#: ../includes/class-widgets.php:198
+msgid "dark"
+msgstr "tumma"
+
+#: ../includes/class-widgets.php:199
+msgid "light"
+msgstr "vaalea"
+
+#: ../includes/class-widgets.php:200
+msgid "flat"
+msgstr "flat"
+
+#: ../includes/class-widgets.php:273
+msgid "Highlight weekends"
+msgstr "Korosta viikonloput"
+
+#: ../includes/class-widgets.php:276
+msgid "CSS Style"
+msgstr "CSS-tyyli"
+
+#: ../includes/class-widgets.php:289 ../includes/class-widgets.php:800
+msgid "Event Categories"
+msgstr "Tapahtumakategoriat"
+
+#: ../includes/class-widgets.php:304 ../includes/class-widgets.php:815
+msgid "Event Locations"
+msgstr "Tapahtumapaikat"
+
+#: ../includes/class-widgets.php:325 ../includes/class-widgets.php:834
+msgid "Event Organizers"
+msgstr "Tapahtumajärjestäjät"
+
+#: ../includes/class-widgets.php:687 ../includes/class-widgets.php:1046
+msgid "No results were found."
+msgstr "Pahoittelut, ei tuloksia."
+
+#: ../includes/class-widgets.php:708
+msgid "Events List"
+msgstr "Tapahtumalista"
+
+#: ../includes/class-widgets.php:710
+msgid "Displays a list of events"
+msgstr "Näyttää listan tapahtumista"
+
+#: ../includes/class-widgets.php:731 ../includes/template-functions.php:35
+msgid "No Events"
+msgstr "Ei tapahtumia"
+
+#: ../includes/class-widgets.php:742
+msgid "Start date"
+msgstr "Alkamisajankohta"
+
+#: ../includes/class-widgets.php:743
+msgid "End date"
+msgstr "Loppumisajankohta"
+
+#: ../includes/class-widgets.php:796
+msgid "Number of events"
+msgstr "Tapahtumien määrä"
+
+#: ../includes/class-widgets.php:879
+msgid "Display past events"
+msgstr "Näytä menneet tapahtumat"
+
+#: ../includes/class-widgets.php:881
+msgid "Display event occurrenses"
+msgstr "Näytä tapahtuman toistot"
+
+#: ../includes/class-widgets.php:883
+msgid "Display event excerpt"
+msgstr "Näytä ote tapahtuman kuvauksesta"
+
+#: ../includes/class-widgets.php:885
+msgid "Display event thumbnail"
+msgstr "Näytä artikkelikuva"
+
+#: ../includes/class-widgets.php:888
+msgid "Thumbnail size"
+msgstr "Artikkelikuvan koko"
+
+#: ../includes/class-widgets.php:903
+msgid "No events message"
+msgstr "Ei tapahtumia -viesti"
+
+#: ../includes/class-widgets.php:907
+msgid "Date format"
+msgstr "Ajan muotoilu"
+
+#: ../includes/class-widgets.php:909
+msgid "Time format"
+msgstr "Ajan muoto"
+
+#: ../includes/class-widgets.php:1064 ../includes/class-widgets.php:1071
+msgid "Events Categories"
+msgstr "Tapahtumakategoriat"
+
+#: ../includes/class-widgets.php:1066
+msgid "Displays a list of events categories"
+msgstr "Näytä lista tapahtumakategorioista"
+
+#: ../includes/class-widgets.php:1079 ../includes/class-widgets.php:1196
+#: ../includes/class-widgets.php:1313
+msgid "ID"
+msgstr "ID"
+
+#: ../includes/class-widgets.php:1080 ../includes/class-widgets.php:1197
+#: ../includes/class-widgets.php:1314
+msgid "Name"
+msgstr "Nimi"
+
+#: ../includes/class-widgets.php:1117 ../includes/class-widgets.php:1234
+#: ../includes/class-widgets.php:1351
+msgid "Show hierarchy"
+msgstr "Näytä hierarkia"
+
+#: ../includes/class-widgets.php:1181 ../includes/class-widgets.php:1188
+msgid "Events Locations"
+msgstr "Tapahtumapaikat"
+
+#: ../includes/class-widgets.php:1183
+msgid "Displays a list of events locations"
+msgstr "Näytä lista tapahtupaikoista"
+
+#: ../includes/class-widgets.php:1298 ../includes/class-widgets.php:1305
+msgid "Events Organizers"
+msgstr "Tapahtumajärjestäjät"
+
+#: ../includes/class-widgets.php:1300
+msgid "Displays a list of events organizers"
+msgstr "Näytä lista tapahtumajärjestäjistä"
+
+#: ../includes/template-functions.php:136
+msgid "<strong>Category: </strong>"
+msgstr "<strong>Kategoria: </strong>"
+
+#: ../includes/template-functions.php:162
+msgid "<strong>Tags: </strong>"
+msgstr "<strong>Tagit: </strong>"
+
+#: ../includes/template-functions.php:194
+#: ../includes/template-functions.php:206
+msgid "<strong>Location: </strong>"
+msgstr "<strong>Paikka: </strong>"
+
+#: ../includes/template-functions.php:268
+#: ../includes/template-functions.php:280
+msgid "<strong>Organizer: </strong>"
+msgstr "<strong>Järjestäjä: </strong>"
+
+#: ../includes/template-functions.php:580
+#, php-format
+msgid "Event Daily Archives: %s"
+msgstr "Tapahtumien  päiväarkisto: %s"
+
+#: ../includes/template-functions.php:582
+#, php-format
+msgid "Event Monthly Archives: %s"
+msgstr "Tapahtumien  kuukausiarkisto: %s"
+
+#: ../includes/template-functions.php:582
+msgctxt "monthly archives date format"
+msgid "F Y"
+msgstr "F Y"
+
+#: ../includes/template-functions.php:584
+#, php-format
+msgid "Event Yearly Archives: %s"
+msgstr "Tapahtumien vuosiarkisto: %s"
+
+#: ../includes/template-functions.php:584
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr "Y"
+
+#: ../includes/template-functions.php:586
+#, php-format
+msgid "Events Category: %s"
+msgstr "Tapahtumakategoria: %s"
+
+#: ../includes/template-functions.php:588
+#, php-format
+msgid "Events Location: %s"
+msgstr "Tapahtumapaikka: %s"
+
+#: ../includes/template-functions.php:590
+#, php-format
+msgid "Events Organizer: %s"
+msgstr "Tapahtumajärjestäjä: %s"
+
+#: ../includes/template-functions.php:592
+#, php-format
+msgid "Events Tag: %s"
+msgstr "Tapahtumatagi: %s"
+
+#: ../templates/archive-event.php:80
+msgid "Apologies, but no events were found."
+msgstr "Pahoittelut, tapahtumia ei löytynyt."
+
+#: ../templates/global/breadcrumb.php:86
+#: ../templates/global/breadcrumb.php:174
+msgid "Search results for &ldquo;"
+msgstr "Hakutulokset haulle &ldquo;"
+
+#: ../templates/global/breadcrumb.php:131
+msgid "Error 404"
+msgstr "Ei löytynyt"
+
+#: ../templates/global/breadcrumb.php:178
+msgid "Posts tagged &ldquo;"
+msgstr "Artikkelit avainsanalla &ldquo;"
+
+#: ../templates/global/breadcrumb.php:183
+msgid "Author:"
+msgstr "Kirjoittaja:"
+
+#: ../templates/global/breadcrumb.php:187
+msgid "Page"
+msgstr "Sivu"
+
+#: ../templates/loop-event/meta.php:32 ../templates/single-event/meta.php:32
+msgid "Leave a comment"
+msgstr "Kommentoi"
+
+#: ../templates/loop-event/meta.php:32 ../templates/single-event/meta.php:32
+msgid "1 Comment"
+msgstr "1 Kommentti"
+
+#: ../templates/loop-event/meta.php:32 ../templates/single-event/meta.php:32
+msgid "% Comments"
+msgstr "% kommenttia"
+
+#: ../templates/loop-event/meta.php:37 ../templates/single-event/meta.php:37
+msgid "Edit"
+msgstr "Muokkaa"
+
+#: ../templates/loop-event/organizer-details.php:35
+msgid "Email"
+msgstr "Sähköposti"
+
+#: ../templates/loop-event/pagination.php:37
+msgid "&laquo; Previous"
+msgstr "&laquo; Edellinen"
+
+#: ../templates/loop-event/pagination.php:38
+msgid "Next &raquo;"
+msgstr "Seuraava &raquo;"
+
+#: ../templates/loop-event/sorting.php:27
+msgid "Sort by start date: ascending"
+msgstr "Järjestä aloitusajankohdan mukaan: nouseva"
+
+#: ../templates/loop-event/sorting.php:28
+msgid "Sort by start date: descending"
+msgstr "Järjestä aloitusajankohdan mukaan: laskeva"
+
+#: ../templates/loop-event/sorting.php:29
+msgid "Sort by end date: ascending"
+msgstr "Järjestä loppumisajan mukaan:  Nouseva"
+
+#: ../templates/loop-event/sorting.php:30
+msgid "Sort by end date: descending"
+msgstr "Järjestä loppumisajan mukaan:  Laskeva"
+
+#: ../templates/loop-event/sorting.php:31
+msgid "Sort by title: ascending"
+msgstr "Järjestä otsikon mukaan: nouseva"
+
+#: ../templates/loop-event/sorting.php:32
+msgid "Sort by title: descending"
+msgstr "Järjestä otsikon mukaan: laskeva"

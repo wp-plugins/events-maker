@@ -1,0 +1,2144 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Events Maker\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-05-05 09:43+0100\n"
+"PO-Revision-Date: 2014-07-31 14:23+0200\n"
+"Last-Translator: LeVaTi Team <levati@mail.ru>\n"
+"Language-Team: LeVaTi team <levati@mail.ru>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 1.6.7\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
+"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_n\n"
+"X-Poedit-Basepath: .\n"
+"X-Textdomain-Support: yes\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../events-maker.php:318
+msgid "US Dollars (&#36;)"
+msgstr "Американский доллар (&#36;)"
+
+#: ../events-maker.php:319
+msgid "Euros (&euro;)"
+msgstr "Евро (&euro;)"
+
+#: ../events-maker.php:320
+msgid "Pounds Sterling (&pound;)"
+msgstr "Фунт стерлингов (&pound;)"
+
+#: ../events-maker.php:321
+msgid "Australian Dollars (&#36;)"
+msgstr "Австралийский доллар (&#36;)"
+
+#: ../events-maker.php:322
+msgid "Brazilian Real (R&#36;)"
+msgstr "Бразильский реал (R&#36;)"
+
+#: ../events-maker.php:323
+msgid "Canadian Dollars (&#36;)"
+msgstr "Канадский доллар (&#36;)"
+
+#: ../events-maker.php:324
+msgid "Czech Koruna"
+msgstr "Чешская крона"
+
+#: ../events-maker.php:325
+msgid "Danish Krone"
+msgstr "Датская крона"
+
+#: ../events-maker.php:326
+msgid "Hong Kong Dollar (&#36;)"
+msgstr "Гонг-конгский доллар (&#36;)"
+
+#: ../events-maker.php:327
+msgid "Hungarian Forint"
+msgstr "Венгерский форинт"
+
+#: ../events-maker.php:328
+msgid "Israeli Shekel (&#8362;)"
+msgstr "Израильский шекель (&#8362;)"
+
+#: ../events-maker.php:329
+msgid "Japanese Yen (&yen;)"
+msgstr "Японская йена (&yen;)"
+
+#: ../events-maker.php:330
+msgid "Malaysian Ringgits"
+msgstr "Малазийский ринггитс"
+
+#: ../events-maker.php:331
+msgid "Mexican Peso (&#36;)"
+msgstr "Мексиканское песо (&#36;)"
+
+#: ../events-maker.php:332
+msgid "New Zealand Dollar (&#36;)"
+msgstr "Новозеландский доллар (&#36;)"
+
+#: ../events-maker.php:333
+msgid "Norwegian Krone"
+msgstr "Норвежская крона"
+
+#: ../events-maker.php:334
+msgid "Philippine Pesos"
+msgstr "Филиппинское песо"
+
+#: ../events-maker.php:335
+msgid "Polish Zloty"
+msgstr "Польский злотый"
+
+#: ../events-maker.php:336
+msgid "Singapore Dollar (&#36;)"
+msgstr "Сингапурский доллар (&#36;)"
+
+#: ../events-maker.php:337
+msgid "Swedish Krona"
+msgstr "Шведская крона"
+
+#: ../events-maker.php:338
+msgid "Swiss Franc"
+msgstr "Швейцарский франк"
+
+#: ../events-maker.php:339
+msgid "Taiwan New Dollars"
+msgstr "Новые тайваньские доллары"
+
+#: ../events-maker.php:340
+msgid "Thai Baht (&#3647;)"
+msgstr "Тайский бахт (&#3647;)"
+
+#: ../events-maker.php:341
+msgid "Indian Rupee (&#8377;)"
+msgstr "Индийская рупия (&#8377;)"
+
+#: ../events-maker.php:342
+msgid "Turkish Lira (&#8378;)"
+msgstr "Ткрецкая лира (&#8378;)"
+
+#: ../events-maker.php:343
+msgid "Iranian Rial (&#65020;)"
+msgstr "Иранский риал (&#65020;)"
+
+#: ../events-maker.php:346
+msgid "before the price"
+msgstr "Перед ценой"
+
+#: ../events-maker.php:347
+msgid "after the price"
+msgstr "После цены"
+
+#: ../events-maker.php:362
+msgid "once"
+msgstr "единоразово"
+
+#: ../events-maker.php:363
+msgid "daily"
+msgstr "ежедневно"
+
+#: ../events-maker.php:364
+msgid "weekly"
+msgstr "еженедельно"
+
+# @ events-maker
+#: ../events-maker.php:365
+msgid "monthly"
+msgstr "ежемесячно"
+
+# @ events-maker
+#: ../events-maker.php:366
+msgid "yearly"
+msgstr "ежегодно"
+
+# @ events-maker
+#: ../events-maker.php:367
+msgid "custom"
+msgstr "свой порядок"
+
+# @ events-maker
+#: ../events-maker.php:550
+msgctxt "taxonomy general name"
+msgid "Event Categories"
+msgstr "Рубрики событий"
+
+# @ events-maker
+#: ../events-maker.php:551
+msgctxt "taxonomy singular name"
+msgid "Event Category"
+msgstr "Рубрика событий"
+
+# @ events-maker
+#: ../events-maker.php:552
+msgid "Search Event Categories"
+msgstr "Найти рубрики событий"
+
+# @ events-maker
+#: ../events-maker.php:553
+msgid "All Event Categories"
+msgstr "Все"
+
+# @ events-maker
+#: ../events-maker.php:554
+msgid "Parent Event Category"
+msgstr "Родительская рубрика события"
+
+# @ events-maker
+#: ../events-maker.php:555
+msgid "Parent Event Category:"
+msgstr "Родительская рубрика события:"
+
+# @ events-maker
+#: ../events-maker.php:556
+msgid "Edit Event Category"
+msgstr "Править рубрику события"
+
+# @ events-maker
+#: ../events-maker.php:557
+msgid "View Event Category"
+msgstr "Просмотреть рубрику события"
+
+# @ events-maker
+#: ../events-maker.php:558
+msgid "Update Event Category"
+msgstr "Обновить рубрику события"
+
+# @ events-maker
+#: ../events-maker.php:559
+msgid "Add New Event Category"
+msgstr "Добавить рубрику события"
+
+# @ events-maker
+#: ../events-maker.php:560
+msgid "New Event Category Name"
+msgstr "Имя новой рубрики события"
+
+# @ events-maker
+#: ../events-maker.php:561 ../includes/settings.php:310
+#: ../includes/settings.php:329
+msgid "Categories"
+msgstr "Рубрики"
+
+# @ events-maker
+#: ../events-maker.php:565
+msgctxt "taxonomy general name"
+msgid "Locations"
+msgstr "Место проведения"
+
+# @ events-maker
+#: ../events-maker.php:566
+msgctxt "taxonomy singular name"
+msgid "Event Location"
+msgstr "Место проведения события"
+
+# @ events-maker
+#: ../events-maker.php:567
+msgid "Search Event Locations"
+msgstr "Искать место проведения события"
+
+# @ events-maker
+#: ../events-maker.php:568
+msgid "All Event Locations"
+msgstr "Все"
+
+# @ events-maker
+#: ../events-maker.php:569
+msgid "Parent Event Location"
+msgstr "Родительское место проведения события"
+
+# @ events-maker
+#: ../events-maker.php:570
+msgid "Parent Event Location:"
+msgstr "Родительское место проведения события:"
+
+# @ events-maker
+#: ../events-maker.php:571
+msgid "Edit Event Location"
+msgstr "Править место проведения события"
+
+# @ events-maker
+#: ../events-maker.php:572
+msgid "View Event Location"
+msgstr "Провмотреть место проведения события"
+
+# @ events-maker
+#: ../events-maker.php:573
+msgid "Update Event Location"
+msgstr "Обновить место проведения события"
+
+# @ events-maker
+#: ../events-maker.php:574
+msgid "Add New Event Location"
+msgstr "Добавить место проведения события"
+
+# @ events-maker
+#: ../events-maker.php:575
+msgid "New Event Location Name"
+msgstr "Название места проведения события"
+
+# @ events-maker
+#: ../events-maker.php:576 ../includes/settings.php:315
+#: ../includes/settings.php:334
+msgid "Locations"
+msgstr "Места проведения"
+
+# @ events-maker
+#: ../events-maker.php:626
+msgctxt "taxonomy general name"
+msgid "Event Tags"
+msgstr "Метки события"
+
+# @ events-maker
+#: ../events-maker.php:627
+msgctxt "taxonomy singular name"
+msgid "Event Tag"
+msgstr "Метка события"
+
+# @ events-maker
+#: ../events-maker.php:628
+msgid "Search Event Tags"
+msgstr "Поиск меток события"
+
+# @ events-maker
+#: ../events-maker.php:629
+msgid "Popular Event Tags"
+msgstr "Популярные метки события"
+
+# @ events-maker
+#: ../events-maker.php:630
+msgid "All Event Tags"
+msgstr "Все"
+
+# @ events-maker
+#: ../events-maker.php:633
+msgid "Edit Event Tag"
+msgstr "Править метку события"
+
+# @ events-maker
+#: ../events-maker.php:634
+msgid "Update Event Tag"
+msgstr "Обновить метку события"
+
+# @ events-maker
+#: ../events-maker.php:635
+msgid "Add New Event Tag"
+msgstr "Добавить новую метку события"
+
+# @ events-maker
+#: ../events-maker.php:636
+msgid "New Event Tag Name"
+msgstr "Название новой метки события"
+
+# @ events-maker
+#: ../events-maker.php:637
+msgid "Separate event tags with commas"
+msgstr "Разделяйте метки события запятыми"
+
+# @ events-maker
+#: ../events-maker.php:638
+msgid "Add or remove event tags"
+msgstr "Добавить или удалить метки события"
+
+# @ events-maker
+#: ../events-maker.php:639
+msgid "Choose from the most used event tags"
+msgstr "Выбрать из часто используемых меток"
+
+# @ events-maker
+#: ../events-maker.php:640 ../includes/settings.php:275
+#: ../includes/settings.php:313 ../includes/settings.php:332
+msgid "Tags"
+msgstr "Метки"
+
+# @ events-maker
+#: ../events-maker.php:672
+msgctxt "taxonomy general name"
+msgid "Organizers"
+msgstr "Организаторы"
+
+# @ events-maker
+#: ../events-maker.php:673
+msgctxt "taxonomy singular name"
+msgid "Event Organizer"
+msgstr "Организатор события"
+
+# @ events-maker
+#: ../events-maker.php:674
+msgid "Search Event Organizers"
+msgstr "Поиск организаторов события"
+
+# @ events-maker
+#: ../events-maker.php:675
+msgid "All Event Organizers"
+msgstr "Все"
+
+# @ events-maker
+#: ../events-maker.php:676
+msgid "Parent Event Organizer"
+msgstr "Родительский организатор события"
+
+# @ events-maker
+#: ../events-maker.php:677
+msgid "Parent Event Organizer:"
+msgstr "Родительский организатор события:"
+
+# @ events-maker
+#: ../events-maker.php:678
+msgid "Edit Event Organizer"
+msgstr "Править организатора события"
+
+# @ events-maker
+#: ../events-maker.php:679
+msgid "View Event Organizer"
+msgstr "Просмотр организатора события"
+
+# @ events-maker
+#: ../events-maker.php:680
+msgid "Update Event Organizer"
+msgstr "Обновить организатора события"
+
+# @ events-maker
+#: ../events-maker.php:681
+msgid "Add New Event Organizer"
+msgstr "Добавить организатора нового события"
+
+# @ events-maker
+#: ../events-maker.php:682
+msgid "New Event Organizer Name"
+msgstr "Название организатора нового события"
+
+# @ events-maker
+#: ../events-maker.php:683 ../includes/settings.php:276
+#: ../includes/settings.php:318 ../includes/settings.php:337
+msgid "Organizers"
+msgstr "Организаторы"
+
+# @ events-maker
+#: ../events-maker.php:718
+msgctxt "post type general name"
+msgid "Events"
+msgstr "События"
+
+# @ events-maker
+#: ../events-maker.php:719
+msgctxt "post type singular name"
+msgid "Event"
+msgstr "Событие"
+
+# @ events-maker
+#: ../events-maker.php:720 ../includes/widgets.php:719
+#: ../templates/archive-event.php:33
+msgid "Events"
+msgstr "События"
+
+# @ events-maker
+#: ../events-maker.php:721
+msgid "All Events"
+msgstr "Все события"
+
+# @ events-maker
+#: ../events-maker.php:722
+msgid "Add New"
+msgstr "Добавить новое"
+
+# @ events-maker
+#: ../events-maker.php:723
+msgid "Add New Event"
+msgstr "Добавить новое событие"
+
+# @ events-maker
+#: ../events-maker.php:724
+msgid "Edit Event"
+msgstr "Править событие"
+
+# @ events-maker
+#: ../events-maker.php:725
+msgid "New Event"
+msgstr "Новое событие"
+
+# @ events-maker
+#: ../events-maker.php:726
+msgid "View Event"
+msgstr "Просмотреть событие"
+
+# @ events-maker
+#: ../events-maker.php:727
+msgid "Event Archive"
+msgstr "Архив событий"
+
+# @ events-maker
+#: ../events-maker.php:728
+msgid "Search Event"
+msgstr "Поиск событий"
+
+# @ events-maker
+#: ../events-maker.php:729
+msgid "No events found"
+msgstr "События не найдены"
+
+# @ events-maker
+#: ../events-maker.php:730
+msgid "No events found in trash"
+msgstr "События в корзине не найдены"
+
+# @ events-maker
+#: ../events-maker.php:804
+#, php-format
+msgid "Event updated. <a href=\"%s\">View event</a>"
+msgstr "Событие обновлено. <a href=\"%s\">Просмотреть событие</a>"
+
+# @ events-maker
+#: ../events-maker.php:805
+msgid "Custom field updated."
+msgstr "Произвольное поле обновлено."
+
+# @ events-maker
+#: ../events-maker.php:806
+msgid "Custom field deleted."
+msgstr "Произвольное поле удалено."
+
+# @ events-maker
+#: ../events-maker.php:807
+msgid "Event updated."
+msgstr "Событие обновлено."
+
+# @ events-maker
+#. translators: %s: date and time of the revision
+#: ../events-maker.php:809
+#, php-format
+msgid "Event restored to revision from %s"
+msgstr "Событие восстановлено из версии от %s"
+
+# @ events-maker
+#: ../events-maker.php:810
+#, php-format
+msgid "Event published. <a href=\"%s\">View event</a>"
+msgstr "Событие опубликовано. <a href=\"%s\">Просмотреть событие</a>"
+
+# @ events-maker
+#: ../events-maker.php:811
+msgid "Event saved."
+msgstr "Событие сохранено."
+
+# @ events-maker
+#: ../events-maker.php:812
+#, php-format
+msgid "Event submitted. <a target=\"_blank\" href=\"%s\">Preview event</a>"
+msgstr ""
+"Событие отослано. <a target=\"_blank\" href=\"%s\">Предпросмотр события</a>"
+
+# @ events-maker
+#: ../events-maker.php:813
+#, php-format
+msgid ""
+"Event scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s"
+"\">Preview event</a>"
+msgstr ""
+"Событие запланировано не: <strong>%1$s</strong>. <a target=\"_blank\" href="
+"\"%2$s\">Просмотреть событие</a>"
+
+# @ default
+#. translators: Publish box date format, see http://php.net/date
+#: ../events-maker.php:815
+msgid "M j, Y @ G:i"
+msgstr "M j, Y @ G:i"
+
+# @ events-maker
+#: ../events-maker.php:816
+#, php-format
+msgid "Event draft updated. <a target=\"_blank\" href=\"%s\">Preview event</a>"
+msgstr ""
+"Черновик события обновлен. <a target=\"_blank\" href=\"%s\">Просмотреть "
+"событие</a>"
+
+# @ events-maker
+#: ../events-maker.php:859
+msgid "Select organizer image"
+msgstr "Выбрать изображение организатора"
+
+# @ events-maker
+#: ../events-maker.php:860
+msgid "Add image"
+msgstr "Добавить изображение"
+
+# @ events-maker
+#: ../events-maker.php:929
+msgid "Are you sure you want to reset these settings to defaults?"
+msgstr "Сбросить все настройки в значения по умолчанию?"
+
+# @ events-maker
+#: ../events-maker.php:1027 ../includes/welcome.php:48
+msgid "Support"
+msgstr "Поддержка"
+
+# @ events-maker
+#: ../events-maker.php:1053
+msgid "View Calendar"
+msgstr "Просмотр календаря"
+
+# @ events-maker
+#: ../includes/functions-template.php:31 ../includes/widgets.php:730
+msgid "No Events"
+msgstr "Событий нет"
+
+# @ events-maker
+#: ../includes/functions-template.php:167
+msgid "<strong>Category: </strong>"
+msgstr "<strong>Рубрики: </strong>"
+
+# @ events-maker
+#: ../includes/functions-template.php:191
+msgid "<strong>Tags: </strong>"
+msgstr "<strong>Метки: </strong>"
+
+# @ events-maker
+#: ../includes/functions-template.php:221
+#: ../includes/functions-template.php:233
+msgid "<strong>Location: </strong>"
+msgstr "<strong>Место проведения: </strong>"
+
+# @ events-maker
+#: ../includes/functions-template.php:293
+#: ../includes/functions-template.php:305
+msgid "<strong>Organizer: </strong>"
+msgstr "<strong>Организатор: </strong>"
+
+# @ events-maker
+#: ../includes/functions-template.php:364
+#: ../includes/functions-template.php:374 ../includes/listing.php:135
+#: ../includes/settings.php:277
+msgid "Tickets"
+msgstr "Билеты"
+
+# @ events-maker
+#: ../includes/functions-template.php:376 ../includes/listing.php:179
+msgid "Free"
+msgstr "Бесплатно"
+
+# @ events-maker
+#: ../includes/functions-template.php:385 ../includes/metaboxes.php:518
+msgid "Buy tickets URL"
+msgstr "Ссылка на приобретение билетов"
+
+#: ../includes/functions-template.php:565
+msgid "&laquo; Previous"
+msgstr "&laquo; Предыдущие"
+
+#: ../includes/functions-template.php:566
+msgid "Next &raquo;"
+msgstr "Следующие &raquo;"
+
+# @ events-maker
+#: ../includes/listing.php:58
+msgid "Start Date"
+msgstr "Дата начала"
+
+# @ events-maker
+#: ../includes/listing.php:59
+msgid "End Date"
+msgstr "Дата окончания"
+
+# @ events-maker
+#: ../includes/listing.php:130
+msgid "Start"
+msgstr "Начало"
+
+# @ events-maker
+#: ../includes/listing.php:131
+msgid "End"
+msgstr "Окончание"
+
+#: ../includes/listing.php:132 ../includes/metaboxes.php:299
+msgid "Recurrence"
+msgstr "Периодичность"
+
+# @ events-maker
+#: ../includes/listing.php:166
+msgid "Paid"
+msgstr "Платно"
+
+# @ events-maker
+#: ../includes/metaboxes.php:48
+msgid "Ticket Name"
+msgstr "Название билета"
+
+# @ events-maker
+#: ../includes/metaboxes.php:49
+msgid "Price"
+msgstr "Цена"
+
+# @ events-maker
+#: ../includes/metaboxes.php:61
+msgid "Event Display Options"
+msgstr "Настройки отображения событий"
+
+# @ events-maker
+#: ../includes/metaboxes.php:68
+msgid "Event Date and Time"
+msgstr "Дата и время событий"
+
+# @ events-maker
+#: ../includes/metaboxes.php:75
+msgid "Event Tickets"
+msgstr "Билеты на событие"
+
+# @ events-maker
+#: ../includes/metaboxes.php:136 ../includes/metaboxes.php:140
+#: ../includes/metaboxes.php:379 ../includes/metaboxes.php:423
+#: ../includes/metaboxes.php:439 ../includes/metaboxes.php:493
+#: ../includes/metaboxes.php:509
+msgid "Delete"
+msgstr "Удалить"
+
+# @ events-maker
+#: ../includes/metaboxes.php:138 ../includes/metaboxes.php:290
+#: ../includes/metaboxes.php:378 ../includes/metaboxes.php:422
+#: ../includes/metaboxes.php:438
+msgid "Start date/time"
+msgstr "Дата/время начала"
+
+# @ events-maker
+#: ../includes/metaboxes.php:139 ../includes/metaboxes.php:293
+#: ../includes/metaboxes.php:382 ../includes/metaboxes.php:426
+#: ../includes/metaboxes.php:442
+msgid "End date/time"
+msgstr "Дата/время окончания"
+
+# @ events-maker
+#: ../includes/metaboxes.php:141
+msgid "Are you sure you want to delete this ticket?"
+msgstr "Точно удалить этот билет?"
+
+# @ events-maker
+#: ../includes/metaboxes.php:142
+msgid "Are you sure you want to delete this occurrence?"
+msgstr "Точно удалить это повторение события?"
+
+#: ../includes/metaboxes.php:150 ../includes/metaboxes.php:347
+msgid "day"
+msgid_plural "days"
+msgstr[0] "день"
+msgstr[1] "дня"
+msgstr[2] "дней"
+
+#: ../includes/metaboxes.php:151
+msgid "days"
+msgstr "дней"
+
+#: ../includes/metaboxes.php:152 ../includes/metaboxes.php:349
+msgid "week"
+msgid_plural "weeks"
+msgstr[0] "неделя"
+msgstr[1] "недели"
+msgstr[2] "недель"
+
+#: ../includes/metaboxes.php:153
+msgid "weeks"
+msgstr "недель"
+
+# @ events-maker
+#: ../includes/metaboxes.php:154 ../includes/metaboxes.php:351
+msgid "month"
+msgid_plural "months"
+msgstr[0] "месяц"
+msgstr[1] "месяца"
+msgstr[2] "месяцев"
+
+# @ events-maker
+#: ../includes/metaboxes.php:155
+msgid "months"
+msgstr "месяц"
+
+#: ../includes/metaboxes.php:156 ../includes/metaboxes.php:353
+msgid "year"
+msgid_plural "years"
+msgstr[0] "год"
+msgstr[1] "года"
+msgstr[2] "лет"
+
+#: ../includes/metaboxes.php:157
+msgid "years"
+msgstr "лет"
+
+# @ events-maker
+#: ../includes/metaboxes.php:296
+msgid "All-day event?"
+msgstr "Весь день?"
+
+#: ../includes/metaboxes.php:336
+msgid "day of the month"
+msgstr "день месяца"
+
+#: ../includes/metaboxes.php:336
+msgid "day of the week"
+msgstr "день недели"
+
+#: ../includes/metaboxes.php:344
+msgid "Repeat every"
+msgstr "Повторять каждые"
+
+#: ../includes/metaboxes.php:344
+msgid "until"
+msgstr "до"
+
+# @ events-maker
+#: ../includes/metaboxes.php:376 ../includes/metaboxes.php:420
+#: ../includes/metaboxes.php:436
+msgid "Separate end date"
+msgstr "Отделить дату окончания"
+
+#: ../includes/metaboxes.php:387
+msgid "Add new occurrence"
+msgstr "Добавить новое повторение события"
+
+# @ events-maker
+#: ../includes/metaboxes.php:471
+msgid "Is this a free event?"
+msgstr "Бесплатно?"
+
+# @ events-maker
+#: ../includes/metaboxes.php:476
+msgid "Add new ticket"
+msgstr "Добавить новый билет"
+
+# @ events-maker
+#: ../includes/metaboxes.php:541
+msgid "Display Google Map"
+msgstr "Показывать карту Google"
+
+# @ events-maker
+#: ../includes/metaboxes.php:548
+msgid "Display Tickets Info"
+msgstr "Показывать информацию о билетах"
+
+# @ events-maker
+#: ../includes/metaboxes.php:556
+msgid "Display Organizer Details"
+msgstr "Показывать организаторов"
+
+# @ events-maker
+#: ../includes/metaboxes.php:562
+msgid "Display Location Details"
+msgstr "Показывать место проведения"
+
+# @ events-maker
+#: ../includes/settings.php:71 ../includes/widgets.php:743
+msgid "Publish date"
+msgstr "Дата публикации"
+
+# @ events-maker
+#: ../includes/settings.php:72
+msgid "Events start date"
+msgstr "Дата начала события"
+
+# @ events-maker
+#: ../includes/settings.php:73
+msgid "Events end date"
+msgstr "Дата окончания события"
+
+# @ events-maker
+#: ../includes/settings.php:77 ../includes/widgets.php:70
+#: ../includes/widgets.php:748 ../includes/widgets.php:1080
+#: ../includes/widgets.php:1197 ../includes/widgets.php:1314
+msgid "Ascending"
+msgstr "По возрастанию"
+
+# @ events-maker
+#: ../includes/settings.php:78 ../includes/widgets.php:71
+#: ../includes/widgets.php:749 ../includes/widgets.php:1081
+#: ../includes/widgets.php:1198 ../includes/widgets.php:1315
+msgid "Descending"
+msgstr "По убыванию"
+
+# @ events-maker
+#: ../includes/settings.php:82
+msgid "selected page"
+msgstr "на выбранной странице"
+
+#: ../includes/settings.php:83
+msgid "manually"
+msgstr "вручную"
+
+#: ../includes/settings.php:87
+msgid "before the content"
+msgstr "перед тексом"
+
+#: ../includes/settings.php:88
+msgid "after the content"
+msgstr "после текста"
+
+# @ events-maker
+#: ../includes/settings.php:100
+msgid "title"
+msgstr "заголовок"
+
+# @ events-maker
+#: ../includes/settings.php:101
+msgid "editor"
+msgstr "редактор"
+
+# @ events-maker
+#: ../includes/settings.php:102
+msgid "author"
+msgstr "автор"
+
+# @ events-maker
+#: ../includes/settings.php:103
+msgid "thumbnail"
+msgstr "миниатюра"
+
+# @ events-maker
+#: ../includes/settings.php:104
+msgid "excerpt"
+msgstr "цитата"
+
+# @ events-maker
+#: ../includes/settings.php:105
+msgid "custom fields"
+msgstr "пользовательские поля"
+
+# @ events-maker
+#: ../includes/settings.php:106
+msgid "comments"
+msgstr "комментарии"
+
+# @ events-maker
+#: ../includes/settings.php:107
+msgid "trackbacks"
+msgstr "трекбеки"
+
+# @ events-maker
+#: ../includes/settings.php:108
+msgid "revisions"
+msgstr "версии"
+
+# @ events-maker
+#: ../includes/settings.php:112
+msgid "General settings saved."
+msgstr "Основные настройки сохранены."
+
+# @ events-maker
+#: ../includes/settings.php:113
+msgid "Templates settings saved."
+msgstr "Настройки шаблона сохранены."
+
+# @ events-maker
+#: ../includes/settings.php:114
+msgid "Capabilities settings saved."
+msgstr "Настройки доступа сохранены."
+
+# @ events-maker
+#: ../includes/settings.php:115
+msgid "Permalinks settings saved."
+msgstr "Настройки постоянных ссылок сохранены."
+
+# @ events-maker
+#: ../includes/settings.php:116
+msgid "General settings restored to defaults."
+msgstr "Основные настройки сброшены по умолчанию."
+
+# @ events-maker
+#: ../includes/settings.php:117
+msgid "Templates settings restored to defaults."
+msgstr "Настройки шаблона сброшены по умолчанию."
+
+# @ events-maker
+#: ../includes/settings.php:118
+msgid "Capabilities settings restored to defaults."
+msgstr "Настройки доступа сброшены по умолчанию."
+
+# @ events-maker
+#: ../includes/settings.php:119
+msgid "Permalinks settings restored to defaults."
+msgstr "Настройки постоянных ссылок сброшены по умолчанию."
+
+#: ../includes/settings.php:120
+msgid "There is no such menu."
+msgstr "Такого меню нет."
+
+#: ../includes/settings.php:121
+msgid "Menu name can not be empty."
+msgstr "Имя меню не может быть пустым."
+
+# @ events-maker
+#: ../includes/settings.php:126
+msgid "General"
+msgstr "Основные"
+
+# @ events-maker
+#: ../includes/settings.php:132
+msgid "Templates"
+msgstr "Шаблоны"
+
+# @ events-maker
+#: ../includes/settings.php:138
+msgid "Capabilities"
+msgstr "Доступ"
+
+# @ events-maker
+#: ../includes/settings.php:144
+msgid "Permalinks"
+msgstr "Постоянные ссылки"
+
+# @ events-maker
+#: ../includes/settings.php:152
+msgid "Publish Events"
+msgstr "Опубликованные события"
+
+# @ events-maker
+#: ../includes/settings.php:153
+msgid "Edit Events"
+msgstr "Править события"
+
+# @ events-maker
+#: ../includes/settings.php:154
+msgid "Edit Others Events"
+msgstr "Править другие события"
+
+# @ events-maker
+#: ../includes/settings.php:155
+msgid "Edit Published Events"
+msgstr "Править опубликованные события"
+
+# @ events-maker
+#: ../includes/settings.php:156
+msgid "Delete Published Events"
+msgstr "Удалить опубликованные события"
+
+# @ events-maker
+#: ../includes/settings.php:157
+msgid "Delete Events"
+msgstr "Удалить события"
+
+# @ events-maker
+#: ../includes/settings.php:158
+msgid "Delete Others Events"
+msgstr "Удалить остальные события"
+
+# @ events-maker
+#: ../includes/settings.php:159
+msgid "Read Private Events"
+msgstr "Просмотр приватных событий"
+
+# @ events-maker
+#: ../includes/settings.php:160
+msgid "Manage Event Categories"
+msgstr "Управление рубриками событий"
+
+# @ events-maker
+#: ../includes/settings.php:164
+msgid "Manage Event Tags"
+msgstr "Управление метками событий"
+
+# @ events-maker
+#: ../includes/settings.php:166
+msgid "Manage Event Locations"
+msgstr "Управление местами событий"
+
+# @ events-maker
+#: ../includes/settings.php:169
+msgid "Manage Event Organizers"
+msgstr "Управление организаторами событий"
+
+# @ events-maker
+#: ../includes/settings.php:187 ../includes/settings.php:200
+#: ../includes/welcome.php:46
+msgid "Settings"
+msgstr "Настройки"
+
+# @ events-maker
+#: ../includes/settings.php:213 ../includes/settings.php:226
+msgid "Events Maker"
+msgstr "Календарь событий"
+
+# @ events-maker
+#: ../includes/settings.php:228
+msgid "Need support?"
+msgstr "Помочь?"
+
+# @ events-maker
+#: ../includes/settings.php:229
+msgid "If you are having problems with this plugin, checkout plugin"
+msgstr "Если у Вас появились проблемы с плагином, посмотрите"
+
+# @ events-maker
+#: ../includes/settings.php:229 ../includes/welcome.php:47
+msgid "Documentation"
+msgstr "Документацию к плагину"
+
+# @ events-maker
+#: ../includes/settings.php:229
+msgid "or talk about them in the"
+msgstr "или задайте вопрос в "
+
+# @ events-maker
+#: ../includes/settings.php:229
+msgid "Support forum"
+msgstr "Форуме поддержки"
+
+# @ events-maker
+#: ../includes/settings.php:231
+msgid "Do you like this plugin?"
+msgstr "Понравился плагин?"
+
+# @ events-maker
+#: ../includes/settings.php:232
+msgid "Rate it 5"
+msgstr "Оцените его на 5"
+
+# @ events-maker
+#: ../includes/settings.php:232
+msgid "on WordPress.org"
+msgstr "на WordPress.org"
+
+# @ events-maker
+#: ../includes/settings.php:233
+msgid "Blog about it & link to the"
+msgstr "или поставьте ссылку на"
+
+# @ events-maker
+#: ../includes/settings.php:233
+msgid "plugin page"
+msgstr "страницу плагина"
+
+# @ events-maker
+#: ../includes/settings.php:234
+msgid "Check out our other"
+msgstr "Попробуйте другие"
+
+# @ events-maker
+#: ../includes/settings.php:234
+msgid "WordPress plugins"
+msgstr "плагины WordPress"
+
+# @ events-maker
+#: ../includes/settings.php:237
+msgid "Created by"
+msgstr "Создано"
+
+# @ events-maker
+#: ../includes/settings.php:255
+msgid "Reset to defaults"
+msgstr "По умолчанию"
+
+# @ events-maker
+#: ../includes/settings.php:273
+msgid "General settings"
+msgstr "Общие настройки"
+
+# @ events-maker
+#: ../includes/settings.php:274
+msgid "Events features support"
+msgstr "Поддержка функций событий"
+
+#: ../includes/settings.php:278
+msgid "Full Calendar display"
+msgstr "Полный календарь"
+
+# @ events-maker
+#: ../includes/settings.php:279
+msgid "Deactivation"
+msgstr "Деактивировать"
+
+#: ../includes/settings.php:282
+msgid "Currency settings"
+msgstr "Настройки валюты"
+
+#: ../includes/settings.php:283
+msgid "Currency"
+msgstr "Валюта"
+
+#: ../includes/settings.php:284
+msgid "Currency Position"
+msgstr "Позиция символа"
+
+#: ../includes/settings.php:285
+msgid "Currency Symbol"
+msgstr "Символ валюты"
+
+#: ../includes/settings.php:286
+msgid "Currency display format"
+msgstr "Формат вывода валюты"
+
+# @ events-maker
+#: ../includes/settings.php:289
+msgid "Query settings"
+msgstr "Настройки запроса"
+
+# @ events-maker
+#: ../includes/settings.php:290 ../includes/widgets.php:851
+#: ../includes/widgets.php:1116 ../includes/widgets.php:1233
+#: ../includes/widgets.php:1350
+msgid "Order by"
+msgstr "Критерий сортировки"
+
+# @ events-maker
+#: ../includes/settings.php:291
+msgid "Sort order"
+msgstr "Порядок сортировки"
+
+# @ events-maker
+#: ../includes/settings.php:292
+msgid "Past events"
+msgstr "Прошедшие события"
+
+# @ events-maker
+#: ../includes/settings.php:293
+msgid "Current events"
+msgstr "Текущие события"
+
+#: ../includes/settings.php:294
+msgid "Occurrences"
+msgstr "Повторения событий"
+
+# @ events-maker
+#: ../includes/settings.php:297
+msgid "Other settings"
+msgstr "Прочие настройки"
+
+# @ events-maker
+#: ../includes/settings.php:298
+msgid "Link in menu"
+msgstr "Ссылка в меню"
+
+# @ events-maker
+#: ../includes/settings.php:299
+msgid "Date and time format"
+msgstr "Формат даты и времени"
+
+#: ../includes/settings.php:300
+msgid "First day of the week"
+msgstr "Первый день недели"
+
+# @ events-maker
+#: ../includes/settings.php:304
+msgid "Templates settings"
+msgstr "Настройки шаблонов"
+
+# @ events-maker
+#: ../includes/settings.php:305
+msgid "Default templates"
+msgstr "Шаблоны по умолчанию"
+
+# @ events-maker
+#: ../includes/settings.php:306
+msgid "Events archive"
+msgstr "Архив событий"
+
+# @ events-maker
+#: ../includes/settings.php:307
+msgid "Archive event content"
+msgstr "Содержимое архива"
+
+# @ events-maker
+#: ../includes/settings.php:308 ../includes/settings.php:328
+msgid "Single event"
+msgstr "Единичные события"
+
+# @ events-maker
+#: ../includes/settings.php:309
+msgid "Single event content"
+msgstr "Содержимое события"
+
+# @ events-maker
+#: ../includes/settings.php:322
+msgid "Capabilities settings"
+msgstr "Настройки доступа"
+
+# @ events-maker
+#: ../includes/settings.php:326
+msgid "Permalinks settings"
+msgstr "Настройки постоянных ссылок"
+
+# @ events-maker
+#: ../includes/settings.php:327
+msgid "Events base"
+msgstr "Основное событие"
+
+#: ../includes/settings.php:358
+msgid "Select which features would you like to enable for your events."
+msgstr "Выберите функции, которые Вы хотите включить для событий."
+
+# @ events-maker
+#: ../includes/settings.php:372
+msgid "Enable Event Tags"
+msgstr "Включить метки событий"
+
+#: ../includes/settings.php:374
+msgid "Enable if you want to use Event Tags."
+msgstr "Включите, если будете использовать метки."
+
+# @ events-maker
+#: ../includes/settings.php:388
+msgid "Enable Event Organizers"
+msgstr "Включить организаторов событий"
+
+#: ../includes/settings.php:390
+msgid ""
+"Enable if you want to use Event Organizers (including organizer contact "
+"details)."
+msgstr "Включите, если хотите добавить информацию об организаторах."
+
+# @ events-maker
+#: ../includes/settings.php:404
+msgid "Enable Event Tickets"
+msgstr "Включить билеты"
+
+#: ../includes/settings.php:406
+msgid ""
+"Enable if you want to use Event Tickets (including free events, paid events "
+"and multiple ticket types)."
+msgstr "Включите, если хотите добавить информацию о билетах."
+
+#: ../includes/settings.php:455
+msgid "There are no pages."
+msgstr "Страниц нет"
+
+#: ../includes/settings.php:459
+msgid ""
+"Select how and where would you like to display events full calendar. Use "
+"<code>[em-full-calendar]</code> shortcode for manual display."
+msgstr ""
+"Выберите где и как Вы хотите отображать полный календарь событий. "
+"Используйте шоткод <code>[em-full-calendar]</code> для отображения календаря."
+
+#: ../includes/settings.php:473
+msgid "Enable delete on deactivation"
+msgstr "Включить удаление при деактивации"
+
+#: ../includes/settings.php:475
+msgid "Enable if you want all plugin data to be deleted on deactivation."
+msgstr "При деактивации плагина все данные о событиях будут удалены."
+
+#: ../includes/settings.php:500
+msgid "Choose the currency that will be used for ticket prices."
+msgstr "Выбрать валюту для цены билетов."
+
+#: ../includes/settings.php:523
+msgid "Choose the location of the currency sign."
+msgstr "Выберите расположение знака валюты."
+
+#: ../includes/settings.php:539
+msgid ""
+"This will appear next to all the currency figures on the website. Ex. $, "
+"USD, €..."
+msgstr "Символ, добавляющийся к цене на сайте, напр. $, USD, €..."
+
+#: ../includes/settings.php:564
+msgid ""
+"This determines how your currency is displayed. Ex. 1,234.56 or 1,200 or "
+"1200."
+msgstr "Определяет вид отображения цены, напр. 1,234.56, 1,200 lub 1200."
+
+#: ../includes/settings.php:587
+msgid ""
+"Select how to order your events list (works for both: admin and front-end "
+"default query)."
+msgstr ""
+"Выберите способ сортировки событий (используется и для сайта, и для "
+"админпанели)."
+
+#: ../includes/settings.php:610
+msgid ""
+"Select events list order (works for both: admin and front-end default query)."
+msgstr ""
+"Как сортировать события (будет применено и для сайта, и для админпанели)."
+
+# @ events-maker
+#: ../includes/settings.php:624 ../includes/widgets.php:272
+msgid "Show past events"
+msgstr "Показывать прошедшие события"
+
+#: ../includes/settings.php:626
+msgid ""
+"Select whether to include past events in events list (works for front-end "
+"default query)."
+msgstr ""
+"Выберите, если хотите показывать прошедшие события (только для внешней части "
+"сайта)."
+
+# @ events-maker
+#: ../includes/settings.php:640
+msgid "Expire current events"
+msgstr "Окончание текущего события"
+
+#: ../includes/settings.php:642
+msgid ""
+"Select how to handle already started events (works for front-end default "
+"query)."
+msgstr ""
+"Выберите, если хотите показывать дату окончания текущего события (только для "
+"внешней части сайта)."
+
+#: ../includes/settings.php:656
+msgid "Show occurrences"
+msgstr "Показывать повторения"
+
+#: ../includes/settings.php:658
+msgid ""
+"Select whether to include event occurrences in events list (works for front-"
+"end default query)."
+msgstr ""
+"Выберите, если хотите показывать повторения в списке событий (только для "
+"внешней части сайта)."
+
+# @ events-maker
+#: ../includes/settings.php:674
+msgid "Show link in menu"
+msgstr "Показывать ссылку в меню"
+
+# @ events-maker
+#: ../includes/settings.php:680
+msgid "Menu"
+msgstr "Меню"
+
+# @ events-maker
+#: ../includes/settings.php:691 ../includes/widgets.php:92
+#: ../includes/widgets.php:268 ../includes/widgets.php:744
+#: ../includes/widgets.php:791 ../includes/widgets.php:1108
+#: ../includes/widgets.php:1225 ../includes/widgets.php:1342
+msgid "Title"
+msgstr "Заголовок"
+
+#: ../includes/settings.php:693
+msgid ""
+"Note: if global WordPress permalinks were changed remember to save Events "
+"Maker general settings again."
+msgstr ""
+"ВНИМАНИЕ: если Вы поменяли структуру постоянных ссылок в основных настройках "
+"WordPress, пересохраните настройки Менеджера событий."
+
+#: ../includes/settings.php:697
+msgid "Note: there is no menu to which you could add events archive link."
+msgstr "Примечание: Меню навигации для добавления ссылки не найдено."
+
+#: ../includes/settings.php:703
+msgid ""
+"Select if you want to automatically add events archive link to nav menu."
+msgstr "Выберите, если хотите добавить автоматическую ссылку в меню навигации."
+
+# @ events-maker
+#: ../includes/settings.php:717
+msgid "Date"
+msgstr "Дата"
+
+# @ events-maker
+#: ../includes/settings.php:719
+msgid "Time"
+msgstr "Время"
+
+#: ../includes/settings.php:721
+msgid "Enter your preffered date and time formatting."
+msgstr "Введите предпочитаемый формат даты и времени."
+
+#: ../includes/settings.php:742
+msgid "Select preffered first day of the week for the calendar display."
+msgstr "С какого дня начинается неделя?"
+
+# @ events-maker
+#: ../includes/settings.php:756
+msgid "Enable to use default templates"
+msgstr "Включить возможность использования шаблонов по умолчанию"
+
+# @ events-maker
+#: ../includes/settings.php:758
+msgid ""
+"For each of the events pages, the corresponding template is used. To use "
+"your own template simply give it the same name and store in your theme "
+"folder. By default, if Events Maker can't find a template in your theme "
+"directory, it will use its own default template. To prevent this, uncheck "
+"this option. WordPress will then decide which template from your theme's "
+"folder to use."
+msgstr ""
+"К каждой странице события применяется соответствующий шаблон. Для "
+"использования Ваших шаблонов просто дайте им такое же имя и сохраните в "
+"папке темы. Если Менеджер событий не находит такого файла в папке с темой, "
+"он использует свой собственный шаблон по умолчанию. Для отключения такой "
+"возможности снимите галочку с этого пункта. WordPress будет сам определять, "
+"какой шаблон подставить."
+
+#: ../includes/settings.php:882
+msgid "These settings will work only if permalinks are enabled."
+msgstr "Эти настройки работают только при включенных постоянных ссылках."
+
+#: ../includes/settings.php:897
+msgid "General Events root slug to prefix all your events pages with."
+msgstr "Префикс и главная ссылка на события."
+
+# @ events-maker
+#: ../includes/settings.php:914
+msgid "Single event page slug."
+msgstr "Ссылка на одиночное событие"
+
+# @ events-maker
+#: ../includes/settings.php:931
+msgid "Event Locations page slug."
+msgstr "Ссылка на места проведения события."
+
+# @ events-maker
+#: ../includes/settings.php:948
+msgid "Event Categories page slug."
+msgstr "Ссылка на рубрики события."
+
+# @ events-maker
+#: ../includes/settings.php:965
+msgid "Event Tags page slug."
+msgstr "Ссылка на метки события."
+
+# @ events-maker
+#: ../includes/settings.php:982
+msgid "Event Organizers page slug."
+msgstr "Ссылка на организаторов события."
+
+# @ events-maker
+#: ../includes/settings.php:1001
+msgid "Role"
+msgstr "Роли"
+
+# @ events-maker
+#: ../includes/settings.php:1005
+msgid "None"
+msgstr "Нет"
+
+#: ../includes/shortcodes.php:127
+msgid "Calendar page was created successfully on all of the network sites."
+msgstr "Страница календаря создана для всех сайтов в сети."
+
+#: ../includes/shortcodes.php:129
+msgid ""
+"Calendar page was not created on all of the network sites. You can try to "
+"create it manually later."
+msgstr ""
+"Страница календаря не создана для всех сайтов в сети. Вы можете создать её "
+"вручную."
+
+#: ../includes/shortcodes.php:131
+msgid ""
+"Calendar page was not created on some of the network sites. You can try to "
+"create it manually later."
+msgstr ""
+"Страница календаря не создана для некоторых сайтов в сети. Создайте её "
+"вручную."
+
+#: ../includes/shortcodes.php:179
+msgid ""
+"Events Maker needs to create a page for your events calendar display. Would "
+"you like to do it automatically?"
+msgstr ""
+"Менеджеру событий требуется страница для отображения календаря событий. "
+"Создать её автоматически?"
+
+# @ events-maker
+#: ../includes/shortcodes.php:179
+msgid "Create Calendar Page"
+msgstr "Создать страницу календаря"
+
+#: ../includes/shortcodes.php:179
+msgid "No thanks"
+msgstr "Нет, не надо"
+
+# @ events-maker
+#: ../includes/shortcodes.php:222 ../includes/widgets.php:168
+#: ../includes/widgets.php:182
+msgid "Events Calendar"
+msgstr "Календарь событий"
+
+#: ../includes/shortcodes.php:240
+msgid "Calendar page was created successfully."
+msgstr "Страница календаря создана."
+
+#: ../includes/shortcodes.php:250
+msgid ""
+"Calendar page was not created successfully. You can try to create it "
+"manually later."
+msgstr "Страница календаря не создана. Создайте её вручную."
+
+# @ events-maker
+#: ../includes/taxonomies.php:37 ../includes/taxonomies.php:114
+msgid "Map"
+msgstr "Карта"
+
+# @ events-maker
+#: ../includes/taxonomies.php:44 ../includes/taxonomies.php:125
+#: ../templates/taxonomy-event-location.php:34
+msgid "Address"
+msgstr "Адрес"
+
+# @ events-maker
+#: ../includes/taxonomies.php:48 ../includes/taxonomies.php:133
+#: ../templates/taxonomy-event-location.php:40
+msgid "City"
+msgstr "Город"
+
+# @ events-maker
+#: ../includes/taxonomies.php:52 ../includes/taxonomies.php:141
+#: ../templates/taxonomy-event-location.php:43
+msgid "State / Province"
+msgstr "Область"
+
+# @ events-maker
+#: ../includes/taxonomies.php:56 ../includes/taxonomies.php:149
+#: ../templates/taxonomy-event-location.php:37
+msgid "Zip Code"
+msgstr "Почтовый индекс"
+
+# @ events-maker
+#: ../includes/taxonomies.php:60 ../includes/taxonomies.php:157
+#: ../templates/taxonomy-event-location.php:46
+msgid "Country"
+msgstr "Страна"
+
+# @ events-maker
+#: ../includes/taxonomies.php:73 ../includes/taxonomies.php:185
+#: ../templates/taxonomy-event-organizer.php:32
+msgid "Contact name"
+msgstr "Контактное лицо"
+
+# @ events-maker
+#: ../includes/taxonomies.php:77 ../includes/taxonomies.php:193
+#: ../templates/taxonomy-event-organizer.php:35
+msgid "Phone"
+msgstr "Телефон"
+
+# @ events-maker
+#: ../includes/taxonomies.php:81 ../includes/taxonomies.php:201
+msgid "E-mail"
+msgstr "E-mail"
+
+# @ events-maker
+#: ../includes/taxonomies.php:85 ../includes/taxonomies.php:209
+#: ../templates/taxonomy-event-organizer.php:41
+msgid "Website"
+msgstr "Сайт"
+
+#: ../includes/taxonomies.php:90 ../includes/taxonomies.php:217
+#: ../templates/taxonomy-event-organizer.php:44
+msgid "Image"
+msgstr "Изображение"
+
+# @ events-maker
+#: ../includes/taxonomies.php:92 ../includes/taxonomies.php:222
+msgid "Select image"
+msgstr "Выберите изображение"
+
+#: ../includes/taxonomies.php:93 ../includes/taxonomies.php:223
+msgid "Remove image"
+msgstr "Убрать изображение"
+
+#: ../includes/update.php:72
+msgid "Datebase was succesfully updated. Enjoy new features!"
+msgstr "База данных успешно обновлена. Удачи!"
+
+#: ../includes/update.php:79
+msgid ""
+"Events Maker new features require a database update. Make sure you backup "
+"your database and then click."
+msgstr ""
+"Менеджер событий требует обновления базы данных для включения нового "
+"функционала. Не забудьте сделать резервную копию базы данных."
+
+#: ../includes/update.php:79
+msgid "Update"
+msgstr "Обновить"
+
+# @ events-maker
+#: ../includes/welcome.php:19 ../includes/welcome.php:37
+msgid "Welcome to Events Maker"
+msgstr "Добро пожаловать в Менеджер Событий"
+
+#: ../includes/welcome.php:41
+msgid ""
+"Events Maker is an easy to use but flexible events management plugin made "
+"the WordPress way."
+msgstr ""
+"Менеджер событий - это простой, но гибкий плагин для отображения различных "
+"мероприятий в WordPress."
+
+#: ../includes/welcome.php:49
+msgid "dFactory Plugins"
+msgstr "Плагины dFactory"
+
+# @ events-maker
+#: ../includes/welcome.php:54
+msgid "About Events Maker"
+msgstr "О Менеджере событий"
+
+#: ../includes/welcome.php:70
+msgid "Main Features"
+msgstr "Основные функции"
+
+#: ../includes/welcome.php:76
+msgid "Easy Event Management"
+msgstr "Простое управление событиями"
+
+#: ../includes/welcome.php:77
+msgid ""
+"Set up date and time, title, desciption and other details of your events in "
+"a WordPress native interface."
+msgstr ""
+"Устанавливайте дату и время, задавайте заголовок и описание, добавляйте "
+"остальную информацию через \"родной\" интерфейс WordPress-а."
+
+# @ events-maker
+#: ../includes/welcome.php:82
+msgid "Locations and Organizers"
+msgstr "Места проведения и Организаторы"
+
+#: ../includes/welcome.php:83
+msgid ""
+"Organize your events in reusable Categories, Tags, Locations and Organizers."
+msgstr ""
+"Сгруппируйте Ваши события по рубрикам, меткам, местам проведения и "
+"организаторам."
+
+# @ events-maker
+#: ../includes/welcome.php:88
+msgid "Multiple Event Tickets"
+msgstr "Билеты на события"
+
+#: ../includes/welcome.php:89
+msgid ""
+"Create free or paid events and add as many different types of tickets as you "
+"need."
+msgstr ""
+"Создавайте бесплатные или платные события с указаниями мест и способов "
+"оплаты."
+
+#: ../includes/welcome.php:98
+msgid "6 Widgets incl. Ajax Calendar"
+msgstr "6 виджетов, включая Ajax-календарь"
+
+#: ../includes/welcome.php:99
+msgid ""
+"Complete set of widgets allow you to display event details anywhere in a "
+"theme."
+msgstr ""
+"Полный набор виджетов позволит Вам вывести информацию о событиях в любом "
+"месте шаблона."
+
+#: ../includes/welcome.php:104
+msgid "Highly Customizable Settings"
+msgstr "Очень гибкие настройки"
+
+#: ../includes/welcome.php:105
+msgid ""
+"Easily control different areas of the plugin including Permalinks, "
+"Capabilities and many other."
+msgstr ""
+"Простое управление различными областями плагина, включая Пермалинки, "
+"Повторяемость и прочее."
+
+#: ../includes/welcome.php:110
+msgid "WPML Compatibility"
+msgstr "Совместимость с WPML"
+
+#: ../includes/welcome.php:111
+msgid ""
+"Are you running a multilingual events site? Events Maker is fully compatible "
+"with WPML (and probably other multilingual plugins too)."
+msgstr ""
+"Делаете мультиязычный сайт? Менеджер событий полностью совместим с WPML (и, "
+"возможно с остальными плагинами перевода)."
+
+#: ../includes/welcome.php:120
+msgid "Under the Hood"
+msgstr "Скрытые возможности"
+
+#: ../includes/welcome.php:124
+msgid "Custom Post Types & Custom Taxonomies"
+msgstr "Пользовательские типы записей и таксономии"
+
+#: ../includes/welcome.php:125
+msgid ""
+"Events Maker is built using WordPress custom post types, custom taxonomies "
+"and custom post fields. "
+msgstr ""
+"Менеджер событий создан с поддержкой пользовательских типов записи "
+"Wordpress, пользовательских таксономий и полей."
+
+#: ../includes/welcome.php:128
+msgid "Filters and Actions"
+msgstr "Фильтры и Действия"
+
+#: ../includes/welcome.php:129
+msgid ""
+"We have included various hooks and filters so you can plug-into these hooks "
+"to extend the functionalities."
+msgstr ""
+"В код плагина включены многочисленные hook-и и фильтры, позволяющие "
+"расширить его функционал."
+
+#: ../includes/welcome.php:133
+msgid "Custom Functions"
+msgstr "Пользовательские функции"
+
+#: ../includes/welcome.php:134
+msgid ""
+"There are 26 custom functions available. You can use it to make Events Maker "
+"suite your individual needs."
+msgstr ""
+"Доступно 26 пользовательских функций, позволяющих настроить Менеджер событий "
+"по Вашим потребностям."
+
+# @ events-maker
+#: ../includes/welcome.php:142
+msgid "Go to Events Maker Settings"
+msgstr "В настройки Менеджера событий"
+
+# @ events-maker
+#: ../includes/widgets.php:49 ../includes/widgets.php:56
+msgid "Events Archives"
+msgstr "Архивы событий"
+
+# @ events-maker
+#: ../includes/widgets.php:51
+msgid "Displays events archives"
+msgstr "Показывать архив событий"
+
+# @ events-maker
+#: ../includes/widgets.php:65
+msgid "Monthly"
+msgstr "Помесячный"
+
+# @ events-maker
+#: ../includes/widgets.php:66
+msgid "Yearly"
+msgstr "Годовой"
+
+# @ events-maker
+#: ../includes/widgets.php:96 ../includes/widgets.php:1112
+#: ../includes/widgets.php:1229 ../includes/widgets.php:1346
+msgid "Display as dropdown"
+msgstr "Выпадающим списком"
+
+# @ events-maker
+#: ../includes/widgets.php:97
+msgid "Show amount of events"
+msgstr "Выводить похожие события"
+
+# @ events-maker
+#: ../includes/widgets.php:100
+msgid "Display Type"
+msgstr "Способ отображения"
+
+# @ events-maker
+#: ../includes/widgets.php:113 ../includes/widgets.php:863
+#: ../includes/widgets.php:1128 ../includes/widgets.php:1245
+#: ../includes/widgets.php:1362
+msgid "Order"
+msgstr "Сортировка"
+
+# @ events-maker
+#: ../includes/widgets.php:125
+msgid "Limit"
+msgstr "Предел"
+
+# @ events-maker
+#: ../includes/widgets.php:170
+msgid "Displays events calendar"
+msgstr "Показывать календарь событий"
+
+# @ events-maker
+#: ../includes/widgets.php:192 ../includes/widgets.php:736
+msgid "all"
+msgstr "все"
+
+# @ events-maker
+#: ../includes/widgets.php:193 ../includes/widgets.php:737
+msgid "selected"
+msgstr "выбранные"
+
+#: ../includes/widgets.php:197
+msgid "basic"
+msgstr "простой"
+
+#: ../includes/widgets.php:198
+msgid "dark"
+msgstr "темный"
+
+#: ../includes/widgets.php:199
+msgid "light"
+msgstr "светлый"
+
+#: ../includes/widgets.php:200
+msgid "flat"
+msgstr "плоский"
+
+# @ events-maker
+#: ../includes/widgets.php:273
+msgid "Highlight weekends"
+msgstr "Подсвечивать выходные"
+
+#: ../includes/widgets.php:276
+msgid "CSS Style"
+msgstr "Стиль CSS"
+
+# @ events-maker
+#: ../includes/widgets.php:289 ../includes/widgets.php:799
+msgid "Event Categories"
+msgstr "Рубрики событий"
+
+# @ events-maker
+#: ../includes/widgets.php:304 ../includes/widgets.php:814
+msgid "Event Locations"
+msgstr "Места проведения событий"
+
+# @ events-maker
+#: ../includes/widgets.php:325 ../includes/widgets.php:833
+msgid "Event Organizers"
+msgstr "Организаторы событий"
+
+# @ events-maker
+#: ../includes/widgets.php:687 ../includes/widgets.php:1042
+msgid "No results were found."
+msgstr "Не найдено."
+
+# @ events-maker
+#: ../includes/widgets.php:708
+msgid "Events List"
+msgstr "Список событий"
+
+# @ events-maker
+#: ../includes/widgets.php:710
+msgid "Displays a list of events"
+msgstr "Показывать список событий"
+
+# @ events-maker
+#: ../includes/widgets.php:741
+msgid "Start date"
+msgstr "Дата начала"
+
+# @ events-maker
+#: ../includes/widgets.php:742
+msgid "End date"
+msgstr "Дата окончания"
+
+# @ events-maker
+#: ../includes/widgets.php:795
+msgid "Number of events"
+msgstr "Количество событий"
+
+# @ events-maker
+#: ../includes/widgets.php:878
+msgid "Display past events"
+msgstr "Показывать прошедшие события"
+
+# @ events-maker
+#: ../includes/widgets.php:880
+msgid "Display event excerpt"
+msgstr "Показывать выдержку из события"
+
+# @ events-maker
+#: ../includes/widgets.php:882
+msgid "Display event thumbnail"
+msgstr "Показывать миниатюру события"
+
+# @ events-maker
+#: ../includes/widgets.php:885
+msgid "Thumbnail size"
+msgstr "Размер миниатюры"
+
+# @ events-maker
+#: ../includes/widgets.php:900
+msgid "No events message"
+msgstr "Сообщение о пустом списке"
+
+# @ events-maker
+#: ../includes/widgets.php:904
+msgid "Date format"
+msgstr "Формат даты"
+
+# @ events-maker
+#: ../includes/widgets.php:906
+msgid "Time format"
+msgstr "Формат времени"
+
+# @ events-maker
+#: ../includes/widgets.php:1060 ../includes/widgets.php:1067
+msgid "Events Categories"
+msgstr "Рубрики событий"
+
+# @ events-maker
+#: ../includes/widgets.php:1062
+msgid "Displays a list of events categories"
+msgstr "Показывать все рубрики событий"
+
+# @ events-maker
+#: ../includes/widgets.php:1075 ../includes/widgets.php:1192
+#: ../includes/widgets.php:1309
+msgid "ID"
+msgstr "ID"
+
+# @ events-maker
+#: ../includes/widgets.php:1076 ../includes/widgets.php:1193
+#: ../includes/widgets.php:1310
+msgid "Name"
+msgstr "Название события"
+
+# @ events-maker
+#: ../includes/widgets.php:1113 ../includes/widgets.php:1230
+#: ../includes/widgets.php:1347
+msgid "Show hierarchy"
+msgstr "С учётом иерархии"
+
+# @ events-maker
+#: ../includes/widgets.php:1177 ../includes/widgets.php:1184
+msgid "Events Locations"
+msgstr "Места событий"
+
+# @ events-maker
+#: ../includes/widgets.php:1179
+msgid "Displays a list of events locations"
+msgstr "Отображает список мест событий"
+
+# @ events-maker
+#: ../includes/widgets.php:1294 ../includes/widgets.php:1301
+msgid "Events Organizers"
+msgstr "Организаторы событий"
+
+# @ events-maker
+#: ../includes/widgets.php:1296
+msgid "Displays a list of events organizers"
+msgstr "Отображает список организаторов событий"
+
+# @ events-maker
+#: ../templates/archive-event.php:27
+#, php-format
+msgid "Event Daily Archives: %s"
+msgstr "Дневной архив событий: %s"
+
+# @ events-maker
+#: ../templates/archive-event.php:29
+#, php-format
+msgid "Event Monthly Archives: %s"
+msgstr "Месячный архив событий: %s"
+
+# @ events-maker
+#: ../templates/archive-event.php:29
+msgctxt "monthly archives date format"
+msgid "F Y"
+msgstr "F Y"
+
+# @ events-maker
+#: ../templates/archive-event.php:31
+#, php-format
+msgid "Event Yearly Archives: %s"
+msgstr "Годовой архив событий: %s"
+
+# @ events-maker
+#: ../templates/archive-event.php:31
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr "Y"
+
+# @ events-maker
+#: ../templates/archive-event.php:66
+msgid "No Events Found"
+msgstr "Событий не найдено"
+
+# @ events-maker
+#: ../templates/archive-event.php:70
+msgid "Apologies, but no events were found."
+msgstr "Извините, но событий пока нет."
+
+# @ events-maker
+#: ../templates/content-event.php:40 ../templates/content-single-event.php:44
+msgid "Leave a comment"
+msgstr "Прокомментировать"
+
+# @ events-maker
+#: ../templates/content-event.php:40 ../templates/content-single-event.php:44
+msgid "1 Comment"
+msgstr "1 комментарий"
+
+# @ events-maker
+#: ../templates/content-event.php:40 ../templates/content-single-event.php:44
+msgid "% Comments"
+msgstr "% Комментариев"
+
+# @ events-maker
+#: ../templates/content-event.php:44 ../templates/content-single-event.php:48
+msgid "Edit"
+msgstr "Править"
+
+# @ events-maker
+#: ../templates/taxonomy-event-category.php:24
+#, php-format
+msgid "Events Category: %s"
+msgstr "Рубрика события: %s"
+
+# @ events-maker
+#: ../templates/taxonomy-event-location.php:24
+#, php-format
+msgid "Events Location: %s"
+msgstr "Место события: %s"
+
+# @ events-maker
+#: ../templates/taxonomy-event-organizer.php:24
+#, php-format
+msgid "Events Organizer: %s"
+msgstr "Организатор события: %s"
+
+# @ events-maker
+#: ../templates/taxonomy-event-organizer.php:38
+msgid "Email"
+msgstr "Email"
+
+# @ events-maker
+#: ../templates/taxonomy-event-tag.php:24
+#, php-format
+msgid "Events Tag: %s"
+msgstr "Метка события: %s"
+
+# @ events-maker
+#~ msgid "Location"
+#~ msgstr "Lokalizacja"
+
+# @ events-maker
+#~ msgid "Organizer"
+#~ msgstr "Organizator"
+
+#~ msgid "Pages on all sites were created successfully."
+#~ msgstr "Strony zostały utworzone na wszystkich stronach sieci."
+
+#~ msgid ""
+#~ "Pages on all sites were not created successfully. You can try to create "
+#~ "them manually later."
+#~ msgstr ""
+#~ "Strony na wszystkich stronach sieci nie zostały utworzone . Możesz "
+#~ "spróbowaćutworzyć je ręcznie później."
+
+#~ msgid ""
+#~ "Only some pages were created successfully . You can try to create the "
+#~ "rest pages manually later."
+#~ msgstr ""
+#~ "Tylko niektóre strony zostały utworzone. Możesz spróbować utworzyć "
+#~ "pozostałe strony później."
+
+# @ events-maker
+#~ msgid "Enable"
+#~ msgstr "Włącz"
+
+# @ events-maker
+#~ msgid "Disable"
+#~ msgstr "Wyłącz"
+
+# @ events-maker
+#~ msgid "Use Event Tags"
+#~ msgstr "Tagi wydarzeń"
+
+# @ events-maker
+#~ msgid "Use Event Organizers"
+#~ msgstr "Organizatorzy wydarzeń"
+
+# @ events-maker
+#~ msgid "Sort Events by"
+#~ msgstr "Sortowanie wydarzeń wg"
+
+# @ events-maker
+#, fuzzy
+#~ msgid "Single content event"
+#~ msgstr "Pojedyncze wydarzenia"

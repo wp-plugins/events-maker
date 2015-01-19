@@ -4,7 +4,7 @@ Donate link: http://www.dfactory.eu/
 Tags: event, event categories, events management, event management, events manager, event manager, event organizer, events calendar, events maker, google map, map, locations, organizers, widget, attendance, attendee, Booking, calendar, event registration, ticket, tickets, ticketing, bookings
 Requires at least: 3.5
 Tested up to: 4.1.0
-Stable tag: 1.4.1
+Stable tag: 1.4.2
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -80,6 +80,7 @@ Events Maker allows you to create and manage events, categories, locations and o
 * Finnish - by [Ari-Pekka Koponen](http://www.versi.fi/)
 * French - by Marc Abel
 * German - by [Martin Stoehr](http://www.stoehrinteractive.com)
+* Hebrew - by [Ahrale Shrem](http://atar4u.com/)
 * Italian - by [Lorenzo De Tomasi](http://isotype.org)
 * Japanese - by stranger-jp
 * Norwegian - by Anders Kleppe
@@ -111,6 +112,9 @@ A. Chances are, someone else has asked it. Check out the support forum at: http:
 6. screenshot-4.png
 
 == Changelog ==
+
+= 1.4.2 =
+* New: Hebrew translation, thanks to [Ahrale Shrem](http://atar4u.com/)
 
 = 1.4.1 =
 * Fix: View Calendar button not displayed in admin
@@ -267,6 +271,5 @@ Initial release
 
 == Upgrade Notice ==
 
-= 1.4.1 =
-* Fix: View Calendar button not displayed in admin
-* Fix: iCal feed date not converting to GMT
+= 1.4.2 =
+* New: Hebrew translation, thanks to [Ahrale Shrem](http://atar4u.com/)

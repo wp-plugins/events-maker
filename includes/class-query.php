@@ -380,7 +380,10 @@ class Events_Maker_Query
 
 			if(!empty($query->query_vars['event_ondate']))
 			{
-				$date = explode('/', $query->query_vars['event_ondate']);
+				if(get_option('permalink_structure'))
+					$date = explode('/', $query->query_vars['event_ondate']);
+				else
+					$date = explode('-', $query->query_vars['event_ondate']);
 
 				//year
 				if(($a = count($date)) === 1)

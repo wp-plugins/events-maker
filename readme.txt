@@ -4,7 +4,7 @@ Donate link: http://www.dfactory.eu/
 Tags: event, event categories, events management, event management, events manager, event manager, event organizer, events calendar, events maker, google map, map, locations, organizers, widget, attendance, attendee, Booking, calendar, event registration, ticket, tickets, ticketing, bookings
 Requires at least: 3.5
 Tested up to: 4.1.0
-Stable tag: 1.4.2
+Stable tag: 1.4.3
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -112,6 +112,9 @@ A. Chances are, someone else has asked it. Check out the support forum at: http:
 6. screenshot-4.png
 
 == Changelog ==
+
+= 1.4.3 =
+* Fix: Date archive display all events when permalinks disabled
 
 = 1.4.2 =
 * New: Hebrew translation, thanks to [Ahrale Shrem](http://atar4u.com/)
@@ -271,5 +274,5 @@ Initial release
 
 == Upgrade Notice ==
 
-= 1.4.2 =
-* New: Hebrew translation, thanks to [Ahrale Shrem](http://atar4u.com/)
+= 1.4.3 =
+* Fix: Date archive display all events when permalinks disabled

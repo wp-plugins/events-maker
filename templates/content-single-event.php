@@ -23,6 +23,7 @@ $classes = apply_filters('em_single_event_classes', array('hcalendar'));
 		 * em_before_single_event hook
 		 * 
 		 * @hooked em_display_single_event_thumbnail - 10
+		 * @hooked em_display_event_gallery - 20
 		 */
 		do_action('em_before_single_event');
 		?>

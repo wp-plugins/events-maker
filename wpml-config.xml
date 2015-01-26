@@ -11,6 +11,7 @@
         <custom-field action="copy">_event_display_options</custom-field>
         <custom-field action="copy">_event_featured</custom-field>
         <custom-field action="copy">_event_free</custom-field>
+        <custom-field action="copy">_event_gallery</custom-field>
     </custom-fields>
     <custom-types>
         <custom-type translate="1">event</custom-type>

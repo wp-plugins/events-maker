@@ -367,4 +367,138 @@ jQuery(document).ready(function($) {
 
 		return html;
 	}
+	
+	
+	// Event gallery file uploads
+	var event_gallery_frame;
+	var $event_gallery_ids = $('#event_gallery');
+	var $event_images = $('#event_gallery_container ul.event_images');
+
+	$('.add_event_images').on('click', 'a', function(event) {
+		var $el = $(this);
+		var attachment_ids = $event_gallery_ids.val();
+
+		event.preventDefault();
+
+		// If the media frame already exists, reopen it.
+		if (event_gallery_frame){
+			event_gallery_frame.open();
+			return;
+		}
+
+		// Create the media frame.
+		event_gallery_frame = wp.media.frames.event_gallery = wp.media({
+			// Set the title of the modal.
+			title: $el.data('choose'),
+			button: {
+				text: $el.data('update'),
+			},
+			library: {
+				type: 'image'
+			},
+			multiple: true
+		});
+		
+		event_gallery_frame.on('open',function() {
+			var selection = event_gallery_frame.state().get('selection');
+			var attachment_ids = $event_gallery_ids.val().split(',');
+			
+			$.each(attachment_ids, function() {
+				if($.isNumeric(this)) {
+					attachment = wp.media.attachment(this);
+					attachment.fetch();
+					selection.add( attachment ? [ attachment ] : [] );
+				}
+			});
+		});
+
+		// When an image is selected, run a callback.
+		event_gallery_frame.on('select', function() {
+
+			var selection = event_gallery_frame.state().get('selection');
+			var attachment_ids = $event_gallery_ids.val().split(',');
+			
+			if(selection)
+			{
+				selection.map(function(attachment){
+					
+					// is image already in gallery?
+					if($event_images.find('.image[data-attachment_id="' + attachment.id + '"]').length)
+					{
+						return;
+					}
+					
+					$event_gallery_ids.val()
+					
+					if (attachment.id) {
+					
+						attachment_ids = attachment_ids ? attachment_ids + "," + attachment.id : attachment.id;
+						
+						attachment = attachment.toJSON();
+					   	
+					   	// is preview size available?
+				    	if( attachment.sizes && attachment.sizes['thumbnail']){
+					    	attachment.url = attachment.sizes['thumbnail'].url;
+				    	}
+					   	
+					   	$event_images.append('\
+							<li class="image" data-attachment_id="' + attachment.id + '">\
+								<div class="inner"><img src="' + attachment.url + '" /></div>\
+								<div class="actions"><a href="#" class="delete dashicons dashicons-no" title="' + $el.data('delete') + '"></a></div>\
+							</li>'
+						);
+					}
+				});
+			};
+			
+			$event_gallery_ids.val(attachment_ids);
+		});
+
+		// Finally, open the modal.
+		event_gallery_frame.open();
+	});
+
+	// Image ordering
+	$event_images.sortable({
+		items: 'li.image',
+		cursor: 'move',
+		scrollSensitivity:40,
+		forcePlaceholderSize: true,
+		forceHelperSize: false,
+		helper: 'clone',
+		opacity: 0.65,
+		placeholder: 'event-gallery-sortable-placeholder',
+		start:function(event,ui){
+			ui.item.css('border-color','#f6f6f6');
+		},
+		stop:function(event,ui){
+			ui.item.removeAttr('style');
+		},
+		update: function(event, ui) {
+			var attachment_ids = '';
+
+			$('#event_gallery_container ul li.image').each(function() {
+				var attachment_id = jQuery(this).attr('data-attachment_id');
+				attachment_ids = attachment_ids + attachment_id + ',';
+			});
+
+			$event_gallery_ids.val(attachment_ids);
+		}
+	});
+
+	// Remove images
+	$('#event_gallery_container').on( 'click', 'a.delete', function() {
+		$(this).closest('li.image').remove();
+
+		var attachment_ids = '';
+
+		$('#event_gallery_container ul li.image').each(function() {
+			var attachment_id = jQuery(this).attr('data-attachment_id');
+			attachment_ids = attachment_ids + attachment_id + ',';
+		});
+
+		$event_gallery_ids.val(attachment_ids);
+
+		return false;
+	});
 });

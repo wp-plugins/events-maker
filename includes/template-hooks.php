@@ -69,6 +69,7 @@ add_action('em_after_loop_event', 'em_display_event_tags', 10);
  * Single event content
  */
 add_action('em_before_single_event', 'em_display_single_event_thumbnail', 10);
+add_action('em_before_single_event', 'em_display_event_gallery', 20);
 add_action('em_single_event_content', 'em_display_event_content', 10);
 
 add_action('em_before_single_event_title', 'em_display_event_categories', 10);

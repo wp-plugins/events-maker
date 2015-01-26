@@ -470,9 +470,9 @@ class Events_Maker_Settings
 	{
 		$options = array(
 			'google_map' => __('Display Google Map', 'events-maker'),
+			'display_gallery' => __('Display Event Gallery', 'events-maker'),
 			'display_location_details' => __('Display Location Details', 'events-maker')
 		);
-		
 		// if tickets are enabled
 		if($this->options['general']['use_event_tickets'])
 			$options = array_merge($options, array('price_tickets_info' => __('Display Tickets Info', 'events-maker')));

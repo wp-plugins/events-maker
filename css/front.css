@@ -88,7 +88,8 @@
 }
 
 .entry-content .entry-content,
-.entry-content .entry-header {
+.entry-content .entry-header,
+.entry-content .event-gallery {
 	padding-left: 0;
 	padding-right: 0;
 }
@@ -98,7 +99,16 @@
 	margin-right: 0;
 }
 
-/* Events Google Map */
+.twentyfifteen .event-gallery {
+	padding: 0 10%;
+}
+.twentyfifteen .cat-links.term-list:before {
+	content: '';
+	margin: 0;
+	display: inline;
+}
+
+/* Event Google Map */
 
 #event-google-map {
     width: 100%;
@@ -126,6 +136,60 @@
 
 .single-event .entry-content {
     clear: both;
+}
+
+/* Event Gallery */
+
+.event-gallery {
+	clear: both;
+	margin: 1em 0;
+}
+.event-gallery:before,
+.event-gallery:after {
+  content:"";
+  display:table;
+}
+.event-gallery:after {
+  clear:both;
+}
+.event-gallery {
+  zoom:1; /* For IE 6/7 (trigger hasLayout) */
+}
+.event-gallery .event-thumbnail {
+	float: left;
+	margin: 0 3.8% 1em 0;
+	padding: 0;
+	position: relative;
+	margin-left: 0;
+}
+.event-gallery .event-thumbnail img {
+	height: auto;
+    max-width: 100%;
+}
+.event-gallery .event-thumbnail.first {
+	clear:both;
+}
+.event-gallery .event-thumbnail.last {
+	margin-right: 0;
+}
+.event-gallery.columns-1 .event-thumbnail {
+	width: 100%;
+	margin-right:0;
+}
+.event-gallery.columns-2 .event-thumbnail {
+	width: 48%;;
+}
+.event-gallery.columns-3 .event-thumbnail {
+	width: 30.75%;
+}
+.event-gallery.columns-4 .event-thumbnail {
+	width: 22.05%;
+}
+.event-gallery.columns-5 .event-thumbnail {
+	width: 16.95%;
+}
+.event-gallery.columns-6 .event-thumbnail {
+	width: 13.5%;
 }
 
 /* Full Calendar */

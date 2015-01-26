@@ -44,6 +44,7 @@ class Events_Maker_Metaboxes
 
 		$options = array(
 			'google_map' => __('Google Map', 'events-maker'),
+			'display_gallery' => __('Event Gallery', 'events-maker'),
 			'display_location_details' => __('Location Details', 'events-maker')
 		);
 		
@@ -158,6 +159,13 @@ class Events_Maker_Metaboxes
 					'event-cost-tickets-box' => array(
 						'title' => __('Event Tickets', 'events-maker'),
 						'callback' => array(&$this, 'event_tickets_cb'),
+						'post_type' => $post_type,
+						'context' => 'normal',
+						'priority' => 'high'
+					),
+					'event-gallery-box' => array(
+						'title' => __('Event Gallery', 'events-maker'),
+						'callback' => array(&$this, 'event_gallery_cb'),
 						'post_type' => $post_type,
 						'context' => 'normal',
 						'priority' => 'high'
@@ -312,6 +320,47 @@ class Events_Maker_Metaboxes
 	
 			$wp_meta_boxes[$post->post_type]['side']['core'] = $sideboxes;
 		}
+	}
+
+
+	/**
+	 * Event gallery metabox callback
+	*/
+	public function event_gallery_cb($post)
+	{
+		if (metadata_exists('post', $post->ID, '_event_gallery'))
+			$event_gallery = get_post_meta($post->ID, '_event_gallery', true);
+		else
+			$event_gallery = '';
+		?>
+		<div id="event_gallery_container">
+			
+			<p class="add_event_images hide-if-no-js clearfix">
+				<?php wp_nonce_field('events_maker_save_event_gallery', 'event_nonce_gallery'); ?>
+				<input type="hidden" id="event_gallery" name="event_gallery" value="<?php echo esc_attr($event_gallery); ?>" />
+				<a href="#" class="button button-primary" data-choose="<?php _e('Add Images to Event Gallery', 'events-maker'); ?>" data-update="<?php _e('Add Images to Gallery', 'events-maker'); ?>" data-delete="<?php _e('Delete image', 'events-maker'); ?>" data-text="<?php _e('Delete', 'events-maker'); ?>"><?php _e('Add Images to Gallery', 'events-maker'); ?></a>
+			</p>
+			
+			<ul class="event_images">
+				<?php
+					$attachments = array_filter(explode(',', $event_gallery));
+
+					if ($attachments)
+					{
+						foreach ($attachments as $attachment_id)
+						{
+							echo '
+							<li class="image" data-attachment_id="' . esc_attr($attachment_id) . '">
+								<div class="inner">' . wp_get_attachment_image($attachment_id, 'thumbnail') . '</div>
+								<div class="actions"><a href="#" class="delete dashicons dashicons-no" title="' . __('Delete image', 'events-maker') . '"></a></div>
+							</li>';
+						}
+					}
+				?>
+			</ul>
+				
+		</div>
+		<?php
 	}
 
 
@@ -625,6 +674,14 @@ class Events_Maker_Metaboxes
 		// break if current user can't edit events
 		if(!current_user_can('edit_event', $post_ID))
 			return $post_ID;
+		
+		// event gallery validation
+		if(isset($_POST['event_gallery']) && wp_verify_nonce($_POST['event_nonce_gallery'], 'events_maker_save_event_gallery'))
+		{
+			$attachment_ids = array_map('esc_attr', array_filter(explode(',', $_POST['event_gallery'])));
+
+			update_post_meta($post_ID, '_event_gallery', implode(',', $attachment_ids));
+		}
 
 		// event date & time validation
 		if(isset($_POST['event_nonce_datetime']) && wp_verify_nonce($_POST['event_nonce_datetime'], 'events_maker_save_event_datetime'))
@@ -880,6 +937,7 @@ class Events_Maker_Metaboxes
 		{
 			$options = array(
 				'google_map' => __('Google Map', 'events-maker'),
+				'display_gallery' => __('Event Gallery', 'events-maker'),
 				'display_location_details' => __('Location Details', 'events-maker')
 			);
 

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Events Maker\n"
-"POT-Creation-Date: 2015-01-13 21:56+0100\n"
-"PO-Revision-Date: 2015-01-13 21:56+0100\n"
+"POT-Creation-Date: 2015-01-25 18:11+0100\n"
+"PO-Revision-Date: 2015-01-25 18:11+0100\n"
 "Last-Translator: Bartosz Arendt <info@dfactory.eu>\n"
 "Language-Team: dFactory <info@dfactory.pl>\n"
 "Language: en\n"
@@ -17,508 +17,508 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../events-maker.php:328
+#: ../events-maker.php:329
 msgid "Australian Dollar"
 msgstr ""
 
-#: ../events-maker.php:329
+#: ../events-maker.php:330
 msgid "Bangladeshi Taka"
 msgstr ""
 
-#: ../events-maker.php:330
+#: ../events-maker.php:331
 msgid "Brazilian Real"
 msgstr ""
 
-#: ../events-maker.php:331
+#: ../events-maker.php:332
 msgid "Bulgarian Lev"
 msgstr ""
 
-#: ../events-maker.php:332
+#: ../events-maker.php:333
 msgid "Canadian Dollar"
 msgstr ""
 
-#: ../events-maker.php:333
+#: ../events-maker.php:334
 msgid "Chilean Peso"
 msgstr ""
 
-#: ../events-maker.php:334
+#: ../events-maker.php:335
 msgid "Chinese Yuan"
 msgstr ""
 
-#: ../events-maker.php:335
+#: ../events-maker.php:336
 msgid "Colombian Peso"
 msgstr ""
 
-#: ../events-maker.php:336
+#: ../events-maker.php:337
 msgid "Croatian kuna"
 msgstr ""
 
-#: ../events-maker.php:337
+#: ../events-maker.php:338
 msgid "Czech Koruna"
 msgstr ""
 
-#: ../events-maker.php:338
+#: ../events-maker.php:339
 msgid "Danish Krone"
 msgstr ""
 
-#: ../events-maker.php:339
+#: ../events-maker.php:340
 msgid "Euro"
 msgstr ""
 
-#: ../events-maker.php:340
+#: ../events-maker.php:341
 msgid "Hong Kong Dollar"
 msgstr ""
 
-#: ../events-maker.php:341
+#: ../events-maker.php:342
 msgid "Hungarian Forint"
 msgstr ""
 
-#: ../events-maker.php:342
+#: ../events-maker.php:343
 msgid "Icelandic krona"
 msgstr ""
 
-#: ../events-maker.php:343
+#: ../events-maker.php:344
 msgid "Indian Rupee"
 msgstr ""
 
-#: ../events-maker.php:344
+#: ../events-maker.php:345
 msgid "Indonesian Rupiah"
 msgstr ""
 
-#: ../events-maker.php:345
+#: ../events-maker.php:346
 msgid "Israeli Shekel"
 msgstr ""
 
-#: ../events-maker.php:346
+#: ../events-maker.php:347
 msgid "Iranian Rial"
 msgstr ""
 
-#: ../events-maker.php:347
+#: ../events-maker.php:348
 msgid "Japanese Yen"
 msgstr ""
 
-#: ../events-maker.php:348
+#: ../events-maker.php:349
 msgid "Malaysian Ringgit"
 msgstr ""
 
-#: ../events-maker.php:349
+#: ../events-maker.php:350
 msgid "Mexican Peso"
 msgstr ""
 
-#: ../events-maker.php:350
+#: ../events-maker.php:351
 msgid "New Zealand Dollar"
 msgstr ""
 
-#: ../events-maker.php:351
+#: ../events-maker.php:352
 msgid "Nigerian Naira"
 msgstr ""
 
-#: ../events-maker.php:352
+#: ../events-maker.php:353
 msgid "Norwegian Krone"
 msgstr ""
 
-#: ../events-maker.php:353
+#: ../events-maker.php:354
 msgid "Philippine Peso"
 msgstr ""
 
-#: ../events-maker.php:354
+#: ../events-maker.php:355
 msgid "Polish Zloty"
 msgstr ""
 
-#: ../events-maker.php:355
+#: ../events-maker.php:356
 msgid "Pound Sterling"
 msgstr ""
 
-#: ../events-maker.php:356
+#: ../events-maker.php:357
 msgid "Romanian Leu"
 msgstr ""
 
-#: ../events-maker.php:357
+#: ../events-maker.php:358
 msgid "Russian Ruble"
 msgstr ""
 
-#: ../events-maker.php:358
+#: ../events-maker.php:359
 msgid "Singapore Dollar"
 msgstr ""
 
-#: ../events-maker.php:359
+#: ../events-maker.php:360
 msgid "South African Rand"
 msgstr ""
 
-#: ../events-maker.php:360
+#: ../events-maker.php:361
 msgid "South Korean Won"
 msgstr ""
 
-#: ../events-maker.php:361
+#: ../events-maker.php:362
 msgid "Swedish Krona"
 msgstr ""
 
-#: ../events-maker.php:362
+#: ../events-maker.php:363
 msgid "Swiss Franc"
 msgstr ""
 
-#: ../events-maker.php:363
+#: ../events-maker.php:364
 msgid "Taiwan New Dollar"
 msgstr ""
 
-#: ../events-maker.php:364
+#: ../events-maker.php:365
 msgid "Thai Baht"
 msgstr ""
 
-#: ../events-maker.php:365
+#: ../events-maker.php:366
 msgid "Turkish Lira"
 msgstr ""
 
-#: ../events-maker.php:366
+#: ../events-maker.php:367
 msgid "Ukrainian Hryvnia"
 msgstr ""
 
-#: ../events-maker.php:367
+#: ../events-maker.php:368
 msgid "United Arab Emirates Dirham"
 msgstr ""
 
-#: ../events-maker.php:368
+#: ../events-maker.php:369
 msgid "United States Dollar"
 msgstr ""
 
-#: ../events-maker.php:369
+#: ../events-maker.php:370
 msgid "Vietnamese Dong"
 msgstr ""
 
-#: ../events-maker.php:416
+#: ../events-maker.php:417
 msgid "before the price"
 msgstr ""
 
-#: ../events-maker.php:417
+#: ../events-maker.php:418
 msgid "after the price"
 msgstr ""
 
-#: ../events-maker.php:432
+#: ../events-maker.php:433
 msgid "once"
 msgstr ""
 
-#: ../events-maker.php:433
+#: ../events-maker.php:434
 msgid "daily"
 msgstr ""
 
-#: ../events-maker.php:434
+#: ../events-maker.php:435
 msgid "weekly"
 msgstr ""
 
-#: ../events-maker.php:435
+#: ../events-maker.php:436
 msgid "monthly"
 msgstr ""
 
-#: ../events-maker.php:436
+#: ../events-maker.php:437
 msgid "yearly"
 msgstr ""
 
-#: ../events-maker.php:437
+#: ../events-maker.php:438
 msgid "custom"
 msgstr ""
 
-#: ../events-maker.php:629
+#: ../events-maker.php:630
 msgctxt "taxonomy general name"
 msgid "Event Categories"
 msgstr ""
 
-#: ../events-maker.php:630
+#: ../events-maker.php:631
 msgctxt "taxonomy singular name"
 msgid "Event Category"
 msgstr ""
 
-#: ../events-maker.php:631
+#: ../events-maker.php:632
 msgid "Search Event Categories"
 msgstr ""
 
-#: ../events-maker.php:632
+#: ../events-maker.php:633
 msgid "All Event Categories"
 msgstr ""
 
-#: ../events-maker.php:633
+#: ../events-maker.php:634
 msgid "Parent Event Category"
 msgstr ""
 
-#: ../events-maker.php:634
+#: ../events-maker.php:635
 msgid "Parent Event Category:"
 msgstr ""
 
-#: ../events-maker.php:635
+#: ../events-maker.php:636
 msgid "Edit Event Category"
 msgstr ""
 
-#: ../events-maker.php:636
+#: ../events-maker.php:637
 msgid "View Event Category"
 msgstr ""
 
-#: ../events-maker.php:637
+#: ../events-maker.php:638
 msgid "Update Event Category"
 msgstr ""
 
-#: ../events-maker.php:638
+#: ../events-maker.php:639
 msgid "Add New Event Category"
 msgstr ""
 
-#: ../events-maker.php:639
+#: ../events-maker.php:640
 msgid "New Event Category Name"
 msgstr ""
 
-#: ../events-maker.php:640 ../includes/class-listing.php:135
+#: ../events-maker.php:641 ../includes/class-listing.php:135
 #: ../includes/class-settings.php:362 ../includes/class-settings.php:381
 msgid "Categories"
 msgstr ""
 
-#: ../events-maker.php:644
+#: ../events-maker.php:645
 msgctxt "taxonomy general name"
 msgid "Locations"
 msgstr ""
 
-#: ../events-maker.php:645
+#: ../events-maker.php:646
 msgctxt "taxonomy singular name"
 msgid "Event Location"
 msgstr ""
 
-#: ../events-maker.php:646
+#: ../events-maker.php:647
 msgid "Search Event Locations"
 msgstr ""
 
-#: ../events-maker.php:647
+#: ../events-maker.php:648
 msgid "All Event Locations"
 msgstr ""
 
-#: ../events-maker.php:648
+#: ../events-maker.php:649
 msgid "Parent Event Location"
 msgstr ""
 
-#: ../events-maker.php:649
+#: ../events-maker.php:650
 msgid "Parent Event Location:"
 msgstr ""
 
-#: ../events-maker.php:650
+#: ../events-maker.php:651
 msgid "Edit Event Location"
 msgstr ""
 
-#: ../events-maker.php:651
+#: ../events-maker.php:652
 msgid "View Event Location"
 msgstr ""
 
-#: ../events-maker.php:652
+#: ../events-maker.php:653
 msgid "Update Event Location"
 msgstr ""
 
-#: ../events-maker.php:653
+#: ../events-maker.php:654
 msgid "Add New Event Location"
 msgstr ""
 
-#: ../events-maker.php:654
+#: ../events-maker.php:655
 msgid "New Event Location Name"
 msgstr ""
 
-#: ../events-maker.php:655 ../includes/class-settings.php:367
+#: ../events-maker.php:656 ../includes/class-settings.php:367
 #: ../includes/class-settings.php:386
 msgid "Locations"
 msgstr ""
 
-#: ../events-maker.php:705
+#: ../events-maker.php:706
 msgctxt "taxonomy general name"
 msgid "Event Tags"
 msgstr ""
 
-#: ../events-maker.php:706
+#: ../events-maker.php:707
 msgctxt "taxonomy singular name"
 msgid "Event Tag"
 msgstr ""
 
-#: ../events-maker.php:707
+#: ../events-maker.php:708
 msgid "Search Event Tags"
 msgstr ""
 
-#: ../events-maker.php:708
+#: ../events-maker.php:709
 msgid "Popular Event Tags"
 msgstr ""
 
-#: ../events-maker.php:709
+#: ../events-maker.php:710
 msgid "All Event Tags"
 msgstr ""
 
-#: ../events-maker.php:712
+#: ../events-maker.php:713
 msgid "Edit Event Tag"
 msgstr ""
 
-#: ../events-maker.php:713
+#: ../events-maker.php:714
 msgid "Update Event Tag"
 msgstr ""
 
-#: ../events-maker.php:714
+#: ../events-maker.php:715
 msgid "Add New Event Tag"
 msgstr ""
 
-#: ../events-maker.php:715
+#: ../events-maker.php:716
 msgid "New Event Tag Name"
 msgstr ""
 
-#: ../events-maker.php:716
+#: ../events-maker.php:717
 msgid "Separate event tags with commas"
 msgstr ""
 
-#: ../events-maker.php:717
+#: ../events-maker.php:718
 msgid "Add or remove event tags"
 msgstr ""
 
-#: ../events-maker.php:718
+#: ../events-maker.php:719
 msgid "Choose from the most used event tags"
 msgstr ""
 
-#: ../events-maker.php:719 ../includes/class-listing.php:137
+#: ../events-maker.php:720 ../includes/class-listing.php:137
 #: ../includes/class-settings.php:322 ../includes/class-settings.php:365
 #: ../includes/class-settings.php:384
 msgid "Tags"
 msgstr ""
 
-#: ../events-maker.php:751
+#: ../events-maker.php:752
 msgctxt "taxonomy general name"
 msgid "Organizers"
 msgstr ""
 
-#: ../events-maker.php:752
+#: ../events-maker.php:753
 msgctxt "taxonomy singular name"
 msgid "Event Organizer"
 msgstr ""
 
-#: ../events-maker.php:753
+#: ../events-maker.php:754
 msgid "Search Event Organizers"
 msgstr ""
 
-#: ../events-maker.php:754
+#: ../events-maker.php:755
 msgid "All Event Organizers"
 msgstr ""
 
-#: ../events-maker.php:755
+#: ../events-maker.php:756
 msgid "Parent Event Organizer"
 msgstr ""
 
-#: ../events-maker.php:756
+#: ../events-maker.php:757
 msgid "Parent Event Organizer:"
 msgstr ""
 
-#: ../events-maker.php:757
+#: ../events-maker.php:758
 msgid "Edit Event Organizer"
 msgstr ""
 
-#: ../events-maker.php:758
+#: ../events-maker.php:759
 msgid "View Event Organizer"
 msgstr ""
 
-#: ../events-maker.php:759
+#: ../events-maker.php:760
 msgid "Update Event Organizer"
 msgstr ""
 
-#: ../events-maker.php:760
+#: ../events-maker.php:761
 msgid "Add New Event Organizer"
 msgstr ""
 
-#: ../events-maker.php:761
+#: ../events-maker.php:762
 msgid "New Event Organizer Name"
 msgstr ""
 
-#: ../events-maker.php:762 ../includes/class-settings.php:323
+#: ../events-maker.php:763 ../includes/class-settings.php:323
 #: ../includes/class-settings.php:370 ../includes/class-settings.php:389
 msgid "Organizers"
 msgstr ""
 
-#: ../events-maker.php:797
+#: ../events-maker.php:798
 msgctxt "post type general name"
 msgid "Events"
 msgstr ""
 
-#: ../events-maker.php:798
+#: ../events-maker.php:799
 msgctxt "post type singular name"
 msgid "Event"
 msgstr ""
 
-#: ../events-maker.php:799 ../includes/class-widgets.php:746
+#: ../events-maker.php:800 ../includes/class-widgets.php:746
 #: ../includes/template-functions.php:601
 msgid "Events"
 msgstr ""
 
-#: ../events-maker.php:800
+#: ../events-maker.php:801
 msgid "All Events"
 msgstr ""
 
-#: ../events-maker.php:801
+#: ../events-maker.php:802
 msgid "Add New"
 msgstr ""
 
-#: ../events-maker.php:802
+#: ../events-maker.php:803
 msgid "Add New Event"
 msgstr ""
 
-#: ../events-maker.php:803
+#: ../events-maker.php:804
 msgid "Edit Event"
 msgstr ""
 
-#: ../events-maker.php:804
+#: ../events-maker.php:805
 msgid "New Event"
 msgstr ""
 
-#: ../events-maker.php:805
+#: ../events-maker.php:806
 msgid "View Event"
 msgstr ""
 
-#: ../events-maker.php:806
+#: ../events-maker.php:807
 msgid "Event Archive"
 msgstr ""
 
-#: ../events-maker.php:807
+#: ../events-maker.php:808
 msgid "Search Event"
 msgstr ""
 
-#: ../events-maker.php:808
+#: ../events-maker.php:809
 msgid "No events found"
 msgstr ""
 
-#: ../events-maker.php:809
+#: ../events-maker.php:810
 msgid "No events found in trash"
 msgstr ""
 
-#: ../events-maker.php:883
+#: ../events-maker.php:884
 #, php-format
 msgid "Event updated. <a href=\"%s\">View event</a>"
 msgstr ""
 
-#: ../events-maker.php:884
+#: ../events-maker.php:885
 msgid "Custom field updated."
 msgstr ""
 
-#: ../events-maker.php:885
+#: ../events-maker.php:886
 msgid "Custom field deleted."
 msgstr ""
 
-#: ../events-maker.php:886
+#: ../events-maker.php:887
 msgid "Event updated."
 msgstr ""
 
 #. translators: %s: date and time of the revision
-#: ../events-maker.php:888
+#: ../events-maker.php:889
 #, php-format
 msgid "Event restored to revision from %s"
 msgstr ""
 
-#: ../events-maker.php:889
+#: ../events-maker.php:890
 #, php-format
 msgid "Event published. <a href=\"%s\">View event</a>"
 msgstr ""
 
-#: ../events-maker.php:890
+#: ../events-maker.php:891
 msgid "Event saved."
 msgstr ""
 
-#: ../events-maker.php:891
+#: ../events-maker.php:892
 #, php-format
 msgid "Event submitted. <a target=\"_blank\" href=\"%s\">Preview event</a>"
 msgstr ""
 
-#: ../events-maker.php:892
+#: ../events-maker.php:893
 #, php-format
 msgid ""
 "Event scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s"
@@ -526,34 +526,34 @@ msgid ""
 msgstr ""
 
 #. translators: Publish box date format, see http://php.net/date
-#: ../events-maker.php:894
+#: ../events-maker.php:895
 msgid "M j, Y @ G:i"
 msgstr ""
 
-#: ../events-maker.php:895
+#: ../events-maker.php:896
 #, php-format
 msgid "Event draft updated. <a target=\"_blank\" href=\"%s\">Preview event</a>"
 msgstr ""
 
-#: ../events-maker.php:953 ../includes/class-taxonomies.php:188
+#: ../events-maker.php:954 ../includes/class-taxonomies.php:188
 #: ../includes/class-taxonomies.php:230 ../includes/class-taxonomies.php:359
 #: ../includes/class-taxonomies.php:429
 msgid "Select image"
 msgstr ""
 
-#: ../events-maker.php:954
+#: ../events-maker.php:955
 msgid "Add image"
 msgstr ""
 
-#: ../events-maker.php:991
+#: ../events-maker.php:992
 msgid "Are you sure you want to reset these settings to defaults?"
 msgstr ""
 
-#: ../events-maker.php:1098 ../includes/class-welcome.php:48
+#: ../events-maker.php:1099 ../includes/class-welcome.php:48
 msgid "Support"
 msgstr ""
 
-#: ../events-maker.php:1119
+#: ../events-maker.php:1120
 msgid "View Calendar"
 msgstr ""
 
@@ -573,19 +573,19 @@ msgstr ""
 msgid "End"
 msgstr ""
 
-#: ../includes/class-listing.php:142 ../includes/class-metaboxes.php:380
+#: ../includes/class-listing.php:142 ../includes/class-metaboxes.php:429
 msgid "Recurrence"
 msgstr ""
 
-#: ../includes/class-listing.php:145 ../includes/class-metaboxes.php:52
-#: ../includes/class-metaboxes.php:888 ../includes/class-settings.php:324
+#: ../includes/class-listing.php:145 ../includes/class-metaboxes.php:53
+#: ../includes/class-metaboxes.php:946 ../includes/class-settings.php:324
 #: ../templates/single-event/tickets.php:41
 #: ../templates/single-event/tickets.php:55
 msgid "Tickets"
 msgstr ""
 
-#: ../includes/class-listing.php:147 ../includes/class-metaboxes.php:81
-#: ../includes/class-metaboxes.php:110
+#: ../includes/class-listing.php:147 ../includes/class-metaboxes.php:82
+#: ../includes/class-metaboxes.php:111
 msgid "Featured"
 msgstr ""
 
@@ -637,164 +637,181 @@ msgstr ""
 msgid "You have taken too long. Please go back and retry."
 msgstr ""
 
-#: ../includes/class-metaboxes.php:46 ../includes/class-metaboxes.php:882
+#: ../includes/class-metaboxes.php:46 ../includes/class-metaboxes.php:939
 msgid "Google Map"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:47 ../includes/class-metaboxes.php:883
+#: ../includes/class-metaboxes.php:47 ../includes/class-metaboxes.php:167
+#: ../includes/class-metaboxes.php:940
+msgid "Event Gallery"
+msgstr ""
+
+#: ../includes/class-metaboxes.php:48 ../includes/class-metaboxes.php:941
 msgid "Location Details"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:55 ../includes/class-metaboxes.php:891
+#: ../includes/class-metaboxes.php:56 ../includes/class-metaboxes.php:949
 msgid "Organizer Details"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:72
+#: ../includes/class-metaboxes.php:73
 msgid "Display options:"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:89 ../templates/loop-event/meta.php:37
+#: ../includes/class-metaboxes.php:90 ../templates/loop-event/meta.php:37
 #: ../templates/single-event/meta.php:37
 msgid "Edit"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:93
+#: ../includes/class-metaboxes.php:94
 msgid "Define the display options for this event."
 msgstr ""
 
-#: ../includes/class-metaboxes.php:109
+#: ../includes/class-metaboxes.php:110
 msgid "Enable to feature this event."
 msgstr ""
 
-#: ../includes/class-metaboxes.php:113
+#: ../includes/class-metaboxes.php:114
 msgid "OK"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:114
+#: ../includes/class-metaboxes.php:115
 msgid "Cancel"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:139
+#: ../includes/class-metaboxes.php:140
 msgid "Ticket Name"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:140
+#: ../includes/class-metaboxes.php:141
 msgid "Price"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:152
+#: ../includes/class-metaboxes.php:153
 msgid "Event Date and Time"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:159
+#: ../includes/class-metaboxes.php:160
 msgid "Event Tickets"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:220 ../includes/class-metaboxes.php:224
-#: ../includes/class-metaboxes.php:462 ../includes/class-metaboxes.php:506
-#: ../includes/class-metaboxes.php:522 ../includes/class-metaboxes.php:578
-#: ../includes/class-metaboxes.php:594
+#: ../includes/class-metaboxes.php:228 ../includes/class-metaboxes.php:232
+#: ../includes/class-metaboxes.php:341 ../includes/class-metaboxes.php:511
+#: ../includes/class-metaboxes.php:555 ../includes/class-metaboxes.php:571
+#: ../includes/class-metaboxes.php:627 ../includes/class-metaboxes.php:643
 msgid "Delete"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:222 ../includes/class-metaboxes.php:371
-#: ../includes/class-metaboxes.php:461 ../includes/class-metaboxes.php:505
-#: ../includes/class-metaboxes.php:521
+#: ../includes/class-metaboxes.php:230 ../includes/class-metaboxes.php:420
+#: ../includes/class-metaboxes.php:510 ../includes/class-metaboxes.php:554
+#: ../includes/class-metaboxes.php:570
 msgid "Start date/time"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:223 ../includes/class-metaboxes.php:374
-#: ../includes/class-metaboxes.php:465 ../includes/class-metaboxes.php:509
-#: ../includes/class-metaboxes.php:525
+#: ../includes/class-metaboxes.php:231 ../includes/class-metaboxes.php:423
+#: ../includes/class-metaboxes.php:514 ../includes/class-metaboxes.php:558
+#: ../includes/class-metaboxes.php:574
 msgid "End date/time"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:225
+#: ../includes/class-metaboxes.php:233
 msgid "Are you sure you want to delete this ticket?"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:226
+#: ../includes/class-metaboxes.php:234
 msgid "Are you sure you want to delete this occurrence?"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:234 ../includes/class-metaboxes.php:430
+#: ../includes/class-metaboxes.php:242 ../includes/class-metaboxes.php:479
 msgid "day"
 msgid_plural "days"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../includes/class-metaboxes.php:235
+#: ../includes/class-metaboxes.php:243
 msgid "days"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:236 ../includes/class-metaboxes.php:432
+#: ../includes/class-metaboxes.php:244 ../includes/class-metaboxes.php:481
 msgid "week"
 msgid_plural "weeks"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../includes/class-metaboxes.php:237
+#: ../includes/class-metaboxes.php:245
 msgid "weeks"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:238 ../includes/class-metaboxes.php:434
+#: ../includes/class-metaboxes.php:246 ../includes/class-metaboxes.php:483
 msgid "month"
 msgid_plural "months"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../includes/class-metaboxes.php:239
+#: ../includes/class-metaboxes.php:247
 msgid "months"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:240 ../includes/class-metaboxes.php:436
+#: ../includes/class-metaboxes.php:248 ../includes/class-metaboxes.php:485
 msgid "year"
 msgid_plural "years"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../includes/class-metaboxes.php:241
+#: ../includes/class-metaboxes.php:249
 msgid "years"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:377
+#: ../includes/class-metaboxes.php:341
+msgid "Add Images to Event Gallery"
+msgstr ""
+
+#: ../includes/class-metaboxes.php:341
+msgid "Add Images to Gallery"
+msgstr ""
+
+#: ../includes/class-metaboxes.php:341 ../includes/class-metaboxes.php:355
+msgid "Delete image"
+msgstr ""
+
+#: ../includes/class-metaboxes.php:426
 msgid "All-day event?"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:419
+#: ../includes/class-metaboxes.php:468
 msgid "day of the month"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:419
+#: ../includes/class-metaboxes.php:468
 msgid "day of the week"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:427
+#: ../includes/class-metaboxes.php:476
 msgid "Repeat every"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:427
+#: ../includes/class-metaboxes.php:476
 msgid "until"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:459 ../includes/class-metaboxes.php:503
-#: ../includes/class-metaboxes.php:519
+#: ../includes/class-metaboxes.php:508 ../includes/class-metaboxes.php:552
+#: ../includes/class-metaboxes.php:568
 msgid "Separate end date"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:470
+#: ../includes/class-metaboxes.php:519
 msgid "Add new occurrence"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:556
+#: ../includes/class-metaboxes.php:605
 msgid "Is this a free event?"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:561
+#: ../includes/class-metaboxes.php:610
 msgid "Add new ticket"
 msgstr ""
 
-#: ../includes/class-metaboxes.php:603
+#: ../includes/class-metaboxes.php:652
 #: ../templates/single-event/tickets.php:70
 msgid "Buy tickets URL"
 msgstr ""
@@ -1223,6 +1240,10 @@ msgid "Display Google Map"
 msgstr ""
 
 #: ../includes/class-settings.php:473
+msgid "Display Event Gallery"
+msgstr ""
+
+#: ../includes/class-settings.php:474
 msgid "Display Location Details"
 msgstr ""
 

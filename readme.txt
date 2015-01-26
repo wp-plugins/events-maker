@@ -4,7 +4,7 @@ Donate link: http://www.dfactory.eu/
 Tags: event, event categories, events management, event management, events manager, event manager, event organizer, events calendar, events maker, google map, map, locations, organizers, widget, attendance, attendee, Booking, calendar, event registration, ticket, tickets, ticketing, bookings
 Requires at least: 3.5
 Tested up to: 4.1.0
-Stable tag: 1.4.3
+Stable tag: 1.4.4
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -53,6 +53,7 @@ Events Maker allows you to create and manage events, categories, locations and o
 * Breadcrumb navigation
 * Google maps
 * Duplicating events
+* Builtin event gallery
 * RSS feed support
 * Customizeable template files
 * Google Rich Snippets ready
@@ -112,6 +113,10 @@ A. Chances are, someone else has asked it. Check out the support forum at: http:
 6. screenshot-4.png
 
 == Changelog ==
+
+= 1.4.4 =
+* New: Event gallery
+* Tweak: Full calendar updated to 2.2.6
 
 = 1.4.3 =
 * Fix: Date archive display all events when permalinks disabled
@@ -274,5 +279,5 @@ Initial release
 
 == Upgrade Notice ==
 
-= 1.4.3 =
-* Fix: Date archive display all events when permalinks disabled
+= 1.4.4 =
+* New: Event gallery

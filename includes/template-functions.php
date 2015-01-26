@@ -796,6 +796,18 @@ if (!function_exists('em_display_single_event_thumbnail'))
 
 
 /**
+ * Display single event thumbnail
+ */
+if (!function_exists('em_display_event_gallery'))
+{
+	function em_display_event_gallery()
+	{
+		em_get_template('single-event/gallery.php');
+	}
+}
+
+
+/**
  * Display single event content
  */
 if (!function_exists('em_display_event_content'))

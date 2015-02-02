@@ -145,6 +145,11 @@ class Events_Maker_Listing
 			$columns['tickets'] = '<span class="dash-icon dashicons dashicons-tickets" title="'.__('Tickets', 'events-maker').'"></span><span class="dash-title">'.__('Tickets', 'events-maker').'</span>';
 		
 		$columns['featured'] = '<span class="dash-icon dashicons dashicons-star-filled" title="'.__('Featured', 'events-maker').'"></span><span class="dash-title">'.__('Featured', 'events-maker') . '</span>';
+		
+		// array_unshift_assoc, put event color in front of other columns
+		$columns = array_reverse($columns, true);
+    	$columns['event-color'] = ''; 
+		$columns = array_reverse($columns, true);
 
 		return $columns;
 	}
@@ -209,6 +214,19 @@ class Events_Maker_Listing
 						echo '<span class="dashicons dashicons-star-empty" title="' . __('No') . '"></span>';
 					echo '</a>';
 					
+					break;
+					
+				case 'event-color':
+					$categories = em_get_categories_for($id);
+					
+					if (!empty($categories))
+					{
+						if (isset($categories[0]->category_meta['color']) && !empty($categories[0]->category_meta['color']))
+						{
+							echo '<span style="border-left: 4px solid '.$categories[0]->category_meta['color'].'"></span>';
+						}
+					}
+	
 					break;
 			}
 		}

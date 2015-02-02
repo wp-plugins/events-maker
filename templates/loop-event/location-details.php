@@ -51,7 +51,7 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
 						break;
 						
 					case 'country' :
-						$field['label'] == __('Country', 'events-maker');
+						$field['label'] = __('Country', 'events-maker');
 						$field['content'] = $value;
 						break;
 						

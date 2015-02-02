@@ -36,8 +36,8 @@ get_header('events'); ?>
 			 * em_archive_description hook
 			 *
 			 * @hooked em_display_loop_event_google_map - 10
-			 * @hooked em_display_location_info - 20
-			 * @hooked em_display_organizer_info - 20
+			 * @hooked em_display_location_details - 20
+			 * @hooked em_display_organizer_details - 20
 			 * @hooked em_taxonomy_archive_description - 30
 			 */
 			do_action('em_archive_description');

@@ -697,8 +697,20 @@ function em_get_organizers_for($post_id = 0)
  */
 function em_get_categories($args = array())
 {
-	if(!taxonomy_exists('event-category'))
-		return false;
+	$defaults = array(
+		'fields' => 'all'
+	);
+	$args = apply_filters('em_get_categories_args', array_merge($defaults, $args));
+	
+	$categories = get_terms('event-category', $args);
+
+	if(isset($args['fields']) && $args['fields'] === 'all')
+	{
+		foreach($categories as $id => $category)
+		{
+			$categories[$id]->category_meta = get_option('event_category_'.$category->term_taxonomy_id);
+		}
+	}
 	
 	return apply_filters('em_get_categories', get_terms('event-category', $args));
 }
@@ -711,9 +723,6 @@ function em_get_categories($args = array())
  */
 function em_get_category($term_id = NULL)
 {
-	if(!taxonomy_exists('event-category'))
-		return false;
-
 	if($term_id === NULL)
 	{
 		$term = get_queried_object();
@@ -724,26 +733,35 @@ function em_get_category($term_id = NULL)
 			return NULL;
 	}
 	
-	$category = get_term((int)$term_id, 'event-category', 'OBJECT', 'raw') !== NULL ? $category : NULL;
+	if(($category = get_term((int)$term_id, 'event-category', 'OBJECT', 'raw')) !== NULL)
+	{
+		$category->category_meta = get_option('event_category_'.$category->term_taxonomy_id);
 
-	return apply_filters('em_get_category', $category);
+		return apply_filters('em_get_category', $category);
+	}
+	else
+		return NULL;
 }
 
 
 /**
  * Get all event categories for a given event
  * @param int $post_id
- * @return string
+ * @return array
  */
 function em_get_categories_for($post_id = 0)
 {
 	$categories = array();
-	
-	if(!taxonomy_exists('event-category'))
-		return false;
-	
 	$categories = wp_get_post_terms((int)$post_id, 'event-category');
 	
+	if(!empty($categories) && is_array($categories))
+	{
+		foreach($categories as $id => $category)
+		{
+			$categories[$id]->category_meta = get_option('event_category_'.$category->term_taxonomy_id);
+		}
+	}
+
 	return apply_filters('em_get_categories_for', $categories, $post_id);
 }
 
@@ -763,7 +781,7 @@ function em_get_tags($args = array())
 /**
  * Get all event tags for a given event
  * @param int $post_id
- * @return string
+ * @return array
  */
 function em_get_tags_for($post_id = 0)
 {

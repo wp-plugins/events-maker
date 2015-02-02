@@ -4,7 +4,7 @@ Donate link: http://www.dfactory.eu/
 Tags: event, event categories, events management, event management, events manager, event manager, event organizer, events calendar, events maker, google map, map, locations, organizers, widget, attendance, attendee, Booking, calendar, event registration, ticket, tickets, ticketing, bookings
 Requires at least: 3.5
 Tested up to: 4.1.0
-Stable tag: 1.4.4
+Stable tag: 1.4.5
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -82,6 +82,7 @@ Events Maker allows you to create and manage events, categories, locations and o
 * French - by Marc Abel
 * German - by [Martin Stoehr](http://www.stoehrinteractive.com)
 * Hebrew - by [Ahrale Shrem](http://atar4u.com/)
+* Hungarian - by Mészáros Tamás
 * Italian - by [Lorenzo De Tomasi](http://isotype.org)
 * Japanese - by stranger-jp
 * Norwegian - by Anders Kleppe
@@ -113,6 +114,10 @@ A. Chances are, someone else has asked it. Check out the support forum at: http:
 6. screenshot-4.png
 
 == Changelog ==
+
+= 1.4.5 =
+* New: Display event category color in events list in admin
+* New: Hungarian translation, thanks to Mészáros Tamás
 
 = 1.4.4 =
 * New: Event gallery
@@ -279,5 +284,6 @@ Initial release
 
 == Upgrade Notice ==
 
-= 1.4.4 =
-* New: Event gallery
+= 1.4.5 =
+* New: Display event category color in events list in admin
+* New: Hungarian translation, thanks to Mészáros Tamás

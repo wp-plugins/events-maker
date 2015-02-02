@@ -102,6 +102,16 @@
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
 }
+.post-type-event .widefat th#event-color,
+.post-type-event .widefat td.event-color {
+	width: 10px;
+	padding: 0;
+}
+.post-type-event .widefat td.event-color span {
+	padding: 200px 0;
+    position: relative;
+    width: 0;
+}
 /* Widgets screen */
 ul.terms-checkbox-list, ul.terms-checkbox-list li {
     margin: 0;

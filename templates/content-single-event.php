@@ -72,6 +72,9 @@ $classes = apply_filters('em_single_event_classes', array('hcalendar'));
 	    <?php
 		/**
 		 * em_after_single_event hook
+		 * 
+		 * @hooked em_display_ical_button - 10
+		 * @hooked em_display_event_tags - 20
 		 */
 		do_action('em_after_single_event');
 		?>

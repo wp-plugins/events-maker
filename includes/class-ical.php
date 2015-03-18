@@ -1,27 +1,22 @@
 <?php
 if(!defined('ABSPATH')) exit;
 
-new Events_Maker_iCal($events_maker);
+new Events_Maker_iCal();
 
 class Events_Maker_iCal
 {
-	private $events_maker;
-
-
-	public function __construct($events_maker)
+	public function __construct()
 	{
-		$this->events_maker = $events_maker;
-
-		//settings
-		$this->options = $events_maker->get_options();
+		// set instance
+		Events_Maker()->ical = $this;
 		
-		if((int)$this->options['general']['ical_feed'] != false)
+		if((int)Events_Maker()->options['general']['ical_feed'] != false)
 		{
 			//actions
-			add_action('init', array($this, 'add_events_ical_feed'));
+			add_action('init', array(&$this, 'add_events_ical_feed'));
 	
 			//filters
-			add_filter('parse_request', array($this, 'parse_ical_request'));
+			add_filter('parse_request', array(&$this, 'parse_ical_request'));
 		}
 	}
 	

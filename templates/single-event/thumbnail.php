@@ -16,7 +16,7 @@ global $post;
 ?>
 
 <?php // event thumbnail
-if (!post_password_required() || has_post_thumbnail()) :
+if (!post_password_required() && has_post_thumbnail()) :
 	
 	$image_title = apply_filters('em_single_event_thumbnail_title', esc_attr(get_the_title(get_post_thumbnail_id())));
 	$image_link  = apply_filters('em_single_event_thumbnail_link', wp_get_attachment_url(get_post_thumbnail_id()));

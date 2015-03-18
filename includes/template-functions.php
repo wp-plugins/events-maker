@@ -34,7 +34,8 @@ if (!function_exists('em_display_events'))
 			'show_event_excerpt' => false,
 			'no_events_message' => __('Apologies, but no events were found.', 'events-maker'),
 			'date_format' => $options['datetime_format']['date'],
-			'time_format' => $options['datetime_format']['time']
+			'time_format' => $options['datetime_format']['time'],
+			'show_archive_link' => false
 		);
 	
 		$args = apply_filters('em_display_events_args', array_merge($defaults, $args));
@@ -111,6 +112,10 @@ if (!function_exists('em_display_events'))
 			
 			echo apply_filters('em_display_events_wrapper_end', '</ul>');
 			
+			if($args['show_archive_link']) {
+				echo '<a href="' .get_post_type_archive_link('event'). '" class="all-events-link" title="' .__('All Events', 'events-maker'). '">' .__('All Events', 'events-maker'). '</a>';
+			}
+			
 			$html = ob_get_contents();
 			ob_end_clean();
 			
@@ -120,7 +125,6 @@ if (!function_exists('em_display_events'))
 			return $args['no_events_message'];
 	}
 }
-
 
 /**
  * Display event categories
@@ -146,7 +150,6 @@ if (!function_exists('em_display_event_categories'))
 		}
 	}
 }
-
 
 /**
  * Display event tags
@@ -177,7 +180,6 @@ if (!function_exists('em_display_event_tags'))
 	}
 }
 
-
 /**
  * Display event locations
  */
@@ -204,33 +206,45 @@ if (!function_exists('em_display_event_locations'))
 
 			<?php if (is_single()) : ?>
 				
-				<?php $event_display_options = get_post_meta($post_id, '_event_display_options', TRUE); // event display options ?>
+				<?php $event_display_options = get_post_meta($post_id, '_event_display_options', true); // event display options ?>
 				
-				<?php if (!empty($event_display_options) && $event_display_options['display_location_details'] === 1) : ?>
+				<?php if (isset($event_display_options['display_location_details']) && $event_display_options['display_location_details'] == true) : ?>
 					
 					<?php $output = __('<strong>Location: </strong>', 'events-maker');
 		        	
 			        	foreach ($locations as $term) :
 							
 							$output .= '<span class="single-location term-' . $term->term_id . '">';
-			        		
+							
 			            	$term_link = get_term_link($term->slug, 'event-location');
 			                
 			                if (is_wp_error($term_link))
 			                	continue;
 							
-							$output .= '<a href="' . $term_link . '" class="location">' . $term->name . '</a>';
+							$output .= '<a href="' . $term_link . '" class="location">' . $term->name . '</a> ';
 							
 							// Location details
+							$location_fields = em_get_event_location_fields();
 							$location_details = $term->location_meta;
+							
 							if ($location_details) :
-								$output .= ' ';
-								$output .= !empty($location_details['address']) ? $location_details['address'] . ' ' : '';
-								$output .= !empty($location_details['zip']) ? $location_details['zip'] . ' ' : '';
-								$output .= !empty($location_details['city']) ? $location_details['city'] . ' ' : '';
-								$output .= !empty($location_details['state']) ? $location_details['state'] . ' ' : '';
-								$output .= !empty($location_details['country']) ? $location_details['country'] . ' ' : '';
-								$output .= ' ';
+							
+								// backward compatibility
+								if (isset($location_details['latitude']))
+									unset($location_details['latitude']);
+								if (isset($location_details['longitude']))
+									unset($location_details['longitude']);
+								
+								// filter data
+								foreach ($location_fields as $key => $field) :
+									if (!in_array($field['type'], array('text', 'url', 'email', 'select')) || empty($location_details[$key]))
+										unset($location_details[$key]);
+								endforeach;
+								
+							endif;
+							
+							if ($location_details) :
+								$output .= '<span class="location-details">(' . implode(' ', $location_details) . ')</span>';
 							endif;
 							
 							$output .= '</span>';
@@ -250,7 +264,6 @@ if (!function_exists('em_display_event_locations'))
     <?php
 	}
 }
-
 
 /**
  * Display event organizers
@@ -280,7 +293,7 @@ if (!function_exists('em_display_event_organizers'))
 				
 				<?php $event_display_options = get_post_meta($post_id, '_event_display_options', TRUE); // event display options ?>
 				
-				<?php if (!empty($event_display_options) && $event_display_options['display_organizer_details'] === 1) : ?>
+				<?php if (isset($event_display_options['display_organizer_details']) && $event_display_options['display_organizer_details'] == true) : ?>
 					
 					<?php $output = __('<strong>Organizer: </strong>', 'events-maker');
 		        	
@@ -293,17 +306,23 @@ if (!function_exists('em_display_event_organizers'))
 			                if (is_wp_error($term_link))
 			                	continue;
 							
-							$output .= '<a href="' . $term_link . '" class="organizer">' . $term->name . '</a>';
+							$output .= '<a href="' . $term_link . '" class="organizer">' . $term->name . '</a> ';
 							
-							// Location details
+							// Organizer details
+							$organizer_fields = em_get_event_organizer_fields();
 							$organizer_details = $term->organizer_meta;
+							
 							if ($organizer_details) :
-								$output .= ' ';
-								$output .= !empty($organizer_details['contact_name']) ? $organizer_details['contact_name'] . ' ' : '';
-								$output .= !empty($organizer_details['phone']) ? $organizer_details['phone'] . ' ' : '';
-								$output .= !empty($organizer_details['email']) ? $organizer_details['email'] . ' ' : '';
-								$output .= !empty($organizer_details['website']) ? $organizer_details['website'] . ' ' : '';
-								$output .= ' ';
+								
+								foreach ($organizer_fields as $key => $field) :
+									if (!in_array($field['type'], array('text', 'url', 'email')) || empty($organizer_details[$key]))
+										unset($organizer_details[$key]);
+								endforeach;
+								
+							endif;
+							
+							if ($organizer_details) :
+								$output .= '<span class="organizer-details">(' . implode(' ', $organizer_details) . ')</span>';			
 							endif;
 							
 							$output .= '</span>';
@@ -324,7 +343,6 @@ if (!function_exists('em_display_event_organizers'))
 	}
 }
 
-
 /**
  * Display event tickets
  */
@@ -342,6 +360,26 @@ if (!function_exists('em_display_event_tickets'))
 	}
 }
 
+/**
+ * Display ical feed button
+ */
+if (!function_exists('em_display_ical_button'))
+{
+	function em_display_ical_button($post_id = 0)
+	{
+		$post_id = (int)(empty($post_id) ? get_the_ID() : $post_id);
+		
+		if(empty($post_id))
+			return false;
+		?>
+		<div class="events-maker-ical">
+			
+			<a href="<?php echo esc_url(get_post_comments_feed_link($post_id, 'ical')); ?>" class="button" title="<?php _e('Generate iCal', 'events-maker'); ?>"><?php _e('Generate iCal', 'events-maker'); ?></a>
+			
+		</div>
+		<?php
+	}
+}
 
 /**
  * Display event date
@@ -455,7 +493,6 @@ if (!function_exists('em_display_event_date'))
 		
 	}
 }
-
 
 /**
  * Display event occurrences date
@@ -573,7 +610,6 @@ if (!function_exists('em_display_event_occurrences'))
 	}
 }
 
-
 /**
  * Display page title
  */
@@ -609,7 +645,6 @@ if (!function_exists('em_page_title'))
 	}
 }
 
-
 /**
  * Show an archive description on taxonomy archives
  */
@@ -635,7 +670,6 @@ if (!function_exists('em_taxonomy_archive_description'))
 	}
 }
 
-
 /**
  * Display google map in archive
  */
@@ -647,7 +681,6 @@ if (!function_exists('em_display_loop_event_google_map'))
 			em_get_template('loop-event/google-map.php');
 	}
 }
-
 
 /**
  * Display location details
@@ -661,7 +694,6 @@ if (!function_exists('em_display_location_details'))
 	}
 }
 
-
 /**
  * Display organizer details
  */
@@ -674,7 +706,6 @@ if (!function_exists('em_display_organizer_details'))
 	}
 }
 
-
 /**
  * Display content wrapper start
  */
@@ -685,7 +716,6 @@ if (!function_exists('em_output_content_wrapper_start'))
 		em_get_template('global/wrapper-start.php');
 	}
 }
-
 
 /**
  * Display content wrapper end
@@ -698,7 +728,6 @@ if (!function_exists('em_output_content_wrapper_end'))
 	}
 }
 
-
 /**
  * Display breadcrumbs
  */
@@ -709,7 +738,6 @@ if (!function_exists('em_breadcrumb'))
 		em_get_template('global/breadcrumb.php');
 	}
 }
-
 
 /**
  * Display pagination links
@@ -722,18 +750,27 @@ if (!function_exists('em_paginate_links'))
 	}
 }
 
-
 /**
- * Display breadcrumbs
+ * Display result count
  */
-if (!function_exists('em_sorting'))
+if (!function_exists('em_result_count'))
 {
-	function em_sorting()
+	function em_result_count()
 	{
-		// em_get_template('loop-event/sorting.php');
+		em_get_template('loop-event/result-count.php');
 	}
 }
 
+/**
+ * Display orderby
+ */
+if (!function_exists('em_orderby'))
+{
+	function em_orderby()
+	{
+		em_get_template('loop-event/orderby.php');
+	}
+}
 
 /**
  * Display sidebar
@@ -746,7 +783,6 @@ if (!function_exists('em_get_sidebar'))
 	}
 }
 
-
 /**
  * Display event thumbnail in loop
  */
@@ -757,7 +793,6 @@ if (!function_exists('em_display_loop_event_thumbnail'))
 		em_get_template('loop-event/thumbnail.php');
 	}
 }
-
 
 /**
  * Display event meta in loop
@@ -770,7 +805,6 @@ if (!function_exists('em_display_loop_event_meta'))
 	}
 }
 
-
 /**
  * Display event excerpt in loop
  */
@@ -781,7 +815,6 @@ if (!function_exists('em_display_event_excerpt'))
 		em_get_template('loop-event/excerpt.php');
 	}
 }
-
 
 /**
  * Display single event thumbnail
@@ -794,7 +827,6 @@ if (!function_exists('em_display_single_event_thumbnail'))
 	}
 }
 
-
 /**
  * Display single event thumbnail
  */
@@ -805,7 +837,6 @@ if (!function_exists('em_display_event_gallery'))
 		em_get_template('single-event/gallery.php');
 	}
 }
-
 
 /**
  * Display single event content
@@ -818,7 +849,6 @@ if (!function_exists('em_display_event_content'))
 	}
 }
 
-
 /**
  * Display single event meta
  */
@@ -829,7 +859,6 @@ if (!function_exists('em_display_single_event_meta'))
 		em_get_template('single-event/meta.php');
 	}
 }
-
 
 /**
  * Display single event date
@@ -851,7 +880,6 @@ if (!function_exists('em_display_single_event_date'))
 		}
 	}
 }
-
 	
 /**
  * Display google map in event
@@ -863,7 +891,6 @@ if (!function_exists('em_display_single_event_google_map'))
 		em_get_template('single-event/google-map.php');
 	}
 }
-
 
 /**
  * Display widget event date

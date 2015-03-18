@@ -1,17 +1,14 @@
 <?php
 if(!defined('ABSPATH')) exit;
 
-new Events_Maker_Templates($events_maker);
+new Events_Maker_Templates();
 
 class Events_Maker_Templates
 {
-	private $options = array();
-
-
-	public function __construct($events_maker)
+	public function __construct()
 	{
-		//settings
-		$this->options = $events_maker->get_options();
+		// set instance
+		Events_Maker()->templates = $this;
 
 		//filters
 		add_filter('template_include', array(&$this, 'template_include'));
@@ -22,7 +19,7 @@ class Events_Maker_Templates
 	// Locate and include template files
 	public function template_include($template)
 	{
-		if ($this->options['templates']['default_templates'] === true)
+		if (Events_Maker()->options['templates']['default_templates'] === true)
 		{
 			if(is_post_type_archive('event'))
 				$new_template = em_locate_template('archive-event.php');

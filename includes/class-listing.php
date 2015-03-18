@@ -1,27 +1,20 @@
 <?php
 if(!defined('ABSPATH')) exit;
 
-new Events_Maker_Listing($events_maker);
+new Events_Maker_Listing();
 
 class Events_Maker_Listing
 {
-	private $options = array();
-	private $recurrences = array();
-	private $events_maker;
-
-
-	public function __construct($events_maker)
+	public function __construct()
 	{
-		$this->events_maker = $events_maker;
-
-		//settings
-		$this->options = $events_maker->get_options();
+		// set instance
+		Events_Maker()->listing = $this;
 
 		//actions
-		add_action('after_setup_theme', array(&$this, 'set_recurrences'));
 		add_action('manage_posts_custom_column', array(&$this, 'add_new_event_columns_content'), 10, 2);
 		add_action('restrict_manage_posts', array(&$this, 'event_filter_dates'));
 		add_action('admin_action_duplicate_event', array(&$this, 'duplicate_event'));
+		add_action('admin_print_footer_scripts', array(&$this, 'view_full_calendar_button'));
 		add_action('wp_ajax_events_maker_feature_event', array(&$this, 'feature_event'));
 
 		//filters
@@ -29,15 +22,6 @@ class Events_Maker_Listing
 		add_filter('request', array(&$this, 'sort_custom_columns'));
 		add_filter('manage_event_posts_columns', array(&$this, 'add_new_event_columns'));
 		add_filter('post_row_actions', array(&$this, 'post_row_actions_duplicate'), 10, 2);
-	}
-
-
-	/**
-	 * 
-	*/
-	public function set_recurrences()
-	{
-		$this->recurrences = $this->events_maker->get_recurrences();
 	}
 
 
@@ -87,7 +71,7 @@ class Events_Maker_Listing
 		{
 			if(!isset($qvars['orderby']))
 			{
-				switch($this->options['general']['order_by'])
+				switch(Events_Maker()->options['general']['order_by'])
 				{
 					case 'start':
 						$qvars['orderby'] = 'event_start_date';
@@ -116,7 +100,7 @@ class Events_Maker_Listing
 			}
 
 			if(!isset($qvars['order']))
-				$qvars['order'] = $this->options['general']['order'];
+				$qvars['order'] = Events_Maker()->options['general']['order'];
 		}
 
 		return $qvars;
@@ -141,7 +125,7 @@ class Events_Maker_Listing
 
 		$columns['recurrence'] = '<span class="dash-icon dashicons dashicons-update" title="'.__('Recurrence', 'events-maker').'"></span><span class="dash-title">'.__('Recurrence', 'events-maker').'</span>';
 
-		if($this->options['general']['use_event_tickets'])
+		if(Events_Maker()->options['general']['use_event_tickets'])
 			$columns['tickets'] = '<span class="dash-icon dashicons dashicons-tickets" title="'.__('Tickets', 'events-maker').'"></span><span class="dash-title">'.__('Tickets', 'events-maker').'</span>';
 		
 		$columns['featured'] = '<span class="dash-icon dashicons dashicons-star-filled" title="'.__('Featured', 'events-maker').'"></span><span class="dash-title">'.__('Featured', 'events-maker') . '</span>';
@@ -175,13 +159,13 @@ class Events_Maker_Listing
 				case 'end_date':
 					$date = get_post_meta($id, '_event_'.$column_name, true);
 	
-					echo (em_is_all_day($id) ? date_i18n('Y-m-d', strtotime($date)) : date_i18n('Y-m-d, ' . $this->options['general']['datetime_format']['time'], strtotime($date)));
+					echo (em_is_all_day($id) ? date_i18n('Y-m-d', strtotime($date)) : date_i18n('Y-m-d, ' . Events_Maker()->options['general']['datetime_format']['time'], strtotime($date)));
 					break;
 	
 				case 'recurrence':
 					$recurrence = get_post_meta($id, '_event_recurrence', true);
 	
-					echo $this->recurrences[$recurrence['type']];
+					echo Events_Maker()->recurrences[$recurrence['type']];
 					break;
 	
 				case 'tickets':
@@ -223,7 +207,7 @@ class Events_Maker_Listing
 					{
 						if (isset($categories[0]->category_meta['color']) && !empty($categories[0]->category_meta['color']))
 						{
-							echo '<span style="border-left: 4px solid '.$categories[0]->category_meta['color'].'"></span>';
+							echo '<span style="border-left: 4px solid '.$categories[0]->category_meta['color'].'" title="'.$categories[0]->name.'"></span>';
 						}
 					}
 	
@@ -369,6 +353,28 @@ class Events_Maker_Listing
 				$meta_value = maybe_unserialize($meta_value);
 				// add metadata to duplicated post
 				add_post_meta($new_post_id, $meta_key, $meta_value);
+			}
+		}
+	}
+	
+	
+	/**
+	 * Add button link to view full events calendar
+	 */
+	public function view_full_calendar_button()
+	{
+		global $pagenow;
+
+		if($pagenow === 'edit.php' && get_post_type() === 'event')
+		{
+			if(isset(Events_Maker()->options['general']['full_calendar_display']['type']) && Events_Maker()->options['general']['full_calendar_display']['type'] === 'page' && isset(Events_Maker()->options['general']['full_calendar_display']['page']))
+			{
+				echo 'ewfwef';
+				?>
+			   <script type="text/javascript">
+					jQuery('.wrap h2 .add-new-h2').after('<a href="<?php echo esc_url(get_permalink((int)Events_Maker()->options['general']['full_calendar_display']['page'])); ?>" class="add-new-h2"><?php echo __('View Calendar', 'events-maker'); ?></a>');
+				</script>
+				<?php
 			}
 		}
 	}

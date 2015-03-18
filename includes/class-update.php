@@ -1,21 +1,14 @@
 <?php
 if(!defined('ABSPATH')) exit;
 
-new Events_Maker_Update($events_maker);
+new Events_Maker_Update();
 
 class Events_Maker_Update
 {
-	private $defaults = array();
-	private $events_maker;
-
-
-	public function __construct($events_maker)
+	public function __construct()
 	{
-		// defaults
-		$this->defaults = $events_maker->get_defaults();
-
-		// main object
-		$this->events_maker = $events_maker;
+		// set instance
+		Events_Maker()->update = $this;
 
 		// actions
 		add_action('init', array(&$this, 'check_update'));
@@ -55,7 +48,7 @@ class Events_Maker_Update
 							$this->update_1();
 
 							// updates plugin version
-							update_option('events_maker_version', $this->defaults['version']);
+							update_option('events_maker_version', Events_Maker()->defaults['version']);
 						}
 					}
 
@@ -66,10 +59,10 @@ class Events_Maker_Update
 					$this->update_1();
 
 					// updates plugin version
-					update_option('events_maker_version', $this->defaults['version']);
+					update_option('events_maker_version', Events_Maker()->defaults['version']);
 				}
 
-				$this->events_maker->display_notice(__('Datebase was succesfully updated. Enjoy new features!', 'events-maker'), 'updated', true);
+				Events_Maker()->display_notice(__('Datebase was succesfully updated. Enjoy new features!', 'events-maker'), 'updated', true);
 			}
 		}
 
@@ -96,19 +89,19 @@ class Events_Maker_Update
 				$current_db_version = get_option('events_maker_version', '1.0.0');
 
 				// new version?
-				if(version_compare($current_db_version, $this->defaults['version'], '<'))
+				if(version_compare($current_db_version, Events_Maker()->defaults['version'], '<'))
 				{
 					// is update 1 required?
 					if(version_compare($current_db_version, EVENTS_MAKER_UPDATE_VERSION_1, '<='))
 						$update_required = true;
 					else
 						// updates plugin version
-						update_option('events_maker_version', $this->defaults['version']);
+						update_option('events_maker_version', Events_Maker()->defaults['version']);
 				}
 			}
 
 			if($update_required)
-				$this->events_maker->display_notice($update_1_html);
+				Events_Maker()->display_notice($update_1_html);
 
 			switch_to_blog($current_blog_id);
 		}
@@ -118,14 +111,14 @@ class Events_Maker_Update
 			$current_db_version = get_option('events_maker_version', '1.0.0');
 
 			// new version?
-			if(version_compare($current_db_version, $this->defaults['version'], '<'))
+			if(version_compare($current_db_version, Events_Maker()->defaults['version'], '<'))
 			{
 				// is update 1 required?
 				if(version_compare($current_db_version, EVENTS_MAKER_UPDATE_VERSION_1, '<='))
-					$this->events_maker->display_notice($update_1_html);
+					Events_Maker()->display_notice($update_1_html);
 				else
 					// updates plugin version
-					update_option('events_maker_version', $this->defaults['version']);
+					update_option('events_maker_version', Events_Maker()->defaults['version']);
 			}
 		}
 	}

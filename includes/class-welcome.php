@@ -5,12 +5,14 @@ new Events_Maker_Welcome_Page();
 
 class Events_Maker_Welcome_Page 
 {
-
 	public function __construct() 
 	{
-		add_action('admin_menu', array($this, 'admin_menus'));
-		add_action('admin_head', array($this, 'admin_head'));
-		add_action('admin_init', array($this, 'welcome'));
+		// set instance
+		Events_Maker()->welcome = $this;
+	
+		add_action('admin_menu', array(&$this, 'admin_menus'));
+		add_action('admin_head', array(&$this, 'admin_head'));
+		add_action('admin_init', array(&$this, 'welcome'));
 	}
 
 	// Add admin menus/screens

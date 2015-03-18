@@ -1,21 +1,19 @@
 <?php
 if(!defined('ABSPATH')) exit;
 
-new Events_Maker_Query($events_maker);
+new Events_Maker_Query();
 
 class Events_Maker_Query
 {
-	private $options = array();
-
-
-	public function __construct($events_maker)
+	public function __construct()
 	{
-		//settings
-		$this->options = $events_maker->get_options();
+		// set instance
+		Events_Maker()->query = $this;
 
 		//actions
 		add_action('init', array(&$this, 'register_rewrite'));
 		add_action('pre_get_posts', array(&$this, 'extend_pre_query'));
+		add_action('pre_get_posts', array(&$this, 'alter_orderby_query'), 11);
 
 		//filters
 		add_filter('query_vars', array(&$this, 'register_query_vars'));
@@ -45,16 +43,16 @@ class Events_Maker_Query
 
 		$wp_rewrite->add_permastruct(
 			'event_ondate',
-			$this->options['permalinks']['event_rewrite_base'].'/%event_ondate%',
+			Events_Maker()->options['permalinks']['event_rewrite_base'].'/%event_ondate%',
 			array(
 				'with_front' => false
 			)
 		);
 
-		if($this->options['general']['rewrite_rules'])
+		if(Events_Maker()->options['general']['rewrite_rules'])
 		{
-			$this->options['general']['rewrite_rules'] = false;
-			update_option('events_maker_general', $this->options['general']);
+			Events_Maker()->options['general']['rewrite_rules'] = false;
+			update_option('events_maker_general', Events_Maker()->options['general']);
 			flush_rewrite_rules();
 		}
 	}
@@ -231,8 +229,11 @@ class Events_Maker_Query
 		return $groupby;
 	}
 
-
-	function posts_fields($select, $query)
+	
+	/**
+	 * 
+	*/
+	public function posts_fields($select, $query)
 	{
 		global $wpdb;
 
@@ -263,7 +264,7 @@ class Events_Maker_Query
 		if((is_tax('event-location') && isset($query->query_vars['event-location'], $query->query['event-location'])) || (is_tax('event-organizer') && isset($query->query_vars['event-organizer'], $query->query['event-organizer'])) || (is_tax('event-category') && isset($query->query_vars['event-category'], $query->query['event-category'])))
 		{
 			if(!isset($query->query_vars['event_show_occurrences']))
-				$query->query_vars['event_show_occurrences'] = (is_admin() ? false : $this->options['general']['show_occurrences']);
+				$query->query_vars['event_show_occurrences'] = (is_admin() ? false : Events_Maker()->options['general']['show_occurrences']);
 
 			if($query->query_vars['event_show_occurrences'])
 				$keys = array('start' => '_event_occurrence_date', 'end' => '_event_occurrence_date');
@@ -289,12 +290,12 @@ class Events_Maker_Query
 			}
 			else
 			{
-				if(in_array($this->options['general']['order_by'], array('start', 'end'), true))
+				if(in_array(Events_Maker()->options['general']['order_by'], array('start', 'end'), true))
 				{
-					$query->query_vars['meta_key'] = $keys[$this->options['general']['order_by']];
+					$query->query_vars['meta_key'] = $keys[Events_Maker()->options['general']['order_by']];
 					$query->query_vars['orderby'] = 'meta_value';
 				}
-				elseif($this->options['general']['order_by'] === 'publish')
+				elseif(Events_Maker()->options['general']['order_by'] === 'publish')
 				{
 					$query->query_vars['orderby'] = 'date';
 					$event_order_by = false;
@@ -304,10 +305,10 @@ class Events_Maker_Query
 			}
 
 			if(!isset($query->query_vars['order']))
-				$query->query_vars['order'] = $this->options['general']['order'];
+				$query->query_vars['order'] = Events_Maker()->options['general']['order'];
 
 			if(!isset($query->query_vars['event_show_past_events']) || !is_bool($query->query_vars['event_show_past_events']))
-				$query->query_vars['event_show_past_events'] = (is_admin() ? true : $this->options['general']['show_past_events']);
+				$query->query_vars['event_show_past_events'] = (is_admin() ? true : Events_Maker()->options['general']['show_past_events']);
 
 			// some ninja fixes
 			if($query->query_vars['event_show_occurrences'] && $query->query_vars['event_show_past_events'] && !$event_order_by)
@@ -333,7 +334,7 @@ class Events_Maker_Query
 				if(!$query->query_vars['event_show_past_events'] && !$query->is_singular)
 				{
 					$meta_args[] = array(
-						'key' => (!$this->options['general']['expire_current'] ? $keys['end'] : $keys['start']),
+						'key' => (!Events_Maker()->options['general']['expire_current'] ? $keys['end'] : $keys['start']),
 						'value' => current_time('mysql'),
 						'compare' => '>=',
 						'type' => 'DATETIME'
@@ -374,8 +375,8 @@ class Events_Maker_Query
 				'event_date_type' => 'all',
 				'event_ticket_type' => 'all',
 				'event_ondate' => '',
-				'event_show_past_events' => (is_admin() ? true : $this->options['general']['show_past_events']),
-				'event_show_occurrences' => (is_admin() ? true : $this->options['general']['show_occurrences'])
+				'event_show_past_events' => (is_admin() ? true : Events_Maker()->options['general']['show_past_events']),
+				'event_show_occurrences' => (is_admin() ? true : Events_Maker()->options['general']['show_occurrences'])
 			);
 
 			if(!empty($query->query_vars['event_ondate']))
@@ -466,15 +467,15 @@ class Events_Maker_Query
 			}
 			else
 			{
-				if(in_array($this->options['general']['order_by'], array('start', 'end'), true))
+				if(in_array(Events_Maker()->options['general']['order_by'], array('start', 'end'), true))
 				{
-					$query->query_vars['meta_key'] = $keys[$this->options['general']['order_by']];
+					$query->query_vars['meta_key'] = $keys[Events_Maker()->options['general']['order_by']];
 					$query->query_vars['orderby'] = 'meta_value';
 					$meta_args[] = array(
-						'key' => $keys[$this->options['general']['order_by']]
+						'key' => $keys[Events_Maker()->options['general']['order_by']]
 					);
 				}
-				elseif($this->options['general']['order_by'] === 'publish')
+				elseif(Events_Maker()->options['general']['order_by'] === 'publish')
 				{
 					$query->query_vars['orderby'] = 'date';
 					$event_order_by = false;
@@ -484,7 +485,7 @@ class Events_Maker_Query
 			}
 
 			if(!isset($query->query_vars['order']))
-				$query->query_vars['order'] = $this->options['general']['order'];
+				$query->query_vars['order'] = Events_Maker()->options['general']['order'];
 			
 			// this must be the second meta query in sql, in order to sort by 2 meta keys at once
 			if(isset($query->query_vars['event_show_featured']) && (bool)$query->query_vars['event_show_featured'] === true)
@@ -599,7 +600,7 @@ class Events_Maker_Query
 				if(!$query->query_vars['event_show_past_events'] && !$query->is_singular)
 				{
 					$meta_args[] = array(
-						'key' => (!$this->options['general']['expire_current'] ? $keys['end'] : $keys['start']),
+						'key' => (!Events_Maker()->options['general']['expire_current'] ? $keys['end'] : $keys['start']),
 						'value' => current_time('mysql'),
 						'compare' => '>=',
 						'type' => 'DATETIME'
@@ -646,7 +647,7 @@ class Events_Maker_Query
 	*/
 	public function feed_request($feeds)
 	{
-		if(isset($feeds['feed']) && !isset($feeds['post_type']) && $this->options['general']['events_in_rss'] === true)
+		if(isset($feeds['feed']) && !isset($feeds['post_type']) && Events_Maker()->options['general']['events_in_rss'] === true)
 			$feeds['post_type'] = array('post', 'event');
 
 		return $feeds;
@@ -656,7 +657,7 @@ class Events_Maker_Query
 	/**
 	 * Put sticky events on top of events list
 	 */
-	function sticky_featured($posts)
+	public function sticky_featured($posts)
 	{
 		$post_types = apply_filters('em_event_post_type', array('event'));
 		
@@ -734,5 +735,64 @@ class Events_Maker_Query
 	    return $posts;
 	}
 
+	/**
+	 * Modify the query according to orderby value
+	 */
+	public function alter_orderby_query($query) 
+	{
+		if (is_admin())
+			return $query;
+	
+		if (empty($query))
+			return $query;
+		
+		// current orderby value
+		$orderby_value = isset($_GET['orderby']) ? esc_attr($_GET['orderby']) : apply_filters('em_default_orderby', (in_array(($default_orderby = Events_Maker()->options['general']['order_by']), array('start', 'end')) ? "event_{$default_orderby}_date" : $default_orderby) . '-' . Events_Maker()->options['general']['order']);
+		
+		if (empty($orderby_value))
+			return $query;
+		
+		// get ordeby and order strings
+		$orderby_value = explode('-', $orderby_value);
+		$orderby = esc_attr($orderby_value[0]);
+		$order = !empty($orderby_value[1]) ? $orderby_value[1] : $order;
+	
+		$orderby = strtolower($orderby);
+		$order = strtoupper($order);
+		
+		$args = array();
+
+		// set orderby
+		switch ($orderby)
+		{
+			case 'start' :
+				$args['orderby']  = 'event_start_date';
+				break;
+			
+			case 'end' :
+				$args['orderby']  = 'event_end_date';
+				break;
+			
+			case 'title' :
+				$args['orderby']  = 'title';
+				break;
+			
+			case 'comment_count' :
+				$args['orderby']  = 'comment_count';
+				break;
+		}
+		// set order
+		$args['order'] = $order == 'ASC' ? 'ASC' : 'DESC';
+		
+		$args = apply_filters('em_alter_orderby_query_args', $args);
+		
+		if (!empty($args['orderby']))
+			$query->set('orderby', $args['orderby']);
+		
+		if (!empty($args['order']))
+			$query->set('order', $args['order']);
+		
+		return $query;
+	}
 }
 ?>

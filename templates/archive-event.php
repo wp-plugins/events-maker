@@ -51,6 +51,9 @@ get_header('events'); ?>
 			<?php
 			/**
 			 * em_before_events_loop hook
+			 * 
+			 * @hooked em_orderby - 10
+			 * @hooked em_result_count - 20
 			 */
 			do_action('em_before_events_loop');
 			?>

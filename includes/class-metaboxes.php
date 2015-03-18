@@ -1,28 +1,22 @@
 <?php
 if(!defined('ABSPATH')) exit;
 
-new Events_Maker_Metaboxes($events_maker);
+new Events_Maker_Metaboxes();
 
 class Events_Maker_Metaboxes
 {
-	private $options = array();
+	public $tickets_fields = array();
 	private $metaboxes = array();
-	private $recurrences = array();
-	private $tickets_fields = array();
-	private $events_maker;
 
 
-	public function __construct($events_maker)
+	public function __construct()
 	{
-		$this->events_maker = $events_maker;
-
-		//settings
-		$this->options = $events_maker->get_options();
+		// set instance
+		Events_Maker()->metaboxes = $this;
 
 		//actions
 		add_action('add_meta_boxes', array(&$this, 'add_events_meta_boxes'), 10, 2);
 		add_action('admin_enqueue_scripts', array(&$this, 'admin_scripts_styles'));
-		add_action('after_setup_theme', array(&$this, 'set_recurrences'));
 		add_action('after_setup_theme', array(&$this, 'load_defaults'));
 		add_action('save_post', array(&$this, 'save_event'), 10, 2);
 		add_action('post_submitbox_misc_actions', array(&$this, 'display_options'));
@@ -44,15 +38,19 @@ class Events_Maker_Metaboxes
 
 		$options = array(
 			'google_map' => __('Google Map', 'events-maker'),
-			'display_gallery' => __('Event Gallery', 'events-maker'),
 			'display_location_details' => __('Location Details', 'events-maker')
 		);
 		
+		// if gallery is enabled
+		if(Events_Maker()->options['general']['supports']['gallery'])
+			$options = array_merge($options, array('display_gallery' => __('Event Gallery', 'events-maker')));
+		
 		// if tickets are enabled
-		if($this->options['general']['use_event_tickets'])
+		if(Events_Maker()->options['general']['use_event_tickets'])
 			$options = array_merge($options, array('price_tickets_info' => __('Tickets', 'events-maker')));
+			
 		// if organizers are enabled
-		if($this->options['general']['use_organizers'])
+		if(Events_Maker()->options['general']['use_organizers'])
 			$options = array_merge($options, array('display_organizer_details' => __('Organizer Details', 'events-maker')));
 		
 		$options = apply_filters('em_metabox_event_display_options', $options, $post);
@@ -75,7 +73,7 @@ class Events_Maker_Metaboxes
 					<?php
 					foreach($options as $key => $name)
 					{
-						if (isset($values[$key]) ? (bool)$values[$key] : isset($this->options['general']['default_event_options'][$key])) 
+						if (isset($values[$key]) ? (bool)$values[$key] : isset(Events_Maker()->options['general']['default_event_options'][$key])) 
 							$options_html[] = $name;
 					}
 					if ($featured)
@@ -94,18 +92,18 @@ class Events_Maker_Metaboxes
 				echo '<p>' . __('Define the display options for this event.', 'events-maker') . '</p>';
 				
 				// display options
-				do_action('em_before_metabox_event_display_options', $post);
+				do_action('em_before_event_display_options');
 				
 				foreach($options as $key => $name)
 				{
 					?>
 					<label for="event_display_option_<?php echo $key; ?>">
-						<input id="event_display_option_<?php echo $key; ?>" type="checkbox" name="event_display_options[<?php echo $key; ?>]" <?php checked((isset($values[$key]) ? (bool)$values[$key] : isset($this->options['general']['default_event_options'][$key])) ? '1' : '0', '1'); ?> /><?php echo $name; ?>
+						<input id="event_display_option_<?php echo $key; ?>" type="checkbox" name="event_display_options[<?php echo $key; ?>]" <?php checked((isset($values[$key]) ? (bool)$values[$key] : isset(Events_Maker()->options['general']['default_event_options'][$key])) ? '1' : '0', '1'); ?> /><?php echo $name; ?>
 					</label><br />
 					<?php
 				}
 
-				do_action('em_after_metabox_event_display_options', $post);
+				do_action('em_after_event_display_options');
 
 				echo '<p>' . __('Enable to feature this event.', 'events-maker') . '</p>';
 				echo '<input type="checkbox" name="event_featured" id="event_featured" ' . checked($featured, true, false) . ' /> <label for="event_featured">' . __('Featured', 'events-maker') . '</label><br />';
@@ -123,15 +121,6 @@ class Events_Maker_Metaboxes
 	/**
 	 * 
 	*/
-	public function set_recurrences()
-	{
-		$this->recurrences = $this->events_maker->get_recurrences();
-	}
-
-
-	/**
-	 * 
-	*/
 	public function load_defaults()
 	{
 		$this->tickets_fields = apply_filters(
@@ -143,26 +132,30 @@ class Events_Maker_Metaboxes
 		);
 
 		$post_types = apply_filters('em_event_post_type', array('event'));
-
+		
 		foreach ($post_types as $post_type)
 		{
-			$this->metaboxes[] = apply_filters(
-				'em_'.$post_type.'_metaboxes',
-				array(
-					'event-date-time-box' => array(
-						'title' => __('Event Date and Time', 'events-maker'),
-						'callback' => array(&$this, 'event_date_time_cb'),
-						'post_type' => $post_type,
-						'context' => 'normal',
-						'priority' => 'high'
-					),
-					'event-cost-tickets-box' => array(
-						'title' => __('Event Tickets', 'events-maker'),
-						'callback' => array(&$this, 'event_tickets_cb'),
-						'post_type' => $post_type,
-						'context' => 'normal',
-						'priority' => 'high'
-					),
+			$metaboxes = array(
+				'event-date-time-box' => array(
+					'title' => __('Event Date and Time', 'events-maker'),
+					'callback' => array(&$this, 'event_date_time_cb'),
+					'post_type' => $post_type,
+					'context' => 'normal',
+					'priority' => 'high'
+				),
+				'event-cost-tickets-box' => array(
+					'title' => __('Event Tickets', 'events-maker'),
+					'callback' => array(&$this, 'event_tickets_cb'),
+					'post_type' => $post_type,
+					'context' => 'normal',
+					'priority' => 'high'
+				)
+			);
+			
+			// if gallery is enabled
+			if(Events_Maker()->options['general']['supports']['gallery'])
+			{
+				$metaboxes = array_merge($metaboxes, array(
 					'event-gallery-box' => array(
 						'title' => __('Event Gallery', 'events-maker'),
 						'callback' => array(&$this, 'event_gallery_cb'),
@@ -170,8 +163,9 @@ class Events_Maker_Metaboxes
 						'context' => 'normal',
 						'priority' => 'high'
 					)
-				)
-			);
+				));
+			}
+			$this->metaboxes[] = apply_filters('em_'.$post_type.'_metaboxes', $metaboxes);
 		}
 	}
 
@@ -232,7 +226,7 @@ class Events_Maker_Metaboxes
 					'dateDelete' => __('Delete', 'events-maker'),
 					'deleteTicket' => __('Are you sure you want to delete this ticket?', 'events-maker'),
 					'deleteCustomOccurrence' => __('Are you sure you want to delete this occurrence?', 'events-maker'),
-					'firstWeekDay' => $this->options['general']['first_weekday'],
+					'firstWeekDay' => Events_Maker()->options['general']['first_weekday'],
 					'monthNames' => array_values($wp_locale->month),
 					'monthNamesShort' => array_values($wp_locale->month_abbrev),
 					'dayNames' => array_values($wp_locale->weekday),
@@ -281,7 +275,7 @@ class Events_Maker_Metaboxes
 			{
 				foreach($key as $id => $metabox)
 				{
-					if($id === 'event-cost-tickets-box' && !$this->options['general']['use_event_tickets'])
+					if($id === 'event-cost-tickets-box' && !Events_Maker()->options['general']['use_event_tickets'])
 						continue;
 					else
 						add_meta_box($id, $metabox['title'], $metabox['callback'], $metabox['post_type'], $metabox['context'], $metabox['priority']);
@@ -428,7 +422,7 @@ class Events_Maker_Metaboxes
 		<div class="date-time-row">
 			<label for="event_recurrence">'.__('Recurrence', 'events-maker').'</label> <select id="event_recurrence" name="event_recurrence[type]" class="">';
 
-		foreach($this->recurrences as $id => $recurrence)
+		foreach(Events_Maker()->recurrences as $id => $recurrence)
 		{
 			if($id === 'weekly')
 			{
@@ -441,7 +435,7 @@ class Events_Maker_Metaboxes
 
 				$weekdays = $weekday;
 
-				if($this->options['general']['first_weekday'] === 1)
+				if(Events_Maker()->options['general']['first_weekday'] === 1)
 				{
 					$weekdays[7] = $weekday[0];
 					unset($weekdays[0]);
@@ -788,7 +782,7 @@ class Events_Maker_Metaboxes
 	
 			$recurrence = $_POST['event_recurrence'];
 	
-			if(isset($this->recurrences[$recurrence['type']]))
+			if(isset(Events_Maker()->recurrences[$recurrence['type']]))
 			{
 				$recurrence['until'] = date('Y-m-d', strtotime($recurrence['until']));
 				$today = (int)date('N', strtotime($event_start_date));
@@ -879,7 +873,7 @@ class Events_Maker_Metaboxes
 		}
 		
 		// event tickets validation, if tickets are in use
-		if($this->options['general']['use_event_tickets'] && isset($_POST['event_nonce_tickets']) && wp_verify_nonce($_POST['event_nonce_tickets'], 'events_maker_save_event_tickets'))
+		if(Events_Maker()->options['general']['use_event_tickets'] && isset($_POST['event_nonce_tickets']) && wp_verify_nonce($_POST['event_nonce_tickets'], 'events_maker_save_event_tickets'))
 		{
 			update_post_meta($post_ID, '_event_free', (isset($_POST['event_free']) ? 1 : 0));
 
@@ -942,10 +936,10 @@ class Events_Maker_Metaboxes
 			);
 
 			// if tickets are enabled
-			if($this->options['general']['use_event_tickets'])
+			if(Events_Maker()->options['general']['use_event_tickets'])
 				$options = array_merge($options, array('price_tickets_info' => __('Tickets', 'events-maker')));
 			// if organizers are enabled
-			if($this->options['general']['use_organizers'])
+			if(Events_Maker()->options['general']['use_organizers'])
 				$options = array_merge($options, array('display_organizer_details' => __('Organizer Details', 'events-maker')));
 
 			$options = apply_filters('em_metabox_event_display_options', $options, $post_ID);

@@ -1,20 +1,14 @@
 <?php
 if(!defined('ABSPATH')) exit;
 
-new Events_Maker_Widgets($events_maker);
+new Events_Maker_Widgets();
 
 class Events_Maker_Widgets
 {
-	private $options = array();
-
-
-	/**
-	 * 
-	 */
-	public function __construct($events_maker)
+	public function __construct()
 	{
-		//settings
-		$this->options = $events_maker->get_options();
+		// set instance
+		Events_Maker()->widgets = $this;
 
 		//actions
 		add_action('widgets_init', array(&$this, 'register_widgets'));
@@ -32,7 +26,7 @@ class Events_Maker_Widgets
 		register_widget('Events_Maker_Categories_Widget');
 		register_widget('Events_Maker_Locations_Widget');
 
-		if($this->options['general']['use_organizers'] === true)
+		if(Events_Maker()->options['general']['use_organizers'] === true)
 			register_widget('Events_Maker_Organizers_Widget');
 	}
 }
@@ -437,8 +431,60 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 	/**
 	 * 
 	 */
-	private function display_calendar($options, $start_date, $events, $widget_id, $ajax = false)
+	private function display_calendar($options, $start_date, $allevents, $widget_id, $ajax = false)
 	{
+		$show_occurrences = (isset($options['show_occurrences']) ? $options['show_occurrences'] : $this->em_options['general']['show_occurrences']);
+		
+		foreach($allevents as $id => $events)
+		{
+			if(!empty($events))
+			{
+				foreach($events as $event)
+				{
+					// gets start date
+					$s_datetime = explode(' ', ($show_occurrences ? $event->event_occurrence_start_date : $event->_event_start_date));
+					$s_date = explode('-', $s_datetime[0]);
+
+					// gets end date
+					$e_datetime = explode(' ', ($show_occurrences ? $event->event_occurrence_end_date : $event->_event_end_date));
+					$e_date = explode('-', $e_datetime[0]);
+
+					if(count($s_date) === 3 && count($e_date) === 3)
+					{
+						// same years and same months
+						if($s_date[0] === $e_date[0] && $s_date[1] === $e_date[1])
+						{
+							for($i = $s_date[2]; $i <= $e_date[2]; $i++)
+							{
+								$days_events[$i][] = $event;
+							}
+						}
+						else
+						{
+							if($id === 'start')
+							{
+								$no_days = date('t', strtotime($s_datetime[0]));
+
+								for($i = $s_date[2]; $i <= $no_days; $i++)
+								{
+									$days_events[$i][] = $event;
+								}
+							}
+							else
+							{
+								for($i = $e_date[2]; $i >= 1; $i--)
+								{
+									$days_events[$i][] = $event;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		// $days_events = array_unique($days, SORT_NUMERIC);
+		
 		global $wp_locale;
 
 		$weekdays = array(1 => 7, 2 => 6, 3 => 5, 4 => 4, 5 => 3, 6 => 2, 7 => 1, 8 => 0);
@@ -493,7 +539,7 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 				$td_class = array();
 				$real_day = (bool)($k++ >= $first_day && $day <= $date[3]);
 
-				if($real_day === true && in_array($day, $events))
+				if($real_day === true && in_array($day, array_keys($days_events)))
 					$td_class[] = 'active';
 
 				if($day === $now['day'] && ($month + 1 === $now['month']) && (int)$date[0] === $now['year'])
@@ -509,7 +555,22 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 
 				if($real_day === true)
 				{
-					$row .= (in_array($day, $events) ? '<a href="'.esc_url(em_get_event_date_link($date[0], $month + 1, $day)).'">'.$day.'</a>' : $day);
+					if (in_array($day, array_keys($days_events)))
+					{
+						$day_title = array();
+						
+						foreach ($days_events[$day] as $day_event)
+						{
+							$day_title[] = esc_html($day_event->post_title);
+						}
+						
+						$day_content = '<a href="'.esc_url(em_get_event_date_link($date[0], $month + 1, $day)).'" title="'.implode(', ', $day_title).'">'.$day.'</a>';
+					}
+					else
+						$day_content = $day;
+					
+					$row .= apply_filters('em_widget_calendar_single_day_html', $day_content, $day, $days_events);
+					
 					$day++;
 				}
 				else
@@ -542,7 +603,7 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 			</table>
 		</div>';
 
-		return $html;
+		return apply_filters('em_widget_calendar_html', $html);
 	}
 
 
@@ -551,7 +612,7 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 	 */
 	private function get_events_days($date, $options)
 	{
-		$days = $allevents = $exclude_ids = array();
+		$allevents = $exclude_ids = array();
 		$show_occurrences = (isset($options['show_occurrences']) ? $options['show_occurrences'] : $this->em_options['general']['show_occurrences']);
 
 		$args = array(
@@ -626,55 +687,7 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 			)
 		);
 
-		foreach($allevents as $id => $events)
-		{
-			if(!empty($events))
-			{
-				foreach($events as $event)
-				{
-					// gets start date
-					$s_datetime = explode(' ', ($show_occurrences ? $event->event_occurrence_start_date : $event->_event_start_date));
-					$s_date = explode('-', $s_datetime[0]);
-
-					// gets end date
-					$e_datetime = explode(' ', ($show_occurrences ? $event->event_occurrence_end_date : $event->_event_end_date));
-					$e_date = explode('-', $e_datetime[0]);
-
-					if(count($s_date) === 3 && count($e_date) === 3)
-					{
-						// same years and same months
-						if($s_date[0] === $e_date[0] && $s_date[1] === $e_date[1])
-						{
-							for($i = $s_date[2]; $i <= $e_date[2]; $i++)
-							{
-								$days[] = $i;
-							}
-						}
-						else
-						{
-							if($id === 'start')
-							{
-								$no_days = date('t', strtotime($s_datetime[0]));
-
-								for($i = $s_date[2]; $i <= $no_days; $i++)
-								{
-									$days[] = (int)$i;
-								}
-							}
-							else
-							{
-								for($i = $e_date[2]; $i >= 1; $i--)
-								{
-									$days[] = (int)$i;
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-
-		return array_unique($days, SORT_NUMERIC);
+		return $allevents;
 	}
 
 
@@ -758,7 +771,8 @@ class Events_Maker_List_Widget extends WP_Widget
 			'show_featured' => false,
 			'no_events_message' => __('No Events', 'events-maker'),
 			'date_format' => $this->em_options['general']['datetime_format']['date'],
-			'time_format' => $this->em_options['general']['datetime_format']['time']
+			'time_format' => $this->em_options['general']['datetime_format']['time'],
+			'show_archive_link' => false
 		);
 
 		$this->em_taxonomies = array(
@@ -913,6 +927,9 @@ class Events_Maker_List_Widget extends WP_Widget
 			<input id="'.$this->get_field_id('show_featured').'" type="checkbox" name="'.$this->get_field_name('show_featured').'" value="" '.checked(true, (isset($instance['show_featured']) ? $instance['show_featured'] : $this->em_defaults['show_featured']), false).' /> <label for="'.$this->get_field_id('show_featured').'">'.__('Display featured events only', 'events-maker').'</label>
 			<br />
 			<input id="'.$this->get_field_id('show_event_thumbnail').'" class="em-show-event-thumbnail" type="checkbox" name="'.$this->get_field_name('show_event_thumbnail').'" value="" '.checked(true, $show_event_thumbnail, false).' /> <label for="'.$this->get_field_id('show_event_thumbnail').'">'.__('Display event thumbnail', 'events-maker').'</label>
+			<br />
+			<input id="'.$this->get_field_id('show_archive_link').'" class="em-show-archive-link" type="checkbox" name="'.$this->get_field_name('show_archive_link').'" value="" '.checked(true, (isset($instance['show_archive_link']) ? $instance['show_archive_link'] : $this->em_defaults['show_archive_link']), false).' /> <label for="'.$this->get_field_id('show_archive_link').'">'.__('Display link for all events', 'events-maker').'</label>
+			
 		</p>
 		<p class="em-event-thumbnail-size"'.($show_event_thumbnail === true ? '' : ' style="display: none;"').'>
 			<label for="'.$this->get_field_id('thumbnail_size').'">'.__('Thumbnail size', 'events-maker').':</label>
@@ -965,6 +982,7 @@ class Events_Maker_List_Widget extends WP_Widget
 		$old_instance['show_event_thumbnail'] = (isset($new_instance['show_event_thumbnail']) ? true : false);
 		$old_instance['show_event_excerpt'] = (isset($new_instance['show_event_excerpt']) ? true : false);
 		$old_instance['show_featured'] = (isset($new_instance['show_featured']) ? true : false);
+		$old_instance['show_archive_link'] = (isset($new_instance['show_archive_link']) ? true : false);
 
 		//texts
 		$old_instance['title'] = sanitize_text_field(isset($new_instance['title']) ? $new_instance['title'] : $this->em_defaults['title']);

@@ -11,21 +11,14 @@
  
 if(!defined('ABSPATH')) exit;
 
-new Events_Maker_Shortcodes($events_maker);
+new Events_Maker_Shortcodes();
 
 class Events_Maker_Shortcodes
 {
-	private $options = array();
-	private $events_maker;
-
-
-	public function __construct($events_maker)
+	public function __construct()
 	{
-		// settings
-		$this->options = $events_maker->get_options();
-
-		// main object
-		$this->events_maker = $events_maker;
+		// set instance
+		Events_Maker()->shortcodes = $this;
 
 		// actions
 		add_action('init', array(&$this, 'register_shortcodes'));
@@ -54,15 +47,15 @@ class Events_Maker_Shortcodes
 	 */
 	public function add_full_calendar($content)
 	{
-		$page_id = $this->options['general']['full_calendar_display']['page'];
+		$page_id = Events_Maker()->options['general']['full_calendar_display']['page'];
 		
 		// wpml and polylang compatibility
 		if(function_exists('icl_object_id'))
-			$page_id = icl_object_id($this->options['general']['full_calendar_display']['page'], 'page', true);
+			$page_id = icl_object_id(Events_Maker()->options['general']['full_calendar_display']['page'], 'page', true);
 
-		if($this->options['general']['full_calendar_display']['type'] === 'page' && is_page($page_id))
+		if(Events_Maker()->options['general']['full_calendar_display']['type'] === 'page' && is_page($page_id))
 		{
-			if($this->options['general']['full_calendar_display']['content'] === 'before')
+			if(Events_Maker()->options['general']['full_calendar_display']['content'] === 'before')
 				$content = '[em-full-calendar]'.$content;
 			else
 				$content = $content.'[em-full-calendar]';
@@ -96,7 +89,7 @@ class Events_Maker_Shortcodes
 				{
 					switch_to_blog($blog_id);
 
-					if($this->options['general']['display_page_notice'])
+					if(Events_Maker()->options['general']['display_page_notice'])
 					{
 						if($this->create_calendar_page(true))
 							$success++;
@@ -106,11 +99,11 @@ class Events_Maker_Shortcodes
 				}
 
 				if($success > 0 && $fail === 0)
-					$this->events_maker->display_notice(__('Calendar page was created successfully on all of the network sites.', 'events-maker'), 'updated', true);
+					Events_Maker()->display_notice(__('Calendar page was created successfully on all of the network sites.', 'events-maker'), 'updated', true);
 				elseif($success === 0 && $fail > 0)
-					$this->events_maker->display_notice(__('Calendar page was not created on all of the network sites. You can try to create it manually later.', 'events-maker'), 'error', true);
+					Events_Maker()->display_notice(__('Calendar page was not created on all of the network sites. You can try to create it manually later.', 'events-maker'), 'error', true);
 				else
-					$this->events_maker->display_notice(__('Calendar page was not created on some of the network sites. You can try to create it manually later.', 'events-maker'), 'error', true);
+					Events_Maker()->display_notice(__('Calendar page was not created on some of the network sites. You can try to create it manually later.', 'events-maker'), 'error', true);
 
 				switch_to_blog($current_blog_id);
 			}
@@ -131,28 +124,28 @@ class Events_Maker_Shortcodes
 				{
 					switch_to_blog($blog_id);
 
-					$this->options['general']['full_calendar_display']['type'] = 'manual';
-					$this->options['general']['full_calendar_display']['page'] = 0;
+					Events_Maker()->options['general']['full_calendar_display']['type'] = 'manual';
+					Events_Maker()->options['general']['full_calendar_display']['page'] = 0;
 
 					// do not display notice anymore
-					$this->options['general']['display_page_notice'] = false;
+					Events_Maker()->options['general']['display_page_notice'] = false;
 
 					// updates general settings
-					update_option('events_maker_general', $this->options['general']);
+					update_option('events_maker_general', Events_Maker()->options['general']);
 				}
 
 				switch_to_blog($current_blog_id);
 			}
 			else
 			{
-				$this->options['general']['full_calendar_display']['type'] = 'manual';
-				$this->options['general']['full_calendar_display']['page'] = 0;
+				Events_Maker()->options['general']['full_calendar_display']['type'] = 'manual';
+				Events_Maker()->options['general']['full_calendar_display']['page'] = 0;
 
 				// do not display notice anymore
-				$this->options['general']['display_page_notice'] = false;
+				Events_Maker()->options['general']['display_page_notice'] = false;
 
 				// updates general settings
-				update_option('events_maker_general', $this->options['general']);
+				update_option('events_maker_general', Events_Maker()->options['general']);
 			}
 		}
 
@@ -173,19 +166,19 @@ class Events_Maker_Shortcodes
 			{
 				switch_to_blog($blog_id);
 
-				if($this->options['general']['display_page_notice'])
+				if(Events_Maker()->options['general']['display_page_notice'])
 					$notice_required = true;
 			}
 
 			if($notice_required)
-				$this->events_maker->display_notice($calendar_page_html, 'updated');
+				Events_Maker()->display_notice($calendar_page_html, 'updated');
 
 			switch_to_blog($current_blog_id);
 		}
 		else
 		{
-			if($this->options['general']['display_page_notice'])
-				$this->events_maker->display_notice($calendar_page_html, 'updated');
+			if(Events_Maker()->options['general']['display_page_notice'])
+				Events_Maker()->display_notice($calendar_page_html, 'updated');
 		}
 	}
 
@@ -209,30 +202,30 @@ class Events_Maker_Shortcodes
 		// if everything went fine
 		if(is_int($id) && $id > 0)
 		{
-			$this->options['general']['full_calendar_display']['type'] = 'page';
-			$this->options['general']['full_calendar_display']['page'] = $id;
+			Events_Maker()->options['general']['full_calendar_display']['type'] = 'page';
+			Events_Maker()->options['general']['full_calendar_display']['page'] = $id;
 
 			if($network)
 				$page = true;
 			else
-				$this->events_maker->display_notice(__('Calendar page was created successfully.', 'events-maker'), 'updated', true);
+				Events_Maker()->display_notice(__('Calendar page was created successfully.', 'events-maker'), 'updated', true);
 		}
 		else
 		{
-			$this->options['general']['full_calendar_display']['type'] = 'manual';
-			$this->options['general']['full_calendar_display']['page'] = 0;
+			Events_Maker()->options['general']['full_calendar_display']['type'] = 'manual';
+			Events_Maker()->options['general']['full_calendar_display']['page'] = 0;
 
 			if($network)
 				$page = false;
 			else
-				$this->events_maker->display_notice(__('Calendar page was not created successfully. You can try to create it manually later.', 'events-maker'), 'error', true);
+				Events_Maker()->display_notice(__('Calendar page was not created successfully. You can try to create it manually later.', 'events-maker'), 'error', true);
 		}
 
 		// do not display notice anymore
-		$this->options['general']['display_page_notice'] = false;
+		Events_Maker()->options['general']['display_page_notice'] = false;
 
 		// updates general settings
-		update_option('events_maker_general', $this->options['general']);
+		update_option('events_maker_general', Events_Maker()->options['general']);
 
 		if($network)
 			return $page;
@@ -253,8 +246,8 @@ class Events_Maker_Shortcodes
 			'date_range' => 'between',
 			'date_type' => 'all',
 			'ticket_type' => 'all',
-			'show_past_events' => $this->options['general']['show_past_events'],
-			'show_occurrences' => $this->options['general']['show_occurrences'],
+			'show_past_events' => Events_Maker()->options['general']['show_past_events'],
+			'show_occurrences' => Events_Maker()->options['general']['show_occurrences'],
 			'number_of_events' => get_option('posts_per_page'),
 			'featured_only' => false,
 			'disable_pagination' => false,
@@ -432,8 +425,8 @@ class Events_Maker_Shortcodes
 			'date_range' => 'between',
 			'date_type' => 'all',
 			'ticket_type' => 'all',
-			'show_past_events' => $this->options['general']['show_past_events'],
-			'show_occurrences' => $this->options['general']['show_occurrences'],
+			'show_past_events' => Events_Maker()->options['general']['show_past_events'],
+			'show_occurrences' => Events_Maker()->options['general']['show_occurrences'],
 			'categories' => '',
 			'locations' => '',
 			'organizers' => '',
@@ -593,8 +586,8 @@ class Events_Maker_Shortcodes
 			'events-maker-front-calendar',
 			'emCalendarArgs',
 			array(
-				'firstWeekDay' => ($this->options['general']['first_weekday'] === 7 ? 0 : 1),
-				'timeFormat' => str_replace(array('s', 'i', 'H', 'h', 'G', 'g'), array('ss', 'mm', 'HH', 'hh', 'H', 'h'), $this->options['general']['datetime_format']['time']),
+				'firstWeekDay' => (Events_Maker()->options['general']['first_weekday'] === 7 ? 0 : 1),
+				'timeFormat' => str_replace(array('s', 'i', 'H', 'h', 'G', 'g'), array('ss', 'mm', 'HH', 'hh', 'H', 'h'), Events_Maker()->options['general']['datetime_format']['time']),
 				'events' => $this->get_full_calendar_events($args)
 			)
 		);
@@ -656,7 +649,7 @@ class Events_Maker_Shortcodes
 				}
 			}
 
-			if(em_is_recurring($event->ID) && $this->options['general']['show_occurrences'])
+			if(em_is_recurring($event->ID) && Events_Maker()->options['general']['show_occurrences'])
 			{
 				$start = $event->event_occurrence_start_date;
 				$end = $event->event_occurrence_end_date;
@@ -842,12 +835,12 @@ class Events_Maker_Shortcodes
 	 */
 	public function after_delete_trash_calendar_page($post_id)
 	{
-		if(get_post_type($post_id) === 'page' && (int)$post_id === $this->options['general']['full_calendar_display']['page'])
+		if(get_post_type($post_id) === 'page' && (int)$post_id === Events_Maker()->options['general']['full_calendar_display']['page'])
 		{
-			$this->options['general']['full_calendar_display']['type'] = 'manual';
-			$this->options['general']['full_calendar_display']['page'] = 0;
+			Events_Maker()->options['general']['full_calendar_display']['type'] = 'manual';
+			Events_Maker()->options['general']['full_calendar_display']['page'] = 0;
 
-			update_option('events_maker_general', $this->options['general']);
+			update_option('events_maker_general', Events_Maker()->options['general']);
 		}
 	}
 
@@ -857,12 +850,12 @@ class Events_Maker_Shortcodes
 	 */
 	public function after_change_status_calendar_page($new_status, $old_status, $post)
 	{
-		if($post->post_type === 'page' && $old_status === 'publish' && $new_status !== 'publish' && $post->ID === $this->options['general']['full_calendar_display']['page'])
+		if($post->post_type === 'page' && $old_status === 'publish' && $new_status !== 'publish' && $post->ID === Events_Maker()->options['general']['full_calendar_display']['page'])
 		{
-			$this->options['general']['full_calendar_display']['type'] = 'manual';
-			$this->options['general']['full_calendar_display']['page'] = 0;
+			Events_Maker()->options['general']['full_calendar_display']['type'] = 'manual';
+			Events_Maker()->options['general']['full_calendar_display']['page'] = 0;
 
-			update_option('events_maker_general', $this->options['general']);
+			update_option('events_maker_general', Events_Maker()->options['general']);
 		}
 	}
 }

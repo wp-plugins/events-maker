@@ -3,8 +3,8 @@ Contributors: dfactory
 Donate link: http://www.dfactory.eu/
 Tags: event, event categories, events management, event management, events manager, event manager, event organizer, events calendar, events maker, google map, map, locations, organizers, widget, attendance, attendee, Booking, calendar, event registration, ticket, tickets, ticketing, bookings
 Requires at least: 3.5
-Tested up to: 4.1.0
-Stable tag: 1.4.5
+Tested up to: 4.1.1
+Stable tag: 1.5.0
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -56,6 +56,7 @@ Events Maker allows you to create and manage events, categories, locations and o
 * Builtin event gallery
 * RSS feed support
 * Customizeable template files
+* Events sorting
 * Google Rich Snippets ready
 * 6 Events widgets
 * Multiple custom functions
@@ -82,7 +83,7 @@ Events Maker allows you to create and manage events, categories, locations and o
 * French - by Marc Abel
 * German - by [Martin Stoehr](http://www.stoehrinteractive.com)
 * Hebrew - by [Ahrale Shrem](http://atar4u.com/)
-* Hungarian - by Mészáros Tamás
+* Hungarian - by Meszaros Tamas
 * Italian - by [Lorenzo De Tomasi](http://isotype.org)
 * Japanese - by stranger-jp
 * Norwegian - by Anders Kleppe
@@ -110,14 +111,24 @@ A. Chances are, someone else has asked it. Check out the support forum at: http:
 2. screenshot-2.png
 3. screenshot-3.png
 4. screenshot-4.png
-5. screenshot-4.png
-6. screenshot-4.png
+5. screenshot-5.png
+6. screenshot-6.png
 
 == Changelog ==
 
+= 1.5.0 =
+* New: Events sorting
+* New: Generate iCal button on single event page
+* Tweak: Code rewritten into singleton
+* Tweak: Improved support for Twenty Fifteen theme
+* Tweak: Additional filter hooks for developers
+
+= 1.4.6 =
+* Tweak: Link to All events in Events List widget
+
 = 1.4.5 =
 * New: Display event category color in events list in admin
-* New: Hungarian translation, thanks to Mészáros Tamás
+* New: Hungarian translation, thanks to Meszaros Tamas
 
 = 1.4.4 =
 * New: Event gallery
@@ -284,6 +295,9 @@ Initial release
 
 == Upgrade Notice ==
 
-= 1.4.5 =
-* New: Display event category color in events list in admin
-* New: Hungarian translation, thanks to Mészáros Tamás
+= 1.5.0 =
+* New: Events sorting
+* New: Generate iCal button on single event page
+* Tweak: Code rewritten into singleton
+* Tweak: Improved support for Twenty Fifteen theme
+* Tweak: Additional filter hooks for developers

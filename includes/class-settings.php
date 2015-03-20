@@ -1191,9 +1191,9 @@ class Events_Maker_Settings
 
 			// currencies
 			$input['currencies']['symbol'] = sanitize_text_field($input_old['currencies']['symbol']);
-			$input['currencies']['code'] = (isset($input_old['currencies']['code']) && in_array($input_old['currencies']['code'], array_keys(Events_Maker()->currencies['codes'])) ? strtoupper($input_old['currencies']['code']) : Events_Maker()->defaults['currencies']['code']);
-			$input['currencies']['format'] = (isset($input_old['currencies']['format']) && in_array($input_old['currencies']['format'], array_keys(Events_Maker()->currencies['formats'])) ? $input_old['currencies']['format'] : Events_Maker()->defaults['currencies']['format']);
-			$input['currencies']['position'] = (isset($input_old['currencies']['position']) && in_array($input_old['currencies']['position'], array_keys(Events_Maker()->currencies['positions'])) ? $input_old['currencies']['position'] : Events_Maker()->defaults['currencies']['position']);
+			$input['currencies']['code'] = (isset($input_old['currencies']['code']) && in_array($input_old['currencies']['code'], array_keys(Events_Maker()->localisation->currencies['codes'])) ? strtoupper($input_old['currencies']['code']) : Events_Maker()->defaults['currencies']['code']);
+			$input['currencies']['format'] = (isset($input_old['currencies']['format']) && in_array($input_old['currencies']['format'], array_keys(Events_Maker()->localisation->currencies['formats'])) ? $input_old['currencies']['format'] : Events_Maker()->defaults['currencies']['format']);
+			$input['currencies']['position'] = (isset($input_old['currencies']['position']) && in_array($input_old['currencies']['position'], array_keys(Events_Maker()->localisation->currencies['positions'])) ? $input_old['currencies']['position'] : Events_Maker()->defaults['currencies']['position']);
 
 			// default order
 			$input['order_by'] = (isset($input_old['order_by']) && in_array($input_old['order_by'], array_keys($this->sortings)) ? $input_old['order_by'] : Events_Maker()->defaults['general']['order_by']);

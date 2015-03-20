@@ -746,6 +746,26 @@ class Events_Maker_Query
 		if (empty($query))
 			return $query;
 		
+		$post_types = $query->get('post_type');
+
+		// does query contain post type as a string or post types array
+		if(is_array($post_types))
+		{
+			// check if there are defferrnces between the arrays
+			if((bool)array_diff($post_types, apply_filters('em_event_post_type', array('event'))))
+				// at least one of the post_types is not an event post type, don't run the query
+				$run_query = false;
+			else 
+				// all the post type are of event post type
+				$run_query = true;	
+		}
+		else
+			$run_query = (bool)in_array($post_types, apply_filters('em_event_post_type', array('event')));
+		
+		// do sorting or not
+		if(!$run_query)
+			return $query;
+		
 		// current orderby value
 		$orderby_value = isset($_GET['orderby']) ? esc_attr($_GET['orderby']) : apply_filters('em_default_orderby', (in_array(($default_orderby = Events_Maker()->options['general']['order_by']), array('start', 'end')) ? "event_{$default_orderby}_date" : $default_orderby) . '-' . Events_Maker()->options['general']['order']);
 		

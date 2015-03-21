@@ -4,7 +4,7 @@ Donate link: http://www.dfactory.eu/
 Tags: event, event categories, events management, event management, events manager, event manager, event organizer, events calendar, events maker, google map, map, locations, organizers, widget, attendance, attendee, Booking, calendar, event registration, ticket, tickets, ticketing, bookings
 Requires at least: 3.5
 Tested up to: 4.1.1
-Stable tag: 1.5.1
+Stable tag: 1.5.2
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -115,6 +115,9 @@ A. Chances are, someone else has asked it. Check out the support forum at: http:
 6. screenshot-6.png
 
 == Changelog ==
+
+= 1.5.2 =
+* Fix: array_keys() error in calendar widget
 
 = 1.5.1 =
 * Fix: Sorting affecting other post types
@@ -299,6 +302,5 @@ Initial release
 
 == Upgrade Notice ==
 
-= 1.5.1 =
-* Fix: Sorting affecting other post types
-* Fix: Error while saving curreny settings
+= 1.5.2 =
+* Fix: array_keys() error in calendar widget

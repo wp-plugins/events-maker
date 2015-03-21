@@ -435,6 +435,8 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 	{
 		$show_occurrences = (isset($options['show_occurrences']) ? $options['show_occurrences'] : $this->em_options['general']['show_occurrences']);
 		
+		$days_events = array();
+		
 		foreach($allevents as $id => $events)
 		{
 			if(!empty($events))
@@ -451,14 +453,16 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 
 					if(count($s_date) === 3 && count($e_date) === 3)
 					{
+						
 						// same years and same months
 						if($s_date[0] === $e_date[0] && $s_date[1] === $e_date[1])
 						{
 							for($i = $s_date[2]; $i <= $e_date[2]; $i++)
 							{
-								$days_events[$i][] = $event;
+								$days_events[(int)$i][] = $event;
 							}
 						}
+						
 						else
 						{
 							if($id === 'start')
@@ -467,14 +471,14 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 
 								for($i = $s_date[2]; $i <= $no_days; $i++)
 								{
-									$days_events[$i][] = $event;
+									$days_events[(int)$i][] = $event;
 								}
 							}
 							else
 							{
 								for($i = $e_date[2]; $i >= 1; $i--)
 								{
-									$days_events[$i][] = $event;
+									$days_events[(int)$i][] = $event;
 								}
 							}
 						}
@@ -482,8 +486,6 @@ class Events_Maker_Calendar_Widget extends WP_Widget
 				}
 			}
 		}
-
-		// $days_events = array_unique($days, SORT_NUMERIC);
 		
 		global $wp_locale;
 

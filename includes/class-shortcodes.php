@@ -151,7 +151,7 @@ class Events_Maker_Shortcodes
 
 		$calendar_page_html = '
 		<form action="" method="post">
-			<p>'.__('Events Maker needs to create a page for your events calendar display. Would you like to do it automatically?', 'events-maker').' <input type="submit" class="button button-primary button-small" name="events_maker_create_page" value="'.__('Create Calendar Page', 'events-maker').'"/> <input type="submit" class="button button-small" name="events_maker_decline" value="'.__('No thanks', 'events-maker').'"/></p>
+			<p>'.__('<strong>Events Maker</strong> needs to create a page for your events calendar display. Would you like to do it automatically?', 'events-maker').' <input type="submit" class="button button-primary" name="events_maker_create_page" value="'.__('Create Calendar Page', 'events-maker').'"/> <input type="submit" class="button" name="events_maker_decline" value="'.__('No thanks', 'events-maker').'"/></p>
 		</form>';
 
 		if(is_multisite() && is_network_admin())
@@ -736,8 +736,16 @@ class Events_Maker_Shortcodes
 			foreach(array_unique($locations_tmp) as $location_id)
 			{
 				$location = em_get_location($location_id);
-				
-				if (!empty($location->location_meta['latitude']) && !empty($location->location_meta['latitude']))
+
+				if (!empty($location->location_meta['google_map']) && is_array($location->location_meta['google_map']))
+				{
+					$location->location_meta['name'] = $location->name;
+					$location->location_meta['latitude'] = $location->location_meta['google_map']['latitude'];
+					$location->location_meta['longitude'] = $location->location_meta['google_map']['longitude'];
+					$markers[] = $location->location_meta;
+				}
+				// backward compatibility
+				elseif (!empty($location->location_meta['latitude']) && !empty($location->location_meta['longitude']))
 				{
 					$location->location_meta['name'] = $location->name;
 					$markers[] = $location->location_meta;
@@ -746,27 +754,45 @@ class Events_Maker_Shortcodes
 		}
 		elseif(is_tax('event-location') || (in_array(get_post_type(), apply_filters('em_event_post_type', array('event'))) && is_single()))
 		{
-			$term = get_queried_object();
-
-			if(isset($term->term_id))
+			$object = get_queried_object();
+			
+			// taxonomy page
+			if(isset($object->term_id))
 			{
-				$location = em_get_location($term->term_id);
+				$location = em_get_location($object->term_id);
 				
-				if (!empty($location->location_meta['latitude']) && !empty($location->location_meta['latitude']))
+				if (!empty($location->location_meta['google_map']) && is_array($location->location_meta['google_map']))
+				{
+					$location->location_meta['name'] = $location->name;
+					$location->location_meta['latitude'] = $location->location_meta['google_map']['latitude'];
+					$location->location_meta['longitude'] = $location->location_meta['google_map']['longitude'];
+					$markers[] = $location->location_meta;
+				}
+				// backward compatibility
+				elseif (!empty($location->location_meta['latitude']) && !empty($location->location_meta['longitude']))
 				{
 					$location->location_meta['name'] = $location->name;
 					$markers[] = $location->location_meta;
 				}
 			}
-			elseif(isset($term->ID))
+			// single post page
+			elseif(isset($object->ID))
 			{
-				$locations = em_get_locations_for($term->ID);
+				$locations = em_get_locations_for($object->ID);
 
 				if(is_array($locations) && !empty($locations))
 				{
 					foreach($locations as $location)
 					{
-						if (!empty($location->location_meta['latitude']) && !empty($location->location_meta['latitude']))
+						if (!empty($location->location_meta['google_map']) && is_array($location->location_meta['google_map']))
+						{
+							$location->location_meta['name'] = $location->name;
+							$location->location_meta['latitude'] = $location->location_meta['google_map']['latitude'];
+							$location->location_meta['longitude'] = $location->location_meta['google_map']['longitude'];
+							$markers[] = $location->location_meta;
+						}
+						// backward compatibility
+						elseif (!empty($location->location_meta['latitude']) && !empty($location->location_meta['longitude']))
 						{
 							$location->location_meta['name'] = $location->name;
 							$markers[] = $location->location_meta;

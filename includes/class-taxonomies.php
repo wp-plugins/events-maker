@@ -33,21 +33,6 @@ class Events_Maker_Taxonomies
 		// filters
 		add_filter('manage_edit-event-category_columns', array(&$this, 'event_category_columns'));
 		add_filter('manage_event-category_custom_column', array(&$this, 'event_category_manage_columns'), 10, 3);
-		add_filter('em_loop_event_location_details_field', array(&$this, 'em_loop_event_location_details_field_country'), 10, 2);
-		add_filter('em_loop_event_organizer_details_field', array(&$this, 'em_loop_event_organizer_details_field_country'), 10, 2);
-	}
-
-	
-	/**
-	 * Change country code to name
-	*/
-	public function em_loop_event_location_details_field_country($field, $key)
-	{
-		if ($key === 'country' && in_array($field['value'], array_keys(Events_Maker()->localisation->countries)))
-		{
-			$field['value'] = Events_Maker()->localisation->countries[$field['value']];
-		}
-		return $field;
 	}
 
 

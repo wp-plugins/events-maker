@@ -552,6 +552,35 @@ function em_get_currency_symbol($price = '')
 
 
 /**
+ * Get country names and codes array
+ * 
+ * @param string $price
+ * @return string
+ */
+function em_get_countries()
+{
+	return apply_filters('em_get_countries', Events_Maker()->localisation->countries);
+}
+
+
+/**
+ * Get country name for specific country code
+ * 
+ * @param string $price
+ * @return string
+ */
+function em_get_country_name($code = '')
+{
+	$countries = Events_Maker()->localisation->countries;
+	
+	if (!isset($countries[$code]))
+		return '';
+
+	return apply_filters('em_get_country_name', $countries[$code]);
+}
+
+
+/**
  * Get event locations with metadata
  * 
  * @param array $args

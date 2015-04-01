@@ -31,15 +31,15 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
 	    	foreach ($location_fields as $key => $field) :
 	
 				// field value
-				$field['value'] = $location_details[$key];
+				$field['value'] = !empty($location_details[$key]) ? $location_details[$key] : '';
 				
 				// field filter hook
 				$field = apply_filters('em_loop_event_location_details_field', $field, $key);
 				
 				if (!empty($field['value']) && !in_array($field['type'], array('google_map', 'image'))) :
 					
-					switch ($field['type'])
-					{
+					switch ($field['type']) :
+						
 						case 'image' :
 							$attr = apply_filters('em_loop_event_location_details_image_attr', array(
 								'class'	=> 'attachment-thumbnail photo',
@@ -50,9 +50,14 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
 							$content = apply_filters('em_loop_event_location_details_image_html', '<br />' . wp_get_attachment_image((int)$field['value'], $size, false, $attr));
 							break;
 							
+						case 'select' :
+							$content = ($key === 'country' && in_array($field['value'], array_keys(em_get_countries())) ? em_get_country_name($field['value']) : esc_html($field['value']));
+							break;
+							
 						default :
 							$content = wp_kses_post($field['value']);
-					}
+					
+					endswitch;
 	
 					$html = '<div class="location-' . $key . '">';
 						$html .= '<strong>' . $field['label'] . ':</strong> ';

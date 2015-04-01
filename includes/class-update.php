@@ -69,7 +69,7 @@ class Events_Maker_Update
 		$update_1_html = '
 		<form action="" method="post">
 			<input type="hidden" name="events_maker_number" value="update_1"/>
-			<p>'.__('Events Maker new features require a database update. Make sure you backup your database and then click.', 'events-maker').' <input type="submit" class="button button-primary button-small" name="events_maker_update" value="'.__('Update', 'events-maker').'"/></p>
+			<p>'.__('<strong>Events Maker:</strong> New features require a database update. Make sure you backup your database and then click.', 'events-maker').' <input type="submit" class="button button-primary" name="events_maker_update" value="'.__('Update', 'events-maker').'"/></p>
 		</form>';
 
 		// is it multisite network page?

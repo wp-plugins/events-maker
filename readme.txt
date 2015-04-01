@@ -4,7 +4,7 @@ Donate link: http://www.dfactory.eu/
 Tags: event, event categories, events management, event management, events manager, event manager, event organizer, events calendar, events maker, google map, map, locations, organizers, widget, attendance, attendee, Booking, calendar, event registration, ticket, tickets, ticketing, bookings
 Requires at least: 3.5
 Tested up to: 4.1.1
-Stable tag: 1.5.3
+Stable tag: 1.5.4
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -115,6 +115,10 @@ A. Chances are, someone else has asked it. Check out the support forum at: http:
 6. screenshot-6.png
 
 == Changelog ==
+
+= 1.5.4 =
+* Fix: Country field error in organizer details
+* Tweak: Enhanced country field backward compatibility
 
 = 1.5.3 =
 * Fix: Google Map not showing on single event and location pages 
@@ -305,5 +309,6 @@ Initial release
 
 == Upgrade Notice ==
 
-= 1.5.3 =
-* Fix: Google Map not showing on single event and location pages 
+= 1.5.4 =
+* Fix: Country field error in organizer details
+* Tweak: Enhanced country field backward compatibility

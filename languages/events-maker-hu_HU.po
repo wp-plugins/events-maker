@@ -1,0 +1,1970 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Events Maker\n"
+"POT-Creation-Date: 2015-01-30 18:11+0100\n"
+"PO-Revision-Date: 2015-03-05 21:45+0100\n"
+"Last-Translator: Bartosz Arendt <info@dfactory.eu>\n"
+"Language-Team: dFactory <info@dfactory.pl>\n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.4\n"
+"X-Poedit-KeywordsList: gettext;gettext_noop;__;_e;esc_attr__;esc_attr_e;_n:1,2;_x:1,2c\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../events-maker.php:329
+msgid "Australian Dollar"
+msgstr "Ausztrál Dollár"
+
+#: ../events-maker.php:330
+msgid "Bangladeshi Taka"
+msgstr "Bangladesi Taka"
+
+#: ../events-maker.php:331
+msgid "Brazilian Real"
+msgstr "Brazil Reál"
+
+#: ../events-maker.php:332
+msgid "Bulgarian Lev"
+msgstr "Bolgár Lev"
+
+#: ../events-maker.php:333
+msgid "Canadian Dollar"
+msgstr "Kanadai Dollár"
+
+#: ../events-maker.php:334
+msgid "Chilean Peso"
+msgstr "Chilei Peso"
+
+#: ../events-maker.php:335
+msgid "Chinese Yuan"
+msgstr "Kínai Jüan"
+
+#: ../events-maker.php:336
+msgid "Colombian Peso"
+msgstr "Kolumbiai Peso"
+
+#: ../events-maker.php:337
+msgid "Croatian kuna"
+msgstr "Horvát kuna"
+
+#: ../events-maker.php:338
+msgid "Czech Koruna"
+msgstr "Cseh Korona"
+
+#: ../events-maker.php:339
+msgid "Danish Krone"
+msgstr "Dán Korona"
+
+#: ../events-maker.php:340
+msgid "Euro"
+msgstr "Euro"
+
+#: ../events-maker.php:341
+msgid "Hong Kong Dollar"
+msgstr "Hong Kongi Dollár"
+
+#: ../events-maker.php:342
+msgid "Hungarian Forint"
+msgstr "Magyar Forint"
+
+#: ../events-maker.php:343
+msgid "Icelandic krona"
+msgstr "Izlandi koron "
+
+#: ../events-maker.php:344
+msgid "Indian Rupee"
+msgstr "Indiai Rúpia"
+
+#: ../events-maker.php:345
+msgid "Indonesian Rupiah"
+msgstr "Indonéz Rúpia"
+
+#: ../events-maker.php:346
+msgid "Israeli Shekel"
+msgstr "Izraeli Shékel"
+
+#: ../events-maker.php:347
+msgid "Iranian Rial"
+msgstr "Irán Riál"
+
+#: ../events-maker.php:348
+msgid "Japanese Yen"
+msgstr "Japán Yen"
+
+#: ../events-maker.php:349
+msgid "Malaysian Ringgit"
+msgstr "Malájziai Ringgit"
+
+#: ../events-maker.php:350
+msgid "Mexican Peso"
+msgstr "Mexikói Peso"
+
+#: ../events-maker.php:351
+msgid "New Zealand Dollar"
+msgstr "Új Zélandi Dollár"
+
+#: ../events-maker.php:352
+msgid "Nigerian Naira"
+msgstr "Nigériai Naira"
+
+#: ../events-maker.php:353
+msgid "Norwegian Krone"
+msgstr "Norvégiai Korona"
+
+#: ../events-maker.php:354
+msgid "Philippine Peso"
+msgstr "Fülöp szigeteki Pezó"
+
+#: ../events-maker.php:355
+msgid "Polish Zloty"
+msgstr "Lengyel Zloty"
+
+#: ../events-maker.php:356
+msgid "Pound Sterling"
+msgstr "Angol Font"
+
+#: ../events-maker.php:357
+msgid "Romanian Leu"
+msgstr "Román Lej"
+
+#: ../events-maker.php:358
+msgid "Russian Ruble"
+msgstr "Orosz Rubel"
+
+#: ../events-maker.php:359
+msgid "Singapore Dollar"
+msgstr "Szingapúri Dollár"
+
+#: ../events-maker.php:360
+msgid "South African Rand"
+msgstr "Dél Afrikai Rand"
+
+#: ../events-maker.php:361
+msgid "South Korean Won"
+msgstr "Dél Koreai Won"
+
+#: ../events-maker.php:362
+msgid "Swedish Krona"
+msgstr "Svéd Korona"
+
+#: ../events-maker.php:363
+msgid "Swiss Franc"
+msgstr "Svájci Frank"
+
+#: ../events-maker.php:364
+msgid "Taiwan New Dollar"
+msgstr "Tajvani Új Dollár"
+
+#: ../events-maker.php:365
+msgid "Thai Baht"
+msgstr "Thai Baht"
+
+#: ../events-maker.php:366
+msgid "Turkish Lira"
+msgstr "Török Lira"
+
+#: ../events-maker.php:367
+msgid "Ukrainian Hryvnia"
+msgstr "Ukrán Hrinya"
+
+#: ../events-maker.php:368
+msgid "United Arab Emirates Dirham"
+msgstr "Egyesült Arab Emirátus Dirham"
+
+#: ../events-maker.php:369
+msgid "United States Dollar"
+msgstr "US Dollár"
+
+#: ../events-maker.php:370
+msgid "Vietnamese Dong"
+msgstr "Vietnámi Dong"
+
+#: ../events-maker.php:417
+msgid "before the price"
+msgstr "az ár előtt"
+
+#: ../events-maker.php:418
+msgid "after the price"
+msgstr "az ár után"
+
+#: ../events-maker.php:433
+msgid "once"
+msgstr "egyszer"
+
+#: ../events-maker.php:434
+msgid "daily"
+msgstr "napi"
+
+#: ../events-maker.php:435
+msgid "weekly"
+msgstr "heti"
+
+#: ../events-maker.php:436
+msgid "monthly"
+msgstr "havi"
+
+#: ../events-maker.php:437
+msgid "yearly"
+msgstr "évi"
+
+#: ../events-maker.php:438
+msgid "custom"
+msgstr "szokásos"
+
+#: ../events-maker.php:630
+msgctxt "taxonomy general name"
+msgid "Event Categories"
+msgstr "Esemény Kategóriák"
+
+#: ../events-maker.php:631
+msgctxt "taxonomy singular name"
+msgid "Event Category"
+msgstr "Esemény Kategória"
+
+#: ../events-maker.php:632
+msgid "Search Event Categories"
+msgstr "Esemény Kategóriák Keresése"
+
+#: ../events-maker.php:633
+msgid "All Event Categories"
+msgstr "Minden Esemény Kategória"
+
+#: ../events-maker.php:634
+msgid "Parent Event Category"
+msgstr "Szülő Esemény Kategória"
+
+#: ../events-maker.php:635
+msgid "Parent Event Category:"
+msgstr "Szülő Esemény Kategória"
+
+#: ../events-maker.php:636
+msgid "Edit Event Category"
+msgstr "Esemény Kategória Szerkesztése"
+
+#: ../events-maker.php:637
+msgid "View Event Category"
+msgstr "Esemény Kategória Nézet"
+
+#: ../events-maker.php:638
+msgid "Update Event Category"
+msgstr "Esemény Kategória Frissítése"
+
+#: ../events-maker.php:639
+msgid "Add New Event Category"
+msgstr "Új Esemény Kategória hozzáadása"
+
+#: ../events-maker.php:640
+msgid "New Event Category Name"
+msgstr "Új Esemény Kategória Név"
+
+#: ../events-maker.php:641 ../includes/class-listing.php:135 ../includes/class-settings.php:362
+#: ../includes/class-settings.php:381
+msgid "Categories"
+msgstr "Kategóriák"
+
+#: ../events-maker.php:645
+msgctxt "taxonomy general name"
+msgid "Locations"
+msgstr "Földrajzi hely"
+
+#: ../events-maker.php:646
+msgctxt "taxonomy singular name"
+msgid "Event Location"
+msgstr "Esemény Földrajzi helye"
+
+#: ../events-maker.php:647
+msgid "Search Event Locations"
+msgstr "Esemény Földrajzi keresése"
+
+#: ../events-maker.php:648
+msgid "All Event Locations"
+msgstr "Minden Esemény Földrajzi helye"
+
+#: ../events-maker.php:649
+msgid "Parent Event Location"
+msgstr "Szülő Esemény Földrajzi helye"
+
+#: ../events-maker.php:650
+msgid "Parent Event Location:"
+msgstr "Szülő Esemény Földrajzi helye"
+
+#: ../events-maker.php:651
+msgid "Edit Event Location"
+msgstr "Esemény Földrajzi helyének szerkesztése"
+
+#: ../events-maker.php:652
+msgid "View Event Location"
+msgstr "Esemény Földrajzi helyének megtekintése"
+
+#: ../events-maker.php:653
+msgid "Update Event Location"
+msgstr "Esemény Földrajzi helyének frissítése"
+
+#: ../events-maker.php:654
+msgid "Add New Event Location"
+msgstr "Új Esemény Földrajzi helyének hozzáadása"
+
+#: ../events-maker.php:655
+msgid "New Event Location Name"
+msgstr "Új Esemény Földrajzi helyének Neve"
+
+#: ../events-maker.php:656 ../includes/class-settings.php:367 ../includes/class-settings.php:386
+msgid "Locations"
+msgstr "Földrajzi hely"
+
+#: ../events-maker.php:706
+msgctxt "taxonomy general name"
+msgid "Event Tags"
+msgstr "Esemény Címkék"
+
+#: ../events-maker.php:707
+msgctxt "taxonomy singular name"
+msgid "Event Tag"
+msgstr "Esemény Címke"
+
+#: ../events-maker.php:708
+msgid "Search Event Tags"
+msgstr "Esemény Címkék Keresése"
+
+#: ../events-maker.php:709
+msgid "Popular Event Tags"
+msgstr "Népszerű Esemény Címkék"
+
+#: ../events-maker.php:710
+msgid "All Event Tags"
+msgstr "Minden Esemény Címkék"
+
+#: ../events-maker.php:713
+msgid "Edit Event Tag"
+msgstr "Esemény Címkék Szerkesztése"
+
+#: ../events-maker.php:714
+msgid "Update Event Tag"
+msgstr "Esemény Címke Frissítése"
+
+#: ../events-maker.php:715
+msgid "Add New Event Tag"
+msgstr "Új Esemény Címke Hozzáadása"
+
+#: ../events-maker.php:716
+msgid "New Event Tag Name"
+msgstr "Új Esemény Címke Neve"
+
+#: ../events-maker.php:717
+msgid "Separate event tags with commas"
+msgstr "Külön esemény címkék vesszőkkel"
+
+#: ../events-maker.php:718
+msgid "Add or remove event tags"
+msgstr "Esemény címkék hozzáadása vagy eltávolítása"
+
+#: ../events-maker.php:719
+msgid "Choose from the most used event tags"
+msgstr "Válasszon a leggyakrabban használt esemény címkék közül"
+
+#: ../events-maker.php:720 ../includes/class-listing.php:137 ../includes/class-settings.php:322
+#: ../includes/class-settings.php:365 ../includes/class-settings.php:384
+msgid "Tags"
+msgstr "Címkék"
+
+#: ../events-maker.php:752
+msgctxt "taxonomy general name"
+msgid "Organizers"
+msgstr "Szervező"
+
+#: ../events-maker.php:753
+msgctxt "taxonomy singular name"
+msgid "Event Organizer"
+msgstr "Esemény Szervező"
+
+#: ../events-maker.php:754
+msgid "Search Event Organizers"
+msgstr "Esemény Szervező Keresése"
+
+#: ../events-maker.php:755
+msgid "All Event Organizers"
+msgstr "Minden Rendezvényszervezés"
+
+#: ../events-maker.php:756
+msgid "Parent Event Organizer"
+msgstr "Szülő Rendezvényszervezés"
+
+#: ../events-maker.php:757
+msgid "Parent Event Organizer:"
+msgstr "Szülő Esemény szervezés"
+
+#: ../events-maker.php:758
+msgid "Edit Event Organizer"
+msgstr "Esemény Szervező Szerkesztése"
+
+#: ../events-maker.php:759
+msgid "View Event Organizer"
+msgstr "Esemény Szervező Nézet"
+
+#: ../events-maker.php:760
+msgid "Update Event Organizer"
+msgstr "Esemény Szervező Frissítése"
+
+#: ../events-maker.php:761
+msgid "Add New Event Organizer"
+msgstr "Új Esemény Szervező hozzáadása"
+
+#: ../events-maker.php:762
+msgid "New Event Organizer Name"
+msgstr "Új Esemény Szervező Neve"
+
+#: ../events-maker.php:763 ../includes/class-settings.php:323 ../includes/class-settings.php:370
+#: ../includes/class-settings.php:389
+msgid "Organizers"
+msgstr "Szervezők"
+
+#: ../events-maker.php:798
+msgctxt "post type general name"
+msgid "Events"
+msgstr "Események"
+
+#: ../events-maker.php:799
+msgctxt "post type singular name"
+msgid "Event"
+msgstr "Esemény"
+
+#: ../events-maker.php:800 ../includes/class-widgets.php:746 ../includes/template-functions.php:601
+msgid "Events"
+msgstr "Események"
+
+#: ../events-maker.php:801
+msgid "All Events"
+msgstr "Minden események"
+
+#: ../events-maker.php:802
+msgid "Add New"
+msgstr "Új Hozzáadása"
+
+#: ../events-maker.php:803
+msgid "Add New Event"
+msgstr "Új Esemény Hozzáadása"
+
+#: ../events-maker.php:804
+msgid "Edit Event"
+msgstr "Esemény Szerkesztése"
+
+#: ../events-maker.php:805
+msgid "New Event"
+msgstr "Új Esemény"
+
+#: ../events-maker.php:806
+msgid "View Event"
+msgstr "Esemény Nézet"
+
+#: ../events-maker.php:807
+msgid "Event Archive"
+msgstr "Esemény Archívum"
+
+#: ../events-maker.php:808
+msgid "Search Event"
+msgstr "Esemény Keresés"
+
+#: ../events-maker.php:809
+msgid "No events found"
+msgstr "Nincs esemény"
+
+#: ../events-maker.php:810
+msgid "No events found in trash"
+msgstr "Nem talált eseményt a kukában"
+
+#: ../events-maker.php:884
+#, php-format
+msgid "Event updated. <a href=\"%s\">View event</a>"
+msgstr "Esemény frissítve. <a href=\"%s\">Esemény nézet</a>"
+
+#: ../events-maker.php:885
+msgid "Custom field updated."
+msgstr "Egyéni mező frissült."
+
+#: ../events-maker.php:886
+msgid "Custom field deleted."
+msgstr "Egyéni mező törölve."
+
+#: ../events-maker.php:887
+msgid "Event updated."
+msgstr "Esemény frissült."
+
+#. translators: %s: date and time of the revision
+#: ../events-maker.php:889
+#, php-format
+msgid "Event restored to revision from %s"
+msgstr "Esemény helyreállítása a felülvizsgálatból %s"
+
+#: ../events-maker.php:890
+#, php-format
+msgid "Event published. <a href=\"%s\">View event</a>"
+msgstr "Esemény közzététele. <a href=\"%s\"> Rendezvény megtekintése </a> "
+
+#: ../events-maker.php:891
+msgid "Event saved."
+msgstr "Esemény mentve."
+
+#: ../events-maker.php:892
+#, php-format
+msgid "Event submitted. <a target=\"_blank\" href=\"%s\">Preview event</a>"
+msgstr "Esemény feljegyezve. <a target=\"_blank\" href=\"%s\"> Esemény előnézet</a>"
+
+#: ../events-maker.php:893
+#, php-format
+msgid "Event scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s\">Preview event</a>"
+msgstr "Esemény betervezve: <strong>%1$s</strong>. <a target=\"_ blank\" href=\"%2$s\">Esemény előnézet</a>"
+
+#. translators: Publish box date format, see http://php.net/date
+#: ../events-maker.php:895
+msgid "M j, Y @ G:i"
+msgstr "M j, Y @ G:i"
+
+#: ../events-maker.php:896
+#, php-format
+msgid "Event draft updated. <a target=\"_blank\" href=\"%s\">Preview event</a>"
+msgstr "Esemény vázlat frissítve. <a target=\"_blank\" href=\"%s\">Esemény előnézete</a>"
+
+#: ../events-maker.php:954 ../includes/class-taxonomies.php:188 ../includes/class-taxonomies.php:230
+#: ../includes/class-taxonomies.php:359 ../includes/class-taxonomies.php:429
+msgid "Select image"
+msgstr "Kép kiválasztása"
+
+#: ../events-maker.php:955
+msgid "Add image"
+msgstr "Kép hozzáadása"
+
+#: ../events-maker.php:992
+msgid "Are you sure you want to reset these settings to defaults?"
+msgstr "Biztos benne, hogy vissza szeretné állítani ezeket a beállításokat az alapértékekre?"
+
+#: ../events-maker.php:1099 ../includes/class-welcome.php:48
+msgid "Support"
+msgstr "Támogatás"
+
+#: ../events-maker.php:1120
+msgid "View Calendar"
+msgstr "Naptár nézet"
+
+#: ../includes/class-listing.php:61
+msgid "Start Date"
+msgstr "Kezdés Dátuma"
+
+#: ../includes/class-listing.php:62
+msgid "End Date"
+msgstr "Befejezés Dátuma"
+
+#: ../includes/class-listing.php:139
+msgid "Start"
+msgstr "Kezdés"
+
+#: ../includes/class-listing.php:140
+msgid "End"
+msgstr "Befejezés"
+
+#: ../includes/class-listing.php:142 ../includes/class-metaboxes.php:429
+msgid "Recurrence"
+msgstr "Ismétlődés"
+
+#: ../includes/class-listing.php:145 ../includes/class-metaboxes.php:53 ../includes/class-metaboxes.php:946
+#: ../includes/class-settings.php:324 ../templates/single-event/tickets.php:41
+#: ../templates/single-event/tickets.php:55
+msgid "Tickets"
+msgstr "Jegyek"
+
+#: ../includes/class-listing.php:147 ../includes/class-metaboxes.php:82 ../includes/class-metaboxes.php:111
+msgid "Featured"
+msgstr "Kiemelt"
+
+#: ../includes/class-listing.php:185
+msgid "paid"
+msgstr "fizetett"
+
+#: ../includes/class-listing.php:198
+msgid "free"
+msgstr "szabad"
+
+#: ../includes/class-listing.php:205
+msgid "Toggle featured"
+msgstr "Váltás szerepelt"
+
+#: ../includes/class-listing.php:207
+msgid "Yes"
+msgstr "Igen"
+
+#: ../includes/class-listing.php:209
+msgid "No"
+msgstr "Nem"
+
+#: ../includes/class-listing.php:234
+msgid "Duplicate this item"
+msgstr "Ismétlődik ez a tétel"
+
+#: ../includes/class-listing.php:234
+msgid "Duplicate"
+msgstr "Ismétlődik"
+
+#: ../includes/class-listing.php:250 ../includes/class-listing.php:256
+msgid "No event to duplicate has been supplied!"
+msgstr "Nincs elérhető ismétlődő esemény!"
+
+#: ../includes/class-listing.php:259
+msgid "You do not have permission to copy this event."
+msgstr "Nincs másolat erről az eseményről."
+
+#: ../includes/class-listing.php:274
+msgid "Copy creation failed, could not find original event:"
+msgstr "Másolás létrehozása nem sikerült, nem találtam az eredeti eseményt:"
+
+#: ../includes/class-listing.php:365
+msgid "You do not have permission to access this page."
+msgstr "Önnek nincs jogosultsága hozzáférni ehhez az oldalhoz."
+
+#: ../includes/class-listing.php:368
+msgid "You have taken too long. Please go back and retry."
+msgstr "A kiszedett rész túl hosszú. Kérlek menj vissza, és próbáld újra."
+
+#: ../includes/class-metaboxes.php:46 ../includes/class-metaboxes.php:939
+msgid "Google Map"
+msgstr "Google Térkép"
+
+#: ../includes/class-metaboxes.php:47 ../includes/class-metaboxes.php:167 ../includes/class-metaboxes.php:940
+msgid "Event Gallery"
+msgstr "Esemény Galéria"
+
+#: ../includes/class-metaboxes.php:48 ../includes/class-metaboxes.php:941
+msgid "Location Details"
+msgstr "Helyszín Részletek"
+
+#: ../includes/class-metaboxes.php:56 ../includes/class-metaboxes.php:949
+msgid "Organizer Details"
+msgstr "Szervező Részletek"
+
+#: ../includes/class-metaboxes.php:73
+msgid "Display options:"
+msgstr "Kijelző opciók:"
+
+#: ../includes/class-metaboxes.php:90 ../templates/loop-event/meta.php:37 ../templates/single-event/meta.php:37
+msgid "Edit"
+msgstr "Szerkesztés"
+
+#: ../includes/class-metaboxes.php:94
+msgid "Define the display options for this event."
+msgstr "Megjelenítés beállításai erre az eseményre."
+
+#: ../includes/class-metaboxes.php:110
+msgid "Enable to feature this event."
+msgstr "Engedélyezze a jellemzőt erre az eseményre."
+
+#: ../includes/class-metaboxes.php:114
+msgid "OK"
+msgstr "OK"
+
+#: ../includes/class-metaboxes.php:115
+msgid "Cancel"
+msgstr "Mégse"
+
+#: ../includes/class-metaboxes.php:140
+msgid "Ticket Name"
+msgstr "Jegy Név"
+
+#: ../includes/class-metaboxes.php:141
+msgid "Price"
+msgstr "Ár"
+
+#: ../includes/class-metaboxes.php:153
+msgid "Event Date and Time"
+msgstr "Esemény Dátum és Idő"
+
+#: ../includes/class-metaboxes.php:160
+msgid "Event Tickets"
+msgstr "Esemény Jegyek"
+
+#: ../includes/class-metaboxes.php:228 ../includes/class-metaboxes.php:232 ../includes/class-metaboxes.php:341
+#: ../includes/class-metaboxes.php:511 ../includes/class-metaboxes.php:555 ../includes/class-metaboxes.php:571
+#: ../includes/class-metaboxes.php:627 ../includes/class-metaboxes.php:643
+msgid "Delete"
+msgstr "Törlés"
+
+#: ../includes/class-metaboxes.php:230 ../includes/class-metaboxes.php:420 ../includes/class-metaboxes.php:510
+#: ../includes/class-metaboxes.php:554 ../includes/class-metaboxes.php:570
+msgid "Start date/time"
+msgstr "Dátum/Idő kezdete"
+
+#: ../includes/class-metaboxes.php:231 ../includes/class-metaboxes.php:423 ../includes/class-metaboxes.php:514
+#: ../includes/class-metaboxes.php:558 ../includes/class-metaboxes.php:574
+msgid "End date/time"
+msgstr "Dátum/Idő befejezése"
+
+#: ../includes/class-metaboxes.php:233
+msgid "Are you sure you want to delete this ticket?"
+msgstr "Biztosan törölni akarod a jegyet?"
+
+#: ../includes/class-metaboxes.php:234
+msgid "Are you sure you want to delete this occurrence?"
+msgstr "Biztos törölni szeretnéd ezt az eseményt?"
+
+#: ../includes/class-metaboxes.php:242 ../includes/class-metaboxes.php:479
+msgid "day"
+msgid_plural "days"
+msgstr[0] "nap"
+msgstr[1] "napok"
+
+#: ../includes/class-metaboxes.php:243
+msgid "days"
+msgstr "napok"
+
+#: ../includes/class-metaboxes.php:244 ../includes/class-metaboxes.php:481
+msgid "week"
+msgid_plural "weeks"
+msgstr[0] "hét"
+msgstr[1] "hetek"
+
+#: ../includes/class-metaboxes.php:245
+msgid "weeks"
+msgstr "hetek"
+
+#: ../includes/class-metaboxes.php:246 ../includes/class-metaboxes.php:483
+msgid "month"
+msgid_plural "months"
+msgstr[0] "hónap"
+msgstr[1] "hónapok"
+
+#: ../includes/class-metaboxes.php:247
+msgid "months"
+msgstr "hónapok"
+
+#: ../includes/class-metaboxes.php:248 ../includes/class-metaboxes.php:485
+msgid "year"
+msgid_plural "years"
+msgstr[0] "év"
+msgstr[1] "évek"
+
+#: ../includes/class-metaboxes.php:249
+msgid "years"
+msgstr "évek"
+
+#: ../includes/class-metaboxes.php:341
+msgid "Add Images to Event Gallery"
+msgstr "Képek Hozzáadása az Esemény Galériához"
+
+#: ../includes/class-metaboxes.php:341
+msgid "Add Images to Gallery"
+msgstr "Képek hozzáadása a Galériához"
+
+#: ../includes/class-metaboxes.php:341 ../includes/class-metaboxes.php:355
+msgid "Delete image"
+msgstr "Kép Törlése"
+
+#: ../includes/class-metaboxes.php:426
+msgid "All-day event?"
+msgstr "Minden napi esemény?"
+
+#: ../includes/class-metaboxes.php:468
+msgid "day of the month"
+msgstr "a hónap napja"
+
+#: ../includes/class-metaboxes.php:468
+msgid "day of the week"
+msgstr "a hét napja"
+
+#: ../includes/class-metaboxes.php:476
+msgid "Repeat every"
+msgstr "Ismétlés"
+
+#: ../includes/class-metaboxes.php:476
+msgid "until"
+msgstr "míg"
+
+#: ../includes/class-metaboxes.php:508 ../includes/class-metaboxes.php:552 ../includes/class-metaboxes.php:568
+msgid "Separate end date"
+msgstr "Elválasztja a dátum befejezését"
+
+#: ../includes/class-metaboxes.php:519
+msgid "Add new occurrence"
+msgstr "Új előfordulás hozzáadása"
+
+#: ../includes/class-metaboxes.php:605
+msgid "Is this a free event?"
+msgstr "Ez egy szabad esemény?"
+
+#: ../includes/class-metaboxes.php:610
+msgid "Add new ticket"
+msgstr "Új jegy hozzáadása"
+
+#: ../includes/class-metaboxes.php:652 ../templates/single-event/tickets.php:70
+msgid "Buy tickets URL"
+msgstr "URL jegyek vásárlása"
+
+#: ../includes/class-settings.php:71 ../includes/class-widgets.php:772
+msgid "Publish date"
+msgstr "Közzététel dátuma"
+
+#: ../includes/class-settings.php:72
+msgid "Events start date"
+msgstr "Események kezdeti ideje"
+
+#: ../includes/class-settings.php:73
+msgid "Events end date"
+msgstr "Események befejezési ideje"
+
+#: ../includes/class-settings.php:77 ../includes/class-widgets.php:73 ../includes/class-widgets.php:777
+#: ../includes/class-widgets.php:1115 ../includes/class-widgets.php:1232 ../includes/class-widgets.php:1349
+msgid "Ascending"
+msgstr "Növekvő"
+
+#: ../includes/class-settings.php:78 ../includes/class-widgets.php:74 ../includes/class-widgets.php:778
+#: ../includes/class-widgets.php:1116 ../includes/class-widgets.php:1233 ../includes/class-widgets.php:1350
+msgid "Descending"
+msgstr "Csökkenő"
+
+#: ../includes/class-settings.php:82
+msgid "selected page"
+msgstr "Kiválasztott oldal"
+
+#: ../includes/class-settings.php:83
+msgid "manually"
+msgstr "manuálisan"
+
+#: ../includes/class-settings.php:87
+msgid "before the content"
+msgstr "a tartalom előtt"
+
+#: ../includes/class-settings.php:88
+msgid "after the content"
+msgstr "a tartalom után"
+
+#: ../includes/class-settings.php:94
+msgid "General settings saved."
+msgstr "Általános beállítások mentve."
+
+#: ../includes/class-settings.php:95
+msgid "Display settings saved."
+msgstr "Kijelző beállítások mentve."
+
+#: ../includes/class-settings.php:96
+msgid "Templates settings saved."
+msgstr "Sablon beállítások mentve."
+
+#: ../includes/class-settings.php:97
+msgid "Capabilities settings saved."
+msgstr "Képességi beállítások mentve."
+
+#: ../includes/class-settings.php:98
+msgid "Permalinks settings saved."
+msgstr "Permalinkek beállítások mentve."
+
+#: ../includes/class-settings.php:99
+msgid "General settings restored to defaults."
+msgstr "Általános beállítások vissza az alapértékekre."
+
+#: ../includes/class-settings.php:100
+msgid "Display settings restored to defaults."
+msgstr "Kijelző beállítások vissza az alapértékekre."
+
+#: ../includes/class-settings.php:101
+msgid "Templates settings restored to defaults."
+msgstr "Sablon beállítások vissza az alapértékekre."
+
+#: ../includes/class-settings.php:102
+msgid "Capabilities settings restored to defaults."
+msgstr "Képességi beállítások vissza az alapértékekre."
+
+#: ../includes/class-settings.php:103
+msgid "Permalinks settings restored to defaults."
+msgstr "Permalinkek beállításai vissza az alapértékekre."
+
+#: ../includes/class-settings.php:104
+msgid "There is no such menu."
+msgstr "Nincs ilyen menü."
+
+#: ../includes/class-settings.php:105
+msgid "Menu name can not be empty."
+msgstr "Menü név nem lehet üres."
+
+#: ../includes/class-settings.php:110
+msgid "General"
+msgstr "Általános"
+
+#: ../includes/class-settings.php:116
+msgid "Display"
+msgstr "Kijelző"
+
+#: ../includes/class-settings.php:122
+msgid "Templates"
+msgstr "Sablonok"
+
+#: ../includes/class-settings.php:128
+msgid "Capabilities"
+msgstr "Képességek"
+
+#: ../includes/class-settings.php:134
+msgid "Permalinks"
+msgstr "Permalinkek"
+
+#: ../includes/class-settings.php:142
+msgid "Publish Events"
+msgstr "Események közzététele"
+
+#: ../includes/class-settings.php:143
+msgid "Edit Events"
+msgstr "Események Szerkesztése"
+
+#: ../includes/class-settings.php:144
+msgid "Edit Others Events"
+msgstr "Egyéb Események Szerkesztése"
+
+#: ../includes/class-settings.php:145
+msgid "Edit Published Events"
+msgstr "Közzétett Események Szerkesztése"
+
+#: ../includes/class-settings.php:146
+msgid "Delete Published Events"
+msgstr "Közétett Események Törlése"
+
+#: ../includes/class-settings.php:147
+msgid "Delete Events"
+msgstr "Események Törlése"
+
+#: ../includes/class-settings.php:148
+msgid "Delete Others Events"
+msgstr "Másik Események Törlése"
+
+#: ../includes/class-settings.php:149
+msgid "Read Private Events"
+msgstr "Magán Események Olvasása"
+
+#: ../includes/class-settings.php:150
+msgid "Manage Event Categories"
+msgstr "Esemény Kategóriák Kezelése"
+
+#: ../includes/class-settings.php:154
+msgid "title"
+msgstr "cím"
+
+#: ../includes/class-settings.php:155
+msgid "editor"
+msgstr "szerkesztő"
+
+#: ../includes/class-settings.php:156
+msgid "author"
+msgstr "szerző"
+
+#: ../includes/class-settings.php:157
+msgid "thumbnail"
+msgstr "körömkép"
+
+#: ../includes/class-settings.php:158
+msgid "excerpt"
+msgstr "szemelvény"
+
+#: ../includes/class-settings.php:159
+msgid "custom fields"
+msgstr "egyedi mezők"
+
+#: ../includes/class-settings.php:160
+msgid "comments"
+msgstr "hozzászólások"
+
+#: ../includes/class-settings.php:161
+msgid "trackbacks"
+msgstr "visszakövetések"
+
+#: ../includes/class-settings.php:162
+msgid "revisions"
+msgstr "ellenőrzések"
+
+#: ../includes/class-settings.php:166
+msgid "Manage Event Tags"
+msgstr "Esemény Címkék Kezelése"
+
+#: ../includes/class-settings.php:168
+msgid "Manage Event Locations"
+msgstr "Rendezvényhelyszínek Kezelése"
+
+#: ../includes/class-settings.php:171
+msgid "Manage Event Organizers"
+msgstr "Rendezvényszervezők Kezelése"
+
+#: ../includes/class-settings.php:224 ../includes/class-settings.php:237 ../includes/class-welcome.php:46
+msgid "Settings"
+msgstr "Beállítások"
+
+#: ../includes/class-settings.php:250 ../includes/class-settings.php:264
+msgid "Events Maker"
+msgstr "Esemény Készítő"
+
+#: ../includes/class-settings.php:266
+msgid "Need support?"
+msgstr "Támogatásra van szükséged?"
+
+#: ../includes/class-settings.php:267
+msgid "If you are having problems with this plugin, checkout plugin"
+msgstr "Ha problémád van a bővítménnyel, kapcsold ki a bővítményt"
+
+#: ../includes/class-settings.php:267 ../includes/class-welcome.php:47
+msgid "Documentation"
+msgstr "Dokumentuáció"
+
+#: ../includes/class-settings.php:267
+msgid "or talk about them in the"
+msgstr "vagy beszélj velük a"
+
+#: ../includes/class-settings.php:267
+msgid "Support forum"
+msgstr "Fórum támogatás"
+
+#: ../includes/class-settings.php:269
+msgid "Do you like this plugin?"
+msgstr "Kedveled ezt a bővítményt?"
+
+#: ../includes/class-settings.php:270
+msgid "Rate it 5"
+msgstr "Értékelés 5"
+
+#: ../includes/class-settings.php:270
+msgid "on WordPress.org"
+msgstr "WordPress.org -on"
+
+#: ../includes/class-settings.php:271
+msgid "Blog about it & link to the"
+msgstr "Blogról & linket a"
+
+#: ../includes/class-settings.php:271
+msgid "plugin page"
+msgstr "bővítmény oldal"
+
+#: ../includes/class-settings.php:272
+msgid "Check out our other"
+msgstr "Nézze meg a többit"
+
+#: ../includes/class-settings.php:272
+msgid "WordPress plugins"
+msgstr "WordPress bővítmények"
+
+#: ../includes/class-settings.php:281
+msgid "Created by"
+msgstr "Készítette"
+
+#: ../includes/class-settings.php:302
+msgid "Reset to defaults"
+msgstr "Alapértelmezett érték újraindítása"
+
+#: ../includes/class-settings.php:320
+msgid "General settings"
+msgstr "Általános beállítások"
+
+#: ../includes/class-settings.php:321
+msgid "Event features support"
+msgstr "Esemény funkciók támogatása"
+
+#: ../includes/class-settings.php:325
+msgid "iCal feed/files"
+msgstr "iCal feed/fájlok"
+
+#: ../includes/class-settings.php:326
+msgid "RSS feed"
+msgstr "RSS feed"
+
+#: ../includes/class-settings.php:327
+msgid "Deactivation"
+msgstr "Deaktíválás"
+
+#: ../includes/class-settings.php:330
+msgid "Currency settings"
+msgstr "Árfolyam beállítások"
+
+#: ../includes/class-settings.php:331
+msgid "Currency"
+msgstr "Árfolyam"
+
+#: ../includes/class-settings.php:332
+msgid "Currency position"
+msgstr "Árfolyam pozicíó"
+
+#: ../includes/class-settings.php:333
+msgid "Currency symbol"
+msgstr "Árfolyam szimbólum"
+
+#: ../includes/class-settings.php:334
+msgid "Currency display format"
+msgstr "Árfolyam formátum kijelzés"
+
+#: ../includes/class-settings.php:337
+msgid "Query settings"
+msgstr "Lekérdezés beállítások"
+
+#: ../includes/class-settings.php:338 ../includes/class-widgets.php:880 ../includes/class-widgets.php:1151
+#: ../includes/class-widgets.php:1268 ../includes/class-widgets.php:1385
+msgid "Order by"
+msgstr "Rendezés"
+
+#: ../includes/class-settings.php:339
+msgid "Sort order"
+msgstr "Rendezési sorrend"
+
+#: ../includes/class-settings.php:340
+msgid "Past events"
+msgstr "Utolsó események"
+
+#: ../includes/class-settings.php:341
+msgid "Current events"
+msgstr "Aktuális események"
+
+#: ../includes/class-settings.php:342
+msgid "Occurrences"
+msgstr "Események"
+
+#: ../includes/class-settings.php:346
+msgid "Display settings"
+msgstr "Kijelző beállítások"
+
+#: ../includes/class-settings.php:347
+msgid "Event default options"
+msgstr "Alapértelmezett Esemény Opciók"
+
+#: ../includes/class-settings.php:348
+msgid "Date and time format"
+msgstr "Dátum és idő formátum"
+
+#: ../includes/class-settings.php:349
+msgid "First day of the week"
+msgstr "A hét első napja"
+
+#: ../includes/class-settings.php:350
+msgid "Full Calendar display"
+msgstr "Teljes Naptár kijelzése"
+
+#: ../includes/class-settings.php:351
+msgid "Link in menu"
+msgstr "Link menüben"
+
+#: ../includes/class-settings.php:355
+msgid "Templates settings"
+msgstr "Sablon beállítások"
+
+#: ../includes/class-settings.php:356
+msgid "Default templates"
+msgstr "Alapértelmezett sablonok"
+
+#: ../includes/class-settings.php:357
+msgid "Events archive"
+msgstr "Események arhíválása"
+
+#: ../includes/class-settings.php:358
+msgid "Archive event content"
+msgstr "Arhívált esemény tartalom"
+
+#: ../includes/class-settings.php:359 ../includes/class-settings.php:380
+msgid "Single event"
+msgstr "Egyszerű esemény"
+
+#: ../includes/class-settings.php:360
+msgid "Single event content"
+msgstr "Egyszerű esemény tartalom"
+
+#: ../includes/class-settings.php:361
+msgid "Widget event content"
+msgstr "Widget esemény tartalom"
+
+#: ../includes/class-settings.php:374
+msgid "Capabilities settings"
+msgstr "Képességi beállítások"
+
+#: ../includes/class-settings.php:378
+msgid "Permalinks settings"
+msgstr "Permalinkek beállításai"
+
+#: ../includes/class-settings.php:379
+msgid "Events base"
+msgstr "Események alapjai"
+
+#: ../includes/class-settings.php:412
+msgid "Select which features would you like to enable for your events."
+msgstr "Válassza ki, melyik funkciókat szeretne engedélyezni a rendezvényeihez."
+
+#: ../includes/class-settings.php:426
+msgid "Enable Event Tags"
+msgstr "Esemény Címkék Engedélyezése"
+
+#: ../includes/class-settings.php:428
+msgid "Enable if you want to use Event Tags."
+msgstr "Esemény Címkék használatának Engedélyezése."
+
+#: ../includes/class-settings.php:442
+msgid "Enable Event Organizers"
+msgstr "Eseményszervező Engedélyezése"
+
+#: ../includes/class-settings.php:444
+msgid "Enable if you want to use Event Organizers (including organizer contact details)."
+msgstr "Engedélyezze ha szeretné használni Rendezvényszervezőket (beleértve a kapcsolat szervező részleteket)."
+
+#: ../includes/class-settings.php:458
+msgid "Enable Event Tickets"
+msgstr "Esemény Jegyek Engedélyezése"
+
+#: ../includes/class-settings.php:460
+msgid "Enable if you want to use Event Tickets (including free events, paid events and multiple ticket types)."
+msgstr ""
+"Engedélyezze, ha a használni kívánt esemény jegyeket (beleértve az ingyenes rendezvények, események fizetett és "
+"több jegyet típus)."
+
+#: ../includes/class-settings.php:472
+msgid "Display Google Map"
+msgstr "Google Térkép Kijelzése"
+
+#: ../includes/class-settings.php:473
+msgid "Display Event Gallery"
+msgstr "Esemény Galéria Kijelzése"
+
+#: ../includes/class-settings.php:474
+msgid "Display Location Details"
+msgstr "Helyszín részletek kijelzése"
+
+#: ../includes/class-settings.php:478
+msgid "Display Tickets Info"
+msgstr "Jegyek Információ Kijelzése"
+
+#: ../includes/class-settings.php:481
+msgid "Display Organizer Details"
+msgstr "Szervező Részletek Kijelzése"
+
+#: ../includes/class-settings.php:498
+msgid "Select default display options for single event (this can overriden for each event separately)."
+msgstr ""
+"Válassza ki az alapértelmezett megjelenítési lehetőségek egyetlen eseményt (ezért minden felülírható  esemény "
+"szeparálható)."
+
+#: ../includes/class-settings.php:547
+msgid "There are no pages."
+msgstr "Nincsenek oldalak."
+
+#: ../includes/class-settings.php:551
+msgid ""
+"Select how and where would you like to display events full calendar. Use <code>[em-full-calendar]</code> shortcode "
+"for manual display."
+msgstr ""
+"Válassza ki, hogyan és hol szeretne megjeleníteni események teljes naptárát. Használja <code> [em-full-naptár] </ "
+"code> rövid kódot kézi kijelzőn."
+
+#: ../includes/class-settings.php:566
+msgid "Enable iCal feed/files"
+msgstr "Engedélyezze az iCal feed/fájlokat"
+
+#: ../includes/class-settings.php:568
+msgid ""
+"Enable to generate an iCal feed/files for all your events, categories, tags, locations, organizers and single "
+"events. iCal feed/files are accessible under event URL extended with:"
+msgstr ""
+"Engedélyezi hogy létrehozzon egy iCal feed / fájlok minden eseményt, kategóriákat, címkéket,helyszíneket, "
+"szervezést és az egyes eseményeket. iCal feed / fájlok elérhetőekAz Esemény bővítménye URL: "
+
+#: ../includes/class-settings.php:569
+msgid "For example:"
+msgstr "Példának:"
+
+#: ../includes/class-settings.php:583
+msgid "Enable RSS feed"
+msgstr "RSS feed bekapcsolása"
+
+#: ../includes/class-settings.php:585
+msgid "Enable to include events in your website main RSS feed."
+msgstr "Engedélyezze az eseményeket a honlapon a RSS feednél."
+
+#: ../includes/class-settings.php:599
+msgid "Enable delete on deactivation"
+msgstr "Engedélyezze a törlés deaktíválását"
+
+#: ../includes/class-settings.php:601
+msgid "Enable if you want all plugin data to be deleted on deactivation."
+msgstr "Engedélyezze, ha törölni akarjuk, minden bővítmény adatokat a deaktíválásnál."
+
+#: ../includes/class-settings.php:626
+msgid "Choose the currency that will be used for ticket prices."
+msgstr "Válassza ki a pénznemet, amelyeket használni fognak a jegyárak."
+
+#: ../includes/class-settings.php:649
+msgid "Choose the location of the currency sign."
+msgstr "Válassza ki a valuta jel helyét."
+
+#: ../includes/class-settings.php:665
+msgid "This will appear next to all the currency figures on the website. Ex. $, USD, €..."
+msgstr "Ez fog megjelenni az összes valuta adatnál a honlapon. Pl: $,USD, € ..."
+
+#: ../includes/class-settings.php:690
+msgid "This determines how your currency is displayed. Ex. 1,234.56 or 1,200 or 1200."
+msgstr "Ez határozza meg, hogy a pénznem jelenik meg. Pl: 1,234.56, vagy 1200, vagy 1200."
+
+#: ../includes/class-settings.php:713
+msgid "Select how to order your events list (works for both: admin and front-end default query)."
+msgstr ""
+"Válassza ki, hogyan kell megrendelni az események listáját (működik mint: admin és front-end alapértelmezett "
+"lekérdezés)."
+
+#: ../includes/class-settings.php:736
+msgid "Select events list order (works for both: admin and front-end default query)."
+msgstr "Válassza ki az események sorrendjét (működik mint: admin és front-end alapértelmezett lekérdezés)."
+
+#: ../includes/class-settings.php:750 ../includes/class-widgets.php:276
+msgid "Show past events"
+msgstr "Mutassa az utolsó eseményt"
+
+#: ../includes/class-settings.php:752
+msgid "Select whether to include past events in events list (works for front-end default query)."
+msgstr ""
+"Válassza ki, hogy mely múltbeli eseményekre események listáját (működik front-end alapértelmezett lekérdezés)."
+
+#: ../includes/class-settings.php:766
+msgid "Expire current events"
+msgstr "Lejárt aktuális események"
+
+#: ../includes/class-settings.php:768
+msgid "Select how to handle already started events (works for front-end default query)."
+msgstr "Válassza ki, hogyan kell kezelni a már megkezdett események (működik front-end alapértelmezett lekérdezés)."
+
+#: ../includes/class-settings.php:782 ../includes/class-widgets.php:277
+msgid "Show occurrences"
+msgstr "Eredmények Mutatása"
+
+#: ../includes/class-settings.php:784
+msgid "Select whether to include event occurrences in events list (works for front-end default query)."
+msgstr ""
+"Válassza ki, hogy mely esemény előfordulásai események listáját (működik front-end alapértelmezett lekérdezés)."
+
+#: ../includes/class-settings.php:800
+msgid "Show link in menu"
+msgstr "Mutasd a linket a menüben"
+
+#: ../includes/class-settings.php:806
+msgid "Menu"
+msgstr "Menu"
+
+#: ../includes/class-settings.php:817 ../includes/class-widgets.php:95 ../includes/class-widgets.php:272
+#: ../includes/class-widgets.php:773 ../includes/class-widgets.php:820 ../includes/class-widgets.php:1143
+#: ../includes/class-widgets.php:1260 ../includes/class-widgets.php:1377
+msgid "Title"
+msgstr "Cím"
+
+#: ../includes/class-settings.php:819
+msgid "Note: if global WordPress permalinks were changed remember to save Events Maker general settings again."
+msgstr ""
+"Megjegyzés: ha a globális WordPress permalinkek változtak emlékszem, hogy mentse EseményeketKészítő általános "
+"beállításokat."
+
+#: ../includes/class-settings.php:823
+msgid "Note: there is no menu to which you could add events archive link."
+msgstr "Megjegyzés: nincs menü, ahol hozzáadhat eseményeket archív linkhez."
+
+#: ../includes/class-settings.php:829
+msgid "Select if you want to automatically add events archive link to nav menu."
+msgstr "Válassza ki, hogy automatikusan hozzáadott eseményeknél az archív linket nav menübe."
+
+#: ../includes/class-settings.php:843
+msgid "Date"
+msgstr "Dátum"
+
+#: ../includes/class-settings.php:845
+msgid "Time"
+msgstr "Idő"
+
+#: ../includes/class-settings.php:847
+msgid "Enter your preffered date and time formatting."
+msgstr "Írja be a preferált dátum és idő formátumot."
+
+#: ../includes/class-settings.php:868
+msgid "Select preffered first day of the week for the calendar display."
+msgstr "Válaszd ki a preferált hét első napját a naptár kijelzőn."
+
+#: ../includes/class-settings.php:882
+msgid "Enable to use default templates"
+msgstr "Alapértelmezett sablonok használatának engedélyezése"
+
+#: ../includes/class-settings.php:884
+msgid ""
+"For each of the events pages, the corresponding template is used. To use your own template simply give it the same "
+"name and store in your theme folder. By default, if Events Maker can't find a template in your theme directory, it "
+"will use its own default template. To prevent this, uncheck this option. WordPress will then decide which template "
+"from your theme's folder to use."
+msgstr ""
+"Az egyes események oldalak, a megfelelő sablont használják. Ahhoz, hogy használod a saját sablont egyszerűen adja "
+"ugyanazt a nevet és tárolja a téma mappába. Alapértelmezésben, ha Események Készítő nem találja sablonként a témát "
+"könyvtárban, akkor a saját alapértelmezett sablont használja. Ennek megakadályozására, törölje ezt a lehetőséget. "
+"WordPress fog majd dönteni, melyik sablont használja a téma mappa használatakor."
+
+#: ../includes/class-settings.php:1022
+msgid "These settings will work only if permalinks are enabled."
+msgstr "Ezek a beállítások csak akkor működnek, ha permalinkek engedélyezve vannak."
+
+#: ../includes/class-settings.php:1037
+msgid "General Events root slug to prefix all your events pages with."
+msgstr "Általános Események gyökér “slug” előtagot minden eseményhez oldalakhoz."
+
+#: ../includes/class-settings.php:1054
+msgid "Single event page slug."
+msgstr "“Slug” egyszerű esemény az oldalon."
+
+#: ../includes/class-settings.php:1071
+msgid "Event Locations page slug."
+msgstr "“Slug” eseményrendezés az oldalon."
+
+#: ../includes/class-settings.php:1088
+msgid "Event Categories page slug."
+msgstr "“Slug” esemény kategóriák az oldalon"
+
+#: ../includes/class-settings.php:1105
+msgid "Event Tags page slug."
+msgstr "“Slug” esemény címke az oldalon."
+
+#: ../includes/class-settings.php:1122
+msgid "Event Organizers page slug."
+msgstr "“Slug” eseményszervező az oldalon."
+
+#: ../includes/class-settings.php:1141
+msgid "Role"
+msgstr "Teendő"
+
+#: ../includes/class-settings.php:1145
+msgid "None"
+msgstr "Nincs"
+
+#: ../includes/class-shortcodes.php:109
+msgid "Calendar page was created successfully on all of the network sites."
+msgstr " Naptár oldal létrehozása sikeres volt az összes hálózati helynél."
+
+#: ../includes/class-shortcodes.php:111
+msgid "Calendar page was not created on all of the network sites. You can try to create it manually later."
+msgstr "Naptár oldal nem jött létre az összes hálózati helynél. Meg lehet próbálnimanuálisan létrehozni később."
+
+#: ../includes/class-shortcodes.php:113
+msgid "Calendar page was not created on some of the network sites. You can try to create it manually later."
+msgstr "Naptár oldal nem jött létre az egyes oldalakon. Meg lehet próbálnimanuálisan létrehozni később."
+
+#: ../includes/class-shortcodes.php:161
+msgid "Events Maker needs to create a page for your events calendar display. Would you like to do it automatically?"
+msgstr ""
+"Események készítőnél létre kell hoznia egy oldalt eseménynaptár kijelzőn. Vajonszeretnéd, hogy ezt automatikusan "
+"megtörténjen?"
+
+#: ../includes/class-shortcodes.php:161
+msgid "Create Calendar Page"
+msgstr "Naptár Oldal Készítés"
+
+#: ../includes/class-shortcodes.php:161
+msgid "No thanks"
+msgstr "Nem köszönöm"
+
+#: ../includes/class-shortcodes.php:204 ../includes/class-widgets.php:171 ../includes/class-widgets.php:185
+msgid "Events Calendar"
+msgstr "Események Naptár"
+
+#: ../includes/class-shortcodes.php:218
+msgid "Calendar page was created successfully."
+msgstr "Naptár oldal sikeresen elkészült."
+
+#: ../includes/class-shortcodes.php:228
+msgid "Calendar page was not created successfully. You can try to create it manually later."
+msgstr "Calendar oldal nem jött létre sikeresen. Meg lehet próbálni, hogy létrehozza-eKésőbb kézzel."
+
+#: ../includes/class-shortcodes.php:399 ../includes/template-functions.php:35 ../templates/archive-event.php:80
+msgid "Apologies, but no events were found."
+msgstr "Elnézést, de eseményt nem találtam."
+
+#: ../includes/class-taxonomies.php:47
+msgid "Color"
+msgstr "Szín"
+
+#: ../includes/class-taxonomies.php:57
+msgid "Map"
+msgstr "Térkép"
+
+#: ../includes/class-taxonomies.php:63 ../templates/loop-event/location-details.php:34
+msgid "Address"
+msgstr "Cím"
+
+#: ../includes/class-taxonomies.php:69 ../templates/loop-event/location-details.php:44
+msgid "City"
+msgstr "Város"
+
+#: ../includes/class-taxonomies.php:75 ../templates/loop-event/location-details.php:49
+msgid "State / Province"
+msgstr "Állam / Megye"
+
+#: ../includes/class-taxonomies.php:81 ../templates/loop-event/location-details.php:39
+msgid "Zip Code"
+msgstr "Irányító szám"
+
+#: ../includes/class-taxonomies.php:87 ../templates/loop-event/location-details.php:54
+#: ../templates/loop-event/organizer-details.php:54
+msgid "Country"
+msgstr "Ország"
+
+#: ../includes/class-taxonomies.php:93 ../includes/class-taxonomies.php:126
+#: ../templates/loop-event/location-details.php:59 ../templates/loop-event/organizer-details.php:59
+msgid "Image"
+msgstr "Kép"
+
+#: ../includes/class-taxonomies.php:102 ../templates/loop-event/organizer-details.php:34
+msgid "Contact name"
+msgstr "Kapcsolat neve"
+
+#: ../includes/class-taxonomies.php:108 ../templates/loop-event/organizer-details.php:39
+msgid "Phone"
+msgstr "Telefon"
+
+#: ../includes/class-taxonomies.php:114
+msgid "E-mail"
+msgstr "E-mail"
+
+#: ../includes/class-taxonomies.php:120 ../templates/loop-event/organizer-details.php:49
+msgid "Website"
+msgstr "Weboldal"
+
+#: ../includes/class-taxonomies.php:189 ../includes/class-taxonomies.php:231 ../includes/class-taxonomies.php:360
+#: ../includes/class-taxonomies.php:430
+msgid "Remove image"
+msgstr "Kép eltávolítás"
+
+#: ../includes/class-update.php:72
+msgid "Datebase was succesfully updated. Enjoy new features!"
+msgstr "Adatbázis sikeresen frissítve. Élvezze az új funkciókat!"
+
+#: ../includes/class-update.php:79
+msgid "Events Maker new features require a database update. Make sure you backup your database and then click."
+msgstr ""
+"Események Maker új funkciók megkövetelik az adatbázis frissítését. Győződjön meg arról, van backupaz adatbázisban "
+"és kattintson."
+
+#: ../includes/class-update.php:79
+msgid "Update"
+msgstr "Frissítés"
+
+#: ../includes/class-welcome.php:19 ../includes/class-welcome.php:37
+msgid "Welcome to Events Maker"
+msgstr "Üdvözöljük az Esemény Készítőben"
+
+#: ../includes/class-welcome.php:41
+msgid "Events Maker is an easy to use but flexible events management plugin made the WordPress way."
+msgstr "Események Készítő egy könnyen használható és rugalmas esemény kezelő bővítmény a WordPressben."
+
+#: ../includes/class-welcome.php:49
+msgid "dFactory Plugins"
+msgstr "dFactory Bővítmény"
+
+#: ../includes/class-welcome.php:54
+msgid "About Events Maker"
+msgstr "Esemény Készítőről"
+
+#: ../includes/class-welcome.php:70
+msgid "Main Features"
+msgstr "Főbb Jellemzők"
+
+#: ../includes/class-welcome.php:76
+msgid "Easy Event Management"
+msgstr "Könnyű Esemény Kezelő"
+
+#: ../includes/class-welcome.php:77
+msgid "Set up date and time, title, desciption and other details of your events in a WordPress native interface."
+msgstr "Beállíthatja a dátumot és az időt, címet, leírást és egyéb események adatait WordPress natív felületbe."
+
+#: ../includes/class-welcome.php:82
+msgid "Locations and Organizers"
+msgstr "Helyszínek és Szervezők"
+
+#: ../includes/class-welcome.php:83
+msgid "Organize your events in reusable Categories, Tags, Locations and Organizers."
+msgstr "Szervezze meg eseményeket újrafelhasználható kategóriák, címkék, földrajzi helyek és szervezők."
+
+#: ../includes/class-welcome.php:88
+msgid "Multiple Event Tickets"
+msgstr "Több Esemény Jegyek"
+
+#: ../includes/class-welcome.php:89
+msgid "Create free or paid events and add as many different types of tickets as you need."
+msgstr ""
+"Létrehozása ingyenes vagy fizetős események, és hozzáadhatunk különböző típusú jegyeket, ami neked éppen szükséges."
+
+#: ../includes/class-welcome.php:98
+msgid "6 Widgets incl. Ajax Calendar"
+msgstr "6 Widgetet tartalmaz az Ajax Naptár"
+
+#: ../includes/class-welcome.php:99
+msgid "Complete set of widgets allow you to display event details anywhere in a theme."
+msgstr "Teljes készlet widgeteknek köszönhetően lejátszhatja esemény részleteit bárhol a témába."
+
+#: ../includes/class-welcome.php:104
+msgid "Highly Customizable Settings"
+msgstr "Nagymértékben testreszabható beállítások"
+
+#: ../includes/class-welcome.php:105
+msgid "Easily control different areas of the plugin including Permalinks, Capabilities and many other."
+msgstr "Könnyen vezérelt különböző területein a plugin beleértve Permalinkek,Képességek és sok más."
+
+#: ../includes/class-welcome.php:110
+msgid "WPML Compatibility"
+msgstr "WPML Kompatibilitás"
+
+#: ../includes/class-welcome.php:111
+msgid ""
+"Are you running a multilingual events site? Events Maker is fully compatible with WPML (and probably other "
+"multilingual plugins too)."
+msgstr ""
+"Futtatsz egy többnyelvű rendezvények helyszínen? Esemény készítő teljes mértékben kompatibilis A WPML (és "
+"valószínűleg más többnyelvű beépülő is)."
+
+#: ../includes/class-welcome.php:120
+msgid "Under the Hood"
+msgstr "Motorház alatt"
+
+#: ../includes/class-welcome.php:124
+msgid "Custom Post Types & Custom Taxonomies"
+msgstr "Egyéni Hozzászólás típusok és egyéni Taxonómiák"
+
+#: ../includes/class-welcome.php:125
+msgid "Events Maker is built using WordPress custom post types, custom taxonomies and custom post fields. "
+msgstr ""
+"Események Készítő használatára épül WordPress egyéni típusokhoz, egyedi taxonómiákban és egyedi hozzászólási "
+"területeken."
+
+#: ../includes/class-welcome.php:128
+msgid "Filters and Actions"
+msgstr "Szűrők és Műveletek"
+
+#: ../includes/class-welcome.php:129
+msgid "We have included various hooks and filters so you can plug-into these hooks to extend the functionalities."
+msgstr ""
+"Jelenleg is tartalmaz különböző horgokat és szűrőket, tehát így elérhető beépülő horog kiterjesztett lehetőségek."
+
+#: ../includes/class-welcome.php:133
+msgid "Custom Functions"
+msgstr "Egyedi Funkciók"
+
+#: ../includes/class-welcome.php:134
+msgid "There are 26 custom functions available. You can use it to make Events Maker suite your individual needs."
+msgstr "Van 26 egyedi funkció áll rendelkezésre. Használhatja, hogy események készítőkíséret egyéni igényekre."
+
+#: ../includes/class-welcome.php:142
+msgid "Go to Events Maker Settings"
+msgstr "Menjünk az Esemény Készítő Beállításokhoz"
+
+#: ../includes/class-widgets.php:52 ../includes/class-widgets.php:59
+msgid "Events Archives"
+msgstr "Esemény Archívumok"
+
+#: ../includes/class-widgets.php:54
+msgid "Displays events archives"
+msgstr "Esemény archívum kijelzés"
+
+#: ../includes/class-widgets.php:68
+msgid "Monthly"
+msgstr "Havi"
+
+#: ../includes/class-widgets.php:69
+msgid "Yearly"
+msgstr "Évi"
+
+#: ../includes/class-widgets.php:99 ../includes/class-widgets.php:1147 ../includes/class-widgets.php:1264
+#: ../includes/class-widgets.php:1381
+msgid "Display as dropdown"
+msgstr "Legördülő Kijelző"
+
+#: ../includes/class-widgets.php:100
+msgid "Show amount of events"
+msgstr "Események mennyiségének mutatása"
+
+#: ../includes/class-widgets.php:103
+msgid "Display Type"
+msgstr "Kijelző Típusa"
+
+#: ../includes/class-widgets.php:116 ../includes/class-widgets.php:892 ../includes/class-widgets.php:1163
+#: ../includes/class-widgets.php:1280 ../includes/class-widgets.php:1397
+msgid "Order"
+msgstr "Rendez"
+
+#: ../includes/class-widgets.php:128
+msgid "Limit"
+msgstr "Korlát"
+
+#: ../includes/class-widgets.php:173
+msgid "Displays events calendar"
+msgstr "Naptár események kijelzése"
+
+#: ../includes/class-widgets.php:196 ../includes/class-widgets.php:765
+msgid "all"
+msgstr "minden"
+
+#: ../includes/class-widgets.php:197 ../includes/class-widgets.php:766
+msgid "selected"
+msgstr "kiválasztott"
+
+#: ../includes/class-widgets.php:201
+msgid "basic"
+msgstr "alap"
+
+#: ../includes/class-widgets.php:202
+msgid "dark"
+msgstr "sötét"
+
+#: ../includes/class-widgets.php:203
+msgid "light"
+msgstr "világos"
+
+#: ../includes/class-widgets.php:204
+msgid "flat"
+msgstr "lapos"
+
+#: ../includes/class-widgets.php:278
+msgid "Highlight weekends"
+msgstr "Kiemelés hétvégén"
+
+#: ../includes/class-widgets.php:281
+msgid "CSS Style"
+msgstr "CSS Stílus"
+
+#: ../includes/class-widgets.php:294 ../includes/class-widgets.php:828
+msgid "Event Categories"
+msgstr "Esemény Kategóriák"
+
+#: ../includes/class-widgets.php:309 ../includes/class-widgets.php:843
+msgid "Event Locations"
+msgstr "Rendezvényhelyszínek"
+
+#: ../includes/class-widgets.php:330 ../includes/class-widgets.php:862
+msgid "Event Organizers"
+msgstr "Rendezvényszervezők"
+
+#: ../includes/class-widgets.php:714 ../includes/class-widgets.php:1077
+msgid "No results were found."
+msgstr "Nincs találat"
+
+#: ../includes/class-widgets.php:735
+msgid "Events List"
+msgstr "Esemény Lista"
+
+#: ../includes/class-widgets.php:737
+msgid "Displays a list of events"
+msgstr "Esemény lista Kijelzése"
+
+#: ../includes/class-widgets.php:759
+msgid "No Events"
+msgstr "Nincsenek Események"
+
+#: ../includes/class-widgets.php:770
+msgid "Start date"
+msgstr "Kezdési időpont"
+
+#: ../includes/class-widgets.php:771
+msgid "End date"
+msgstr "Befejezési időpont"
+
+#: ../includes/class-widgets.php:824
+msgid "Number of events"
+msgstr "Rendezvények száma"
+
+#: ../includes/class-widgets.php:907
+msgid "Display past events"
+msgstr "Múltbéli események megjelenítése"
+
+#: ../includes/class-widgets.php:909
+msgid "Display event occurrenses"
+msgstr "Kijelző események bejelzése"
+
+#: ../includes/class-widgets.php:911
+msgid "Display event excerpt"
+msgstr "Esemény részlet kijelzése"
+
+#: ../includes/class-widgets.php:913
+msgid "Display featured events only"
+msgstr "Kijelzi a jellemző csak eseményeket"
+
+#: ../includes/class-widgets.php:915
+msgid "Display event thumbnail"
+msgstr "Körömkélp esemény kijelzése"
+
+#: ../includes/class-widgets.php:918
+msgid "Thumbnail size"
+msgstr "Körömkép méret"
+
+#: ../includes/class-widgets.php:933
+msgid "No events message"
+msgstr "Nincsenek esemény üzenetek"
+
+#: ../includes/class-widgets.php:937
+msgid "Date format"
+msgstr "Dátum formátum"
+
+#: ../includes/class-widgets.php:939
+msgid "Time format"
+msgstr "Idő formátum"
+
+#: ../includes/class-widgets.php:1095 ../includes/class-widgets.php:1102
+msgid "Events Categories"
+msgstr "Esemény Kategóriák"
+
+#: ../includes/class-widgets.php:1097
+msgid "Displays a list of events categories"
+msgstr "Megjelenít egy listát az események kategóriáknál"
+
+#: ../includes/class-widgets.php:1110 ../includes/class-widgets.php:1227 ../includes/class-widgets.php:1344
+msgid "ID"
+msgstr "ID"
+
+#: ../includes/class-widgets.php:1111 ../includes/class-widgets.php:1228 ../includes/class-widgets.php:1345
+msgid "Name"
+msgstr "Név"
+
+#: ../includes/class-widgets.php:1148 ../includes/class-widgets.php:1265 ../includes/class-widgets.php:1382
+msgid "Show hierarchy"
+msgstr "Hierarchia mutatása"
+
+#: ../includes/class-widgets.php:1212 ../includes/class-widgets.php:1219
+msgid "Events Locations"
+msgstr "Esemény helyszínek"
+
+#: ../includes/class-widgets.php:1214
+msgid "Displays a list of events locations"
+msgstr "Megjelenít egy listát az események helyszínekről"
+
+#: ../includes/class-widgets.php:1329 ../includes/class-widgets.php:1336
+msgid "Events Organizers"
+msgstr "Eseményszervezők"
+
+#: ../includes/class-widgets.php:1331
+msgid "Displays a list of events organizers"
+msgstr "Megjelenít egy listát az eseményszervezőkről"
+
+#: ../includes/template-functions.php:137
+msgid "<strong>Category: </strong>"
+msgstr "<strong>Kategória </strong>"
+
+#: ../includes/template-functions.php:163
+msgid "<strong>Tags: </strong>"
+msgstr "<strong>Címkék:</strong>"
+
+#: ../includes/template-functions.php:199 ../includes/template-functions.php:211
+msgid "<strong>Location: </strong>"
+msgstr "<strong>Hely: </strong"
+
+#: ../includes/template-functions.php:273 ../includes/template-functions.php:285
+msgid "<strong>Organizer: </strong>"
+msgstr "<strong>Szervező: </strong"
+
+#: ../includes/template-functions.php:587
+#, php-format
+msgid "Event Daily Archives: %s"
+msgstr "Napi Esemény Archívumok: %s"
+
+#: ../includes/template-functions.php:589
+#, php-format
+msgid "Event Monthly Archives: %s"
+msgstr "Havi Esemény Archívumok: %s"
+
+#: ../includes/template-functions.php:589
+msgctxt "monthly archives date format"
+msgid "F Y"
+msgstr "H É"
+
+#: ../includes/template-functions.php:591
+#, php-format
+msgid "Event Yearly Archives: %s"
+msgstr "Évi esemény Archívumok: %s"
+
+#: ../includes/template-functions.php:591
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr "É"
+
+#: ../includes/template-functions.php:593
+#, php-format
+msgid "Events Category: %s"
+msgstr "Esemény Kategória: %s"
+
+#: ../includes/template-functions.php:595
+#, php-format
+msgid "Events Location: %s"
+msgstr "Esemény Hely: %s"
+
+#: ../includes/template-functions.php:597
+#, php-format
+msgid "Events Organizer: %s"
+msgstr "Esemény Szervező: %s"
+
+#: ../includes/template-functions.php:599
+#, php-format
+msgid "Events Tag: %s"
+msgstr "Esemény Címke: %s"
+
+#: ../templates/global/breadcrumb.php:86 ../templates/global/breadcrumb.php:174
+msgid "Search results for &ldquo;"
+msgstr "Keresés eredménye & ldquo;"
+
+#: ../templates/global/breadcrumb.php:131
+msgid "Error 404"
+msgstr "404-es hiba"
+
+#: ../templates/global/breadcrumb.php:178
+msgid "Posts tagged &ldquo;"
+msgstr "Bejegyzések & ldquo;"
+
+#: ../templates/global/breadcrumb.php:183
+msgid "Author:"
+msgstr "Szerző"
+
+#: ../templates/global/breadcrumb.php:187
+msgid "Page"
+msgstr "Oldal"
+
+#: ../templates/loop-event/meta.php:32 ../templates/single-event/meta.php:32
+msgid "Leave a comment"
+msgstr "Hozzászólás elhagyása"
+
+#: ../templates/loop-event/meta.php:32 ../templates/single-event/meta.php:32
+msgid "1 Comment"
+msgstr "1 Hozzászólás"
+
+#: ../templates/loop-event/meta.php:32 ../templates/single-event/meta.php:32
+msgid "% Comments"
+msgstr "% Hozzászólás"
+
+#: ../templates/loop-event/organizer-details.php:44
+msgid "Email"
+msgstr "Email"
+
+#: ../templates/loop-event/pagination.php:37
+msgid "&laquo; Previous"
+msgstr "& laquo; előző"
+
+#: ../templates/loop-event/pagination.php:38
+msgid "Next &raquo;"
+msgstr "Next & raquo;"
+
+#: ../templates/loop-event/sorting.php:27
+msgid "Sort by start date: ascending"
+msgstr "Rendezés kezdő dátum: növekvő"
+
+#: ../templates/loop-event/sorting.php:28
+msgid "Sort by start date: descending"
+msgstr "Rendezés kezdő dátum: csökkenő"
+
+#: ../templates/loop-event/sorting.php:29
+msgid "Sort by end date: ascending"
+msgstr "Rendezés befejezés dátuma: növekvő"
+
+#: ../templates/loop-event/sorting.php:30
+msgid "Sort by end date: descending"
+msgstr "Rendezés befejezés dátuma: csökkenő"
+
+#: ../templates/loop-event/sorting.php:31
+msgid "Sort by title: ascending"
+msgstr "Rendezés cím: növekvő"
+
+#: ../templates/loop-event/sorting.php:32
+msgid "Sort by title: descending"
+msgstr "Rendezés cím: csökkenő"
+
+#: ../templates/single-event/tickets.php:57
+msgid "Free"
+msgstr "Szabad"

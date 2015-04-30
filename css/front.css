@@ -9,7 +9,7 @@
 }
 .events-maker-orderby:after {
 	content: "";
-	display: table;
+	display: block;
 	clear: both;
 }
 .entry-header {
@@ -88,6 +88,11 @@
 .archive-thumbnail img {
     max-width: 100%;
 }
+.site-content .entry-content .term .entry-content,
+.site-content .entry-content .term .entry-header {
+	padding-left: 0;
+	padding-right: 0;
+}
 
 /* Fix for Twenty Fifteen */
 .twentyfifteen .breadcrumb-navigation {
@@ -128,6 +133,11 @@
 }
 .twentyfifteen .events-maker-ical {
 	margin: 1em 10%;
+}
+.entry-content .term .entry-content,
+.entry-content .term .entry-header {
+	padding-left: 0;
+	padding-right: 0;
 }
 
 /* Event Google Map */

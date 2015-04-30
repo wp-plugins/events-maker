@@ -8,32 +8,40 @@
  * @package Events Maker/Templates
  * @since 	1.2.0
  */
- 
-if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
-$template = get_option('template');
+if ( ! defined( 'ABSPATH' ) )
+	exit; // exit if accessed directly
 
-switch($template) {
+$template = get_option( 'template' );
+
+switch ( $template ) :
+
 	case 'twentyeleven' :
 		$output = '</div></div>';
 		break;
+
 	case 'twentytwelve' :
 		$output = '</div></div>';
 		break;
+
 	case 'twentythirteen' :
 		$output = '</div></div>';
 		break;
+
 	case 'twentyfourteen' :
 		$output = '</div></div></div>';
-		get_sidebar('content');
+		get_sidebar( 'content' );
 		break;
+
 	case 'twentyfifteen' :
 		$output = '</div></main>';
-		get_sidebar('content');
+		get_sidebar( 'content' );
 		break;
+
 	default :
 		$output = '</div></div>';
 		break;
-}
 
-echo apply_filters('em_content_wrapper_end', $output, $template);
+endswitch;
+
+echo apply_filters( 'em_content_wrapper_end', $output, $template );

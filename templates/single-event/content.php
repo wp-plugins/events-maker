@@ -8,15 +8,15 @@
  * @package Events Maker/Templates
  * @since 	1.3.0
  */
- 
-if (!defined('ABSPATH')) exit; // Exit if accessed directly
+
+if ( ! defined( 'ABSPATH' ) )
+	exit; // exit if accessed directly
 
 global $post;
-
 ?>
 
 <div class="entry-content description">
-	    	
-    <?php the_content(); ?>
-    
+
+	<?php the_content(); ?>
+
 </div>

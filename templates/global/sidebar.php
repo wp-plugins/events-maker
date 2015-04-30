@@ -8,7 +8,8 @@
  * @package Events Maker/Templates
  * @since 	1.2.0
  */
- 
-if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
-get_sidebar('events'); ?>
+if ( ! defined( 'ABSPATH' ) )
+	exit; // exit if accessed directly
+
+get_sidebar( 'events' );

@@ -3,8 +3,8 @@ Contributors: dfactory
 Donate link: http://www.dfactory.eu/
 Tags: event, event categories, events management, event management, events manager, event manager, event organizer, events calendar, events maker, google map, map, locations, organizers, widget, attendance, attendee, Booking, calendar, event registration, ticket, tickets, ticketing, bookings
 Requires at least: 3.5
-Tested up to: 4.1.1
-Stable tag: 1.5.4
+Tested up to: 4.2.1
+Stable tag: 1.6.0
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -41,9 +41,11 @@ Events Maker allows you to create and manage events, categories, locations and o
 * Ajax Events Calendar
 * Display options for single events
 * Multiple Tickets and Pricing
+* Locations list page
+* Organizers list page
+* Full Calendar page
 * Automatic iCal feed/files support
 * Advanced recurring events, including daily, monthly, yearly and custom occurrences
-* Interactive Full Calendar display
 * Compatibility with Twenty Thirteen and Twenty Fourteen themes 
 * Featured events
 * Event Categories and Tags
@@ -115,6 +117,13 @@ A. Chances are, someone else has asked it. Check out the support forum at: http:
 6. screenshot-6.png
 
 == Changelog ==
+
+= 1.6.0 =
+* New: Locations list page
+* New: Organizers list page
+* New: Support for transient / object cache for calendar query
+* New: Event date start/end query parameters accept any format recognizable by strtotime
+* Tweak: Improved WPML & Polylang compatibility, including permalink translation
 
 = 1.5.4 =
 * Fix: Country field error in organizer details
@@ -309,6 +318,7 @@ Initial release
 
 == Upgrade Notice ==
 
-= 1.5.4 =
-* Fix: Country field error in organizer details
-* Tweak: Enhanced country field backward compatibility
+= 1.6.0 =
+* New: Locations list page
+* New: Organizers list page
+* New: Support for transient / object cache for calendar query

@@ -8,35 +8,37 @@
  * @package Events Maker/Templates
  * @since 	1.2.0
  */
- 
-if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
+if ( ! defined( 'ABSPATH' ) )
+	exit; // exit if accessed directly
+	
 // locations
-$locations = em_get_location(get_queried_object_id());
+if ( is_tax() )
+// single location page
+	$locations = em_get_location( (int) get_queried_object_id() );
+else
+// locations archive page
+	$locations = em_get_locations();
 
 // locations available?
-if (!isset($locations) || empty($locations))
+if ( empty( $locations ) )
 	return;
 
-?>
-
-<?php
-$args = apply_filters('em_loop_event_google_map_args', array(
-	'width' => '100%',
-	'height' => '300px',
-	'zoom' => 15,
-	'maptype' => 'roadmap',
-	'maptypecontrol' => true,
-	'zoomcontrol' => true,
-	'streetviewcontrol' => true,
+$args = apply_filters( 'em_loop_event_google_map_args', array(
+	'width'				 => '100%',
+	'height'			 => '300px',
+	'zoom'				 => 15,
+	'maptype'			 => 'roadmap',
+	'maptypecontrol'	 => true,
+	'zoomcontrol'		 => true,
+	'streetviewcontrol'	 => true,
 	'overviewmapcontrol' => false,
-	'pancontrol' => false,
-	'rotatecontrol' => false,
-	'scalecontrol' => false,
-	'draggable' => true,
-	'keyboardshortcuts' => true,
-	'scrollzoom' => true
-));
+	'pancontrol'		 => false,
+	'rotatecontrol'		 => false,
+	'scalecontrol'		 => false,
+	'draggable'			 => true,
+	'keyboardshortcuts'	 => true,
+	'scrollzoom'		 => true
+	) );
 
-em_display_google_map($args, $locations);
-?>
+em_display_google_map( $args, $locations );

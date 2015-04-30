@@ -8,9 +8,8 @@
  * @package Events Maker/Templates
  * @since 	1.1.0
  */
- 
-if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
-em_get_template('archive-event.php');
+if ( ! defined( 'ABSPATH' ) )
+	exit; // exit if accessed directly
 
-?>
+em_get_template( 'archive-event.php' );

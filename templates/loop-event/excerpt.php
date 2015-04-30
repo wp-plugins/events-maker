@@ -8,15 +8,15 @@
  * @package Events Maker/Templates
  * @since 	1.2.0
  */
- 
-if (!defined('ABSPATH')) exit; // Exit if accessed directly
+
+if ( ! defined( 'ABSPATH' ) )
+	exit; // exit if accessed directly
 
 global $post;
-
 ?>
 
 <div class="entry-content description">
-	
-	<?php echo apply_filters('em_loop_event_excerpt', get_the_excerpt()); ?>
-	
+
+	<?php echo apply_filters( 'em_loop_event_excerpt', get_the_excerpt() ); ?>
+
 </div>

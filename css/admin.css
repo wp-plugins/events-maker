@@ -66,6 +66,9 @@
 .events-maker-settings .description code strong {
     font-weight: bold;
 }
+.events-maker-settings .create-page {
+	vertical-align: middle;
+}
 /* Events list */
 .tablenav.top .alignleft.actions select[name="m"] {
     display: none;

@@ -2,7 +2,7 @@
 /*
 Plugin Name: Events Maker
 Description: Fully featured event management system including recurring events, locations management, full calendar, iCal feed/files, google maps and more.
-Version: 1.6.0
+Version: 1.6.1
 Author: dFactory
 Author URI: http://www.dfactory.eu/
 Plugin URI: http://www.dfactory.eu/plugins/events-maker/
@@ -52,7 +52,7 @@ include_once( EVENTS_MAKER_PATH . 'includes/libraries/translate-rewrite-slugs.ph
  * Events Maker class.
  *
  * @class Events_Maker
- * @version	1.6.0
+ * @version	1.6.1
  */
 final class Events_Maker {
 
@@ -154,7 +154,7 @@ final class Events_Maker {
 			'event_locations_rewrite_slug'	 => 'location',
 			'event_organizers_rewrite_slug'	 => 'organizer'
 		),
-		'version'		 => '1.6.0'
+		'version'		 => '1.6.1'
 	);
 	private $transient_id = '';
 

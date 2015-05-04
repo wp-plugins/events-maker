@@ -191,7 +191,7 @@ class WPML_Translate_Post_Type {
 							add_permastruct( $post_type . '_' . $lang, "{$args->rewrite['slug']}/%$post_type%", $permastruct_args );
 						} else {
 							// if "Keep /language/ in pretty permalinks" is enabled
-							if ( $polylang->options['rewrite'] == 0 && ! ( $polylang->options['hide_default'] && $lang == $this->default_lang ) ) {
+							if ( $polylang->options['rewrite'] == 0 && ! ( $polylang->options['hide_default'] && $lang == pll_default_language() ) ) {
 								add_permastruct( $post_type . '_' . $lang, 'language/' . "%language%/{$args->rewrite['slug']}/%$post_type%", $permastruct_args );
 							} else {
 								add_permastruct( $post_type . '_' . $lang, "%language%/{$args->rewrite['slug']}/%$post_type%", $permastruct_args );

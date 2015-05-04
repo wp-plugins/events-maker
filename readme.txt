@@ -4,7 +4,7 @@ Donate link: http://www.dfactory.eu/
 Tags: event, event categories, events management, event management, events manager, event manager, event organizer, events calendar, events maker, google map, map, locations, organizers, widget, attendance, attendee, Booking, calendar, event registration, ticket, tickets, ticketing, bookings
 Requires at least: 3.5
 Tested up to: 4.2.1
-Stable tag: 1.6.0
+Stable tag: 1.6.1
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -46,7 +46,7 @@ Events Maker allows you to create and manage events, categories, locations and o
 * Full Calendar page
 * Automatic iCal feed/files support
 * Advanced recurring events, including daily, monthly, yearly and custom occurrences
-* Compatibility with Twenty Thirteen and Twenty Fourteen themes 
+* Compatibility with Twenty Thirteen, Twenty Fourteen and Twenty Fifteen themes 
 * Featured events
 * Event Categories and Tags
 * Event Ogranizers
@@ -117,6 +117,10 @@ A. Chances are, someone else has asked it. Check out the support forum at: http:
 6. screenshot-6.png
 
 == Changelog ==
+
+= 1.6.1 =
+* Fix: WPML permalinks translation issue for languages other than default
+* Fix: pll_default_language() missing in Polylang permalinks translation
 
 = 1.6.0 =
 * New: Locations list page
@@ -318,7 +322,6 @@ Initial release
 
 == Upgrade Notice ==
 
-= 1.6.0 =
-* New: Locations list page
-* New: Organizers list page
-* New: Support for transient / object cache for calendar query
+= 1.6.1 =
+* Fix: WPML permalinks translation issue for languages other than default
+* Fix: pll_default_language() missing in Polylang permalinks translation

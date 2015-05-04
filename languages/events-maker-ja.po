@@ -1,0 +1,1067 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Events Maker\n"
+"POT-Creation-Date: 2013-09-16 13:09+0100\n"
+"PO-Revision-Date: 2013-09-18 23:18+0900\n"
+"Last-Translator: \n"
+"Language-Team: stranger-jp\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: gettext;gettext_noop;__;_e;esc_attr__;esc_attr_e;"
+"_n:1,2;_x:1,2c\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+msgid "US Dollars (&#36;)"
+msgstr "米ドル(&#36;)"
+
+msgid "Euros (&euro;)"
+msgstr "ユーロ(&euro;)"
+
+msgid "Pounds Sterling (&pound;)"
+msgstr "英ポンド(&pound;)"
+
+msgid "Australian Dollars (&#36;)"
+msgstr "オーストラリアドル(&#36;)"
+
+msgid "Brazilian Real (R&#36;)"
+msgstr "ブラジル・レアル(R&#36;)"
+
+msgid "Canadian Dollars (&#36;)"
+msgstr "カナダドル(&#36;)"
+
+msgid "Czech Koruna"
+msgstr "チェコ・コルナ"
+
+msgid "Danish Krone"
+msgstr "デンマーク・クローネ"
+
+msgid "Hong Kong Dollar (&#36;)"
+msgstr "香港ドル(&#36;)"
+
+msgid "Hungarian Forint"
+msgstr "ハンガリー・フォリント"
+
+msgid "Israeli Shekel (&#8362;)"
+msgstr "イスラエル・シュケル(&#8362;)"
+
+msgid "Japanese Yen (&yen;)"
+msgstr "日本円 (&yen;)"
+
+msgid "Malaysian Ringgits"
+msgstr "マレーシアリンギ"
+
+msgid "Mexican Peso (&#36;)"
+msgstr "メキシコ・ペソ(&#36;)"
+
+msgid "New Zealand Dollar (&#36;)"
+msgstr "ニュージーランド・ドル(&#36;)"
+
+msgid "Norwegian Krone"
+msgstr "ノルウェークローネ"
+
+msgid "Philippine Pesos"
+msgstr "フィリピンペソ"
+
+msgid "Polish Zloty"
+msgstr "ポーランド・ズロチ"
+
+msgid "Singapore Dollar (&#36;)"
+msgstr "シンガポール・ドル(&#36;)"
+
+msgid "Swedish Krona"
+msgstr "スウェーデン・クローナ"
+
+msgid "Swiss Franc"
+msgstr "スイスフラン"
+
+msgid "Taiwan New Dollars"
+msgstr "台湾新ドル"
+
+msgid "Thai Baht (&#3647;)"
+msgstr "タイ・バーツ(&#3647;)"
+
+msgid "Indian Rupee (&#8377;)"
+msgstr "インドルピー (&#8377;)"
+
+msgid "Turkish Lira (&#8378;)"
+msgstr "トルコリラ (&#8378;)"
+
+msgid "Iranian Rial (&#65020;)"
+msgstr "イランリアル (&#65020;)"
+
+msgid "before price"
+msgstr "価格の前"
+
+msgid "after price"
+msgstr "価格の後"
+
+msgid "Search Event Categories"
+msgstr "検索イベントカテゴリー"
+
+msgid "All Event Categories"
+msgstr "すべてのイベントカテゴリ"
+
+msgid "Parent Event Category"
+msgstr "親イベントカテゴリ"
+
+msgid "Parent Event Category:"
+msgstr "親イベントのカテゴリ:"
+
+msgid "Edit Event Category"
+msgstr "イベントのカテゴリの編集"
+
+msgid "View Event Category"
+msgstr "イベントカテゴリを見る"
+
+msgid "Update Event Category"
+msgstr "イベントカテゴリを更新"
+
+msgid "Add New Event Category"
+msgstr "イベントカテゴリを追加"
+
+msgid "New Event Category Name"
+msgstr "イベントのカテゴリ名"
+
+msgid "Event Categories"
+msgstr "イベントカテゴリ"
+
+msgid "Search Event Locations"
+msgstr "検索イベント場所"
+
+msgid "All Event Locations"
+msgstr "すべてのイベントの場所"
+
+msgid "Parent Event Location"
+msgstr "親イベント場所"
+
+msgid "Parent Event Location:"
+msgstr "親イベント場所:"
+
+msgid "Edit Event Location"
+msgstr "イベントロケーションの編集"
+
+msgid "View Event Location"
+msgstr "イベントの場所を表示"
+
+msgid "Update Event Location"
+msgstr "イベントの場所を更新"
+
+msgid "Add New Event Location"
+msgstr "イベントの場所を追加"
+
+msgid "New Event Location Name"
+msgstr "イベントのロケーション名"
+
+msgid "Locations"
+msgstr "場所"
+
+msgid "Search Event Tags"
+msgstr "検索イベントタグ"
+
+msgid "Popular Event Tags"
+msgstr "人気イベントタグ"
+
+msgid "All Event Tags"
+msgstr "全てのイベントタグ"
+
+msgid "Edit Event Tag"
+msgstr "イベントのタグの編集する"
+
+msgid "Update Event Tag"
+msgstr "イベントタグを更新"
+
+msgid "Add New Event Tag"
+msgstr "イベントタグの追加"
+
+msgid "New Event Tag Name"
+msgstr "イベントタグ名"
+
+msgid "Separate event tags with commas"
+msgstr "カンマで区切りイベントタグ"
+
+msgid "Add or remove event tags"
+msgstr "イベントタグを追加または削除"
+
+msgid "Choose from the most used event tags"
+msgstr "最も使用されるイベントタグから選択してください。"
+
+msgid "Event Tags"
+msgstr "イベントタグ"
+
+msgid "Search Event Organizers"
+msgstr "イベント主催者検索"
+
+msgid "All Event Organizers"
+msgstr "すべてのイベント主催者"
+
+msgid "Parent Event Organizer"
+msgstr "親イベント主催者"
+
+msgid "Parent Event Organizer:"
+msgstr "親イベント主催者:"
+
+msgid "Edit Event Organizer"
+msgstr "イベント主催者の編集"
+
+msgid "View Event Organizer"
+msgstr "イベントの主催者を見る"
+
+msgid "Update Event Organizer"
+msgstr "イベント主催者を更新"
+
+msgid "Add New Event Organizer"
+msgstr "イベント主催者を追加"
+
+msgid "New Event Organizer Name"
+msgstr "イベント主催者名"
+
+msgid "Organizers"
+msgstr "主催者"
+
+msgid "Events"
+msgstr "イベント"
+
+msgid "All Events"
+msgstr "すべてのイベント"
+
+msgid "Add New"
+msgstr "新規追加"
+
+msgid "Add New Event"
+msgstr "新規イベントを追加"
+
+msgid "Edit Event"
+msgstr "イベントの編集"
+
+msgid "New Event"
+msgstr "新規イベント"
+
+msgid "View Event"
+msgstr "イベントを見る"
+
+msgid "Event Archive"
+msgstr "イベントアーカイブ"
+
+msgid "Search Event"
+msgstr "イベントを検索"
+
+msgid "No events found"
+msgstr "イベントが見つかりませんでした。"
+
+msgid "No events found in trash"
+msgstr "イベントがゴミ箱に見つかりませんでした。"
+
+msgid "Event updated. <a href=\"%s\">View event</a>"
+msgstr "イベントを更新しました。<a href=\"%s\">イベントを表示</a>"
+
+msgid "Custom field updated."
+msgstr "カスタムフィールドを更新しました。"
+
+msgid "Custom field deleted."
+msgstr "カスタムフィールドを削除しました。"
+
+msgid "Event updated."
+msgstr "イベントを更新しました。"
+
+msgid "Event restored to revision from %s"
+msgstr "イベントは%sからリビジョンに復元しました。"
+
+msgid "Event published. <a href=\"%s\">View event</a>"
+msgstr "イベントを公開しました。<a href=\"%s\">イベントを表示</a>"
+
+msgid "Event saved."
+msgstr "イベントを保存しました。"
+
+msgid "Event submitted. <a target=\"_blank\" href=\"%s\">Preview event</a>"
+msgstr "イベントが送信されました。<a target=\"_blank\" href=\"%s\">イベントを表示</a>"
+
+msgid "Event scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s\">Preview event</a>"
+msgstr "イベント予定:<strong>%1$s</strong>。<a target=\"_blank\" href=\"%2$s\">イベントを表示</a>"
+
+msgid "M j, Y @ G:i"
+msgstr "M j, Y @ G:i"
+
+msgid "Event draft updated. <a target=\"_blank\" href=\"%s\">Preview event</a>"
+msgstr "イベント案を更新しました。<a target=\"_blank\" href=\"%s\">イベントを表示</a>"
+
+msgid "Are you sure you want to reset these settings to defaults?"
+msgstr "これらの設定をデフォルトにリセットしてもよろしいですか？"
+
+msgid "Support"
+msgstr "サポート"
+
+msgid "No Events"
+msgstr "イベントはありません"
+
+msgid "Start Date"
+msgstr "開始日"
+
+msgid "End Date"
+msgstr "終了日"
+
+msgid "Start"
+msgstr "スタート"
+
+msgid "End"
+msgstr "終わり"
+
+msgid "Tickets"
+msgstr "チケット"
+
+msgid "Paid"
+msgstr "支払い済"
+
+msgid "Free"
+msgstr "フリー"
+
+msgid "Ticket Name"
+msgstr "チケット名"
+
+msgid "Price"
+msgstr "価格"
+
+msgid "Invalid Until date."
+msgstr "無効までの日。"
+
+msgid "Such Until date does not exists."
+msgstr "このような日付が存在しません。"
+
+msgid "Invalid Start date."
+msgstr "開始日が無効です。"
+
+msgid "Such Start date does not exists."
+msgstr "このような開始日が存在しません。"
+
+msgid "Invalid Start time."
+msgstr "開始時刻が無効です。"
+
+msgid "Such Start time does not exists."
+msgstr "開始時刻が存在しません。"
+
+msgid "Invalid End date."
+msgstr "終了日が無効です。"
+
+msgid "Such End date does not exists."
+msgstr "終了日が存在しません。"
+
+msgid "Invalid End time."
+msgstr "終了時刻が無効です。"
+
+msgid "Such End time does not exists."
+msgstr "終了時刻は存在しません。"
+
+msgid "No tickets were added to a paid event."
+msgstr "チケットはありません。支払いはイベントに追加されませんでした。"
+
+msgid "End date is earlier than the start date."
+msgstr "終了日が開始日より前である。"
+
+msgid "Event Display Options"
+msgstr "イベントの表示オプション"
+
+msgid "Event Date and Time"
+msgstr "イベントの日付と時刻"
+
+msgid "Event Tickets"
+msgstr "イベントチケット"
+
+msgid "Delete"
+msgstr "削除"
+
+msgid "Start date/time"
+msgstr "日付/時刻を開始"
+
+msgid "End date/time"
+msgstr "終了日付/時刻"
+
+msgid "Are you sure you want to delete this ticket?"
+msgstr "このチケットを削除してもよろしいですか？"
+
+msgid "All-day event?"
+msgstr "終日のイベント"
+
+msgid "Is this a free event?"
+msgstr "無料のイベント"
+
+msgid "Add new ticket"
+msgstr "チケットを追加"
+
+msgid "Buy tickets URL"
+msgstr "チケット購入URL"
+
+msgid "Display Google Map"
+msgstr "Googleマップを表示"
+
+msgid "Display Tickets Info"
+msgstr "チケットの情報を表示"
+
+msgid "Display Organizer Details"
+msgstr "主催者の詳細を表示"
+
+msgid "Display Location Details"
+msgstr "所在地の詳細を表示"
+
+msgid "Enable"
+msgstr "有効"
+
+msgid "Disable"
+msgstr "無効"
+
+msgid "Publish date"
+msgstr "公開日"
+
+msgid "Events start date"
+msgstr "イベント開始日"
+
+msgid "Events end date"
+msgstr "イベント終了日"
+
+msgid "Ascending"
+msgstr "昇順"
+
+msgid "Descending"
+msgstr "降順"
+
+msgid "title"
+msgstr "タイトル"
+
+msgid "editor"
+msgstr "エディタ"
+
+msgid "author"
+msgstr "投稿者"
+
+msgid "thumbnail"
+msgstr "サムネイル"
+
+msgid "excerpt"
+msgstr "抜粋"
+
+msgid "custom fields"
+msgstr "カスタムフィールド"
+
+msgid "comments"
+msgstr "注釈"
+
+msgid "trackbacks"
+msgstr "トラックバック"
+
+msgid "revisions"
+msgstr "リビジョン"
+
+msgid "General settings saved."
+msgstr "一般設定を保存しました。"
+
+msgid "Templates settings saved."
+msgstr "テンプレート設定を保存しました。"
+
+msgid "Capabilities settings saved."
+msgstr "機能設定を保存しました。"
+
+msgid "Permalinks settings saved."
+msgstr "パーマリンクの設定を保存しました。"
+
+msgid "General settings restored to defaults."
+msgstr "一般設定がデフォルトにリセットされました。"
+
+msgid "Templates settings restored to defaults."
+msgstr "テンプレート設定がデフォルトにリセットされました。"
+
+msgid "Capabilities settings restored to defaults."
+msgstr "機能設定はデフォルトにリセットされました。"
+
+msgid "Permalinks settings restored to defaults."
+msgstr "パーマリンク設定がデフォルトにリセットされました。"
+
+msgid "There is no such menu."
+msgstr "そのようなメニューはありません。"
+
+msgid "Menu name can not be empty."
+msgstr "メニュー名は空にできません。"
+
+msgid "General"
+msgstr "一般"
+
+msgid "Templates"
+msgstr "テンプレート"
+
+msgid "Capabilities"
+msgstr "機能"
+
+msgid "Permalinks"
+msgstr "パーマリンク"
+
+msgid "Publish Events"
+msgstr "イベントを発行"
+
+msgid "Edit Events"
+msgstr "イベントの編集"
+
+msgid "Edit Others Events"
+msgstr "その他イベントの編集"
+
+msgid "Edit Published Events"
+msgstr "公開されたイベントの編集"
+
+msgid "Delete Published Events"
+msgstr "公開されたイベントを削除"
+
+msgid "Delete Events"
+msgstr "イベントの削除"
+
+msgid "Delete Others Events"
+msgstr "その他イベントの削除"
+
+msgid "Read Private Events"
+msgstr "プライベートイベントを読む"
+
+msgid "Manage Event Categories"
+msgstr "イベントカテゴリの管理"
+
+msgid "Manage Event Tags"
+msgstr "イベントタグの管理"
+
+msgid "Manage Event Locations"
+msgstr "イベントの場所の管理"
+
+msgid "Manage Event Organizers"
+msgstr "イベント主催者の管理"
+
+msgid "Settings"
+msgstr "設定"
+
+msgid "Events Maker"
+msgstr "イベントメーカー"
+
+msgid "Reset to defaults"
+msgstr "デフォルトにリセット"
+
+msgid "Need support?"
+msgstr "Need support?"
+
+msgid "If you are having problems with this plugin, please talk about them in the"
+msgstr "If you are having problems with this plugin, please talk about them in the"
+
+msgid "Support forum"
+msgstr "Support forum"
+
+msgid "Do you like this plugin?"
+msgstr "Do you like this plugin?"
+
+msgid "Rate it 5"
+msgstr "Rate it 5"
+
+msgid "on WordPress.org"
+msgstr "on WordPress.org"
+
+msgid "Blog about it & link to the"
+msgstr "Blog about it & link to the"
+
+msgid "plugin page"
+msgstr "plugin page"
+
+msgid "Check out our other"
+msgstr "Check out our other"
+
+msgid "WordPress plugins"
+msgstr "WordPress plugins"
+
+msgid "Created by"
+msgstr "Created by"
+
+msgid "General settings"
+msgstr "全般設定"
+
+msgid "Events features support"
+msgstr "イベント機能のサポート"
+
+msgid "Use Event Tags"
+msgstr "イベントタグを使用"
+
+msgid "Use Event Organizers"
+msgstr "イベント主催者を使用"
+
+msgid "Use Event Tickets"
+msgstr "イベントチケットを使用"
+
+msgid "Currency"
+msgstr "通貨"
+
+msgid "Currency Position"
+msgstr "通貨記号の位置"
+
+msgid "Currency Symbol"
+msgstr "通貨文字"
+
+msgid "Currency display format"
+msgstr "通貨表示形式"
+
+msgid "Sort Events by"
+msgstr "イベントのソート"
+
+msgid "Sort order"
+msgstr "ソート順序"
+
+msgid "Show past events"
+msgstr "過去のイベントを表示"
+
+msgid "Show link in menu"
+msgstr "メニューのリンクを表示"
+
+msgid "Expire current event"
+msgstr "現在のイベントを期限切"
+
+msgid "Date and time format"
+msgstr "日付と時刻の形式"
+
+msgid "First day of week"
+msgstr "週の最初の日"
+
+msgid "Delete plugin settings on deactivation"
+msgstr "プラグインの設定を削除"
+
+msgid "Templates settings"
+msgstr "テンプレート設定"
+
+msgid "Use default templates"
+msgstr "デフォルトのテンプレートを使用"
+
+msgid "Events archive"
+msgstr "イベントアーカイブ"
+
+msgid "Single event"
+msgstr "単発イベント"
+
+msgid "Event Locations"
+msgstr "イベントの場所"
+
+msgid "Event Organizers"
+msgstr "イベント主催者"
+
+msgid "Capabilities settings"
+msgstr "機能設定"
+
+msgid "Permalinks settings"
+msgstr "パーマリンク設定"
+
+msgid "Events base"
+msgstr "イベントベース"
+
+msgid "Categories"
+msgstr "カテゴリ"
+
+msgid "Tags"
+msgstr "タグ"
+
+msgid "Select which features would you like to enable for your events."
+msgstr "どの機能をイベントで有効にするか選択します。"
+
+msgid "Select how to order your events list (works for both: admin and front-end default query)"
+msgstr "イベントリストのオーダー方法を選択(両方のための作品 : 管理者とフロントエンドのデフォルトのクエリ)"
+
+msgid "Select events list order."
+msgstr "イベントリストの順番を選択します。"
+
+msgid "Select whether to include past events in events list."
+msgstr "イベントリストで過去のイベントを含めるかどうかを選択します。"
+
+msgid "Select if you want to automatically add events archive link to nav menu."
+msgstr "自動的にナビゲーションメニューにイベントアーカイブリンクを追加したい場合は有効にします。"
+
+msgid "Menu"
+msgstr "メニュー"
+
+msgid "Title"
+msgstr "タイトル"
+
+msgid "Note: there is no menu to which you could add events archive link."
+msgstr "注:イベントのアーカイブリンクを追加することができるメニューがありません。"
+
+msgid "Select how to handle already started events."
+msgstr "開始済イベントを処理する方法を選択します。"
+
+msgid "Date"
+msgstr "日付"
+
+msgid "Time"
+msgstr "時間"
+
+msgid "Enter your preffered date and time formatting."
+msgstr "チェックインとチェックアウトの日付と時刻の書式を入力します。"
+
+msgid "Select preffered first day of the week for the calendar display."
+msgstr "カレンダーの週の最初の曜日を選択します。"
+
+msgid "Enable if you want to use Event Organizers (including organizer contact details)."
+msgstr "イベント主催者(主催者の連絡先の詳細を含む)を使用する場合は有効にします。"
+
+msgid "Enable if you want to use Event Tickets (including free events, paid events and multiple ticket types)."
+msgstr "イベントチケット(無料イベント、有料イベントと複数のチケットタイプを含む)を使用する場合は有効にします。"
+
+msgid "Choose the currency that will be used for ticket prices."
+msgstr "チケットの価格に使用する通貨を選択してください。"
+
+msgid "Choose the location of the currency sign."
+msgstr "通貨記号の表示場所を選択します。"
+
+msgid "This will appear next to all the currency figures on the website. Ex. $, USD, ?..."
+msgstr "ウェブサイト上のすべての通貨の数字の横に表示されます。 Ex. $, USD, ?..."
+
+msgid "This determines how your currency is displayed. Ex. 1,234.56 or 1,200 or 1200."
+msgstr "通貨をどのように表示するか選択します。 例 1,234.56または1200または1200 。"
+
+msgid "Enable if you want to use Event Tags."
+msgstr "イベントタグを使用する場合は有効にします。"
+
+msgid "Enable if you want all plugin data to be deleted on deactivation."
+msgstr "プラグインの停止時にすべてのデータを削除する場合は有効にします。"
+
+msgid "For each of the events pages, the corresponding template is used. To use your own template simply give it the same name and store in your theme folder. By default, if Events Maker can't find a template in your theme directory, it will use its own default template. To prevent this, uncheck this option. WordPress will then decide which template from your theme's folder to use."
+msgstr "イベント・ページの各々には対応するテンプレートが使用されます。独自のテンプレートを使用するには、テーマフォルダ内に同じ名前や店舗を与えます。デフォルトでは、もしイベントメーカーがテーマディレクトリ内のテンプレートを見つけることができません。それは独自のデフォルトのテンプレートを使用するからです。これを防ぐにはこのオプションをオフにします。 WordPressは使用するためにテーマのフォルダからそのテンプレートを決定します。"
+
+msgid "General Events root slug to prefix all your events pages with."
+msgstr "すべてのイベントページの一般的なイベントのルートスラグ。"
+
+msgid "Single event page slug."
+msgstr "単一のイベントページスラグ。"
+
+msgid "Event Locations page slug."
+msgstr "イベントの場所]ページスラグ。"
+
+msgid "Event Categories page slug."
+msgstr "イベントカテゴリページスラグ。"
+
+msgid "Event Tags page slug."
+msgstr "イベントタグのページスラグ。"
+
+msgid "Event Organizers page slug."
+msgstr "イベント主催者のページスラグ。"
+
+msgid "Role"
+msgstr "役割"
+
+msgid "None"
+msgstr "なし"
+
+msgid "Map"
+msgstr "マップ"
+
+msgid "Address"
+msgstr "住所"
+
+msgid "City"
+msgstr "市"
+
+msgid "State / Province"
+msgstr "都道府県"
+
+msgid "Zip Code"
+msgstr "郵便番号"
+
+msgid "Country"
+msgstr "国"
+
+msgid "Contact name"
+msgstr "担当者"
+
+msgid "Phone"
+msgstr "電話"
+
+msgid "E-mail"
+msgstr "E-メール"
+
+msgid "Website"
+msgstr "ウェブサイト"
+
+msgid "Welcome to Events Maker"
+msgstr "イベントメーカーへようこそ"
+
+msgid "Events Maker is an easy to use but flexible events management plugin made the WordPress way."
+msgstr "イベントメーカーは使いやすい柔軟なイベント管理プラグインです。"
+
+msgid "dFactory Plugins"
+msgstr "dFactory Plugins"
+
+msgid "About Events Maker"
+msgstr "イベントメーカーについて"
+
+msgid "Main Features"
+msgstr "主な特長"
+
+msgid "Easy Event Management"
+msgstr "簡単なイベント管理"
+
+msgid "Set up date and time, title, desciption and other details of your events in a WordPress native interface."
+msgstr "日時、タイトル、説明とWordPressのネイティブインターフェイスでイベントの他の詳細を設定します。"
+
+msgid "Locations and Organizers"
+msgstr "場所と主催者"
+
+msgid "Organize your events in reusable Categories, Tags, Locations and Organizers."
+msgstr "再利用可能なカテゴリ、タグ、場所と主催者でイベントを整理します。"
+
+msgid "Multiple Event Tickets"
+msgstr "複数のイベントチケット"
+
+msgid "Create free or paid events and add as many different types of tickets as you need."
+msgstr "無料または有料のイベントを作成し、必要に応じてチケットの多くの異なるタイプとして追加します。"
+
+msgid "6 Widgets incl. Ajax Calendar"
+msgstr "6つウィジェット。 Ajaxのカレンダー"
+
+msgid "Complete set of widgets allow you to display event details anywhere in a theme."
+msgstr "ウィジェットでテーマのどこにイベントの詳細を表示するか設定可能です。"
+
+msgid "Highly Customizable Settings"
+msgstr "高度にカスタマイズ可能な設定"
+
+msgid "Easily control different areas of the plugin including Permalinks, Capabilities and many other."
+msgstr "簡単に他のパーマリンク、機能と多く含むプラグインのさまざまな領域を制御します。"
+
+msgid "WPML Compatibility"
+msgstr "WPMLの互換性"
+
+msgid "Are you running a multilingual events site? Events Maker is fully compatible with WPML (and probably other multilingual plugins too)."
+msgstr "多言語のイベントサイトを実行していますか？イベントメーカーはWPMLと完全に互換性があります。"
+
+msgid "Under the Hood"
+msgstr "ボンネットの中"
+
+msgid "Custom Post Types & Custom Taxonomies"
+msgstr "カスタム投稿タイプとカスタム分類法"
+
+msgid "Events Maker is built using WordPress custom post types, custom taxonomies and custom post fields. "
+msgstr "イベントメーカーは、 WordPressのカスタム投稿タイプ、カスタムタクソノミーおよびカスタム投稿フィールドを使用して構築されています。"
+
+msgid "Filters and Actions"
+msgstr "フィルタとアクション"
+
+msgid "We have included various hooks and filters so you can plug-into these hooks to extend the functionalities."
+msgstr "私たちは機能を拡張するための様々なフックとフィルタ次はプラグインにすることができますので、これらのフックが含まれています。"
+
+msgid "Custom Functions"
+msgstr "カスタム関数"
+
+msgid "There are 26 custom functions available. You can use it to make Events Maker suite your individual needs."
+msgstr "利用できる26のカスタム関数があります。イベントメーカーは個々のニーズに合わせて作って使用することができます。"
+
+msgid "Go to Events Maker Settings"
+msgstr "イベントメーカーの設定に進む"
+
+msgid "Events Archives"
+msgstr "イベントアーカイブ"
+
+msgid "Displays events archives"
+msgstr "ディスプレイイベントアーカイブ"
+
+msgid "Monthly"
+msgstr "毎月"
+
+msgid "Yearly"
+msgstr "毎年"
+
+msgid "Display as dropdown"
+msgstr "ドロップダウンリストとして表示"
+
+msgid "Show amount of events"
+msgstr "イベントの量を表示します"
+
+msgid "Display Type"
+msgstr "ディスプレイタイプ"
+
+msgid "Order"
+msgstr "オーダー"
+
+msgid "Limit"
+msgstr "制限"
+
+msgid "Events Calendar"
+msgstr "イベントカレンダー"
+
+msgid "Displays events calendar"
+msgstr "表示イベントカレンダー"
+
+msgid "all"
+msgstr "すべて"
+
+msgid "selected"
+msgstr "選択"
+
+msgid "Highlight weekends"
+msgstr "週末をハイライト表示"
+
+msgid "Events List"
+msgstr "イベントリスト"
+
+msgid "Displays a list of events"
+msgstr "イベントのリストを表示します"
+
+msgid "Start date"
+msgstr "開始日"
+
+msgid "End date"
+msgstr "終了日"
+
+msgid "Number of events"
+msgstr "イベントの数"
+
+msgid "Order by"
+msgstr "順"
+
+msgid "Display past events"
+msgstr "過去のイベントを表示"
+
+msgid "Display event thumbnail"
+msgstr "イベントのサムネイルを表示する"
+
+msgid "Display event excerpt"
+msgstr "イベントの抜粋を表示"
+
+msgid "No events message"
+msgstr "イベントメッセージません"
+
+msgid "Date format"
+msgstr "日付フォーマット"
+
+msgid "Time format"
+msgstr "時刻の形式"
+
+msgid "Events Categories"
+msgstr "イベントカテゴリー"
+
+msgid "Displays a list of events categories"
+msgstr "イベントのカテゴリの一覧を表示します"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "Name"
+msgstr "名前"
+
+msgid "Show hierarchy"
+msgstr "階層を表示する"
+
+msgid "Events Locations"
+msgstr "イベントの場所"
+
+msgid "Displays a list of events locations"
+msgstr "イベントの場所のリストを表示します"
+
+msgid "Events Organizers"
+msgstr "イベント主催者"
+
+msgid "Displays a list of events organizers"
+msgstr "イベントの主催者のリストを表示します"
+
+msgid "Event Daily Archives: %s"
+msgstr "イベントデイリーアーカイブ: %s"
+
+msgid "Event Monthly Archives: %s"
+msgstr "イベント月別アーカイブ: %s"
+
+msgid "Event Yearly Archives: %s"
+msgstr "イベント毎年アーカイブ: %s"
+
+msgid "Category"
+msgstr "カテゴリ"
+
+msgid "Location"
+msgstr "場所"
+
+msgid "Organizer"
+msgstr "主催者"
+
+msgid "<strong>Tags: </strong>"
+msgstr "<strong>タグ: </strong>"
+
+msgid "Edit"
+msgstr "編集"
+
+msgid "Leave a reply"
+msgstr "応答を残し"
+
+msgid "1 Reply"
+msgstr "1件の返信"
+
+msgid "% Replies"
+msgstr "%件の返信"
+
+msgid "Next events <span class=\"meta-nav\">&rarr;</span>"
+msgstr "次のイベント<span class=\"meta-nav\">&rarr;</span>"
+
+msgid " <span class=\"meta-nav\">&larr;</span> Previous events"
+msgstr " <span class=\"meta-nav\">&larr;</span>過去のイベント"
+
+msgid "No Events Found"
+msgstr "イベントが見つかりません"
+
+msgid "Apologies, but no events were found."
+msgstr "申し訳ございません。イベントは見つかりませんでした。"
+
+msgid "Events Category: %s"
+msgstr "イベントカテゴリ: %s"
+
+msgid "Events Location: %s"
+msgstr "イベント場所: %s"
+
+msgid "Events Organizer: %s"
+msgstr "イベント主催者: %s"
+
+msgid "Email"
+msgstr "メール"
+
+msgid "Events Tag: %s"
+msgstr "イベントタグ: %s"
+
+msgctxt "taxonomy general name"
+msgid "Event Categories"
+msgstr "イベントカテゴリ"
+
+msgctxt "taxonomy singular name"
+msgid "Event Category"
+msgstr "イベントカテゴリ"
+
+msgctxt "taxonomy general name"
+msgid "Locations"
+msgstr "場所"
+
+msgctxt "taxonomy singular name"
+msgid "Event Location"
+msgstr "イベントの場所"
+
+msgctxt "taxonomy general name"
+msgid "Event Tags"
+msgstr "イベントタグ"
+
+msgctxt "taxonomy singular name"
+msgid "Event Tag"
+msgstr "イベントタグ"
+
+msgctxt "taxonomy general name"
+msgid "Organizers"
+msgstr "主催者"
+
+msgctxt "taxonomy singular name"
+msgid "Event Organizer"
+msgstr "イベント主催者"
+
+msgctxt "post type general name"
+msgid "Events"
+msgstr "イベント"
+
+msgctxt "post type singular name"
+msgid "Event"
+msgstr "イベント"
+
+msgctxt "monthly archives date format"
+msgid "F Y"
+msgstr ""
+
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr ""

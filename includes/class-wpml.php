@@ -83,11 +83,11 @@ class Events_Maker_WPML {
 		// check if WPML or Polylang is active
 		include_once(ABSPATH . 'wp-admin/includes/plugin.php' );
 
-		if ( is_plugin_active( 'polylang/polylang.php' ) ) {
+		if ( is_plugin_active( 'polylang/polylang.php' ) && class_exists( 'Polylang' ) ) {
 			global $polylang;
 
 			$plugin = 'Polylang';
-		} elseif ( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' ) && is_plugin_active( 'wpml-string-translation/plugin.php' ) ) {
+		} elseif ( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' ) && is_plugin_active( 'wpml-string-translation/plugin.php'  && class_exists( 'SitePress' ) ) ) {
 			global $sitepress;
 
 			$plugin = 'WPML';
@@ -102,7 +102,7 @@ class Events_Maker_WPML {
 		// Polylang
 		if ( $plugin === 'Polylang' ) {
 			// get registered languages
-			$registered_languages = $polylang->model->get_languages_list();
+			$registered_languages = $polylang->get_languages_list();
 
 			if ( ! empty( $registered_languages ) ) {
 				foreach ( $registered_languages as $language )
@@ -111,9 +111,8 @@ class Events_Maker_WPML {
 
 			// get default language
 			$default = pll_default_language();
-		}
 		// WPML
-		else {
+		} elseif ( $plugin === 'WPML' ) {
 			// get registered languages
 			$registered_languages = icl_get_languages();
 

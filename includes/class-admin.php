@@ -8,6 +8,8 @@ new Events_Maker_Admin();
  * Events_Maker_Admin Class.
  */
 class Events_Maker_Admin {
+	
+	private $notices = array();
 
 	public function __construct() {
 		// set instance
@@ -15,15 +17,45 @@ class Events_Maker_Admin {
 
 		// actions
 		add_action( 'admin_enqueue_scripts', array( &$this, 'admin_scripts_styles' ) );
-		add_action( 'admin_notices', array( &$this, 'admin_notices' ) );
+		add_action( 'admin_notices', array( &$this, 'pages_notice' ), 9 );
 		add_action( 'deleted_post', array( &$this, 'deleted_post_action_page' ) );
 		add_action( 'transition_post_status', array( &$this, 'transition_post_status_action_page' ), 10, 3 );
 	}
+	
+	/**
+	 * Add admin notices
+	 */
+	public function add_notice( $html = '', $status = 'error', $paragraph = false, $network = true ) {
+		$this->notices[] = array(
+			'html' 		=> $html,
+			'status' 	=> $status,
+			'paragraph' => $paragraph
+		);
+
+		add_action( 'admin_notices', array( &$this, 'display_notice') );
+
+		if( $network )
+			add_action( 'network_admin_notices', array( &$this, 'display_notice') );
+	}
 
 	/**
-	 * Print admin notices.
+	 * Print admin notices
 	 */
-	public function admin_notices() {
+	public function display_notice() {
+		foreach( $this->notices as $notice ) {
+			echo '
+			<div class="events-maker ' . $notice['status'] . '">
+				' . ( $notice['paragraph'] ? '<p>' : '' ) . '
+				' . $notice['html'] . '
+				' . ( $notice['paragraph'] ? '</p>' : '' ) . '
+			</div>';
+		}
+	}
+
+	/**
+	 * Pages admin notice.
+	 */
+	public function pages_notice() {
 		if ( ! current_user_can( 'manage_options' ) )
 			return false;
 
@@ -41,11 +73,8 @@ class Events_Maker_Admin {
 			$query_string = array();
 			parse_str( $_SERVER['QUERY_STRING'], $query_string );
 			$current_url = esc_url( add_query_arg( array_merge( (array) $query_string, array( 'em_action' => 'decline_pages' ) ), '', admin_url( trailingslashit( $pagenow ) ) ) );
-
-			echo '
-			<div id="em-pages-message" class="error">
-				<p>' . __( '<strong>Events Maker:</strong> One or more pages needs to be set up in order to make your events work properly.', 'events-maker' ) . ' <a href="' . esc_url( admin_url( 'edit.php?post_type=event&page=events-settings&tab=display' ) ) . '" class="button button-primary">' . esc_html__( 'Setup pages', 'events-maker' ) . '</a> <a href="' . esc_url( $current_url ) . '" class="button button-secondary">' . esc_html__( 'No, thank you', 'events-maker' ) . '</a></p>
-			</div>';
+			
+			$this->add_notice( __( '<strong>Events Maker:</strong> One or more pages needs to be set up in order to make your events work properly.', 'events-maker' ) . ' <a href="' . esc_url( admin_url( 'edit.php?post_type=event&page=events-settings&tab=display' ) ) . '" class="button button-primary">' . esc_html__( 'Setup pages', 'events-maker' ) . '</a> <a href="' . esc_url( $current_url ) . '" class="button button-secondary">' . esc_html__( 'No, thank you', 'events-maker' ) . '</a>', 'error', true );
 		}
 	}
 

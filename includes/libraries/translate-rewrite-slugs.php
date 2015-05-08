@@ -84,7 +84,7 @@ if ( ! class_exists( 'WPML_Translate_Rewrite_Slugs' ) ) {
 				// stop Polylang from translating rewrite rules for these post types
 				add_filter( 'pll_rewrite_rules', array( &$this, 'pll_rewrite_rules_filter' ) );
 			} elseif ( $this->plugin === 'WPML') {
-				add_filter( 'icl_ls_languages', array( &$this, 'wpml_filter_langs' ) );
+				add_filter( 'icl_ls_languages', array( &$this, 'icl_ls_languages_filter' ) );
 			}
 		}
 	
@@ -267,7 +267,7 @@ if ( ! class_exists( 'WPML_Translate_Rewrite_Slugs' ) ) {
 				}
 			}
 	
-			return $post_link;
+			return apply_filters( 'wpml_translated_post_type_link', $post_link );
 		}
 	
 		/**
@@ -289,7 +289,7 @@ if ( ! class_exists( 'WPML_Translate_Rewrite_Slugs' ) ) {
 			if ( isset( $this->post_types[$archive_post_type] ) )
 				$link = $this->get_post_type_archive_link( $archive_post_type, $lang );
 	
-			return $link;
+			return apply_filters( 'wpml_translated_post_type_archive_link', $link );
 		}
 	
 		/**
@@ -329,8 +329,27 @@ if ( ! class_exists( 'WPML_Translate_Rewrite_Slugs' ) ) {
 					} else {
 						$struct = $wp_rewrite->root . $struct;
 					}
-	
-					$link = esc_url( home_url( user_trailingslashit( $struct, 'post_type_archive' ) ) );
+
+					if ( $this->plugin === 'Polylang' ) {
+						$link = esc_url( home_url( user_trailingslashit( $struct, 'post_type_archive' ) ) );
+					} elseif ( $this->plugin === 'WPML' ) {
+						global $sitepress;
+						
+						$options = get_option( 'icl_sitepress_settings' );
+					
+						// if language name added as parameter
+						if ( $options['language_negotiation_type'] == 3 ) {
+							$link = esc_url( untrailingslashit( $sitepress->convert_url( home_url( user_trailingslashit( $struct, 'post_type_archive' ) ), $lang ) ) );
+
+							if ( $lang === $this->default_lang ) {
+								$link = esc_url( remove_query_arg( 'lang', $link ) );
+							}
+
+						} else {
+							$link = esc_url( untrailingslashit( $sitepress->convert_url( home_url(), $lang ) ) . user_trailingslashit( $struct, 'post_type_archive' ) );
+						}
+					}
+
 				} else {
 					$link = esc_url( home_url( '?post_type=' . $post_type ) );
 				}
@@ -401,25 +420,23 @@ if ( ! class_exists( 'WPML_Translate_Rewrite_Slugs' ) ) {
 				}
 			}
 	
-			return $termlink;
+			return apply_filters( 'wpml_translated_term_link', $termlink );
 		}
 		
 		/**
 		 * Fix WPML language switcher urls
 		 */
-		public function wpml_filter_langs( $languages ) {
+		public function icl_ls_languages_filter( $languages ) {
 			if ( is_archive() ) {
 				$post_type = get_query_var('post_type');
 	
 				// if the post type is handle, let the "$this->get_post_type_archive_link" function handle this
 				if ( isset( $this->post_types[$post_type] ) ) {
-					if ( did_action( 'wp_footer' ) === 0 ) {
-						foreach ( $languages as $k => $language ) {
-							$languages[$k]['url'] = $this->get_post_type_archive_link( $post_type, $language['language_code'] );
-						} 
+					foreach ( $languages as $k => $language ) {
+						$languages[$k]['url'] = $this->get_post_type_archive_link( $post_type, $language['language_code'] );
 					}
 				}
-			}	
+			}
 			return $languages;
 		}
 	

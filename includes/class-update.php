@@ -56,7 +56,7 @@ class Events_Maker_Update {
 					update_option( 'events_maker_version', Events_Maker()->defaults['version'] );
 				}
 
-				Events_Maker()->display_notice( __( 'Datebase was succesfully updated. Enjoy new features!', 'events-maker' ), 'updated', true );
+				Events_Maker()->admin->add_notice( __( 'Datebase was succesfully updated. Enjoy new features!', 'events-maker' ), 'updated', true );
 			}
 		}
 
@@ -92,7 +92,7 @@ class Events_Maker_Update {
 			}
 
 			if ( $update_required )
-				Events_Maker()->display_notice( $update_1_html );
+				Events_Maker()->admin->add_notice( $update_1_html );
 
 			switch_to_blog( $current_blog_id );
 		}
@@ -104,7 +104,7 @@ class Events_Maker_Update {
 			if ( version_compare( $current_db_version, Events_Maker()->defaults['version'], '<' ) ) {
 				// is update 1 required?
 				if ( version_compare( $current_db_version, EVENTS_MAKER_UPDATE_VERSION_1, '<=' ) )
-					Events_Maker()->display_notice( $update_1_html );
+					Events_Maker()->admin->add_notice( $update_1_html );
 				else
 				// update plugin version
 					update_option( 'events_maker_version', Events_Maker()->defaults['version'] );

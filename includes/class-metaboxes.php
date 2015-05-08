@@ -606,7 +606,7 @@ class Events_Maker_Metaboxes {
 		if ( class_exists( 'SitePress' ) && array_key_exists( 'sitepress', $GLOBALS ) ) {
 			global $wpdb;
 	
-			$query = $wpdb->prepare( "SELECT language_code FROM {$wpdb->prefix}icl_translations WHERE element_type LIKE '%%post_%%' AND element_id = %d", $post_id );
+			$query = $wpdb->prepare( "SELECT language_code FROM {$wpdb->prefix}icl_translations WHERE element_type LIKE '%%post_%%' AND element_id = %d", $post_ID );
 
 			$language = $wpdb->get_row( $query, 'ARRAY_A' );
 
@@ -617,7 +617,7 @@ class Events_Maker_Metaboxes {
 		} elseif ( class_exists( 'Polylang' ) && function_exists( 'pll_default_language' ) ) {
 			global $polylang;
 
-			$language = $polylang->model->get_post_language( $post_id );
+			$language = $polylang->get_post_language( $post_ID );
 
 			if ( $language ) {
 				delete_transient( 'em_calendar_query-' . $language->slug );

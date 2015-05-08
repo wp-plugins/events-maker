@@ -404,6 +404,8 @@ if ( ! function_exists( 'em_display_event_date' ) ) {
 		$options = get_option( 'events_maker_general' );
 		$date_format = $options['datetime_format']['date'];
 		$time_format = $options['datetime_format']['time'];
+		
+		$format = apply_filters( 'em_display_event_date_format', $format );
 
 		// if format was set, use it
 		if ( ! empty( $format ) && is_array( $format ) ) {

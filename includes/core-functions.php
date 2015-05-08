@@ -860,8 +860,23 @@ function em_get_event_date_link( $year = 0, $month = 0, $day = 0 ) {
 	else
 		$link_date = compact( 'em_year' );
 
-	if ( ! empty( $archive ) && $wp_rewrite->using_mod_rewrite_permalinks()) {
+	if ( ! empty( $archive ) && $wp_rewrite->using_mod_rewrite_permalinks()) {		
+		// remove query args, if any
+		$query_args = array();
+		$url_parts = parse_url( $archive );
+		
+		if ( ! empty( $url_parts['query'] ) )
+			parse_str($url_parts['query'], $query_args);
+		
+		if ( $query_args )
+			$archive = esc_url( remove_query_arg( array_keys( $query_args ), $archive ) );
+
+		// add date to link
 		$archive = esc_url( trailingslashit( $archive ) . implode( '/', $link_date ) );
+		
+		// set it back
+		if ( $query_args )
+			$archive = esc_url( add_query_arg( $query_args, $archive ) );
 	} else {
 		$archive = esc_url( add_query_arg( 'event_ondate', implode( '-', $link_date ), $archive ) );
 	}

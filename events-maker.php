@@ -2,7 +2,7 @@
 /*
 Plugin Name: Events Maker
 Description: Fully featured event management system including recurring events, locations management, full calendar, iCal feed/files, google maps and more.
-Version: 1.6.2
+Version: 1.6.3
 Author: dFactory
 Author URI: http://www.dfactory.eu/
 Plugin URI: http://www.dfactory.eu/plugins/events-maker/
@@ -21,6 +21,7 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+ // exit if accessed directly
 if ( ! defined( 'ABSPATH' ) )
 	exit;
 
@@ -52,7 +53,7 @@ include_once( EVENTS_MAKER_PATH . 'includes/libraries/translate-rewrite-slugs.ph
  * Events Maker class.
  *
  * @class Events_Maker
- * @version	1.6.2
+ * @version	1.6.3
  */
 final class Events_Maker {
 
@@ -154,7 +155,7 @@ final class Events_Maker {
 			'event_locations_rewrite_slug'	 => 'location',
 			'event_organizers_rewrite_slug'	 => 'organizer'
 		),
-		'version'		 => '1.6.2'
+		'version'		 => '1.6.3'
 	);
 	private $transient_id = '';
 
@@ -328,6 +329,7 @@ final class Events_Maker {
 			delete_option( 'events_maker_templates' );
 			delete_option( 'events_maker_capabilities' );
 			delete_option( 'events_maker_permalinks' );
+			delete_option( 'events_maker_version' );
 		}
 
 		// permalinks
@@ -463,7 +465,7 @@ function Events_Maker() {
 	static $instance;
 
 	// first call to instance() initializes the plugin
-	if ( $instance === null || ! ($instance instanceof Events_Maker) ) {
+	if ( $instance === null || ! ( $instance instanceof Events_Maker ) ) {
 		$instance = Events_Maker::instance();
 	}
 

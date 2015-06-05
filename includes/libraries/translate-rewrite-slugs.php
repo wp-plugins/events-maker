@@ -351,7 +351,12 @@ if ( ! class_exists( 'WPML_Translate_Rewrite_Slugs' ) ) {
 					}
 
 				} else {
-					$link = esc_url( home_url( '?post_type=' . $post_type ) );
+					if ( $this->plugin === 'WPML' ) {
+						global $sitepress;
+						$link = esc_url( $sitepress->language_url( $lang ) . '?post_type=' . $post_type );
+					} else {
+						$link = esc_url( home_url( '?post_type=' . $post_type ) );
+					}
 				}
 			}
 	
@@ -403,9 +408,9 @@ if ( ! class_exists( 'WPML_Translate_Rewrite_Slugs' ) ) {
 	
 						$termlink = esc_url( icl_get_home_url() . $termlink );
 					} else {
-						// replace default home url with current lang home url
+						// @TODO: replace default home url with current lang home url?
 						if ( $this->plugin === 'Polylang' ) {
-							$termlink = str_replace( untrailingslashit( home_url() ), untrailingslashit( icl_get_home_url() ), $termlink );
+							// $termlink = str_replace( untrailingslashit( home_url() ), untrailingslashit( pll_home_url() ), $termlink );
 						}
 						
 						$termlink = esc_url( str_replace( $t->rewrite['slug'], $this->taxonomies[$taxonomy]->translated_slugs[$lang], $termlink ) );

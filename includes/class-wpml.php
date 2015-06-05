@@ -100,9 +100,11 @@ class Events_Maker_WPML {
 		$default = '';
 
 		// Polylang
-		if ( $plugin === 'Polylang' ) {
+		if ( $plugin === 'Polylang' && array_key_exists( 'polylang', $GLOBALS ) ) {
+			global $polylang;
+			
 			// get registered languages
-			$registered_languages = $polylang->get_languages_list();
+			$registered_languages = $polylang->model->get_languages_list();
 
 			if ( ! empty( $registered_languages ) ) {
 				foreach ( $registered_languages as $language )
@@ -112,7 +114,9 @@ class Events_Maker_WPML {
 			// get default language
 			$default = pll_default_language();
 		// WPML
-		} elseif ( $plugin === 'WPML' ) {
+		} elseif ( $plugin === 'WPML' && array_key_exists( 'sitepress', $GLOBALS ) ) {
+			global $sitepress;
+			
 			// get registered languages
 			$registered_languages = icl_get_languages();
 
@@ -130,7 +134,7 @@ class Events_Maker_WPML {
 			foreach ( $languages as $language ) {
 				$slugs = array();
 
-				if ( $plugin === 'Polylang' ) {
+				if ( $plugin === 'Polylang' && function_exists( 'pll_translate_string' ) ) {
 					
 					// get language strings
 					$slugs['event_rewrite_base'] = pll_translate_string( untrailingslashit( esc_html( Events_Maker()->options['permalinks']['event_rewrite_base'] ) ), $language );
@@ -144,7 +148,7 @@ class Events_Maker_WPML {
 					if ( Events_Maker()->options['general']['use_organizers'] === true )
 						$slugs['event_organizers_rewrite_slug'] = pll_translate_string( untrailingslashit( esc_html( Events_Maker()->options['permalinks']['event_organizers_rewrite_slug'] ) ), $language );
 					
-				} elseif ( $plugin === 'WPML' ) {
+				} elseif ( $plugin === 'WPML' && function_exists( 'icl_t' ) ) {
 					
 					$sitepress->switch_lang( $language, true );
 

@@ -594,13 +594,29 @@ class Events_Maker_Query {
 	 * Fix for events page rules if permalinks are disabled, unfortunatelly not too elegant.
 	 */
 	public function alter_event_page_request( $request ) {
-		if ( ! is_admin() && ! get_option( 'permalink_structure' ) && isset( $request['page_id'] ) && (int) $request['page_id'] === (int) Events_Maker()->options['general']['pages']['events']['id'] ) {
-			$query = new WP_Query();  // the query isn't run if we don't pass any query vars
-			$query->parse_query( $request );
-
-			if ( $query->is_page() ) {
-				unset( $request['page_id'] );
-				$request['post_type'] = 'event';
+		if ( ! is_admin() && ! get_option( 'permalink_structure' ) && isset( $request['page_id'] ) ) {
+			
+			$is_event_archive = false;
+			
+			// WPML & Polylang
+			if ( function_exists( 'icl_object_id' ) && defined( 'ICL_LANGUAGE_CODE' ) ) {
+				if ( (int) $request['page_id'] === (int) icl_object_id( Events_Maker()->options['general']['pages']['events']['id'], 'page', true, ICL_LANGUAGE_CODE ) ) {
+					$is_event_archive = true;
+				}
+			} elseif ( (int) $request['page_id'] === (int) Events_Maker()->options['general']['pages']['events']['id'] ) {
+				$is_event_archive = true;
+			}
+			
+			// is requested page an event archive page?
+			if ( $is_event_archive === true ) {
+				// the query isn't run if we don't pass any query vars
+				$query = new WP_Query();
+				$query->parse_query( $request );
+	
+				if ( $query->is_page() ) {
+					unset( $request['page_id'] );
+					$request['post_type'] = 'event';
+				}
 			}
 		}
 

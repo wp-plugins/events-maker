@@ -206,8 +206,7 @@ class Events_Maker_Admin {
 					if ( function_exists( 'icl_object_id' ) )
 						$ids[$key] = (int) icl_object_id( (int) $action['id'], 'page', true );
 				}
-			}
-			elseif ( is_string( $pages ) ) {
+			} elseif ( is_string( $pages ) ) {
 				$ids = isset( Events_Maker()->options['general']['pages'][$pages]['id'] ) ? (int) Events_Maker()->options['general']['pages'][$pages]['id'] : (int) Events_Maker()->defaults['general']['pages'][$pages]['id'];
 
 				// wpml and polylang compatibility
@@ -236,7 +235,7 @@ class Events_Maker_Admin {
 	 * Check pages on delete or trash.
 	 */
 	public function deleted_post_action_page( $post_id ) {
-		if ( get_post_type( $post_id ) === 'page' && in_array( $post_id, ($ids = $this->get_action_page_id() ), true ) ) {
+		if ( get_post_type( $post_id ) === 'page' && in_array( $post_id, ( $ids = $this->get_action_page_id() ), true ) ) {
 			foreach ( array_keys( $ids, $post_id, true ) as $page ) {
 				Events_Maker()->options['general']['pages'][$page]['id'] = 0;
 			}
@@ -251,7 +250,7 @@ class Events_Maker_Admin {
 	 * Check pages on post status change.
 	 */
 	public function transition_post_status_action_page( $new_status, $old_status, $post ) {
-		if ( $post->post_type === 'page' && $old_status === 'publish' && $new_status !== 'publish' && in_array( (int) $post->ID, ($ids = $this->get_action_page_id() ), true ) ) {
+		if ( $post->post_type === 'page' && $old_status === 'publish' && $new_status !== 'publish' && in_array( (int) $post->ID, ( $ids = $this->get_action_page_id() ), true ) ) {
 			foreach ( array_keys( $ids, (int) $post->ID, true ) as $page ) {
 				Events_Maker()->options['general']['pages'][$page]['id'] = 0;
 			}

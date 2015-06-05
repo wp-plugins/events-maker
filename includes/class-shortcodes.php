@@ -65,14 +65,16 @@ class Events_Maker_Shortcodes {
 					}
 
 					if ( ! empty( $shortcode ) ) {
-						if ( isset( Events_Maker()->options['general']['pages'][$key]['id'] ) )
+						if ( isset( Events_Maker()->options['general']['pages'][$key]['id'] ) ) {
 							$position = Events_Maker()->options['general']['pages'][$key]['position'];
 						// backward compatibility
-						elseif ( $key === 'calendar' && isset( Events_Maker()->options['general']['full_calendar_display'] ) ) {
-							if ( Events_Maker()->options['general']['full_calendar_display']['type'] === 'page' )
+						} elseif ( $key === 'calendar' && isset( Events_Maker()->options['general']['full_calendar_display'] ) ) {
+							if ( Events_Maker()->options['general']['full_calendar_display']['type'] === 'page' ) {
 								$position = Events_Maker()->options['general']['full_calendar_display']['content'];
-						} else
+							}
+						} else {
 							$position = Events_Maker()->defaults['general']['pages'][$key]['position'];
+						}
 
 						switch ( $position ) {
 							case 'before':
@@ -109,6 +111,7 @@ class Events_Maker_Shortcodes {
 			'number_of_events'	 => get_option( 'posts_per_page' ),
 			'featured_only'		 => false,
 			'disable_pagination' => false,
+			'offset'			 => '',
 			'categories'		 => '',
 			'locations'			 => '',
 			'organizers'		 => '',
@@ -185,6 +188,7 @@ class Events_Maker_Shortcodes {
 		$events_args['post_type'] = 'event';
 		$events_args['suppress_filters'] = false;
 		$events_args['posts_per_page'] = (int) $args['number_of_events'];
+		$events_args['offset'] = (int) $args['offset'];
 		$events_args['paged'] = (get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1);
 
 		if ( ! empty( $args['categories'] ) ) {
@@ -492,14 +496,16 @@ class Events_Maker_Shortcodes {
 
 				$all_day_event = em_is_all_day( $event->ID );
 
-				$calendar[] = array(
-					'title'				 => $event->post_title,
-					'start'				 => $start,
-					'end'				 => ($all_day_event ? date( 'Y-m-d H:i:s', strtotime( $end . '+1 day' ) ) : $end),
-					'className'			 => implode( ' ', $classes ),
-					'allDay'			 => $all_day_event,
-					'url'				 => get_permalink( $event->ID ),
-					'backgroundColor'	 => (isset( $term_meta['color'] ) ? $term_meta['color'] : '')
+				$calendar[] = apply_filters( 'em_calendar_event_data', 
+					array(
+						'title'				 => $event->post_title,
+						'start'				 => $start,
+						'end'				 => ($all_day_event ? date( 'Y-m-d H:i:s', strtotime( $end . '+1 day' ) ) : $end),
+						'className'			 => implode( ' ', $classes ),
+						'allDay'			 => $all_day_event,
+						'url'				 => get_permalink( $event->ID ),
+						'backgroundColor'	 => (isset( $term_meta['color'] ) ? $term_meta['color'] : '')
+					), $event
 				);
 			}
 

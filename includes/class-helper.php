@@ -98,9 +98,9 @@ class Events_Maker_Helper {
 	 */
 	public function is_after_date( $date_before, $date_after, $strict = true ) {
 		if ( $strict )
-			return ((strtotime( $date_before ) > strtotime( $date_after )) ? true : false);
+			return ( ( strtotime( $date_before ) > strtotime( $date_after ) ) ? true : false );
 		else
-			return ((strtotime( $date_before ) >= strtotime( $date_after )) ? true : false);
+			return ( ( strtotime( $date_before ) >= strtotime( $date_after ) ) ? true : false );
 	}
 
 }

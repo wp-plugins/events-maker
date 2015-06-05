@@ -8,6 +8,7 @@
  * @package Events Maker/Functions
  * @version 1.1.0
  */
+ 
 if ( ! defined( 'ABSPATH' ) )
 	exit;
 
@@ -41,7 +42,7 @@ function em_get_event( $post_id = 0 ) {
 	if ( empty( $post_id ) )
 		return false;
 
-	return apply_filters( 'em_get_event', (($post = get_post( (int) $post_id, 'OBJECT', 'raw' )) !== NULL ? $post : NULL ), $post_id );
+	return apply_filters( 'em_get_event', ( ($post = get_post( (int) $post_id, 'OBJECT', 'raw' ) ) !== NULL ? $post : NULL ), $post_id );
 }
 
 /**
@@ -119,7 +120,7 @@ function em_get_occurrences( $post_id = 0, $period = 'all', $orderby = 'asc', $l
  * @return 	array
  */
 function em_get_first_occurrence( $post_id = 0 ) {
-	$post_id = (int) (empty( $post_id ) ? get_the_ID() : $post_id);
+	$post_id = (int) ( empty( $post_id ) ? get_the_ID() : $post_id );
 
 	if ( empty( $post_id ) )
 		return false;
@@ -139,7 +140,7 @@ function em_get_first_occurrence( $post_id = 0 ) {
  * @return 	array
  */
 function em_get_last_occurrence( $post_id = 0 ) {
-	$post_id = (int) (empty( $post_id ) ? get_the_ID() : $post_id);
+	$post_id = (int) ( empty( $post_id ) ? get_the_ID() : $post_id );
 
 	if ( empty( $post_id ) )
 		return false;
@@ -162,7 +163,7 @@ function em_get_last_occurrence( $post_id = 0 ) {
  * @return 	array
  */
 function em_get_next_occurrence( $post_id = 0 ) {
-	$post_id = (int) (empty( $post_id ) ? get_the_ID() : $post_id);
+	$post_id = (int) ( empty( $post_id ) ? get_the_ID() : $post_id );
 
 	if ( empty( $post_id ) )
 		return false;
@@ -187,7 +188,7 @@ function em_get_next_occurrence( $post_id = 0 ) {
  * @return 	array
  */
 function em_get_active_occurrence( $post_id = 0 ) {
-	$post_id = (int) (empty( $post_id ) ? get_the_ID() : $post_id);
+	$post_id = (int) ( empty( $post_id ) ? get_the_ID() : $post_id );
 
 	if ( empty( $post_id ) )
 		return false;
@@ -219,7 +220,7 @@ function em_get_active_occurrence( $post_id = 0 ) {
  * @return 	array
  */
 function em_get_current_occurrence( $post_id = 0 ) {
-	$post_id = (int) (empty( $post_id ) ? get_the_ID() : $post_id);
+	$post_id = (int) ( empty( $post_id ) ? get_the_ID() : $post_id );
 
 	if ( empty( $post_id ) )
 		return false;
@@ -246,7 +247,7 @@ function em_get_current_occurrence( $post_id = 0 ) {
  * @return 	string or array
  */
 function em_get_the_date( $post_id = 0, $args = array() ) {
-	$post_id = (int) (empty( $post_id ) ? get_the_ID() : $post_id);
+	$post_id = (int) ( empty( $post_id ) ? get_the_ID() : $post_id );
 	$date = array();
 
 	if ( empty( $post_id ) )
@@ -335,7 +336,7 @@ function em_get_the_date( $post_id = 0, $args = array() ) {
  * @return 	string
  */
 function em_get_the_start( $post_id = 0, $type = 'datetime' ) {
-	$post_id = (int) (empty( $post_id ) ? get_the_ID() : $post_id);
+	$post_id = (int) ( empty( $post_id ) ? get_the_ID() : $post_id );
 
 	if ( empty( $post_id ) )
 		return false;
@@ -354,7 +355,7 @@ function em_get_the_start( $post_id = 0, $type = 'datetime' ) {
  * @return 	string
  */
 function em_get_the_end( $post_id = 0, $type = 'datetime' ) {
-	$post_id = (int) (empty( $post_id ) ? get_the_ID() : $post_id);
+	$post_id = (int) ( empty( $post_id ) ? get_the_ID() : $post_id );
 
 	if ( empty( $post_id ) )
 		return false;
@@ -405,12 +406,12 @@ function em_format_date( $date = null, $type = 'datetime', $format = false ) {
  * @return 	bool
  */
 function em_is_all_day( $post_id = 0 ) {
-	$post_id = (int) (empty( $post_id ) ? get_the_ID() : $post_id);
+	$post_id = (int) ( empty( $post_id ) ? get_the_ID() : $post_id );
 
 	if ( empty( $post_id ) )
 		return false;
 
-	return (bool) apply_filters( 'em_is_all_day', (get_post_meta( (int) $post_id, '_event_all_day', true ) === '1' ), $post_id );
+	return (bool) apply_filters( 'em_is_all_day', ( get_post_meta( (int) $post_id, '_event_all_day', true ) === '1' ), $post_id );
 }
 
 /**
@@ -420,14 +421,14 @@ function em_is_all_day( $post_id = 0 ) {
  * @return 	bool
  */
 function em_is_recurring( $post_id = 0 ) {
-	$post_id = (int) (empty( $post_id ) ? get_the_ID() : $post_id);
+	$post_id = (int) ( empty( $post_id ) ? get_the_ID() : $post_id );
 
 	if ( empty( $post_id ) )
 		return false;
 
 	$recurrence = get_post_meta( $post_id, '_event_recurrence', true );
 
-	return apply_filters( 'em_is_recurring', ($recurrence['type'] === 'once' ? false : true ), $post_id );
+	return apply_filters( 'em_is_recurring', ( $recurrence['type'] === 'once' ? false : true ), $post_id );
 }
 
 /**
@@ -437,12 +438,12 @@ function em_is_recurring( $post_id = 0 ) {
  * @return 	bool
  */
 function em_is_free( $post_id = 0 ) {
-	$post_id = (int) (empty( $post_id ) ? get_the_ID() : $post_id);
+	$post_id = (int) ( empty( $post_id ) ? get_the_ID() : $post_id );
 
 	if ( empty( $post_id ) )
 		return false;
 
-	return apply_filters( 'em_is_free', (get_post_meta( (int) $post_id, '_event_free', true ) === '1' ? true : false ), $post_id );
+	return apply_filters( 'em_is_free', ( get_post_meta( (int) $post_id, '_event_free', true ) === '1' ? true : false ), $post_id );
 }
 
 /**
@@ -453,7 +454,7 @@ function em_is_free( $post_id = 0 ) {
  * @return 	array
  */
 function em_get_tickets( $post_id = 0 ) {
-	$post_id = (int) (empty( $post_id ) ? get_the_ID() : $post_id);
+	$post_id = (int) ( empty( $post_id ) ? get_the_ID() : $post_id );
 	$tickets = array();
 
 	if ( empty( $post_id ) )
@@ -474,7 +475,7 @@ function em_get_tickets( $post_id = 0 ) {
 function em_get_currency_symbol( $price = '' ) {
 	$options = get_option( 'events_maker_general' );
 
-	$symbol = ($options['currencies']['symbol'] === '' ? strtoupper( $options['currencies']['code'] ) : $options['currencies']['symbol']);
+	$symbol = ( $options['currencies']['symbol'] === '' ? strtoupper( $options['currencies']['code'] ) : $options['currencies']['symbol'] );
 
 	if ( is_numeric( $price ) ) {
 		switch ( $options['currencies']['format'] ) {
@@ -503,7 +504,7 @@ function em_get_currency_symbol( $price = '' ) {
 				break;
 		}
 
-		return apply_filters( 'em_get_currency_symbol', ($options['currencies']['position'] === 'after' ? $price . ' ' . $symbol : $symbol . ' ' . $price ), $price );
+		return apply_filters( 'em_get_currency_symbol', ( $options['currencies']['position'] === 'after' ? $price . ' ' . $symbol : $symbol . ' ' . $price ), $price );
 	} else
 		return apply_filters( 'em_get_currency_symbol', $symbol, $price );
 }
@@ -552,7 +553,7 @@ function em_get_locations( $args = array() ) {
 
 	if ( isset( $args['fields'] ) && $args['fields'] === 'all' ) {
 		foreach ( $locations as $id => $location ) {
-			$locations[$id]->location_meta = (get_option( 'event_location_' . $location->term_taxonomy_id ) ? get_option( 'event_location_' . $location->term_taxonomy_id ) : get_option( 'event_location_' . $location->term_id ));
+			$locations[$id]->location_meta = ( get_option( 'event_location_' . $location->term_taxonomy_id ) ? get_option( 'event_location_' . $location->term_taxonomy_id ) : get_option( 'event_location_' . $location->term_id ) );
 		}
 	}
 
@@ -578,8 +579,8 @@ function em_get_location( $term_id = NULL ) {
 			return NULL;
 	}
 
-	if ( ($location = get_term( (int) $term_id, 'event-location', 'OBJECT', 'raw' )) !== NULL ) {
-		$location->location_meta = (get_option( 'event_location_' . $location->term_taxonomy_id ) ? get_option( 'event_location_' . $location->term_taxonomy_id ) : get_option( 'event_location_' . $location->term_id ));
+	if ( ( $location = get_term( (int) $term_id, 'event-location', 'OBJECT', 'raw' ) ) !== NULL ) {
+		$location->location_meta = ( get_option( 'event_location_' . $location->term_taxonomy_id ) ? get_option( 'event_location_' . $location->term_taxonomy_id ) : get_option( 'event_location_' . $location->term_id ) );
 
 		return apply_filters( 'em_get_location', $location );
 	} else
@@ -600,7 +601,7 @@ function em_get_locations_for( $post_id = 0 ) {
 
 	if ( ! empty( $locations ) && is_array( $locations ) ) {
 		foreach ( $locations as $id => $location ) {
-			$locations[$id]->location_meta = (get_option( 'event_location_' . $location->term_taxonomy_id ) ? get_option( 'event_location_' . $location->term_taxonomy_id ) : get_option( 'event_location_' . $location->term_id ));
+			$locations[$id]->location_meta = ( get_option( 'event_location_' . $location->term_taxonomy_id ) ? get_option( 'event_location_' . $location->term_taxonomy_id ) : get_option( 'event_location_' . $location->term_id ) );
 		}
 	}
 
@@ -626,7 +627,7 @@ function em_get_organizers( $args = array() ) {
 
 	if ( isset( $args['fields'] ) && $args['fields'] === 'all' ) {
 		foreach ( $organizers as $id => $organizer ) {
-			$organizers[$id]->organizer_meta = (get_option( 'event_organizer_' . $organizer->term_taxonomy_id ) ? get_option( 'event_organizer_' . $organizer->term_taxonomy_id ) : get_option( 'event_organizer_' . $organizer->term_id ));
+			$organizers[$id]->organizer_meta = ( get_option( 'event_organizer_' . $organizer->term_taxonomy_id ) ? get_option( 'event_organizer_' . $organizer->term_taxonomy_id ) : get_option( 'event_organizer_' . $organizer->term_id ) );
 		}
 	}
 
@@ -652,8 +653,8 @@ function em_get_organizer( $term_id = 0 ) {
 			return NULL;
 	}
 
-	if ( ($organizer = get_term( (int) $term_id, 'event-organizer', 'OBJECT', 'raw' )) !== NULL ) {
-		$organizer->organizer_meta = (get_option( 'event_organizer_' . $organizer->term_taxonomy_id ) ? get_option( 'event_organizer_' . $organizer->term_taxonomy_id ) : get_option( 'event_organizer_' . $organizer->term_id ));
+	if ( ( $organizer = get_term( (int) $term_id, 'event-organizer', 'OBJECT', 'raw' ) ) !== NULL ) {
+		$organizer->organizer_meta = ( get_option( 'event_organizer_' . $organizer->term_taxonomy_id ) ? get_option( 'event_organizer_' . $organizer->term_taxonomy_id ) : get_option( 'event_organizer_' . $organizer->term_id ) );
 
 		return apply_filters( 'em_get_organizer', $organizer );
 	} else
@@ -674,7 +675,7 @@ function em_get_organizers_for( $post_id = 0 ) {
 
 	if ( ! empty( $organizers ) && is_array( $organizers ) ) {
 		foreach ( $organizers as $id => $organizer ) {
-			$organizers[$id]->organizer_meta = (get_option( 'event_organizer_' . $organizer->term_taxonomy_id ) ? get_option( 'event_organizer_' . $organizer->term_taxonomy_id ) : get_option( 'event_organizer_' . $organizer->term_id ));
+			$organizers[$id]->organizer_meta = ( get_option( 'event_organizer_' . $organizer->term_taxonomy_id ) ? get_option( 'event_organizer_' . $organizer->term_taxonomy_id ) : get_option( 'event_organizer_' . $organizer->term_id ) );
 		}
 	}
 
@@ -822,7 +823,7 @@ function em_is_event_archive( $datetype = '' ) {
 	if ( ! empty( $wp_query->query_vars['event_ondate'] ) ) {
 		$date = explode( '/', $wp_query->query_vars['event_ondate'] );
 
-		if ( (($a = count( $date )) === 1 && $datetype === 'year') || ($a === 2 && $datetype === 'month') || ($a === 3 && $datetype === 'day') )
+		if ( ( ( $a = count( $date ) ) === 1 && $datetype === 'year') || ( $a === 2 && $datetype === 'month' ) || ( $a === 3 && $datetype === 'day' ) )
 			return true;
 	}
 
@@ -866,7 +867,7 @@ function em_get_event_date_link( $year = 0, $month = 0, $day = 0 ) {
 		$url_parts = parse_url( $archive );
 		
 		if ( ! empty( $url_parts['query'] ) )
-			parse_str($url_parts['query'], $query_args);
+			parse_str( $url_parts['query'], $query_args );
 		
 		if ( $query_args )
 			$archive = esc_url( remove_query_arg( array_keys( $query_args ), $archive ) );
@@ -975,7 +976,7 @@ function em_event_taxonomy_field( $key, $field ) {
 				break;
 
 			case 'select' :
-				$content = ($key === 'country' && in_array( $field['value'], array_keys( em_get_countries() ) ) ? em_get_country_name( $field['value'] ) : esc_html( $field['value'] ));
+				$content = ( $key === 'country' && in_array( $field['value'], array_keys( em_get_countries() ) ) ? em_get_country_name( $field['value'] ) : esc_html( $field['value'] ) );
 				break;
 
 			default :
@@ -1029,7 +1030,7 @@ function em_display_event_archives( $args = array() ) {
 	$args = apply_filters( 'em_display_event_archives_args', wp_parse_args( $args, $defaults ) );
 
 	$archives = $counts = array();
-	$cut = ($args['type'] === 'yearly' ? 4 : 7);
+	$cut = ( $args['type'] === 'yearly' ? 4 : 7 );
 
 	$events = get_posts(
 		array(
@@ -1145,7 +1146,7 @@ function em_display_google_map( $args = array(), $locations = 0 ) {
 		$locations_tmp = array_unique( $locations_tmp );
 		$em_locations = implode( ',', $locations_tmp );
 	} elseif ( is_numeric( $locations ) )
-		$em_locations = ((int) $locations !== 0 ? (int) $locations : '');
+		$em_locations = ( (int) $locations !== 0 ? (int) $locations : '' );
 
 	echo do_shortcode( '[em-google-map locations="' . $em_locations . '" width="' . $em_width . '" height="' . $em_height . '" zoom="' . $em_zoom . '" maptype="' . $em_maptype . '" maptypecontrol="' . $em_maptypecontrol . '" zoomcontrol="' . $em_zoomcontrol . '" streetviewcontrol="' . $em_streetviewcontrol . '" overviewmapcontrol="' . $em_overviewmapcontrol . '" pancontrol="' . $em_pancontrol . '" rotatecontrol="' . $em_rotatecontrol . '" scalecontrol="' . $em_scalecontrol . '" draggable="' . $em_draggable . '" keyboardshortcuts="' . $em_keyboardshortcuts . '" scrollzoom="' . $em_scrollzoom . '"]' );
 }

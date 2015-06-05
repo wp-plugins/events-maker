@@ -106,7 +106,7 @@ class WPML_Translate_Post_Type {
 
 		// add the translated extra rules for each languages
 		foreach ( $this->translated_slugs as $lang => $translated_slug ) {
-			if ( $translated_slug->has_archive ) {
+			if ( $translated_slug->has_archive && get_option( 'permalink_structure' ) != '' ) {
 				$archive_slug = $translated_slug->has_archive === true ? $translated_slug->rewrite['slug'] : $translated_slug->has_archive;
 
 				if ( $translated_slug->rewrite['with_front'] ) {

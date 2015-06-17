@@ -275,7 +275,7 @@ if ( ! class_exists( 'WPML_Translate_Rewrite_Slugs' ) ) {
 		 */
 		public function post_type_archive_link_filter( $link, $archive_post_type ) {
 			if ( $this->plugin === 'Polylang' ) {
-				if (is_admin()) {
+				if ( is_admin() && ! ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
 					global $polylang;
 					$lang = $polylang->pref_lang->slug;
 				} else {

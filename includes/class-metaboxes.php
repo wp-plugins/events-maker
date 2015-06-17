@@ -617,7 +617,7 @@ class Events_Maker_Metaboxes {
 		} elseif ( class_exists( 'Polylang' ) && function_exists( 'pll_default_language' ) ) {
 			global $polylang;
 
-			$language = $polylang->get_post_language( $post_ID );
+			$language = $polylang->model->get_post_language( $post_ID );
 
 			if ( $language ) {
 				delete_transient( 'em_calendar_query-' . $language->slug );

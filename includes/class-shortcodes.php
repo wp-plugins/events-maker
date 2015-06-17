@@ -418,15 +418,30 @@ class Events_Maker_Shortcodes {
 			wp_enqueue_script( 'events-maker-front-calendar-lang' );
 		}
 
-		// filter hook for calendar events args, allow any query modifications
+		// calendar events query
 		$args = apply_filters( 'em_get_full_calendar_events_args', $args );
+		
+		// script args
+		$script_args = apply_filters( 'em_get_full_calendar_script_args', array(
+			'firstWeekDay'	 	=> ( Events_Maker()->options['general']['first_weekday'] === 7 ? 0 : 1 ),
+			'timeFormat'	 	=> str_replace( array( 's', 'i', 'H', 'h', 'G', 'g' ), array( 'ss', 'mm', 'HH', 'hh', 'H', 'h' ), Events_Maker()->options['general']['datetime_format']['time'] ),
+			'columnFormat'		=> array(
+				'month' 			=> 'ddd',
+				'week' 				=> 'ddd, DD/MM',
+				'day' 				=> 'dddd'
+			),
+			'header'			=> array(
+				'left'				=> 'prev,next today',
+				'center'			=> 'title',
+				'right'				=> 'month,agendaWeek,agendaDay'
+			),
+			'editable'			=> false,
+			'fixedWeekCount'	=> false,
+			'events'		 	=> $this->get_full_calendar_events( $args )
+		) );
 
 		wp_localize_script(
-			'events-maker-front-calendar', 'emCalendarArgs', array(
-			'firstWeekDay'	 => (Events_Maker()->options['general']['first_weekday'] === 7 ? 0 : 1),
-			'timeFormat'	 => str_replace( array( 's', 'i', 'H', 'h', 'G', 'g' ), array( 'ss', 'mm', 'HH', 'hh', 'H', 'h' ), Events_Maker()->options['general']['datetime_format']['time'] ),
-			'events'		 => $this->get_full_calendar_events( $args )
-			)
+			'events-maker-front-calendar', 'emCalendarArgs', json_encode( $script_args )
 		);
 
 		wp_register_style(

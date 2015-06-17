@@ -4,7 +4,7 @@ Donate link: http://www.dfactory.eu/
 Tags: event, event categories, events management, event management, events manager, event manager, event organizer, events calendar, events maker, google map, map, locations, organizers, widget, attendance, attendee, Booking, calendar, event registration, ticket, tickets, ticketing, bookings
 Requires at least: 3.5
 Tested up to: 4.2.2
-Stable tag: 1.6.3
+Stable tag: 1.6.4
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -117,6 +117,12 @@ A. Chances are, someone else has asked it. Check out the support forum at: http:
 6. screenshot-6.png
 
 == Changelog ==
+
+= 1.6.4 =
+* Fix: Calendar widget incorrect day archive link
+* Fix: Call to undefined method Events_Maker_Settings::update_menu() on plugin deactivation
+* Fix: Polylang get_post_language was called incorrectly admin notice
+* Tweak: filter hook for Full Calendar script args
 
 = 1.6.3 =
 * Fix: Incorrect Polylang terms links
@@ -330,6 +336,6 @@ Initial release
 
 == Upgrade Notice ==
 
-= 1.6.3 =
-* Fix: Incorrect Polylang terms links
-* Tweak: em-events shortcode extended with offset parameter
+= 1.6.4 =
+* Fix: Calendar widget incorrect day archive link
+* Fix: Call to undefined method Events_Maker_Settings::update_menu() on plugin deactivation

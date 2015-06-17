@@ -151,17 +151,18 @@ class Events_Maker_WPML {
 				} elseif ( $plugin === 'WPML' && function_exists( 'icl_t' ) ) {
 					
 					$sitepress->switch_lang( $language, true );
+					$has_translation = null; // required by WPML icl_t() function
 
-					$slugs['event_rewrite_base'] = icl_t( 'Events Maker', 'Event rewrite base', untrailingslashit( esc_html( Events_Maker()->options['permalinks']['event_rewrite_base'] ) ), $has_translation = null, false, $language );
-					$slugs['event_rewrite_slug'] = icl_t( 'Events Maker', 'Event rewrite slug', untrailingslashit( esc_html( Events_Maker()->options['permalinks']['event_rewrite_slug'] ) ), $has_translation = null, false, $language );
-					$slugs['event_categories_rewrite_slug'] = icl_t( 'Events Maker', 'Event Categories rewrite slug', untrailingslashit( esc_html( Events_Maker()->options['permalinks']['event_categories_rewrite_slug'] ) ), $has_translation = null, false, $language );
-					$slugs['event_locations_rewrite_slug'] = icl_t( 'Events Maker', 'Event Locations rewrite slug', untrailingslashit( esc_html( Events_Maker()->options['permalinks']['event_locations_rewrite_slug'] ) ), $has_translation = null, false, $language );
+					$slugs['event_rewrite_base'] = icl_t( 'Events Maker', 'Event rewrite base', untrailingslashit( esc_html( Events_Maker()->options['permalinks']['event_rewrite_base'] ) ), $has_translation, false, $language );
+					$slugs['event_rewrite_slug'] = icl_t( 'Events Maker', 'Event rewrite slug', untrailingslashit( esc_html( Events_Maker()->options['permalinks']['event_rewrite_slug'] ) ), $has_translation, false, $language );
+					$slugs['event_categories_rewrite_slug'] = icl_t( 'Events Maker', 'Event Categories rewrite slug', untrailingslashit( esc_html( Events_Maker()->options['permalinks']['event_categories_rewrite_slug'] ) ), $has_translation, false, $language );
+					$slugs['event_locations_rewrite_slug'] = icl_t( 'Events Maker', 'Event Locations rewrite slug', untrailingslashit( esc_html( Events_Maker()->options['permalinks']['event_locations_rewrite_slug'] ) ), $has_translation, false, $language );
 
 					if ( Events_Maker()->options['general']['use_tags'] === true )
-						$slugs['event_tags_rewrite_slug'] = icl_t( 'Events Maker', 'Event Tags rewrite slug', untrailingslashit( esc_html( Events_Maker()->options['permalinks']['event_tags_rewrite_slug'] ) ), $has_translation = null, false, $language );
+						$slugs['event_tags_rewrite_slug'] = icl_t( 'Events Maker', 'Event Tags rewrite slug', untrailingslashit( esc_html( Events_Maker()->options['permalinks']['event_tags_rewrite_slug'] ) ), $has_translation, false, $language );
 
 					if ( Events_Maker()->options['general']['use_organizers'] === true )
-						$slugs['event_organizers_rewrite_slug'] = icl_t( 'Events Maker', 'Event Organizers rewrite slug', untrailingslashit( esc_html( Events_Maker()->options['permalinks']['event_organizers_rewrite_slug'] ) ), $has_translation = null, false, $language );
+						$slugs['event_organizers_rewrite_slug'] = icl_t( 'Events Maker', 'Event Organizers rewrite slug', untrailingslashit( esc_html( Events_Maker()->options['permalinks']['event_organizers_rewrite_slug'] ) ), $has_translation, false, $language );
 						
 				}
 

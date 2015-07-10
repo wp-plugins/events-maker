@@ -1,8 +1,8 @@
-(function($) {
-	
-	$(document).ready(function() {
+( function ( $ ) {
 
-		$('.events-datepicker').datepicker({
+	$( document ).ready( function () {
+
+		$( '.events-datepicker' ).datepicker( {
 			dateFormat: 'yy-mm-dd',
 			firstDay: emEditArgs.firstWeekDay,
 			showButtonPanel: false,
@@ -12,36 +12,36 @@
 			dayNamesShort: emEditArgs.dayNamesShort,
 			dayNamesMin: emEditArgs.dayNamesMin,
 			isRTL: emEditArgs.isRTL
-		});
-		
-		$('.toggle-featured-event').on('click',function(e) {
+		} );
+
+		$( '.toggle-featured-event' ).on( 'click', function ( e ) {
 			e.preventDefault();
-			
-			var _el = $('span', this);
-			var post_id = $(this).attr('data-post-id');
+
+			var _el = $( 'span', this );
+			var post_id = $( this ).attr( 'data-post-id' );
 			var data = {
-				action: 'events_maker_feature_event', 
+				action: 'events_maker_feature_event',
 				event_id: post_id,
 				em_nonce: emEditArgs.nonce
 			};
-			
-			$.ajax({
+
+			$.ajax( {
 				url: ajaxurl,
 				data: data,
 				type: 'post',
 				dataType: 'json',
-				success:function(data) {
-					_el.removeClass('dashicons-star-filled').removeClass('dashicons-star-empty');
-					if(data.featured == true) {
-						_el.addClass('dashicons-star-filled');
+				success: function ( data ) {
+					_el.removeClass( 'dashicons-star-filled' ).removeClass( 'dashicons-star-empty' );
+					if ( data.featured == true ) {
+						_el.addClass( 'dashicons-star-filled' );
 					} else {
-						_el.addClass('dashicons-star-empty');
+						_el.addClass( 'dashicons-star-empty' );
 					}
 				}
-	
-			});
-		});
-	
-	});
 
-})(jQuery);
+			} );
+		} );
+
+	} );
+
+} )( jQuery );

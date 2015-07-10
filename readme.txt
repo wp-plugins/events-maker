@@ -4,7 +4,7 @@ Donate link: http://www.dfactory.eu/
 Tags: event, event categories, events management, event management, events manager, event manager, event organizer, events calendar, events maker, google map, map, locations, organizers, widget, attendance, attendee, Booking, calendar, event registration, ticket, tickets, ticketing, bookings
 Requires at least: 3.5
 Tested up to: 4.2.2
-Stable tag: 1.6.4
+Stable tag: 1.6.5
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -39,6 +39,7 @@ Events Maker allows you to create and manage events, categories, locations and o
 * Easy Events management
 * Built using WordPress custom post types, custom taxonomies and custom post fields
 * Ajax Events Calendar
+* Event Search with customizable attributes
 * Display options for single events
 * Multiple Tickets and Pricing
 * Locations list page
@@ -60,7 +61,7 @@ Events Maker allows you to create and manage events, categories, locations and o
 * Customizeable template files
 * Events sorting
 * Google Rich Snippets ready
-* 6 Events widgets
+* 7 Events widgets
 * Multiple custom functions
 * Advanced hooks for developers
 * Custom permissions for Events
@@ -74,7 +75,6 @@ Events Maker allows you to create and manage events, categories, locations and o
 
 * Front-end events submissions
 * Event registration & booking system
-* Events search & filtering
 
 = Translations: =
 
@@ -117,6 +117,9 @@ A. Chances are, someone else has asked it. Check out the support forum at: http:
 6. screenshot-6.png
 
 == Changelog ==
+
+= 1.6.5 =
+* New: Event Search with customizable attributes
 
 = 1.6.4 =
 * Fix: Calendar widget incorrect day archive link
@@ -336,6 +339,5 @@ Initial release
 
 == Upgrade Notice ==
 
-= 1.6.4 =
-* Fix: Calendar widget incorrect day archive link
-* Fix: Call to undefined method Events_Maker_Settings::update_menu() on plugin deactivation
+= 1.6.5 =
+* New: Event Search with customizable attributes

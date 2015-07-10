@@ -16,7 +16,8 @@ class Events_Maker_Query {
 		// actions
 		add_action( 'init', array( &$this, 'register_rewrite' ) );
 		add_action( 'pre_get_posts', array( &$this, 'pre_get_posts' ) );
-		add_action( 'pre_get_posts', array( &$this, 'alter_orderby_query' ), 11 );
+		add_action( 'pre_get_posts', array( &$this, 'alter_orderby_query' ), 30 );
+		add_action( 'pre_get_posts', array( &$this, 'alter_search_query' ), 20 );
 
 		// filters
 		add_filter( 'query_vars', array( &$this, 'register_query_vars' ) );
@@ -71,8 +72,8 @@ class Events_Maker_Query {
 				if ( $pagenow === 'edit.php' && isset( $query->query_vars['post_type'] ) && $query->query_vars['post_type'] === $post_type ) {
 					$em_helper = new Events_Maker_Helper();
 					$meta_args = $query->get( 'meta_query' );
-					$start = ! empty( $_GET['event_start_date'] ) ? sanitize_text_field( $_GET['event_start_date'] ) : '';
-					$end = ! empty( $_GET['event_end_date'] ) ? sanitize_text_field( $_GET['event_end_date'] ) : '';
+					$start = ! empty( $_GET['start_date'] ) ? sanitize_text_field( $_GET['start_date'] ) : '';
+					$end = ! empty( $_GET['end_date'] ) ? sanitize_text_field( $_GET['end_date'] ) : '';
 					$sb = $em_helper->is_valid_date( $start );
 					$eb = $em_helper->is_valid_date( $end );
 
@@ -237,9 +238,13 @@ class Events_Maker_Query {
 	 */
 	public function pre_get_posts( $query ) {
 		// query adjustments
-		if ( (is_tax( 'event-location' ) && isset( $query->query_vars['event-location'], $query->query['event-location'] )) || (is_tax( 'event-organizer' ) && isset( $query->query_vars['event-organizer'], $query->query['event-organizer'] )) || (is_tax( 'event-category' ) && isset( $query->query_vars['event-category'], $query->query['event-category'] )) ) {
+		if ( 
+			( is_tax( 'event-location' ) && isset( $query->query_vars['event-location'], $query->query['event-location'] ) ) || 
+			( is_tax( 'event-organizer' ) && isset( $query->query_vars['event-organizer'], $query->query['event-organizer'] ) )	|| 
+			( is_tax( 'event-category' ) && isset( $query->query_vars['event-category'], $query->query['event-category'] ) ) ) {
+			
 			if ( ! isset( $query->query_vars['event_show_occurrences'] ) )
-				$query->query_vars['event_show_occurrences'] = (is_admin() ? false : Events_Maker()->options['general']['show_occurrences']);
+				$query->query_vars['event_show_occurrences'] = ( is_admin() ? false : Events_Maker()->options['general']['show_occurrences'] );
 
 			if ( $query->query_vars['event_show_occurrences'] )
 				$keys = array( 'start' => '_event_occurrence_date', 'end' => '_event_occurrence_date' );
@@ -273,7 +278,7 @@ class Events_Maker_Query {
 				$query->query_vars['order'] = Events_Maker()->options['general']['order'];
 
 			if ( ! isset( $query->query_vars['event_show_past_events'] ) || ! is_bool( $query->query_vars['event_show_past_events'] ) )
-				$query->query_vars['event_show_past_events'] = (is_admin() ? true : Events_Maker()->options['general']['show_past_events']);
+				$query->query_vars['event_show_past_events'] = ( is_admin() ? true : Events_Maker()->options['general']['show_past_events'] );
 
 			// some ninja fixes
 			if ( $query->query_vars['event_show_occurrences'] && $query->query_vars['event_show_past_events'] && ! $event_order_by )
@@ -292,8 +297,7 @@ class Events_Maker_Query {
 					$sql[] = "CAST(SUBSTRING_INDEX(events_meta.meta_value, '|', -1) AS DATETIME) >= '" . current_time( 'mysql' ) . "'";
 
 				$query->event_details = $sql;
-			}
-			else {
+			} else {
 				if ( ! $query->query_vars['event_show_past_events'] && ! $query->is_singular ) {
 					$meta_args[] = array(
 						'key'		 => ( ! Events_Maker()->options['general']['expire_current'] ? $keys['end'] : $keys['start']),
@@ -312,14 +316,16 @@ class Events_Maker_Query {
 		// does query contain post type as a string or post types array
 		if ( is_array( $post_types ) ) {
 			// check if there are defferrnces between the arrays
-			if ( (bool) array_diff( $post_types, apply_filters( 'em_event_post_type', array( 'event' ) ) ) )
-			// at least one of the post_types is not an event post type, don't run the query
+			if ( (bool) array_diff( $post_types, apply_filters( 'em_event_post_type', array( 'event' ) ) ) ) {
+				// at least one of the post_types is not an event post type, don't run the query
 				$run_query = false;
-			else
-			// all the post type are of event post type
+			} else {
+				// all the post type are of event post type
 				$run_query = true;
-		} else
+			}
+		} else {
 			$run_query = (bool) in_array( $post_types, apply_filters( 'em_event_post_type', array( 'event' ) ) );
+		}
 
 		if ( $run_query ) {
 			$em_helper = new Events_Maker_Helper();
@@ -334,8 +340,8 @@ class Events_Maker_Query {
 				'event_date_type'		 => 'all',
 				'event_ticket_type'		 => 'all',
 				'event_ondate'			 => '',
-				'event_show_past_events' => (is_admin() ? true : Events_Maker()->options['general']['show_past_events']),
-				'event_show_occurrences' => (is_admin() ? true : Events_Maker()->options['general']['show_occurrences'])
+				'event_show_past_events' => ( is_admin() ? true : Events_Maker()->options['general']['show_past_events'] ),
+				'event_show_occurrences' => ( is_admin() ? true : Events_Maker()->options['general']['show_occurrences'] )
 			);
 
 			if ( ! empty( $query->query_vars['event_ondate'] ) ) {
@@ -399,6 +405,7 @@ class Events_Maker_Query {
 			$meta_args = $query->get( 'meta_query' );
 
 			if ( isset( $query->query_vars['orderby'] ) ) {
+				
 				if ( $query->query_vars['orderby'] === 'event_start_date' ) {
 					$query->query_vars['meta_key'] = $keys['start'];
 					$query->query_vars['orderby'] = 'meta_value';
@@ -418,8 +425,9 @@ class Events_Maker_Query {
 					*/
 				} else
 					$event_order_by = false;
-			}
-			else {
+				
+			} else {
+				
 				if ( in_array( Events_Maker()->options['general']['order_by'], array( 'start', 'end' ), true ) ) {
 					$query->query_vars['meta_key'] = $keys[Events_Maker()->options['general']['order_by']];
 					$query->query_vars['orderby'] = 'meta_value';
@@ -433,6 +441,7 @@ class Events_Maker_Query {
 					$event_order_by = false;
 				} else
 					$event_order_by = false;
+				
 			}
 
 			if ( ! isset( $query->query_vars['order'] ) )
@@ -483,6 +492,7 @@ class Events_Maker_Query {
 				$eb_date = '';
 
 			if ( $query->query_vars['event_show_occurrences'] ) {
+				
 				global $wpdb;
 
 				$sql = array();
@@ -503,8 +513,9 @@ class Events_Maker_Query {
 					$sql[] = "CAST(SUBSTRING_INDEX(events_meta.meta_value, '|', -1) AS DATETIME) >= '" . current_time( 'mysql' ) . "'";
 
 				$query->event_details = $sql;
-			}
-			else {
+				
+			} else {
+				
 				if ( ! empty( $query->query_vars['event_start_after'] ) ) {
 					$meta_args[] = array(
 						'key'		 => $keys['start'],
@@ -549,6 +560,7 @@ class Events_Maker_Query {
 						'type'		 => 'DATETIME'
 					);
 				}
+				
 			}
 
 			if ( $query->query_vars['event_date_type'] === 'all_day' ) {
@@ -630,7 +642,7 @@ class Events_Maker_Query {
 		$post_types = apply_filters( 'em_event_post_type', array( 'event' ) );
 
 		// apply the magic on events archive only
-		if ( ! is_admin() && is_main_query() && (is_post_type_archive( $post_types ) || is_tax( array( 'event-category', 'event-tag', 'event-location', 'event-organizer' ) )) ) {
+		if ( ! is_admin() && is_main_query() && ( is_post_type_archive( $post_types ) || is_tax( array( 'event-category', 'event-tag', 'event-location', 'event-organizer' ) ) ) ) {
 			global $wp_query;
 
 			$args = array(
@@ -698,7 +710,7 @@ class Events_Maker_Query {
 	 * Modify the query according to orderby value.
 	 */
 	public function alter_orderby_query( $query ) {
-		if ( empty( $query ) || is_admin() || ! $query->is_main_query() )
+		if ( empty( $query ) || is_admin() || ! $query->is_main_query() && empty( $query->query_vars['suppress_filters'] ) )
 			return $query;
 
 		$post_types = $query->get( 'post_type' );
@@ -765,6 +777,106 @@ class Events_Maker_Query {
 			$query->set( 'order', $args['order'] );
 
 		return $query;
+	}
+	
+	/**
+	 * Modify the query according to search form values.
+	 */
+	public function alter_search_query( $query ) {
+		if ( empty( $query ) || is_admin() || ! $query->is_main_query() && empty( $query->query_vars['suppress_filters'] ) )
+			return $query;
+
+		// get URL vars
+		$current_url = parse_url( $_SERVER['REQUEST_URI'] );
+
+		if ( empty( $current_url['query'] ) )
+			return $query;
+
+		parse_str( $current_url['query'], $vars );	
+
+		// get raxonomies
+		$taxonomies = array();
+		
+		foreach ( $vars as $var_key => $var_value ) {
+			if ( ! empty( $var_value) ) {
+				if ( stripos( $var_key, 'tax_' ) === 0 ) {
+					$var_key = str_replace( 'tax_', '', $var_key);
+
+					if ( in_array( $var_key, array( 'event-category', 'event-location', 'event-organizer', 'event-tag' ) ) ) {
+						$taxonomies[] = array( $var_key => $var_value );
+					}
+				}
+			}
+		}
+		
+		// build tax query
+		$tax_query = array();
+
+		if ( $taxonomies ) {
+			foreach ( $taxonomies as $taxonomy ) {
+				$tax_query[] = array(
+					'taxonomy'	=> key( $taxonomy ),
+					'terms'		=> current( $taxonomy ),
+					'field'		=> 'term_id'
+				);
+			}
+		}
+
+		if ( ! empty( $query->tax_query->queries ) ) {
+			$tax_query = array_merge( $query->tax_query->queries, $tax_query );
+		}
+		
+		// get event date
+		$em_helper = new Events_Maker_Helper();
+		
+		$meta_query = $query->get( 'meta_query' );
+		$start = ! empty( $_GET['start_date'] ) ? sanitize_text_field( $_GET['start_date'] ) : '';
+		$end = ! empty( $_GET['end_date'] ) ? sanitize_text_field( $_GET['end_date'] ) : '';
+		$sb = $em_helper->is_valid_date( $start );
+		$eb = $em_helper->is_valid_date( $end );
+
+		if ( $sb === true && $eb === true ) {
+			$meta_query = array(
+				array(
+					'key'		 => '_event_start_date',
+					'value'		 => $start,
+					'compare'	 => '>=',
+					'type'		 => 'DATE'
+				),
+				array(
+					'key'		 => '_event_end_date',
+					'value'		 => $end,
+					'compare'	 => '<=',
+					'type'		 => 'DATE'
+				)
+			);
+		} elseif ( $sb === true && $eb !== true ) {
+			$meta_query = array(
+				array(
+					'key'		 => '_event_start_date',
+					'value'		 => $start,
+					'compare'	 => '>=',
+					'type'		 => 'DATE'
+				)
+			);
+		} elseif ( $sb !== true && $eb === true ) {
+			$meta_query = array(
+				array(
+					'key'		 => '_event_end_date',
+					'value'		 => $end,
+					'compare'	 => '<=',
+					'type'		 => 'DATE'
+				)
+			);
+		}
+		
+		if ( ! empty( $tax_query ) ) {
+			$query->set( 'tax_query', $tax_query );
+		}
+		
+		if ( ! empty( $meta_query ) ) {
+			$query->set( 'meta_query', $meta_query );
+		}
 	}
 
 }

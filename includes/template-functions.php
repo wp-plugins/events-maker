@@ -904,3 +904,48 @@ if ( ! function_exists( 'em_display_widget_event_date' ) ) {
 	}
 
 }
+
+/**
+ * Display sidebar.
+ */
+if ( ! function_exists( 'em_get_search_form' ) ) {
+
+	function em_get_search_form( $echo = true, $args = array() ) {
+
+		// get events page link
+		if ( ( $page_id = em_get_page_id( 'events' ) ) != 0 ) {
+			$link = get_permalink( $page_id );
+		} else {
+			$link = get_post_type_archive( 'event' );
+		}
+		
+		$defaults = array(
+			'title'						=> __( 'Events Search', 'events-maker' ),
+			'link'						=> esc_url( $link ),
+			'show_string_input'			=> true,
+			'string_input_placeholder'	=> __( 'Enter event name...', 'events-maker' ),
+			'show_date_input'			=> true,
+			'start_date_placeholder'	=> __( 'Select start date...', 'events-maker' ),
+			'end_date_placeholder'		=> __( 'Select end date...', 'events-maker' ),
+			'show_event_categories'		=> true,
+			'show_event_locations'		=> true,
+			'show_event_organizers'		=> true,
+			'show_event_tags'			=> true
+		);
+
+		$args = apply_filters( 'em_get_search_form_args', wp_parse_args( $args, $defaults ) );
+		
+		ob_start();
+		
+		em_get_template( 'searchform-event.php', $args );
+		
+		$html = ob_get_contents();
+		ob_end_clean();
+		
+		if ( $echo === true )
+			echo $html;
+		else
+			return $html;
+	}
+
+}

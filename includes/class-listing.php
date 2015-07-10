@@ -40,8 +40,8 @@ class Events_Maker_Listing {
 			foreach ( $post_types as $post_type ) {
 				if ( $pagenow === 'edit.php' && $screen->post_type == $post_type && $screen->id === 'edit-' . $post_type ) {
 					echo '
-					<label for="emflds">' . __( 'Start Date', 'events-maker' ) . '</label> <input id="emflds" class="events-datepicker" type="text" name="event_start_date" value="' . ( ! empty( $_GET['event_start_date'] ) ? esc_attr( $_GET['event_start_date'] ) : '') . '" /> 
-					<label for="emflde">' . __( 'End Date', 'events-maker' ) . '</label> <input id="emflde" class="events-datepicker" type="text" name="event_end_date" value="' . ( ! empty( $_GET['event_end_date'] ) ? esc_attr( $_GET['event_end_date'] ) : '') . '" /> ';
+					<label for="emflds">' . __( 'Start Date', 'events-maker' ) . '</label> <input id="emflds" class="events-datepicker" type="text" name="start_date" value="' . ( ! empty( $_GET['start_date'] ) ? esc_attr( $_GET['start_date'] ) : '') . '" /> 
+					<label for="emflde">' . __( 'End Date', 'events-maker' ) . '</label> <input id="emflde" class="events-datepicker" type="text" name="end_date" value="' . ( ! empty( $_GET['end_date'] ) ? esc_attr( $_GET['end_date'] ) : '') . '" /> ';
 				}
 			}
 		}
@@ -51,8 +51,8 @@ class Events_Maker_Listing {
 	 * Register sortable columns.
 	 */
 	public function register_sortable_custom_columns( $column ) {
-		$column['start_date'] = 'event_start_date';
-		$column['end_date'] = 'event_end_date';
+		$column['start_date'] = 'start_date';
+		$column['end_date'] = 'end_date';
 
 		return $column;
 	}

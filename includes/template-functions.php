@@ -111,10 +111,12 @@ if ( ! function_exists( 'em_display_events' ) ) {
 
 			$html = ob_get_contents();
 			ob_end_clean();
-
-			return apply_filters( 'em_display_events', $html );
-		} else
-			return $args['no_events_message'];
+			
+		} else {
+			$html = '<p class="no-events-found">' . $args['no_events_message'] . '</p>';
+		}
+		
+		return apply_filters( 'em_display_events', $html );
 	}
 
 }
@@ -283,11 +285,11 @@ if ( ! function_exists( 'em_display_event_organizers' ) ) {
 
 			<span class="term-list event-organizer cat-links">
 
-		<?php if ( is_single() ) : ?>
+				<?php if ( is_single() ) : ?>
 
-			<?php $event_display_options = get_post_meta( $post_id, '_event_display_options', TRUE ); // event display options  ?>
+					<?php $event_display_options = get_post_meta( $post_id, '_event_display_options', TRUE ); // event display options  ?>
 
-			<?php if ( isset( $event_display_options['display_organizer_details'] ) && $event_display_options['display_organizer_details'] == true ) : ?>
+					<?php if ( isset( $event_display_options['display_organizer_details'] ) && $event_display_options['display_organizer_details'] == true ) : ?>
 
 						<?php
 						$output = __( '<strong>Organizer: </strong>', 'events-maker' );
@@ -332,8 +334,8 @@ if ( ! function_exists( 'em_display_event_organizers' ) ) {
 				<?php echo $output; ?>
 
 			</span>
-
-			<div>
+			
+		</div>
 
 		<?php
 	}

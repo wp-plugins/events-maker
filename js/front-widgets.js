@@ -2,21 +2,24 @@
 
 	$( document ).ready( function () {
 
-		$( document ).on( 'click', '.events-calendar-widget .prev-month a, .events-calendar-widget .next-month a', function () {
-			var ajaxArgs		= [],
-				newMonth		= $( this ).attr( 'rel' ),
-				divCalendar		= $( this ).closest( 'div.events-calendar-widget' ),
-				tdSpinner		= divCalendar.find( 'td.ajax-spinner' ),
-				divRel			= divCalendar.attr( 'rel' ),
-				relSplit		= divRel.split( '|' ),
-				widgetID		= relSplit[0],
-				lang			= relSplit[1];
+		$( document ).on( 'click', '.events-calendar-widget .prev-month a, .events-calendar-widget .next-month a', function ( e ) {
+			
+			e.preventDefault();
+			
+			var ajaxArgs = [],
+					newMonth = $( this ).attr( 'rel' ),
+					divCalendar = $( this ).closest( '.events-calendar-widget' ),
+					tdSpinner = divCalendar.find( '.ajax-spinner' ),
+					divRel = divCalendar.attr( 'rel' ),
+					relSplit = divRel.split( '|' ),
+					widgetID = relSplit[0],
+					lang = relSplit[1];
 
 			ajaxArgs = {
-				action			: 'get-events-widget-calendar-month',
-				date			: newMonth,
-				widget_id		: widgetID,
-				nonce			: emArgs.nonce
+				action: 'get-events-widget-calendar-month',
+				date: newMonth,
+				widget_id: widgetID,
+				nonce: emArgs.nonce
 			};
 
 			if ( lang !== '' ) {
@@ -24,13 +27,13 @@
 				ajaxArgs['lang'] = lang;
 			}
 
-			divCalendar.find( 'td.ajax-spinner div' ).css( 'middle', parseInt( ( tdSpinner.height() - 16 ) / 2 ) + 'px' ).css( 'left', parseInt( ( tdSpinner.width() - 16 ) / 2 ) + 'px' ).fadeIn( 300 );
+			divCalendar.find( '.ajax-spinner div' ).css( 'middle', parseInt( ( tdSpinner.height() - 16 ) / 2 ) + 'px' ).css( 'left', parseInt( ( tdSpinner.width() - 16 ) / 2 ) + 'px' ).fadeIn( 300 );
 
 			$.ajax( {
-				type			: 'POST',
-				url				: emArgs.ajaxurl,
-				data			: ajaxArgs,
-				dataType		: 'html'
+				type: 'POST',
+				url: emArgs.ajaxurl,
+				data: ajaxArgs,
+				dataType: 'html'
 			} )
 					.done( function ( data ) {
 						divCalendar.fadeOut( 300, function () {
@@ -43,20 +46,6 @@
 
 			return false;
 		} );
-
-		if ( typeof emSearchWidgetArgs != undefined ) {
-			$( '#em-search-start-date, #em-search-end-date' ).datepicker( {
-				dateFormat		: 'yy-mm-dd',
-				firstDay		: emSearchWidgetArgs.firstWeekDay,
-				showButtonPanel	: false,
-				monthNames		: emSearchWidgetArgs.monthNames,
-				monthNamesShort	: emSearchWidgetArgs.monthNamesShort,
-				dayNames		: emSearchWidgetArgs.dayNames,
-				dayNamesShort	: emSearchWidgetArgs.dayNamesShort,
-				dayNamesMin		: emSearchWidgetArgs.dayNamesMin,
-				isRTL			: emSearchWidgetArgs.isRTL
-			} );
-		}
 
 	} );
 

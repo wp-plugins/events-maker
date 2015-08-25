@@ -37,6 +37,84 @@ class Events_Maker_Widgets {
 /**
  * Events_Maker_Archive_Widget class.
  */
+class Events_Maker_Search_Widget extends WP_Widget {
+
+	private $em_defaults = array();
+	private $em_types = array();
+	private $em_order_types = array();
+
+	public function __construct() {
+		parent::__construct(
+			'Events_Maker_Search_Widget', __( 'Events Search', 'events-maker' ), array(
+			'description' => __( 'An advanced event searchform.', 'events-maker' )
+			)
+		);
+
+		$this->em_defaults = array(
+			'title'					=> __( 'Events Search', 'events-maker' ),
+			'show_string_input'		=> true,
+			'show_date_input'		=> true,
+			'show_event_categories'	=> true,
+			'show_event_locations'	=> true,
+			'show_event_organizers'	=> true,
+			'show_event_tags'		=> true,
+		);
+	}
+
+	public function widget( $args, $instance ) {
+		$instance['title'] = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
+
+		$html = $args['before_widget'] . $args['before_title'] . ( ! empty( $instance['title'] ) ? $instance['title'] : '') . $args['after_title'];
+		$html .= em_get_search_form( $instance );
+		$html .= $args['after_widget'];
+
+		echo $html;
+	}
+
+	public function form( $instance ) {
+		$html = '
+		<p>
+			<label for="' . $this->get_field_id( 'title' ) . '">' . __( 'Title', 'events-maker' ) . ':</label>
+			<input id="' . $this->get_field_id( 'title' ) . '" class="widefat" name="' . $this->get_field_name( 'title' ) . '" type="text" value="' . esc_attr( isset( $instance['title'] ) ? $instance['title'] : $this->em_defaults['title'] ) . '" />
+		</p>
+		<p>
+			<input id="' . $this->get_field_id( 'show_string_input' ) . '" type="checkbox" name="' . $this->get_field_name( 'show_string_input' ) . '" value="" ' . checked( true, (isset( $instance['show_string_input'] ) ? $instance['show_string_input'] : $this->em_defaults['show_string_input'] ), false ) . ' /> <label for="' . $this->get_field_id( 'show_string_input' ) . '">' . __( 'Show searchphrase input field', 'events-maker' ) . '</label><br />
+			<input id="' . $this->get_field_id( 'show_date_input' ) . '" type="checkbox" name="' . $this->get_field_name( 'show_date_input' ) . '" value="" ' . checked( true, (isset( $instance['show_date_input'] ) ? $instance['show_date_input'] : $this->em_defaults['show_date_input'] ), false ) . ' /> <label for="' . $this->get_field_id( 'show_date_input' ) . '">' . __( 'Show date input fields', 'events-maker' ) . '</label><br />
+			<input id="' . $this->get_field_id( 'show_event_categories' ) . '" type="checkbox" name="' . $this->get_field_name( 'show_event_categories' ) . '" value="" ' . checked( true, (isset( $instance['show_event_categories dropdown'] ) ? $instance['show_event_categories'] : $this->em_defaults['show_event_categories'] ), false ) . ' /> <label for="' . $this->get_field_id( 'show_event_categories' ) . '">' . __( 'Show event categories dropdown', 'events-maker' ) . '</label><br />
+			<input id="' . $this->get_field_id( 'show_event_locations' ) . '" type="checkbox" name="' . $this->get_field_name( 'show_event_locations' ) . '" value="" ' . checked( true, (isset( $instance['show_event_locations'] ) ? $instance['show_event_locations'] : $this->em_defaults['show_event_locations'] ), false ) . ' /> <label for="' . $this->get_field_id( 'show_event_locations' ) . '">' . __( 'Show event locations dropdown', 'events-maker' ) . '</label><br />';
+		
+		if ( Events_Maker()->options['general']['use_organizers'] === true ) {
+			$html .= '
+			<input id="' . $this->get_field_id( 'show_event_organizers' ) . '" type="checkbox" name="' . $this->get_field_name( 'show_event_organizers' ) . '" value="" ' . checked( true, (isset( $instance['show_event_organizers'] ) ? $instance['show_event_organizers'] : $this->em_defaults['show_event_organizers'] ), false ) . ' /> <label for="' . $this->get_field_id( 'show_event_organizers' ) . '">' . __( 'Show event organizers dropdown', 'events-maker' ) . '</label><br />';
+		}
+		
+		$html .= '
+			<input id="' . $this->get_field_id( 'show_event_tags' ) . '" type="checkbox" name="' . $this->get_field_name( 'show_event_tags' ) . '" value="" ' . checked( true, (isset( $instance['show_event_tags'] ) ? $instance['show_event_tags'] : $this->em_defaults['show_event_tags'] ), false ) . ' /> <label for="' . $this->get_field_id( 'show_event_tags' ) . '">' . __( 'Show event tags dropdown', 'events-maker' ) . '</label><br />
+		</p>';
+
+		echo $html;
+	}
+
+	public function update( $new_instance, $old_instance ) {
+		// title
+		$old_instance['title'] = sanitize_text_field( isset( $new_instance['title'] ) ? $new_instance['title'] : $this->em_defaults['title'] );
+
+		// checkout
+		$old_instance['show_string_input'] = ( isset( $new_instance['show_string_input'] ) ? true : false );
+		$old_instance['show_date_input'] = ( isset( $new_instance['show_date_input'] ) ? true : false );
+		$old_instance['show_event_categories'] = ( isset( $new_instance['show_event_categories'] ) ? true : false );
+		$old_instance['show_event_locations'] = ( isset( $new_instance['show_event_locations'] ) ? true : false );
+		$old_instance['show_event_organizers'] = ( isset( $new_instance['show_event_organizers'] ) ? true : false );
+		$old_instance['show_event_tags'] = ( isset( $new_instance['show_event_tags'] ) ? true : false );
+
+		return $old_instance;
+	}
+
+}
+
+/**
+ * Events_Maker_Archive_Widget class.
+ */
 class Events_Maker_Archive_Widget extends WP_Widget {
 
 	private $em_defaults = array();
@@ -46,8 +124,7 @@ class Events_Maker_Archive_Widget extends WP_Widget {
 	public function __construct() {
 		parent::__construct(
 			'Events_Maker_Archive_Widget', __( 'Events Archives', 'events-maker' ), array(
-				'description'		=> __( 'Displays events archives', 'events-maker' ),
-				'classname'			=> 'widget_events_archive'
+			'description' => __( 'Displays events archives', 'events-maker' )
 			)
 		);
 
@@ -156,8 +233,7 @@ class Events_Maker_Calendar_Widget extends WP_Widget {
 	public function __construct() {
 		parent::__construct(
 			'Events_Maker_Calendar_Widget', __( 'Events Calendar', 'events-maker' ), array(
-				'description'		=> __( 'Displays events calendar', 'events-maker' ),
-				'classname'			=> 'widget_events_calendar'
+			'description' => __( 'Displays events calendar', 'events-maker' )
 			)
 		);
 
@@ -207,14 +283,8 @@ class Events_Maker_Calendar_Widget extends WP_Widget {
 	 * 
 	 */
 	public function widget( $args, $instance ) {
-		if ( ++ $this->em_included_widgets === 1 && ( ! is_admin() || ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) )  {
-			add_action ( 'wp_enqueue_scripts', array( &$this, 'load_scripts' ) );
-			wp_localize_script(
-				'events-maker-front-widgets', 'emArgs', array(
-				'ajaxurl'	 => admin_url( 'admin-ajax.php' ),
-				'nonce'		 => wp_create_nonce( 'events-maker-widget-calendar' )
-				)
-			);
+		if ( ++ $this->em_included_widgets === 1 ) {
+			add_action ( 'wp_footer', array( &$this, 'load_scripts' ) );
 		}
 
 		$date = date( 'Y-m', current_time( 'timestamp' ) );
@@ -227,13 +297,22 @@ class Events_Maker_Calendar_Widget extends WP_Widget {
 		echo $html;
 	}
 	
+	/**
+	 * 
+	 */
 	public function load_scripts() {
-		if ( ! wp_script_is( 'events-maker-front-widgets', 'enqueued' ) ) {
-			wp_register_script(
-				'events-maker-front-widgets', EVENTS_MAKER_URL . '/js/front-widgets.js', array( 'jquery', 'jquery-ui-core', 'jquery-ui-datepicker' ), Events_Maker()->defaults['version'], true
-			);
-			wp_enqueue_script( 'events-maker-front-widgets' );
-		}
+		wp_register_script(
+			'events-maker-front-widgets-calendar', EVENTS_MAKER_URL . '/js/front-widgets.js', array( 'jquery' )
+		);
+		
+		wp_localize_script(
+			'events-maker-front-widgets-calendar', 'emArgs', array(
+			'ajaxurl'	 => admin_url( 'admin-ajax.php' ),
+			'nonce'		 => wp_create_nonce( 'events-maker-widget-calendar' )
+			)
+		);
+
+		wp_enqueue_script( 'events-maker-front-widgets-calendar' );
 	}
 
 	/**
@@ -671,8 +750,7 @@ class Events_Maker_List_Widget extends WP_Widget {
 	public function __construct() {
 		parent::__construct(
 			'Events_Maker_List_Widget', __( 'Events List', 'events-maker' ), array(
-				'description'		=> __( 'Displays a list of events', 'events-maker' ),
-				'classname'			=> 'widget_events_list'
+			'description' => __( 'Displays a list of events', 'events-maker' )
 			)
 		);
 
@@ -1000,8 +1078,7 @@ class Events_Maker_Categories_Widget extends WP_Widget {
 	public function __construct() {
 		parent::__construct(
 			'Events_Maker_Categories_Widget', __( 'Events Categories', 'events-maker' ), array(
-				'description'		=> __( 'Displays a list of events categories', 'events-maker' ),
-				'classname'			=> 'widget_events_categories'
+			'description' => __( 'Displays a list of events categories', 'events-maker' )
 			)
 		);
 
@@ -1109,8 +1186,7 @@ class Events_Maker_Locations_Widget extends WP_Widget {
 	public function __construct() {
 		parent::__construct(
 			'Events_Maker_Locations_Widget', __( 'Events Locations', 'events-maker' ), array(
-				'description'		=> __( 'Displays a list of events locations', 'events-maker' ),
-				'classname'			=> 'widget_events_locations'
+			'description' => __( 'Displays a list of events locations', 'events-maker' )
 			)
 		);
 
@@ -1218,8 +1294,7 @@ class Events_Maker_Organizers_Widget extends WP_Widget {
 	public function __construct() {
 		parent::__construct(
 			'Events_Maker_Organizers_Widget', __( 'Events Organizers', 'events-maker' ), array(
-				'description'		=> __( 'Displays a list of events organizers', 'events-maker' ),
-				'classname'			=> 'widget_events_organizers'
+			'description' => __( 'Displays a list of events organizers', 'events-maker' )
 			)
 		);
 
@@ -1309,126 +1384,6 @@ class Events_Maker_Organizers_Widget extends WP_Widget {
 		// order
 		$old_instance['order_by'] = (isset( $new_instance['order_by'] ) && in_array( $new_instance['order_by'], array_keys( $this->em_orders ), true ) ? $new_instance['order_by'] : $this->em_defaults['order_by']);
 		$old_instance['order'] = (isset( $new_instance['order'] ) && in_array( $new_instance['order'], array_keys( $this->em_order_types ), true ) ? $new_instance['order'] : $this->em_defaults['order']);
-
-		return $old_instance;
-	}
-
-}
-
-/**
- * Events_Maker_Archive_Widget class.
- */
-class Events_Maker_Search_Widget extends WP_Widget {
-
-	private $em_defaults = array();
-	private $em_types = array();
-	private $em_order_types = array();
-
-	public function __construct() {
-		parent::__construct(
-			'Events_Maker_Search_Widget', __( 'Events Search', 'events-maker' ), array(
-				'description'		=> __( 'Advanced event searchform.', 'events-maker' ),
-				'classname'			=> 'widget_events_search'
-			)
-		);
-
-		$this->em_defaults = array(
-			'title'					=> __( 'Events Search', 'events-maker' ),
-			'show_string_input'		=> true,
-			'show_date_input'		=> true,
-			'show_event_categories'	=> true,
-			'show_event_locations'	=> true,
-			'show_event_organizers'	=> true,
-			'show_event_tags'		=> true,
-		);
-		
-		// enqueue CSS and JS on frontend only if widget is active.
-		if ( is_active_widget( false, false, $this->id_base ) && ( ! is_admin() || ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) ) {
-			add_action ( 'wp_footer', array( &$this, 'load_variables' ) );
-			add_action ( 'wp_enqueue_scripts', array( &$this, 'load_scripts' ) );
-		}
-	}
-	
-	public function load_scripts() {
-		if ( ! wp_script_is( 'events-maker-front-widgets', 'enqueued' ) ) {
-			wp_register_script(
-				'events-maker-front-widgets', EVENTS_MAKER_URL . '/js/front-widgets.js', array( 'jquery', 'jquery-ui-core', 'jquery-ui-datepicker' ), Events_Maker()->defaults['version'], true
-			);
-			wp_enqueue_script( 'events-maker-front-widgets' );
-
-			wp_register_style(
-				'events-maker-wplike', EVENTS_MAKER_URL . '/css/wp-like-ui-theme.css'
-			);
-			wp_enqueue_style( 'events-maker-front-widgets' );
-		}
-	}
-	
-	public function load_variables() {
-		global $wp_locale;
-		
-		$args = array(
-			'firstWeekDay'		 => Events_Maker()->options['general']['first_weekday'],
-			'monthNames'		 => array_values( $wp_locale->month ),
-			'monthNamesShort'	 => array_values( $wp_locale->month_abbrev ),
-			'dayNames'			 => array_values( $wp_locale->weekday ),
-			'dayNamesShort'		 => array_values( $wp_locale->weekday_abbrev ),
-			'dayNamesMin'		 => array_values( $wp_locale->weekday_initial ),
-			'isRTL'				 => $wp_locale->is_rtl()
-		);
-		
-		echo "<script type='text/javascript'>\n";
-		echo "/* <![CDATA[ */\n";
-		echo 'var emSearchWidgetArgs = ' . json_encode( $args );
-		echo "\n/* ]]> */\n";
-		echo "</script>\n";
-		
-	}
-
-	public function widget( $args, $instance ) {
-		$instance['title'] = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
-
-		$html = $args['before_widget'] . $args['before_title'] . ( ! empty( $instance['title'] ) ? $instance['title'] : '') . $args['after_title'];
-		$html .= em_get_search_form( false, $instance );
-		$html .= $args['after_widget'];
-
-		echo $html;
-	}
-
-	public function form( $instance ) {
-		$html = '
-		<p>
-			<label for="' . $this->get_field_id( 'title' ) . '">' . __( 'Title', 'events-maker' ) . ':</label>
-			<input id="' . $this->get_field_id( 'title' ) . '" class="widefat" name="' . $this->get_field_name( 'title' ) . '" type="text" value="' . esc_attr( isset( $instance['title'] ) ? $instance['title'] : $this->em_defaults['title'] ) . '" />
-		</p>
-		<p>
-			<input id="' . $this->get_field_id( 'show_string_input' ) . '" type="checkbox" name="' . $this->get_field_name( 'show_string_input' ) . '" value="" ' . checked( true, (isset( $instance['show_string_input'] ) ? $instance['show_string_input'] : $this->em_defaults['show_string_input'] ), false ) . ' /> <label for="' . $this->get_field_id( 'show_string_input' ) . '">' . __( 'Show searchphrase input field', 'events-maker' ) . '</label><br />
-			<input id="' . $this->get_field_id( 'show_date_input' ) . '" type="checkbox" name="' . $this->get_field_name( 'show_date_input' ) . '" value="" ' . checked( true, (isset( $instance['show_date_input'] ) ? $instance['show_date_input'] : $this->em_defaults['show_date_input'] ), false ) . ' /> <label for="' . $this->get_field_id( 'show_date_input' ) . '">' . __( 'Show date input fields', 'events-maker' ) . '</label><br />
-			<input id="' . $this->get_field_id( 'show_event_categories' ) . '" type="checkbox" name="' . $this->get_field_name( 'show_event_categories' ) . '" value="" ' . checked( true, (isset( $instance['show_event_categories dropdown'] ) ? $instance['show_event_categories'] : $this->em_defaults['show_event_categories'] ), false ) . ' /> <label for="' . $this->get_field_id( 'show_event_categories' ) . '">' . __( 'Show event categories dropdown', 'events-maker' ) . '</label><br />
-			<input id="' . $this->get_field_id( 'show_event_locations' ) . '" type="checkbox" name="' . $this->get_field_name( 'show_event_locations' ) . '" value="" ' . checked( true, (isset( $instance['show_event_locations'] ) ? $instance['show_event_locations'] : $this->em_defaults['show_event_locations'] ), false ) . ' /> <label for="' . $this->get_field_id( 'show_event_locations' ) . '">' . __( 'Show event locations dropdown', 'events-maker' ) . '</label><br />';
-		
-		if ( Events_Maker()->options['general']['use_organizers'] === true ) {
-			$html .= '
-			<input id="' . $this->get_field_id( 'show_event_organizers' ) . '" type="checkbox" name="' . $this->get_field_name( 'show_event_organizers' ) . '" value="" ' . checked( true, (isset( $instance['show_event_organizers'] ) ? $instance['show_event_organizers'] : $this->em_defaults['show_event_organizers'] ), false ) . ' /> <label for="' . $this->get_field_id( 'show_event_organizers' ) . '">' . __( 'Show event organizers dropdown', 'events-maker' ) . '</label><br />';
-		}
-		
-		$html .= '
-			<input id="' . $this->get_field_id( 'show_event_tags' ) . '" type="checkbox" name="' . $this->get_field_name( 'show_event_tags' ) . '" value="" ' . checked( true, (isset( $instance['show_event_tags'] ) ? $instance['show_event_tags'] : $this->em_defaults['show_event_tags'] ), false ) . ' /> <label for="' . $this->get_field_id( 'show_event_tags' ) . '">' . __( 'Show event tags dropdown', 'events-maker' ) . '</label><br />
-		</p>';
-
-		echo $html;
-	}
-
-	public function update( $new_instance, $old_instance ) {
-		// title
-		$old_instance['title'] = sanitize_text_field( isset( $new_instance['title'] ) ? $new_instance['title'] : $this->em_defaults['title'] );
-
-		// checkout
-		$old_instance['show_string_input'] = ( isset( $new_instance['show_string_input'] ) ? true : false );
-		$old_instance['show_date_input'] = ( isset( $new_instance['show_date_input'] ) ? true : false );
-		$old_instance['show_event_categories'] = ( isset( $new_instance['show_event_categories'] ) ? true : false );
-		$old_instance['show_event_locations'] = ( isset( $new_instance['show_event_locations'] ) ? true : false );
-		$old_instance['show_event_organizers'] = ( isset( $new_instance['show_event_organizers'] ) ? true : false );
-		$old_instance['show_event_tags'] = ( isset( $new_instance['show_event_tags'] ) ? true : false );
 
 		return $old_instance;
 	}

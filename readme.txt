@@ -3,8 +3,8 @@ Contributors: dfactory
 Donate link: http://www.dfactory.eu/
 Tags: event, event categories, events management, event management, events manager, event manager, event organizer, events calendar, events maker, google map, map, locations, organizers, widget, attendance, attendee, Booking, calendar, event registration, ticket, tickets, ticketing, bookings
 Requires at least: 3.5
-Tested up to: 4.2.2
-Stable tag: 1.6.5
+Tested up to: 4.3.0
+Stable tag: 1.6.6
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -117,6 +117,11 @@ A. Chances are, someone else has asked it. Check out the support forum at: http:
 6. screenshot-6.png
 
 == Changelog ==
+
+= 1.6.6 =
+* Fix: Calendar widget AJAX issue
+* Fix: Multiple template bufixes
+* Tweak: Confirmed WP 4.3 compatibility
 
 = 1.6.5 =
 * New: Event Search with customizable attributes
@@ -339,5 +344,7 @@ Initial release
 
 == Upgrade Notice ==
 
-= 1.6.5 =
-* New: Event Search with customizable attributes
+= 1.6.6 =
+* Fix: Calendar widget AJAX issue
+* Fix: Multiple template bufixes
+* Tweak: Confirmed WP 4.3 compatibility

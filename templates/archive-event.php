@@ -81,11 +81,11 @@ if ( have_posts() ) :
 
 <?php else : ?>
 
-	<article id="post-0" class="post no-results not-found">
+	<article id="post-0" class="post event no-results not-found">
 
 		<div class="entry-content">
 
-			<p><?php _e( 'Apologies, but no events were found.', 'events-maker' ); ?></p>
+			<p class="no-events-found"><?php _e( 'Apologies, but no events were found.', 'events-maker' ); ?></p>
 
 		</div>
 
